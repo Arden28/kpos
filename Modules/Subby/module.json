@@ -1,0 +1,13 @@
+{
+    "name": "Subby",
+    "alias": "subby",
+    "description": "",
+    "keywords": [],
+    "priority": 0,
+    "providers": [
+        "Modules\\Subby\\Providers\\SubbyServiceProvider"
+    ],
+    "aliases": {},
+    "files": [],
+    "requires": []
+}
