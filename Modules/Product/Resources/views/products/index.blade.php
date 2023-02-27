@@ -1,6 +1,6 @@
 @extends('layouts.master')
 
-@section('title', 'Products')
+@section('title', trans('modules.pos.products.title'))
 
 @section('third_party_stylesheets')
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.25/css/dataTables.bootstrap4.min.css">
@@ -12,7 +12,7 @@
     <div class="row g-2 align-items-center">
     <div class="col">
         <h2 class="page-title">
-            {{ __('Products') }}
+            {{ trans('modules.pos.products.title') }}
         </h2>
     </div>
     </div>
@@ -28,7 +28,7 @@
                     <div class="card">
                         <div class="card-body">
                             <a href="{{ route('products.create') }}" class="btn btn-primary">
-                                {{ __('Add Product') }} <i class="bi bi-plus"></i>
+                                {{ trans('modules.pos.products.add') }} <i class="bi bi-plus"></i>
                             </a>
 
                             <hr>

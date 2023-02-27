@@ -56,7 +56,7 @@ class ProRegister extends Component
             $selectedPlan->name, // Human-readable name for your subscription
             $selectedPlan->description, // Description
             null, // Start date for the subscription, defaults to now()
-            // 'free' // Payment method service defined in config
+            'free' // Payment method service defined in config
         );
 
         // $user->newSubscription('main', $selectedPlan, 'Main subscription', 'Customer main subscription');

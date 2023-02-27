@@ -13,5 +13,5 @@ return [
         'weekly_report'       => 'Ventes et commandes des 7 derniers jours',
         'overview'       => 'Rapport du'
     ],
-    
+
 ];

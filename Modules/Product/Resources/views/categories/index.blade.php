@@ -1,6 +1,6 @@
 @extends('layouts.master')
 
-@section('title', 'Product Categories')
+@section('title', trans('module.inventory.categories.title'))
 
 @section('third_party_stylesheets')
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.25/css/dataTables.bootstrap4.min.css">
@@ -12,7 +12,7 @@
     <div class="row g-2 align-items-center">
     <div class="col">
         <h2 class="page-title">
-            {{ __('Product Categories') }}
+            {{ trans('module.inventory.categories.title') }}
         </h2>
     </div>
     </div>
@@ -31,7 +31,7 @@
                         <div class="card-body">
                             <!-- Button trigger modal -->
                             <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#categoryCreateModal">
-                                {{ __('Add Category') }} <i class="bi bi-plus"></i>
+                                {{ trans('module.inventory.categories.add') }} <i class="bi bi-plus"></i>
                             </button>
 
                             <hr>
@@ -51,7 +51,7 @@
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="categoryCreateModalLabel">{{ __('Add Category') }}</h5>
+                        <h5 class="modal-title" id="categoryCreateModalLabel">{{ trans('module.inventory.categories.add') }}</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
@@ -60,16 +60,16 @@
                         @csrf
                         <div class="modal-body">
                             <div class="form-group">
-                                <label for="category_code">{{ __('Category Code') }} <span class="text-danger">*</span></label>
+                                <label for="category_code">{{ trans('module.inventory.categories.form.code') }} <span class="text-danger">*</span></label>
                                 <input class="form-control" type="text" name="category_code" required>
                             </div>
                             <div class="form-group">
-                                <label for="category_name">{{ __('Category Name') }} <span class="text-danger">*</span></label>
+                                <label for="category_name">{{ trans('module.inventory.categories.form.name') }} <span class="text-danger">*</span></label>
                                 <input class="form-control" type="text" name="category_name" required>
                             </div>
                         </div>
                         <div class="modal-footer">
-                            <button type="submit" class="btn btn-primary">{{ __('Add') }} <i class="bi bi-check"></i></button>
+                            <button type="submit" class="btn btn-primary">{{ trans('module.inventory.categories.add') }} <i class="bi bi-check"></i></button>
                         </div>
                     </form>
                 </div>
