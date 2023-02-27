@@ -11,16 +11,16 @@
           </div>
           <div class="card card-md">
             <div class="card-body">
-              <h2 class="h2 text-center mb-4">{{ __('Bienvenue !') }}</h2>
+              <h2 class="h2 text-center mb-4">{{ trans('auth.welcome') }}</h2>
 
-            <div class="hr-text">{{ __('Konnectez vous à votre compte !') }}</div>
+            <div class="hr-text">{{ trans('auth.hr_message') }}</div>
               <form method="post" action="{{ url('/auth/login') }}">
                   @csrf
                 <div class="mb-3">
-                  <label class="form-label">{{ __('Email') }}</label>
+                  <label class="form-label">{{ trans('auth.email.label') }}</label>
                   <input type="email"name="email"  class="form-control @error('email') is-invalid @enderror"
                     value="{{ old('email') }}"
-                    placeholder="{{ __('Votre adresse Email') }}">
+                    placeholder="{{ trans('auth.email.placeholder') }}">
                     @error('email')
                     <div class="invalid-feedback">{{ $message }}</div>
                     @enderror
@@ -28,17 +28,17 @@
 
                 <div class="mb-2">
                   <label class="form-label">
-                    {{ __('Mot de passe') }}
+                    {{ trans('auth.mdp.label') }}
                     <span class="form-label-description">
-                      <a href="{{ route('password.request') }}">{{ __("je ne m'en souviens plus !") }}</a>
+                      <a href="{{ route('password.request') }}">{{ trans('auth.mdp.forget') }}</a>
                     </span>
                   </label>
 
                   <div class="input-group input-group-flat">
                     <input type="password" class="form-control @error('password') is-invalid @enderror"
-                        placeholder="Votre mot de passe" name="password" id="id_password">
+                        placeholder="{{ trans('auth.mdp.placeholder') }}" name="password" id="id_password">
                         <span class="input-group-text">
-                            <a id="togglePassword" href="#" class="link-secondary" title="Show password" data-bs-toggle="tooltip">
+                            <a id="togglePassword" href="#" class="link-secondary" title="{{ trans('auth.mdp.show') }}" data-bs-toggle="tooltip">
                                 <i class="bi bi-eye"></i>
                             </a>
                         </span>
@@ -50,11 +50,11 @@
                 <div class="mb-2">
                   <label class="form-check">
                     <input type="checkbox" class="form-check-input"/>
-                    <span class="form-check-label">{{ __('Rester konnecté sur cet appareil') }}</span>
+                    <span class="form-check-label">{{ trans('auth.stay') }}</span>
                   </label>
                 </div>
                 <div class="form-footer">
-                  <button type="submit" class="btn btn-primary w-100">{{ __('Me Konnecter') }}</button>
+                  <button type="submit" class="btn btn-primary w-100">{{ trans('auth.login') }}</button>
                 </div>
               </form>
             </div>

@@ -13,14 +13,13 @@
               </a>
             </li>
 
-            {{-- <li class="nav-item {{ request()->routeIs('users*') ? 'active' : '' }}"> --}}
-                <li class="nav-item">
-              <a class="nav-link" href="{{ route('dashboard') }}" >
+            <li class="nav-item {{ request()->routeIs('inventory.index') ? 'active' : '' }}">
+              <a class="nav-link" href="{{ route('inventory.index') }}" >
                 <span class="nav-link-icon d-md-none d-lg-inline-block"><!-- Download SVG icon from http://tabler-icons.io/i/home -->
                   <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><polyline points="5 12 3 12 12 3 21 12 19 12" /><path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" /><path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" /></svg>
                 </span>
                 <span class="nav-link-title">
-                    {{ __('Tableau de bord') }}
+                    {{ trans('master.navbar-menu.modules.inventory.dashboard') }}
                 </span>
               </a>
             </li>
@@ -31,7 +30,7 @@
                 <i class="bi bi-box" style="width: 24px; height:24px"></i>
                 </span>
                 <span class="nav-link-title">
-                  {{ __('Catégories') }}
+                  {{ trans('master.navbar-menu.modules.inventory.categories.title') }}
                 </span>
               </a>
               <div class="dropdown-menu">
@@ -41,7 +40,7 @@
                   <div class="dropdown-menu-column">
                     <a class="dropdown-item  {{ request()->routeIs('*product-categories.index') ? 'active' : '' }}" href="{{ route('product-categories.index') }}">
 
-                      {{ __('Toutes les Catégories') }}
+                      {{ trans('master.navbar-menu.modules.inventory.categories.all') }}
                     </a>
 
                   </div>
@@ -57,7 +56,7 @@
                 <i class="bi bi-box" style="width: 24px; height:24px"></i>
                 </span>
                 <span class="nav-link-title">
-                  {{ __('Produits') }}
+                  {{ trans('master.navbar-menu.modules.inventory.products.title') }}
                 </span>
               </a>
               <div class="dropdown-menu">
@@ -67,7 +66,7 @@
                   <div class="dropdown-menu-column">
                     <a class="dropdown-item  {{ request()->routeIs('*products.index') ? 'active' : '' }}" href="{{ route('products.index') }}">
 
-                      {{ __('Tous les produits') }}
+                      {{ trans('master.navbar-menu.modules.inventory.products.all') }}
                     </a>
 
                   </div>
@@ -77,7 +76,7 @@
 
                     <a class="dropdown-item {{ request()->routeIs('*products.create') ? 'active' : '' }}" href="{{ route('products.create') }}">
 
-                        {{ __('Ajouter un produit') }}
+                        {{ trans('master.navbar-menu.modules.inventory.products.add') }}
                     </a>
 
                   </div>
@@ -91,7 +90,7 @@
                     <i class="bi bi-upc-scan" style="width: 24px; height: 24px;"></i>
                   </span>
                   <span class="nav-link-title">
-                    {{ __('Code Barre') }}
+                    {{ trans('master.navbar-menu.modules.inventory.barcode') }}
                   </span>
                 </a>
             </li>
@@ -102,7 +101,7 @@
                 <i class="bi bi-box" style="width: 24px; height:24px"></i>
                 </span>
                 <span class="nav-link-title">
-                  {{ __('Ajustement') }}
+                  {{ trans('master.navbar-menu.modules.inventory.ajustments.title') }}
                 </span>
               </a>
               <div class="dropdown-menu">
@@ -112,7 +111,7 @@
                   <div class="dropdown-menu-column">
                     <a class="dropdown-item  {{ request()->routeIs('*adjustments.index') ? 'active' : '' }}" href="{{ route('adjustments.index') }}">
 
-                      {{ __('Tous les ajustement') }}
+                      {{ trans('master.navbar-menu.modules.inventory.ajustments.all') }}
                     </a>
 
                   </div>
@@ -122,7 +121,7 @@
 
                     <a class="dropdown-item {{ request()->routeIs('*adjustments.create') ? 'active' : '' }}" href="{{ route('adjustments.create') }}">
 
-                        {{ __("Ajuster l'invetaire") }}
+                        {{ trans('master.navbar-menu.modules.inventory.ajustments.add') }}
                     </a>
 
                   </div>
@@ -136,7 +135,7 @@
                 <i class="bi bi-life-preserver" style="width: 24px; height: 24px;"></i>
                 </span>
                 <span class="nav-link-title">
-                  {{ __('Documentation') }}
+                  {{ trans('master.navbar-menu.modules.inventory.documentation') }}
                 </span>
               </a>
             </li>

@@ -68,7 +68,8 @@ class ProductCategoriesDataTable extends DataTable
         ];
     }
 
-    protected function filename() {
+    protected function filename() : string
+    {
         return 'ProductCategories_' . date('YmdHis');
     }
 }

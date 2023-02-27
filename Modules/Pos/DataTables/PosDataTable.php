@@ -68,7 +68,8 @@ class PosDataTable extends DataTable
         ];
     }
 
-    protected function filename() {
+    protected function filename() : string
+    {
         return 'Pos' . date('YmdHis');
     }
 }

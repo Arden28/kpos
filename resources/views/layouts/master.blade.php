@@ -37,11 +37,15 @@
 
             @include('layouts.navbar-menu')
 
+        @elseif(request()->routeIs('customers.*') || request()->routeIs('suppliers.*') || request()->routeIs('crm.*'))
+
+        @include('people::layouts.navbar-menu')
+
         @elseif(request()->routeIs('users.*') || request()->routeIs('roles.*'))
 
             @include('user::layouts.navbar-menu')
 
-        @elseif(request()->routeIs('products.*') || request()->routeIs('product-categories.*') || request()->routeIs('barcode.print') || request()->routeIs('adjustments.*'))
+        @elseif( request()->routeIs('inventory.*') || request()->routeIs('products.*') || request()->routeIs('product-categories.*') || request()->routeIs('barcode.print') || request()->routeIs('adjustments.*'))
 
             @include('product::layouts.navbar-menu')
 

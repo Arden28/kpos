@@ -1,0 +1,142 @@
+{
+    "name": "koverae/pos",
+    "type": "project",
+    "description": "Koverae POS is a POS management software developped by Koverae INC.",
+    "keywords": ["koverae", "pos"],
+    "license": "MIT",
+    "require": {
+        "php": "^7.3|^8.1",
+        "barryvdh/laravel-dompdf": "^2.0",
+        "barryvdh/laravel-snappy": "^0.4.8",
+        "bpuig/laravel-subby": "5.0.0",
+        "bumbummen99/shoppingcart": "^4.0",
+        "fideloper/proxy": "^4.4",
+        "fruitcake/laravel-cors": "^2.0",
+        "guzzlehttp/guzzle": "^7.0.1",
+        "h4cc/wkhtmltopdf-amd64": "0.12.x",
+        "laravel/framework": "^8.40",
+        "laravel/tinker": "^2.5",
+        "laravel/ui": "^3.3",
+        "livewire/livewire": "^2.5",
+        "mhmiton/laravel-modules-livewire": "^1.5",
+        "milon/barcode": "^8.0",
+        "nwidart/laravel-modules": "^8.2",
+        "ramsey/uuid": "^4.7",
+        "realrashid/sweet-alert": "^4.0",
+        "spatie/laravel-medialibrary": "9.0.0",
+        "spatie/laravel-permission": "^4.2",
+        "vildanbina/livewire-wizard": "^1.2",
+        "wireui/wireui": "^1.17",
+        "yajra/laravel-datatables": "^1.5"
+    },
+    "require-dev": {
+        "barryvdh/laravel-debugbar": "^3.6",
+        "facade/ignition": "^2.5",
+        "fakerphp/faker": "^1.9.1",
+        "laravel/breeze": "*",
+        "laravel/sail": "^1.0.1",
+        "mockery/mockery": "^1.4.2",
+        "nunomaduro/collision": "^5.0",
+        "phpunit/phpunit": "^9.3.3"
+    },
+    "autoload": {
+        "psr-4": {
+            "App\\": "app/",
+            "Database\\Factories\\": "database/factories/",
+            "Database\\Seeders\\": "database/seeders/",
+            "Modules\\": "Modules/"
+        },
+        "files": [
+            "app/Helpers/helpers.php"
+        ]
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Tests\\": "tests/"
+        }
+    },
+    "scripts": {
+        "post-autoload-dump": [
+            "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
+            "@php artisan package:discover --ansi"
+        ],
+        "post-root-package-install": [
+            "@php -r \"file_exists('.env') || copy('.env.example', '.env');\""
+        ],
+        "post-create-project-cmd": [
+            "@php artisan key:generate --ansi"
+        ]
+    },
+    "extra": {
+        "laravel": {
+            "dont-discover": []
+        }
+    },
+    "config": {
+        "optimize-autoloader": true,
+        "preferred-install": "dist",
+        "sort-packages": true
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}
+
+
+
+  - Removing asm89/stack-cors (v2.1.1)
+  - Removing barryvdh/laravel-dompdf (v2.0.0)
+  - Removing barryvdh/laravel-snappy (v0.4.8)
+  - Removing bpuig/laravel-subby (v5.0.0)
+  - Removing bumbummen99/shoppingcart (4.2.0)
+  - Removing composer/semver (3.3.2)
+  - Removing doctrine/cache (2.2.0)
+  - Removing doctrine/dbal (3.6.0)
+  - Removing doctrine/deprecations (v1.0.0)
+  - Removing doctrine/event-manager (2.0.0)
+  - Removing dompdf/dompdf (v2.0.1)
+  - Removing ezyang/htmlpurifier (v4.16.0)
+  - Removing facade/flare-client-php (1.10.0)
+  - Removing facade/ignition (2.17.6)
+  - Removing facade/ignition-contracts (1.0.2)
+  - Removing fideloper/proxy (4.4.2)
+  - Removing fruitcake/laravel-cors (v2.2.0)
+  - Removing h4cc/wkhtmltopdf-amd64 (0.12.4)
+  - Removing intervention/image (2.7.2)
+  - Removing knplabs/knp-snappy (v1.4.1)
+  - Removing laravel/ui (v3.4.6)
+  - Removing laravelcollective/html (v6.3.0)
+  - Removing league/fractal (0.19.2)
+  - Removing league/glide (1.7.1)
+  - Removing livewire/livewire (v2.11.0)
+  - Removing maatwebsite/excel (3.1.45)
+  - Removing maennchen/zipstream-php (v2.4.0)
+  - Removing markbaker/complex (3.0.2)
+  - Removing markbaker/matrix (3.0.1)
+  - Removing masterminds/html5 (2.7.6)
+  - Removing mhmiton/laravel-modules-livewire (v1.5.0)
+  - Removing milon/barcode (8.0.1)
+  - Removing myclabs/php-enum (1.8.4)
+  - Removing nwidart/laravel-modules (v8.3.0)
+  - Removing opis/closure (3.6.3)
+  - Removing phenx/php-font-lib (0.5.4)
+  - Removing phenx/php-svg-lib (0.5.0)
+  - Removing phpoffice/phpspreadsheet (1.26.0)
+  - Removing psr/cache (3.0.0)
+  - Removing realrashid/sweet-alert (v4.1.0)
+  - Removing sabberworm/php-css-parser (8.4.0)
+  - Removing spatie/image (1.10.6)
+  - Removing spatie/image-optimizer (1.6.2)
+  - Removing spatie/laravel-medialibrary (9.0.0)
+  - Removing spatie/laravel-package-tools (1.12.1)
+  - Removing spatie/temporary-directory (1.3.0)
+  - Removing swiftmailer/swiftmailer (v6.3.0)
+  - Removing symfony/polyfill-iconv (v1.27.0)
+  - Removing symfony/polyfill-php73 (v1.27.0)
+  - Removing vildanbina/livewire-wizard (v1.2.3)
+  - Removing wireui/wireui (v1.17.9)
+  - Removing yajra/laravel-datatables (v1.5.0)
+  - Removing yajra/laravel-datatables-buttons (v4.13.3)
+  - Removing yajra/laravel-datatables-editor (v1.25.1)
+  - Removing yajra/laravel-datatables-fractal (v1.6.0)
+  - Removing yajra/laravel-datatables-html (v4.41.1)
+  - Removing yajra/laravel-datatables-oracle (v9.21.2)

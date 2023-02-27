@@ -73,7 +73,8 @@ class CurrencyDataTable extends DataTable
         ];
     }
 
-    protected function filename() {
+    protected function filename() : string
+    {
         return 'Currency_' . date('YmdHis');
     }
 }

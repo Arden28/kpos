@@ -73,7 +73,7 @@ class PurchaseReturnPaymentsDataTable extends DataTable
         ];
     }
 
-    protected function filename()
+    protected function filename() : string
     {
         return 'PurchaseReturnPayments_' . date('YmdHis');
     }

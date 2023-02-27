@@ -102,7 +102,8 @@ class PosOrderDataTable extends DataTable
         ];
     }
 
-    protected function filename() {
+    protected function filename() : string
+    {
         return 'Sales_' . date('YmdHis');
     }
 }

@@ -1,12 +1,14 @@
 @extends('layouts.master')
 
+@section('page_title', trans('dashboards.main.title'))
+
 @section('breadcrumb')
     <div class="page-header d-print-none">
         <div class="container-xl">
             <div class="row g-2 align-items-center">
             <div class="col">
                 <h2 class="page-title">
-                    {{ __('Tableau de bord') }}
+                    {{ trans('dashboards.main.dashboard') }}
                 </h2>
             </div>
             {{-- <div class="col">
@@ -15,7 +17,7 @@
                 </h2>
             </div> --}}
             <!-- Page title actions -->
-            @can('create_pos_sales')
+            {{-- @can('create_pos_sales')
                     <div class="col-auto ms-auto d-print-none">
                         <div class="btn-list">
 
@@ -23,14 +25,10 @@
                             <i class="bi bi-plus"></i>
                             {{ __('Add an order') }}
                         </a>
-                        {{-- <a href="#" class="btn btn-primary d-none d-sm-inline-block {{ request()->routeIs('app.pos.index') ? 'disabled' : '' }}" data-bs-toggle="modal" data-bs-target="#modal-report">
-                            <i class="bi bi-plus"></i>
-                            {{ __('Add an order') }}
-                        </a> --}}
 
                         </div>
                     </div>
-            @endcan
+            @endcan --}}
             </div>
         </div>
     </div>
@@ -56,7 +54,7 @@
                   </div>
                   <div class="col">
                     <div class="font-weight-medium">
-                       {{ __('Revenue') }} : {{ format_currency($revenue) }}
+                       {{ trans('dashboards.main.revenue') }} : {{ format_currency($revenue) }}
                     </div>
                   </div>
                 </div>
@@ -74,7 +72,7 @@
                   </div>
                   <div class="col">
                     <div class="font-weight-medium">
-                        {{ format_currency($sale_returns) }} {{ __('Sales Retrun') }}
+                        {{ format_currency($sale_returns) }} {{ trans('dashboards.main.sale_return') }}
                     </div>
                   </div>
                 </div>
@@ -92,7 +90,7 @@
                   </div>
                   <div class="col">
                     <div class="font-weight-medium">
-                        {{ format_currency($purchase_returns) }} {{ __('Purchases Return ') }}
+                        {{ format_currency($purchase_returns) }} {{ trans('dashboards.main.purchase_return') }}
                     </div>
                   </div>
                 </div>
@@ -110,7 +108,7 @@
                   </div>
                   <div class="col">
                     <div class="font-weight-medium">
-                        {{ format_currency($profit) }} {{ __('Profit') }}
+                        {{ format_currency($profit) }} {{ trans('dashboards.main.profit') }}
                     </div>
                   </div>
                 </div>
@@ -125,7 +123,7 @@
           <div class="col-lg-12">
               <div class="card">
                   <div class="card-header">
-                      {{ __("Monthly Cash Flow (Payment Sent & Received)") }}
+                      {{ trans('dashboards.main.cashflow') }}
                   </div>
                   <div class="card-body">
                       <canvas id="paymentChart"></canvas>
@@ -149,7 +147,7 @@
                 <div class="col-lg-7">
                     <div class="card border-0 shadow-sm h-100">
                         <div class="card-header">
-                            {{ __('Sales & Purchases of Last 7 Days') }}
+                            {{ trans('dashboards.main.cashflow') }}
                         </div>
                         <div class="card-body">
                             <canvas id="salesPurchasesChart"></canvas>
@@ -161,7 +159,7 @@
                 <div class="col-lg-5">
                     <div class="card border-0 shadow-sm h-100">
                         <div class="card-header">
-                            {{ __('Overview of') }} {{ now()->format('F, Y') }}
+                            {{ trans('dashboards.main.cashflow') }} {{ now()->format('F, Y') }}
                         </div>
                         <div class="card-body d-flex justify-content-center">
                             <div class="chart-container" style="position: relative; height:auto; width:280px">
