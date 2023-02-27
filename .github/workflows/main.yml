@@ -11,8 +11,6 @@ jobs:
         php-version: '8.1'
     - uses: actions/checkout@v3
     - uses: actions/setup-node@master
-    - name: Generate Storage Link
-      run: php artisan storage:link
     - name: Directory Permissions
       run: chmod -R 777 storage bootstrap/cache
     - name: Sync Files
