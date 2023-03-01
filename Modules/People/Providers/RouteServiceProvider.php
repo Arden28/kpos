@@ -47,8 +47,7 @@ class RouteServiceProvider extends ServiceProvider
      */
     protected function mapWebRoutes()
     {
-        Route::domain('app.' . env('APP_URL'))
-            ->prefix('crm')
+        Route::prefix('crm')
             ->middleware('web')
             // ->namespace($this->moduleNamespace)
             ->group(module_path('People', '/Routes/web.php'));

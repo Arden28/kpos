@@ -12,6 +12,9 @@
       <h2 class="h3 text-center mb-3">
         {{ trans('auth.started') }}
       </h2>
+
+      {{-- <livewire:auth.register /> --}}
+
       <form method="post" action="{{ route('register.store') }}">
           @csrf
 
@@ -42,7 +45,7 @@
             @error('email')
             <div class="invalid-feedback">{{ $message }}</div>
             @enderror
-          </div>
+        </div>
 
         <div class="mb-2">
             <label class="form-label">

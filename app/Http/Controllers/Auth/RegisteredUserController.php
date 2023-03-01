@@ -3,9 +3,11 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Interfaces\Auth\OtpInterface;
 use App\Models\Common\Company;
 use App\Models\User;
 use App\Providers\RouteServiceProvider;
+use App\Repositories\Auth\OtpRepository;
 use Bpuig\Subby\Models\Plan;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\Request;
@@ -16,6 +18,13 @@ use Illuminate\Validation\Rules\Password;
 
 class RegisteredUserController extends Controller
 {
+
+    protected $otpRepository;
+
+    public function __construct(OtpInterface $otpRepository)
+    {
+        $this->otpRepository = $otpRepository;
+    }
     /**
      * Display the registration view.
      *
@@ -72,6 +81,7 @@ class RegisteredUserController extends Controller
         $role = 'Super Admin';
         $user->assignRole($role);
 
+        $this->otpRepository->sendWelcomeOtp($user->phone);
         // The event
         event(new Registered($user, $request));
 
@@ -108,4 +118,6 @@ class RegisteredUserController extends Controller
             'free' // Payment method service defined in config
         );
     }
+
+
 }

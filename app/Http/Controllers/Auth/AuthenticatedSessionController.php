@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Auth\LoginRequest;
+use App\Interfaces\Auth\OtpInterface;
 use App\Models\Common\Company;
 use App\Models\User;
 use App\Providers\RouteServiceProvider;
@@ -12,6 +13,12 @@ use Illuminate\Support\Facades\Auth;
 
 class AuthenticatedSessionController extends Controller
 {
+    protected $otpRepository;
+
+    public function __construct(OtpInterface $otpRepository)
+    {
+        $this->otpRepository = $otpRepository;
+    }
     /**
      * Display the login view.
      *
@@ -43,6 +50,9 @@ class AuthenticatedSessionController extends Controller
         if ($company) {
             session(['browse_company_id' => $company->id]);
         }
+
+        // OTP
+        // $this->otpRepository->sendWelcomeOtp($user->phone);
 
         // session('browse_company_id', auth()->user()->current_company_id);
 

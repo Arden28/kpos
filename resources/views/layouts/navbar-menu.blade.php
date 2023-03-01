@@ -274,7 +274,7 @@
                 {{-- Employee Management --}}
                 @can('access_user_management')
                 <li class="nav-item {{ request()->routeIs('roles*') ? 'active' : '' }}">
-                  <a class="nav-link" href="{{ route('users.index') }}" >
+                  <a class="nav-link" href="{{ route('hr.index') }}" >
                     <span class="nav-link-icon d-md-none d-lg-inline-block"><!-- Download SVG icon from http://tabler-icons.io/i/star -->
                         <i class="bi bi-people" style="width: 24px; height:24px"></i>
                     </span>

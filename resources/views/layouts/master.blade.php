@@ -41,7 +41,7 @@
 
         @include('people::layouts.navbar-menu')
 
-        @elseif(request()->routeIs('users.*') || request()->routeIs('roles.*'))
+        @elseif(request()->routeIs('users.*') || request()->routeIs('roles.*') || request()->routeIs('hr.*'))
 
             @include('user::layouts.navbar-menu')
 

@@ -5,6 +5,8 @@ namespace Modules\Product\Http\Controllers;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
+use Modules\Product\Entities\Category;
+use Modules\Product\Entities\Product;
 
 class InventoryController extends Controller
 {
@@ -14,7 +16,14 @@ class InventoryController extends Controller
      */
     public function index()
     {
-        return view('product::dashboard');
+        $categories = Category::where('company_id', session('browse_company_id'))->count();
+        $products = Product::where('company_id', session('browse_company_id'))->count();
+
+        return view('product::dashboard', [
+            'categories'          => $categories,
+            'products'          => $products,
+        ]);
+
     }
 
     /**

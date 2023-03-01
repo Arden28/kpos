@@ -9,7 +9,7 @@ return [
         'categories'    => [
             'title' => 'Toutes les catégories',
             'add'   => 'Ajouter une catégorie',
-            'note'   => 'Ajouter une catégorie',
+            'note'   => 'Le code de la catégorie est utilisé pour identifier et classer un produit ou élément dans l\'iventaire. Cela permet de gérer plus efficacement ces profuit en les groupant par catégories.',
             'form' => [
                 'code' => 'Code de la Catégorie',
                 'name' => 'Nom de la Catégorie',

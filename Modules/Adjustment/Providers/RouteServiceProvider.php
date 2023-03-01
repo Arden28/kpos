@@ -47,8 +47,7 @@ class RouteServiceProvider extends ServiceProvider
      */
     protected function mapWebRoutes()
     {
-        Route::domain('app.' . env('APP_URL'))
-            ->prefix('inventory')
+        Route::prefix('inventory')
             ->middleware('web')
             // ->namespace($this->moduleNamespace)
             ->group(module_path('Adjustment', '/Routes/web.php'));

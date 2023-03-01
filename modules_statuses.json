@@ -19,5 +19,6 @@
     "Pos": true,
     "Front": true,
     "Core": true,
-    "Subby": true
+    "Subby": true,
+    "Payments": true
 }
