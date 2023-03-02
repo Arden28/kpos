@@ -21,7 +21,7 @@ class StoreEmployeeRequest extends FormRequest
             'password' => 'required|string|min:8|confirmed',
             'is_active'     => 'required|numeric',
             'role'     => 'string',
-            'image'     => 'required',
+            // 'image'     => 'max:2048',
         ];
     }
 

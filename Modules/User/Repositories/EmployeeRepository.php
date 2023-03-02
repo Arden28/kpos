@@ -5,8 +5,10 @@ namespace Modules\User\Repositories;
 use App\Models\User;
 use App\Traits\CompanySession;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Storage;
 use Modules\Upload\Entities\Upload;
+use Modules\User\Emails\Employees\WelcomeEmail;
 use Modules\User\Interfaces\EmployeeInterface;
 
 class EmployeeRepository implements EmployeeInterface{
@@ -37,17 +39,20 @@ class EmployeeRepository implements EmployeeInterface{
 
         $user->assignRole($request['role']);
 
+
+        Mail::to($user->email)->send(new WelcomeEmail($user->name));
+
         // if ($request->has('image')) {
-        if ($request['image']) {
-            $tempFile = Upload::where('folder', $request['image'])->first();
+        // if ($request['image']) {
+        //     $tempFile = Upload::where('folder', $request['image'])->first();
 
-            if ($tempFile) {
-                $user->addMedia(Storage::path('public/temp/' . $request['image'] . '/' . $tempFile->filename))->toMediaCollection('avatars');
+        //     if ($tempFile) {
+        //         $user->addMedia(Storage::path('public/temp/' . $request['image'] . '/' . $tempFile->filename))->toMediaCollection('avatars');
 
-                Storage::deleteDirectory('public/temp/' . $request['image']);
-                $tempFile->delete();
-            }
-        }
+        //         Storage::deleteDirectory('public/temp/' . $request['image']);
+        //         $tempFile->delete();
+        //     }
+        // }
 
     }
 
@@ -57,7 +62,6 @@ class EmployeeRepository implements EmployeeInterface{
             'name'     => $request['name'],
             'email'    => $request['email'],
             'phone'    => $request['phone'],
-            'is_active' => $request['is_active']
         ]);
 
         $employee->syncRoles($request['role']);

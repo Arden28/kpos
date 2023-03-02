@@ -41,6 +41,9 @@ Route::group(['middleware' => 'auth', 'connected'], function () {
     Route::resource('companies', CompanyController::class)->except('show', 'edit');
     Route::get('/companies/{api_key}', [CompanyController::class, 'show'])->name('companies.show');
     Route::get('/companies/{api_key}/edit', [CompanyController::class, 'edit'])->name('companies.edit');
+
+
+    Route::get('/pay', 'HomeController@pay');
 });
 
 Route::group(['middleware' => 'auth'], function () {

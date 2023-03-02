@@ -29,7 +29,8 @@ return [
 
     'services' => [
         'payment_methods' => [
-            'free' => \Bpuig\Subby\Services\PaymentMethods\Free::class
+            'free' => \Bpuig\Subby\Services\PaymentMethods\Free::class,
+            'mtn_mobile_money' => \Moules\Subby\Services\PaymentMethods\MomoPay::class,
         ]
     ]
 ];

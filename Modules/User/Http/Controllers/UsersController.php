@@ -49,7 +49,7 @@ class UsersController extends Controller
 
         $this->employeeRepository->createEmployee($request->validated());
 
-        toast("User Created & Assigned '$request->role' Role!", 'success');
+        toast("Nouvel Employé ! Au poste de  '$request->role' Role!", 'success');
 
         return redirect()->route('users.index');
     }
@@ -79,7 +79,7 @@ class UsersController extends Controller
 
         $user->delete();
 
-        toast('User Deleted!', 'warning');
+        toast('L\'employé à été supprimé !', 'warning');
 
         return redirect()->route('users.index');
     }
