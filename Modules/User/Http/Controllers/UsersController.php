@@ -51,7 +51,8 @@ class UsersController extends Controller
 
         $this->employeeRepository->createEmployee($request->validated());
 
-        Mail::to($request->email)->send(new WelcomeEmail($request->name));
+        // Mail::to($request->email)->send(new WelcomeEmail($request->name));
+
         toast("Nouvel Employé ! Au poste de  '$request->role' Role!", 'success');
 
         return redirect()->route('users.index');
