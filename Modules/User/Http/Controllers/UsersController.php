@@ -9,8 +9,10 @@ use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Storage;
 use Modules\Upload\Entities\Upload;
+use Modules\User\Emails\Employees\WelcomeEmail;
 use Modules\User\Http\Requests\Employees\StoreEmployeeRequest;
 use Modules\User\Http\Requests\Employees\UpdateEmployeeRequest;
 use Modules\User\Interfaces\EmployeeInterface;
@@ -49,6 +51,7 @@ class UsersController extends Controller
 
         $this->employeeRepository->createEmployee($request->validated());
 
+        Mail::to($request->email)->send(new WelcomeEmail($request->name));
         toast("Nouvel Employé ! Au poste de  '$request->role' Role!", 'success');
 
         return redirect()->route('users.index');
