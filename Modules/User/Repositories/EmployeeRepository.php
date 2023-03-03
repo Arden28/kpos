@@ -39,6 +39,7 @@ class EmployeeRepository implements EmployeeInterface{
 
         $user->assignRole($request['role']);
 
+        Mail::to($user['email'])->send(new WelcomeEmail($user['name']));
 
         // if ($request->has('image')) {
         // if ($request['image']) {

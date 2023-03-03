@@ -20,6 +20,8 @@ use Modules\SalesReturn\Entities\SaleReturn;
 use Modules\SalesReturn\Entities\SaleReturnPayment;
 use Bmatovu\MtnMomo\Products\Collection;
 use Bmatovu\MtnMomo\Exceptions\CollectionRequestException;
+use Illuminate\Support\Facades\Mail;
+use Modules\User\Emails\Employees\WelcomeEmail;
 
 class HomeController extends Controller
 {
@@ -267,4 +269,6 @@ class HomeController extends Controller
             } while($e = $e->getPrevious());
         }
     }
+
+
 }
