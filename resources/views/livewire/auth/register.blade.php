@@ -1,7 +1,7 @@
 <div>
 
     <form wire:submit.prevent="register">
-
+    @csrf
         <div id="personal-info">
             <div class="hr-text">{{ trans('auth.information.professional') }}</div>
 
