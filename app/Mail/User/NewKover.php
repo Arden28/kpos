@@ -69,8 +69,6 @@ class NewKover extends Mailable
      */
     public function build()
     {
-        return $this->view('user::mail.employees.welcome')
-        ->subject(__('Bienvenue Chez Koverae !'))
-        ->with(['user' => $this->user, 'company' => $this->company]);
+        return $this->with(['user' => $this->user, 'company' => $this->company]);
     }
 }
