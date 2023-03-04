@@ -10,7 +10,7 @@ return [
         |
     */
 
-    
+
     'navbar' => [
         'mode' => [
             'dark' => 'Mode Sombre',
@@ -34,10 +34,10 @@ return [
             'logout' => 'Me déconnecter',
         ],
     ],
-    
+
     /* Navbar Menu */
     'navbar-menu' => [
-        'home' => 'Acceil',
+        'home' => 'Accueil',
         'dashboard' => 'Tableau de bord',
         'stats' => [
             'title' => 'Statistiques',
@@ -97,7 +97,7 @@ return [
             'documentation' => 'Documentation',
             'license' => 'Licence',
         ],
-        
+
         'modules' =>[
             'inventory' => [
                 'title' => 'Inventaire',
@@ -120,7 +120,7 @@ return [
                 'documentation' => 'Documentation',
             ],
 
-            
+
             'hr' => [
                 'title' => 'Inventaire',
                 'dashboard' => 'Tableau de bord',
@@ -136,7 +136,7 @@ return [
                 ],
                 'documentation' => 'Documentation',
             ],
-            
+
             'crm' => [
                 'title' => 'CRM',
                 'dashboard' => 'Tableau de bord',
@@ -157,7 +157,7 @@ return [
                     'title' => 'Fournisseurs',
                     'all'  => 'Tous les fournisseurs',
                     'add'  => 'Ajouter un fournisseur',
-                    
+
                     'page_title_all' => 'Tous les fournisseurs - CRM',
                     'page_title_add' => 'Ajouter un fournisseur - CRM',
                 ],

@@ -13,9 +13,9 @@
         {{ trans('auth.started') }}
       </h2>
 
-      {{-- <livewire:auth.register /> --}}
+      <livewire:auth.register />
 
-      <form method="post" action="{{ route('register.store') }}">
+      {{-- <form method="post" action="{{ route('register.store') }}">
           @csrf
 
         <div class="hr-text">{{ trans('auth.information.personal') }}</div>
@@ -144,7 +144,7 @@
         <div class="form-footer">
           <button type="submit" class="btn btn-primary w-100">{{ trans('auth.register') }}</button>
         </div>
-      </form>
+      </form> --}}
 
     </div>
   </div>
@@ -154,3 +154,4 @@
   </div>
 </div>
 @endsection
+

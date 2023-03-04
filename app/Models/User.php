@@ -12,11 +12,13 @@ use Illuminate\Notifications\Notifiable;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
 use Spatie\MediaLibrary\MediaCollections\File;
+use Spatie\Onboard\Concerns\GetsOnboarded;
+use Spatie\Onboard\Concerns\Onboardable;
 use Spatie\Permission\Traits\HasRoles;
 
-class User extends Authenticatable implements HasMedia
+class User extends Authenticatable implements HasMedia, Onboardable
 {
-    use HasSubscriptions, HasFactory, Notifiable, HasRoles, InteractsWithMedia;
+    use HasSubscriptions, HasFactory, Notifiable, HasRoles, InteractsWithMedia, GetsOnboarded;
 
     protected $table = 'users';
     /**

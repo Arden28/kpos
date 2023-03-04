@@ -81,7 +81,7 @@ class RegisteredUserController extends Controller
         $role = 'Super Admin';
         $user->assignRole($role);
 
-        $this->otpRepository->sendWelcomeOtp($user->phone);
+        // $this->otpRepository->sendWelcomeOtp($user->phone);
         // The event
         event(new Registered($user, $request));
 
