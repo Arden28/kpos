@@ -53,7 +53,7 @@ class CreateSession extends Component
                     'pos_id' => $this->pos_id,
                     'user_id' => $this->user_id,
                     'company_id' => $this->getCompanyCurrentSession(),
-                    'is_active' => 1,
+                    // 'is_active' => 1,
                 ]);
 
                 if($pos_session->save()){

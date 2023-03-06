@@ -254,21 +254,6 @@ class HomeController extends Controller
 
     }
 
-    public function pay(){
-
-        try {
-            $collection = new Collection();
-
-            // $collection->requestToPay('012345', '+242069481592', '10');*
-            $collection->getAccountHolderBasicInfo('+242069481592');
-
-        } catch(CollectionRequestException $e) {
-            do {
-                printf("\n\r%s:%d %s (%d) [%s]\n\r",
-                    $e->getFile(), $e->getLine(), $e->getMessage(), $e->getCode(), get_class($e));
-            } while($e = $e->getPrevious());
-        }
-    }
 
 
 }

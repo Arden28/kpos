@@ -14,7 +14,7 @@
               <h2 class="h2 text-center mb-4">{{ trans('auth.welcome') }}</h2>
 
             <div class="hr-text">{{ trans('auth.hr_message') }}</div>
-              <form method="post" action="{{ url('/auth/login') }}">
+              <form method="post" action="{{ route('login') }}">
                   @csrf
                 <div class="mb-3">
                   <label class="form-label">{{ trans('auth.email.label') }}</label>

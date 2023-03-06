@@ -1,6 +1,6 @@
 <?php
 
-namespace Modules\Product\Providers;
+namespace Modules\Inventory\Providers;
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
@@ -12,7 +12,7 @@ class RouteServiceProvider extends ServiceProvider
      *
      * @var string
      */
-    protected $moduleNamespace = 'Modules\Product\Http\Controllers';
+    protected $moduleNamespace = 'Modules\Inventory\Http\Controllers';
 
     /**
      * Called before routes are registered.
@@ -47,9 +47,10 @@ class RouteServiceProvider extends ServiceProvider
      */
     protected function mapWebRoutes()
     {
-        Route::middleware('web')
+        Route::prefix('inventory')
+            ->middleware('web')
             // ->namespace($this->moduleNamespace)
-            ->group(module_path('Product', '/Routes/web.php'));
+            ->group(module_path('Inventory', '/Routes/web.php'));
     }
 
     /**
@@ -64,6 +65,6 @@ class RouteServiceProvider extends ServiceProvider
         Route::prefix('api')
             ->middleware('api')
             ->namespace($this->moduleNamespace)
-            ->group(module_path('Product', '/Routes/api.php'));
+            ->group(module_path('Inventory', '/Routes/api.php'));
     }
 }
