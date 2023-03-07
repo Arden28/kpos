@@ -53,13 +53,8 @@ class CreateSession extends Component
                     'note' => $this->note,
                     'pos_id' => $this->pos_id,
                     'user_id' => $this->user_id,
-<<<<<<< HEAD
                     'company_id' => Auth::user()->currentCompany->id,
                     'is_active' => 1,
-=======
-                    'company_id' => $this->getCompanyCurrentSession(),
-                    // 'is_active' => 1,
->>>>>>> 68148aefd8ad231f9ce4c88aaece1bed137f337e
                 ]);
 
                 if($pos_session->save()){

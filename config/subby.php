@@ -26,14 +26,7 @@ return [
     ],
 
     'services' => [
-<<<<<<< HEAD
         'schedule' => [
-            'default' => \Bpuig\Subby\Services\ScheduleService::class
-=======
-        'payment_methods' => [
-            'free' => \Bpuig\Subby\Services\PaymentMethods\Free::class,
-            'mtn_mobile_money' => \Moules\Subby\Services\PaymentMethods\MomoPay::class,
->>>>>>> 68148aefd8ad231f9ce4c88aaece1bed137f337e
-        ]
+            'default' => \Bpuig\Subby\Services\ScheduleService::class,
     ]
 ];

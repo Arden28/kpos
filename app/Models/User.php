@@ -19,11 +19,7 @@ use Spatie\Permission\Traits\HasRoles;
 
 class User extends Authenticatable implements HasMedia, Onboardable
 {
-<<<<<<< HEAD
     use HasCompany, HasSubscriptions, HasFactory, Notifiable, HasRoles, InteractsWithMedia;
-=======
-    use HasSubscriptions, HasFactory, Notifiable, HasRoles, InteractsWithMedia, GetsOnboarded;
->>>>>>> 68148aefd8ad231f9ce4c88aaece1bed137f337e
 
     protected $table = 'users';
     /**

@@ -41,7 +41,6 @@ class EmployeeRepository implements EmployeeInterface{
 
         $user->assignRole($request['role']);
 
-<<<<<<< HEAD
         $company_user = CompanyUser::create([
             'user_id'     => $user->id,
             'company_id'    => Auth::user()->currentCompany->id,
@@ -49,9 +48,6 @@ class EmployeeRepository implements EmployeeInterface{
         ]);
 
         $user->notify(new AccountCreatedNotification($user));
-=======
-        Mail::to($user['email'])->send(new WelcomeEmail($user['name']));
->>>>>>> 68148aefd8ad231f9ce4c88aaece1bed137f337e
 
         // if ($request->has('image')) {
         // if ($request['image']) {
