@@ -1,8 +1,8 @@
 {
-    "Product": false,
+    "Product": true,
     "Upload": true,
     "User": true,
-    "Adjustment": false,
+    "Adjustment": true,
     "Expense": true,
     "People": true,
     "Currency": true,
