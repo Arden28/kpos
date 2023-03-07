@@ -27,6 +27,7 @@ return [
 
     'services' => [
         'schedule' => [
-            'default' => \Bpuig\Subby\Services\ScheduleService::class,
+            'default' => \Bpuig\Subby\Services\ScheduleService::class
+        ]
     ]
 ];
