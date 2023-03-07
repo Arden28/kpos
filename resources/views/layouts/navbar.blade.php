@@ -74,7 +74,7 @@
                 </div>
               </div>
               {{-- Notifications --}}
-                @php
+                {{-- @php
                     $low_quantity_products = \Modules\Product\Entities\Product::select('id', 'product_quantity', 'product_stock_alert', 'product_code')->whereColumn('product_quantity', '<=', 'product_stock_alert')->get();
                     $notifications = $low_quantity_products->count();
                 @endphp
@@ -131,7 +131,8 @@
                     </div>
                   </div>
                 </div>
-              </div>
+              </div> --}}
+
             </div>
             {{-- Companies --}}
 
