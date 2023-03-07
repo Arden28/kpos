@@ -68,11 +68,7 @@ class PaymentsReport extends Component
     public function getQuery() {
 
         // Get the current connected company
-<<<<<<< HEAD
         $current_company_id = Auth::user()->currentCompany->id;
-=======
-        $current_company_id = session('browse_company_id');
->>>>>>> 68148aefd8ad231f9ce4c88aaece1bed137f337e
 
         if ($this->payments == 'sale') {
             $this->query = SalePayment::query()->where('company_id', $current_company_id)->with('sale');

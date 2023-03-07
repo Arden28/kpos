@@ -2,14 +2,6 @@
 
 namespace App\Providers;
 
-<<<<<<< HEAD
-=======
-use App\Interfaces\Auth\OtpInterface;
-use App\Models\User as ModelsUser;
-use App\Repositories\Auth\OtpRepository;
-use App\Services\OtpServiceInterface;
-use App\Services\VonageOtpService;
->>>>>>> 68148aefd8ad231f9ce4c88aaece1bed137f337e
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\ServiceProvider;
