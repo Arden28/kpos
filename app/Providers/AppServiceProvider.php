@@ -25,10 +25,10 @@ class AppServiceProvider extends ServiceProvider
      *
      * @return void
      */
-    // public function boot()
-    // {
-    //     Schema::defaultStringLength(191);
-    //     Model::preventLazyLoading(!app()->isProduction());
+    public function boot()
+    {
+        Schema::defaultStringLength(191);
+        Model::preventLazyLoading(!app()->isProduction());
 
 
 	//     Onboard::addStep('Complétez votre Profile')
@@ -49,6 +49,6 @@ class AppServiceProvider extends ServiceProvider
     //         ->completeIf(function (User $model) {
     //             return $model->posts->count() > 0;
     //         });
-    // }
+    }
 
 }

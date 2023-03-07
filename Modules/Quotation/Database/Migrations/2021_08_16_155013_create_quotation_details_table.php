@@ -16,7 +16,7 @@ class CreateQuotationDetailsTable extends Migration
         Schema::create('quotation_details', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('quotation_id');
-            $table->unsignedBigInteger('product_id')->nullable();
+            $table->foreignId('product_id')->nullable();
             $table->string('product_name');
             $table->string('product_code');
             $table->integer('quantity');
@@ -28,8 +28,6 @@ class CreateQuotationDetailsTable extends Migration
             $table->integer('product_tax_amount');
             $table->foreign('quotation_id')->references('id')
                 ->on('quotations')->cascadeOnDelete();
-            $table->foreign('product_id')->references('id')
-                ->on('products')->nullOnDelete();
             $table->timestamps();
         });
     }

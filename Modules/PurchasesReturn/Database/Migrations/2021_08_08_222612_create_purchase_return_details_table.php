@@ -16,7 +16,7 @@ class CreatePurchaseReturnDetailsTable extends Migration
         Schema::create('purchase_return_details', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('purchase_return_id');
-            $table->unsignedBigInteger('product_id')->nullable();
+            $table->foreignId('product_id')->nullable();
             $table->string('product_name');
             $table->string('product_code');
             $table->integer('quantity');
@@ -28,8 +28,6 @@ class CreatePurchaseReturnDetailsTable extends Migration
             $table->integer('product_tax_amount');
             $table->foreign('purchase_return_id')->references('id')
                 ->on('purchase_returns')->cascadeOnDelete();
-            $table->foreign('product_id')->references('id')
-                ->on('products')->nullOnDelete();
             $table->timestamps();
         });
     }
