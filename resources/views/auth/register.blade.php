@@ -13,17 +13,10 @@
         {{ __('Commençons maintenant à développer votre entreprise') }}
       </h2>
 
-<<<<<<< HEAD
       <x-auth-session-status class="mb-4" :status="session('status')" />
 
       <form method="POST" action="{{ route('register') }}">
         @csrf
-=======
-      <livewire:auth.register />
-
-      {{-- <form method="post" action="{{ route('register.store') }}">
-          @csrf
->>>>>>> 68148aefd8ad231f9ce4c88aaece1bed137f337e
 
         <div class="hr-text">{{ __('Informations Personnelles') }}</div>
 

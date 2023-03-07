@@ -13,22 +13,7 @@
           <div class="card-body">
             <h2 class="h2 text-center mb-4">{{ __('Konnectez-vous à votre Kompte') }}</h2>
 
-<<<<<<< HEAD
             <x-auth-session-status class="mb-4" :status="session('status')" />
-=======
-            <div class="hr-text">{{ trans('auth.hr_message') }}</div>
-              <form method="post" action="{{ route('login') }}">
-                  @csrf
-                <div class="mb-3">
-                  <label class="form-label">{{ trans('auth.email.label') }}</label>
-                  <input type="email"name="email"  class="form-control @error('email') is-invalid @enderror"
-                    value="{{ old('email') }}"
-                    placeholder="{{ trans('auth.email.placeholder') }}">
-                    @error('email')
-                    <div class="invalid-feedback">{{ $message }}</div>
-                    @enderror
-                </div>
->>>>>>> 68148aefd8ad231f9ce4c88aaece1bed137f337e
 
             <form method="POST" action="{{ route('login') }}">
                 @csrf
