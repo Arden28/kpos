@@ -61,6 +61,7 @@ class Register extends Component
             'is_active' => 1,
         ]);
 
+<<<<<<< HEAD
         $this->loading = true;
         // Assign the owner role to the user
         $role = 'owner';
@@ -76,8 +77,95 @@ class Register extends Component
     }
 
     public function render()
-    {
-        return view('livewire.auth.register');
+=======
+        // Assign the owner role to the user
+        $role = 'Super Admin';
+        $user->assignRole($role);
+
+        // $this->otpRepository->sendWelcomeOtp($user->phone);
+
+        // The event
+        $this->createCompany($user);
+
+        // // Récupérer l'utilisateur fraîchement créé
+        $user = $this->connected($user->id);
+
+        // Auth::login($user);
     }
 
+    public function createCompany($user){
+
+        $api_key = Uuid::uuid4();
+
+        $company = Company::create([
+            'api_key' => $api_key,
+            // 'domain' => $this->domain,
+            'created_by' => $user->id
+        ]);
+
+        $company->save();
+
+
+        $settings = Setting::create([
+            'company_id' => $company->id,
+            'company_name' => $this->company_name,
+            'default_currency_id' => 1,
+            'default_currency_position' => 'suffix',
+            'created_by' => $user->id
+        ]);
+        $settings->save();
+
+        // Send a welcome mail
+        $this->sendWelcomeEmail($user, $settings);
+
+    }
+    public function connected($id)
+>>>>>>> 68148aefd8ad231f9ce4c88aaece1bed137f337e
+    {
+        $user = User::findOrFail($id);
+        $company = $user->companies()->latest()->first();
+        $user->current_company_id = $company->id;
+        $user->save();
+
+        return $user;
+    }
+
+<<<<<<< HEAD
+=======
+    public function sendWelcomeEmail($user, $company){
+        Mail::to($user->email)->send(new NewKover($user, $company));
+    }
+
+>>>>>>> 68148aefd8ad231f9ce4c88aaece1bed137f337e
 }
+
+
+// {
+//     public $currentStep = 1;
+//     public $personalInfo = [];
+//     public $professionalInfo = [];
+//     public $securityInfo = [];
+
+//     protected $listeners = ['goToStep'];
+
+//     public function goToStep($step)
+//     {
+//         $this->currentStep = $step;
+//     }
+
+//     public function submitForm()
+//     {
+//         // Handle form submission
+//     }
+
+//     public function render()
+//     {
+//         return view('livewire.auth.register', [
+//             'currentStep' => $this->currentStep,
+//             'personalInfo' => $this->personalInfo,
+//             'professionalInfo' => $this->professionalInfo,
+//             'securityInfo' => $this->securityInfo,
+//         ]);
+//     }
+
+// }

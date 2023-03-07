@@ -7,6 +7,9 @@ use Bpuig\Subby\Models\Plan;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 use Modules\Subby\Interfaces\PlanInterface;
+use Bmatovu\MtnMomo\Products\Collection;
+use Bmatovu\MtnMomo\Exceptions\CollectionRequestException;
+
 
 class ProRegister extends Component
 {
@@ -49,6 +52,7 @@ class ProRegister extends Component
     {
         $user = User::findOrFail(Auth::user()->id);
         $selectedPlan = Plan::findOrFail($this->selectedPlanId);
+        $selectedPaymentMethod = $this->selectedPaymentMethod;
 
         $user->newSubscription(
             'main', // identifier tag of the subscription. If your application offers a single subscription, you might call this 'main' or 'primary'
@@ -62,6 +66,10 @@ class ProRegister extends Component
         // $user->newSubscription('main', $selectedPlan, 'Main subscription', 'Customer main subscription');
 
         redirect()->route('dashboard');
+    }
+
+    public function proceedPayment(){
+
     }
 
     public function render()

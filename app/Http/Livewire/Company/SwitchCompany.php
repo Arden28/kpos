@@ -59,7 +59,7 @@ class SwitchCompany extends Component
         $this->connect($company);
 
 
-        toast(__('Vous êtes maintenant connecté à '.$this->getCompany($this->user->current_company_id)), 'success');
+        toast(__('Vous avez changé de compte !'), 'success');
         // Redirect to the dashboard or another page
         return redirect()->route('dashboard');
 

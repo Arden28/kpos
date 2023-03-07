@@ -1,8 +1,8 @@
 {
-    "Product": true,
+    "Product": false,
     "Upload": true,
     "User": true,
-    "Adjustment": true,
+    "Adjustment": false,
     "Expense": true,
     "People": true,
     "Currency": true,
@@ -15,7 +15,18 @@
     "Quotation": true,
     "Reports": true,
     "Lang": true,
+<<<<<<< HEAD
     "Pos": true,
     "Core": true,
     "Subby": true
 }
+=======
+    "Tenant": false,
+    "Pos": true,
+    "Front": false,
+    "Core": false,
+    "Subby": true,
+    "Payments": false,
+    "Inventory": true
+}
+>>>>>>> 68148aefd8ad231f9ce4c88aaece1bed137f337e

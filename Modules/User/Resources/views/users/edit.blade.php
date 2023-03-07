@@ -42,7 +42,7 @@
                                 <div class="form-row">
                                     <div class="col-lg-6">
                                         <div class="form-group">
-                                            <label for="name">Name <span class="text-danger">*</span></label>
+                                            <label for="name">{{ __('Nom(s) & Prénom(s)') }} <span class="text-danger">*</span></label>
                                             <input class="form-control" type="text" name="name" required value="{{ $user->name }}">
                                         </div>
                                     </div>
@@ -50,6 +50,12 @@
                                         <div class="form-group">
                                             <label for="email">Email <span class="text-danger">*</span></label>
                                             <input class="form-control" type="email" name="email" required value="{{ $user->email }}">
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <div class="form-group">
+                                            <label for="phone">{{ __('Téléphone') }} <span class="text-danger">*</span></label>
+                                            <input class="form-control" type="type" name="phone" required value="{{ $user->phone }}">
                                         </div>
                                     </div>
                                 </div>

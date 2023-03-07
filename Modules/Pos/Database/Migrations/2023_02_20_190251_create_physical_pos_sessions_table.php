@@ -25,7 +25,7 @@ class CreatePhysicalPosSessionsTable extends Migration
             $table->string('end_amount')->nullable();
             $table->string('end_date')->nullable();
             $table->string('end_note')->nullable();
-            $table->boolean('is_active');
+            $table->boolean('is_active')->default(true);
 
             $table->foreign('company_id')->references('id')->on('companies')->onDelete('cascade');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');

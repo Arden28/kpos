@@ -18,8 +18,6 @@ class UpdateEmployeeRequest extends FormRequest
             'name'     => 'required|string|max:255',
             'email'    => 'required|email|max:255|unique:users,email',
             'phone'    => 'required|min:9|max:255|unique:users,phone',
-            'password' => 'required|string|min:8|confirmed',
-            'is_active'     => 'required|numeric',
             'role'     => 'string',
             'image'     => 'required',
         ];

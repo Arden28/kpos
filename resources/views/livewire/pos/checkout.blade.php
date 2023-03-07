@@ -14,7 +14,7 @@
                 @endif
 
                 <div class="form-group" style="padding-bottom: 12px;">
-                    <label for="customer_id">{{ __('Customer') }} <span class="text-danger">*</span></label>
+                    <label for="customer_id">{{ __('Client') }} <span class="text-danger">*</span></label>
                     <div class="input-group">
                         <div class="input-group-prepend">
                             {{-- <a href="{{ route('customers.create') }}" class="btn btn-primary">
@@ -25,7 +25,7 @@
                             </a>
                         </div>
                         <select wire:model="customer_id" id="customer_id" class="form-control">
-                            <option value="" selected>{{ __('Select Customer') }}</option>
+                            <option value="" selected>{{ __('Sélectionnez un Client') }}</option>
                             @foreach($customers as $customer)
                                 <option value="{{ $customer->id }}">{{ $customer->customer_name }}</option>
                             @endforeach
@@ -37,9 +37,9 @@
                     <table class="table">
                         <thead>
                         <tr class="text-center">
-                            <th class="align-middle">{{ __('Product') }}</th>
-                            <th class="align-middle">{{ __('Price') }}</th>
-                            <th class="align-middle">{{ __('Quantity') }}</th>
+                            <th class="align-middle">{{ __('Produit') }}</th>
+                            <th class="align-middle">{{ __('Prix') }}</th>
+                            <th class="align-middle">{{ __('Quantité') }}</th>
                             <th class="align-middle">{{ __('Action') }}</th>
                         </tr>
                         </thead>
@@ -73,9 +73,9 @@
                         @else
                             <tr>
                                 <td colspan="8" class="text-center">
-                        <span class="text-danger">
-                            {{ __('Please search & select products!') }}
-                        </span>
+                                    <span class="text-danger">
+                                        {{ __('Veuillez rechercher et sélectionner un produit !') }}
+                                    </span>
                                 </td>
                             </tr>
                         @endif
@@ -89,15 +89,15 @@
                     <div class="table-responsive">
                         <table class="table table-striped">
                             <tr>
-                                <th>{{ __('Order Tax') }} ({{ $global_tax }}%)</th>
+                                <th>{{ __('Taxe') }} ({{ $global_tax }}%)</th>
                                 <td>(+) {{ format_currency(Cart::instance($cart_instance)->tax()) }}</td>
                             </tr>
                             <tr>
-                                <th>{{ __('Discount') }} ({{ $global_discount }}%)</th>
+                                <th>{{ __('Réduction') }} ({{ $global_discount }}%)</th>
                                 <td>(-) {{ format_currency(Cart::instance($cart_instance)->discount()) }}</td>
                             </tr>
                             <tr>
-                                <th>{{ __('Shipping') }}</th>
+                                <th>{{ __('Livraison') }}</th>
                                 <input type="hidden" value="{{ $shipping }}" name="shipping_amount">
                                 <td>(+) {{ format_currency($shipping) }}</td>
                             </tr>
@@ -115,30 +115,30 @@
                 </div>
             </div>
 
-            <div class="row" style="padding-bottom: 12px; padding-top: 12px;">
+            <div class="row">
                 <div class="col-lg-4">
                     <div class="form-group">
-                        <label for="tax_percentage">{{ __('Order Tax') }} (%)</label>
+                        <label for="tax_percentage">{{ __('Taxe') }} (%)</label>
                         <input wire:model.lazy="global_tax" type="number" class="form-control" min="0" max="100" value="{{ $global_tax }}" required>
                     </div>
                 </div>
                 <div class="col-lg-4">
                     <div class="form-group">
-                        <label for="discount_percentage">{{ __('Discount') }} (%)</label>
+                        <label for="discount_percentage">{{ __('Réduction') }} (%)</label>
                         <input wire:model.lazy="global_discount" type="number" class="form-control" min="0" max="100" value="{{ $global_discount }}" required>
                     </div>
                 </div>
                 <div class="col-lg-4">
                     <div class="form-group">
-                        <label for="shipping_amount">{{ __('Shipping') }}</label>
+                        <label for="shipping_amount">{{ __('Livraison') }}</label>
                         <input wire:model.lazy="shipping" type="number" class="form-control" min="0" value="0" required step="0.01">
                     </div>
                 </div>
             </div>
 
             <div class="form-group d-flex justify-content-center flex-wrap mb-0">
-                <button wire:click="resetCart" type="button" class="btn btn-pill btn-danger mr-3"><i class="bi bi-x"></i> {{ __('Reset') }}</button>
-                <button wire:loading.attr="disabled" wire:click="proceed" type="button" class="btn btn-pill btn-primary" {{  $total_amount == 0 ? 'disabled' : '' }}><i class="bi bi-check"></i> {{ __('Proceed') }}</button>
+                <button wire:click="resetCart" type="button" class="btn btn-pill btn-danger mr-3"><i class="bi bi-x"></i> {{ __('Annuler') }}</button>
+                <button wire:loading.attr="disabled" wire:click="proceed" type="button" class="btn btn-pill btn-primary" {{  $total_amount == 0 ? 'disabled' : '' }}><i class="bi bi-check"></i> {{ __('Procéder') }}</button>
             </div>
         </div>
     </div>

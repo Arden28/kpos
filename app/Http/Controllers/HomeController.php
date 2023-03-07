@@ -19,6 +19,10 @@ use Modules\Sale\Entities\Sale;
 use Modules\Sale\Entities\SalePayment;
 use Modules\SalesReturn\Entities\SaleReturn;
 use Modules\SalesReturn\Entities\SaleReturnPayment;
+use Bmatovu\MtnMomo\Products\Collection;
+use Bmatovu\MtnMomo\Exceptions\CollectionRequestException;
+use Illuminate\Support\Facades\Mail;
+use Modules\User\Emails\Employees\WelcomeEmail;
 
 class HomeController extends Controller
 {
@@ -250,4 +254,7 @@ class HomeController extends Controller
         return response()->json(['data' => $data, 'days' => $days]);
 
     }
+
+
+
 }

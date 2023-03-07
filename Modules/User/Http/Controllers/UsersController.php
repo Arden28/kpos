@@ -9,8 +9,10 @@ use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Storage;
 use Modules\Upload\Entities\Upload;
+use Modules\User\Emails\Employees\WelcomeEmail;
 use Modules\User\Http\Requests\Employees\StoreEmployeeRequest;
 use Modules\User\Http\Requests\Employees\UpdateEmployeeRequest;
 use Modules\User\Interfaces\EmployeeInterface;
@@ -49,7 +51,9 @@ class UsersController extends Controller
 
         $this->employeeRepository->createEmployee($request->validated());
 
-        toast("User Created & Assigned '$request->role' Role!", 'success');
+        // Mail::to($request->email)->send(new WelcomeEmail($request->name));
+
+        toast("Nouvel Employé ! Au poste de  '$request->role' Role!", 'success');
 
         return redirect()->route('users.index');
     }
@@ -79,7 +83,7 @@ class UsersController extends Controller
 
         $user->delete();
 
-        toast('User Deleted!', 'warning');
+        toast('L\'employé à été supprimé !', 'warning');
 
         return redirect()->route('users.index');
     }
