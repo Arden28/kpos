@@ -32,14 +32,14 @@ class SuperUserSeeder extends Seeder
 
         $plan = Plan::find(2);
 
-        $user->newSubscription(
-            'main', // identifier tag of the subscription. If your application offers a single subscription, you might call this 'main' or 'primary'
-            $plan, // Plan or PlanCombination instance your subscriber is subscribing to
-            'Koverae Prime', // Human-readable name for your subscription
-            'For small and medium enterprises', // Description
-            null, // Start date for the subscription, defaults to now()
-            'free' // Payment method service defined in config
-        );
+        // $user->newSubscription(
+        //     'main', // identifier tag of the subscription. If your application offers a single subscription, you might call this 'main' or 'primary'
+        //     $plan, // Plan or PlanCombination instance your subscriber is subscribing to
+        //     'Koverae Prime', // Human-readable name for your subscription
+        //     'For small and medium enterprises', // Description
+        //     null, // Start date for the subscription, defaults to now()
+        //     'free' // Payment method service defined in config
+        // );
 
         // $user->isSubscribedTo($plan);
     }
