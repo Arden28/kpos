@@ -15,10 +15,7 @@
     "Quotation": true,
     "Reports": true,
     "Lang": true,
-    "Tenant": true,
     "Pos": true,
-    "Front": true,
     "Core": true,
-    "Subby": true,
-    "Payments": true
+    "Subby": true
 }

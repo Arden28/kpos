@@ -99,8 +99,7 @@ class SalesDataTable extends DataTable
         ];
     }
 
-    protected function filename() : string
-    {
+    protected function filename() {
         return 'Sales_' . date('YmdHis');
     }
 }

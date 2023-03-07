@@ -29,6 +29,7 @@
 			display: block;
 		}
 	</style>
+    @wireUiScripts
     <script src="//unpkg.com/alpinejs" defer></script>
     <style>
       @import url('https://rsms.me/inter/inter.css');

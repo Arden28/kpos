@@ -8,7 +8,6 @@ return [
     // Database Tables
     'tables' => [
         'plans' => 'plans',
-        'plan_combinations' => 'plan_combinations',
         'plan_features' => 'plan_features',
         'plan_subscriptions' => 'plan_subscriptions',
         'plan_subscription_features' => 'plan_subscription_features',
@@ -19,7 +18,6 @@ return [
     // Models
     'models' => [
         'plan' => \Bpuig\Subby\Models\Plan::class,
-        'plan_combination' => \Bpuig\Subby\Models\PlanCombination::class,
         'plan_feature' => \Bpuig\Subby\Models\PlanFeature::class,
         'plan_subscription' => \Bpuig\Subby\Models\PlanSubscription::class,
         'plan_subscription_feature' => \Bpuig\Subby\Models\PlanSubscriptionFeature::class,
@@ -28,8 +26,8 @@ return [
     ],
 
     'services' => [
-        'payment_methods' => [
-            'free' => \Bpuig\Subby\Services\PaymentMethods\Free::class
+        'schedule' => [
+            'default' => \Bpuig\Subby\Services\ScheduleService::class
         ]
     ]
 ];

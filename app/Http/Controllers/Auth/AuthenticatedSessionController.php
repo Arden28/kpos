@@ -4,81 +4,38 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Auth\LoginRequest;
-use App\Interfaces\Auth\OtpInterface;
-use App\Models\Common\Company;
-use App\Models\User;
 use App\Providers\RouteServiceProvider;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\View\View;
 
 class AuthenticatedSessionController extends Controller
 {
-    protected $otpRepository;
-
-    public function __construct(OtpInterface $otpRepository)
-    {
-        $this->otpRepository = $otpRepository;
-    }
     /**
      * Display the login view.
-     *
-     * @return \Illuminate\View\View
      */
-    public function create()
+    public function create(): View
     {
         return view('auth.login');
     }
 
     /**
      * Handle an incoming authentication request.
-     *
-     * @param  \App\Http\Requests\Auth\LoginRequest  $request
-     * @return \Illuminate\Http\RedirectResponse
      */
-    public function store(LoginRequest $request)
+    public function store(LoginRequest $request): RedirectResponse
     {
         $request->authenticate();
 
         $request->session()->regenerate();
 
-
-        $user = auth()->user();
-        $company = Company::where('id', $user->current_company_id)
-            ->where('created_by', $user->id)
-            ->first();
-
-        if ($company) {
-            session(['browse_company_id' => $company->id]);
-        }
-
-        // OTP
-        // $this->otpRepository->sendWelcomeOtp($user->phone);
-
-        // session('browse_company_id', auth()->user()->current_company_id);
-
-        // return redirect()->route('companies.connect.', auth()->user()->id);
-        return redirect()->route('dashboard');
-
-
-        // return redirect()->intended(RouteServiceProvider::HOME);
-    }
-
-    public function connected($id)
-    {
-        $user = User::findOrFail($id);
-        $company = Company::where('id', $user->current_company_id)
-        ->where('created_by', $user->id)->get();
-
-        return $company;
+        return redirect()->intended(RouteServiceProvider::HOME);
     }
 
     /**
      * Destroy an authenticated session.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\RedirectResponse
      */
-    public function destroy(Request $request)
+    public function destroy(Request $request): RedirectResponse
     {
         Auth::guard('web')->logout();
 
@@ -86,8 +43,6 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerateToken();
 
-        session()->forget('browse_company_id');
-
-        return redirect()->route('login');
+        return redirect('/');
     }
 }

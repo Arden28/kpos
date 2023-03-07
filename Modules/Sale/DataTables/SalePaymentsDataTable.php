@@ -74,8 +74,7 @@ class SalePaymentsDataTable extends DataTable
         ];
     }
 
-    protected function filename() : string
-    {
+    protected function filename() {
         return 'SalePayments_' . date('YmdHis');
     }
 }

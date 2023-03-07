@@ -68,8 +68,7 @@ class AdjustmentsDataTable extends DataTable
         ];
     }
 
-    protected function filename() : string
-    {
+    protected function filename() {
         return 'Adjustments_' . date('YmdHis');
     }
 }

@@ -120,9 +120,6 @@ class PermissionsTableSeeder extends Seeder
             'access_companies',
             'edit_company',
             'delete_company',
-            //Inventory Permissions
-            'access_inventory',
-            'manage_inventory',
             //POS Permissions
             'access_pos',
             'create_pos',

@@ -27,15 +27,14 @@
                 </div>
               </div>
             <div class="d-none d-md-flex">
-              <a href="?theme=dark" class="nav-link px-0 hide-theme-dark" title="{{ trans('master.navbar.mode.dark') }}" data-bs-toggle="tooltip"
+              <a href="?theme=dark" class="nav-link px-0 hide-theme-dark" title="{{ __('Mode Sombre') }}" data-bs-toggle="tooltip"
 		        data-bs-placement="bottom">
                 <i class="bi bi-moon" style="font-size: 15px;"></i>
               </a>
-              <a href="?theme=light" class="nav-link px-0 hide-theme-light" title="{{ trans('master.navbar.mode.light') }}" data-bs-toggle="tooltip"
+              <a href="?theme=light" class="nav-link px-0 hide-theme-light" title="{{ __('Mode Clair') }}" data-bs-toggle="tooltip"
 		        data-bs-placement="bottom">
                 <i class="bi bi-brightness-high" style="font-size: 15px;"></i>
               </a>
-
               {{-- Translate --}}
               <div class="nav-item dropdown d-none d-md-flex me-3">
                 <a href="#" class="nav-link px-0" data-bs-toggle="dropdown" tabindex="-1" aria-label="Show notifications">
@@ -46,7 +45,7 @@
                   <div class="card">
                     <div class="card-header">
                       <h5 class="card-title">
-                        {{ trans('master.navbar.languages') }} : {{ Config::get('languages')[App::getLocale()] }}
+                        {{ __('Langues') }} : {{ Config::get('languages')[App::getLocale()] }}
                       </h5>
                     </div>
                     <div class="list-group list-group-flush list-group-hoverable">
@@ -96,7 +95,7 @@
                   <div class="card">
                     <div class="card-header">
                       <h3 class="card-title">
-                        {{ $low_quantity_products->count() }} {{ trans('master.navbar.notifications.title') }}
+                        {{ $low_quantity_products->count() }} {{ __(' Notifications') }}
                       </h3>
                     </div>
                     <div class="list-group list-group-flush list-group-hoverable">
@@ -156,9 +155,9 @@
                         <div class="card-header">
                         <h3 class="card-title">
                             @if($companies->count() > 1)
-                            {{ trans('master.navbar.companies.my_companies') }}
+                            {{ __('Mes Entreprises') }}
                             @else
-                            {{ trans('master.navbar.companies.my_company') }}
+                            {{ __('Mon Entreprise') }}
                             @endif
                         </h3>
                         </div>
@@ -199,7 +198,7 @@
                                 <div class="row align-items-center">
                                     <div class="col-auto">
                                         <p class="col text-truncate">
-                                            {{ trans('master.navbar.companies.none') }}
+                                            {{ __("Vous n'avez encore aucune entreprise.") }}
                                         </p>
                                     </div>
                                 </div>
@@ -226,17 +225,17 @@
               </a>
               <div class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
                 <a href="{{ route('profile.edit') }}" class="dropdown-item">
-                    {{ trans('master.navbar.user.profile') }}
+                    {{ __('Mon Profile') }}
                 </a>
                 <div class="dropdown-divider"></div>
 
                 <a href="{{ route('subby.index') }}" class="dropdown-item">
-                    {{ trans('master.navbar.user.subby') }}
+                    {{ __('Mes abonnements') }}
                 </a>
                 <div class="dropdown-divider"></div>
 
                 <a href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();" class="dropdown-item">
-                    {{ trans('master.navbar.user.logout') }}
+                    {{ __('Me déconnecter') }}
                 </a>
                 <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                     @csrf

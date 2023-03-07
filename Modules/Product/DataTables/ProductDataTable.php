@@ -102,7 +102,7 @@ class ProductDataTable extends DataTable
      *
      * @return string
      */
-    protected function filename() :string
+    protected function filename()
     {
         return 'Product_' . date('YmdHis');
     }

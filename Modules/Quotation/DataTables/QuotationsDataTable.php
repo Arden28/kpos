@@ -80,8 +80,7 @@ class QuotationsDataTable extends DataTable
         ];
     }
 
-    protected function filename() : string
-    {
+    protected function filename() {
         return 'Quotations_' . date('YmdHis');
     }
 }

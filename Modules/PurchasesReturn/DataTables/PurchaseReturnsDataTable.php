@@ -94,7 +94,7 @@ class PurchaseReturnsDataTable extends DataTable
                 ->visible(false)
         ];
     }
-    protected function filename() : string
+    protected function filename()
     {
         return 'PurchaseReturns_' . date('YmdHis');
     }

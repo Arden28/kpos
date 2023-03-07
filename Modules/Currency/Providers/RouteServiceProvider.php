@@ -47,8 +47,7 @@ class RouteServiceProvider extends ServiceProvider
      */
     protected function mapWebRoutes()
     {
-        Route::domain('app.' . env('APP_URL'))
-            ->middleware('web')
+        Route::middleware('web')
             ->namespace($this->moduleNamespace)
             ->group(module_path('Currency', '/Routes/web.php'));
     }

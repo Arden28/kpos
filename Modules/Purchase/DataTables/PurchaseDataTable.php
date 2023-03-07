@@ -95,8 +95,7 @@ class PurchaseDataTable extends DataTable
         ];
     }
 
-    protected function filename() : string
-    {
+    protected function filename() {
         return 'Purchase_' . date('YmdHis');
     }
 }

@@ -9,7 +9,6 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\InteractsWithQueue;
 use Modules\Setting\Entities\Setting;
 use Ramsey\Uuid\Uuid;
-use Illuminate\Http\Request;
 
 class Created
 {
@@ -26,18 +25,16 @@ class Created
     /**
      * Handle the event.
      *
-     * @param  \Illuminate\Auth\Events\Registered  $event
+     * @param  \App\Events\Registed  $event
      * @return void
      */
     public function handle(Registered $event)
     {
         $api_key = Uuid::uuid4();
 
-        $request = request();
-
         $company = Company::create([
             'api_key' => $api_key,
-            'domain' => $request->domain,
+            'domain' => $event->request->domain,
             'created_by' => $event->user->id
         ]);
 
@@ -46,7 +43,7 @@ class Created
 
         $settings = Setting::create([
             'company_id' => $company->id,
-            'company_name' => $request->company_name,
+            'company_name' => $event->request->company_name,
             'default_currency_id' => 1,
             'default_currency_position' => 'suffix',
             'created_by' => $event->user->id

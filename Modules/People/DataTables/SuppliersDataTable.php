@@ -68,8 +68,7 @@ class SuppliersDataTable extends DataTable
         ];
     }
 
-    protected function filename() : string
-    {
+    protected function filename() {
         return 'Suppliers_' . date('YmdHis');
     }
 }

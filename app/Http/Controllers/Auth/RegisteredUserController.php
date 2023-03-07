@@ -3,13 +3,12 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
-use App\Interfaces\Auth\OtpInterface;
 use App\Models\Common\Company;
 use App\Models\User;
 use App\Providers\RouteServiceProvider;
-use App\Repositories\Auth\OtpRepository;
 use Bpuig\Subby\Models\Plan;
 use Illuminate\Auth\Events\Registered;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -18,13 +17,6 @@ use Illuminate\Validation\Rules\Password;
 
 class RegisteredUserController extends Controller
 {
-
-    protected $otpRepository;
-
-    public function __construct(OtpInterface $otpRepository)
-    {
-        $this->otpRepository = $otpRepository;
-    }
     /**
      * Display the registration view.
      *
@@ -53,20 +45,18 @@ class RegisteredUserController extends Controller
      *
      * @throws \Illuminate\Validation\ValidationException
      */
-    public function store(Request $request)
+    public function store(Request $request): RedirectResponse
     {
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'phone' => ['required', 'string', 'min:9', 'max:255', 'unique:users'],
-            'password' => ['required', 'confirmed', Password::default()
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:'.User::class],
+            'phone' => ['required', 'string', 'regex:/^([0-9\s\-\+\(\)]*)$/', 'min:10', 'unique:'.User::class],
+            'password' => ['required', 'confirmed', Rules\Password::defaults()
                                                     ->letters()
-                                                    ->mixedCase()
                                                     ->numbers()
-                                                    ->symbols()
-                                                    ->uncompromised()],
-            'company_name' => ['required', 'string', 'max:100', 'unique:settings'],
-            // 'domain' => ['required', 'string', 'max:100'],
+                                                    ->symbols()],
+            'company_name' => ['required', 'string',  'max:50'],
+
         ]);
 
         $user = User::create([
@@ -74,50 +64,37 @@ class RegisteredUserController extends Controller
             'email' => $request->email,
             'phone' => $request->phone,
             'password' => Hash::make($request->password),
-            'is_active' => 1,
+            'is_active' => 1
         ]);
 
-        // Assign the owner role to the user
-        $role = 'Super Admin';
-        $user->assignRole($role);
+        // Excecute this function
+        $this->addCompany($request, $user);
 
-        $this->otpRepository->sendWelcomeOtp($user->phone);
-        // The event
-        event(new Registered($user, $request));
-
-        // Inscrit l'utilisateur à la formule orrespondante
-        // $this->subscribe($user);
-
-        // // Récupérer l'utilisateur fraîchement créé
-        $user = $this->connected($user->id);
+        event(new Registered($user));
 
         // Auth::login($user);
 
         return redirect()->route('login');
     }
-    public function connected($id)
-    {
-        $user = User::findOrFail($id);
-        $company = $user->companies()->latest()->first();
-        $user->current_company_id = $company->id;
+
+    // Create a new company after user's registration
+    public function addCompany($request, User $user){
+
+        $company = Company::create([
+            'name' => $request->company_name,
+            'user_id' => $user->id,
+            'personal_company' => true
+        ]);
+
+        // Excecute this function
+        $this->updateUser($user, $company->id);
+    }
+
+    // Change current company id
+    public function updateUser(User $user, $company){
+
+        $user->current_company_id = $company;
         $user->save();
 
-        return $user;
     }
-
-    public function subscribe($user){
-        // Subscribe to Koverae Prime
-        $plan = Plan::find(2);
-
-        $user->newSubscription(
-            'main', // identifier tag of the subscription. If your application offers a single subscription, you might call this 'main' or 'primary'
-            $plan, // Plan or PlanCombination instance your subscriber is subscribing to
-            'Koverae Prime', // Human-readable name for your subscription
-            'For small and medium enterprises', // Description
-            null, // Start date for the subscription, defaults to now()
-            'free' // Payment method service defined in config
-        );
-    }
-
-
 }

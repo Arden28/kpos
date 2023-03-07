@@ -1,8 +1,5 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
-use Modules\Adjustment\Http\Controllers\AdjustmentController;
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -14,8 +11,7 @@ use Modules\Adjustment\Http\Controllers\AdjustmentController;
 |
 */
 
-
 Route::group(['middleware' => 'auth'], function () {
     //Product Adjustment
-    Route::resource('adjustments', AdjustmentController::class);
+    Route::resource('adjustments', 'AdjustmentController');
 });

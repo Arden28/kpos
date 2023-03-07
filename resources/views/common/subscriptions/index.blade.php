@@ -1,13 +1,12 @@
 @extends('layouts.master')
 
-@section('page_title', trans('common.subby.page_title'))
 @section('breadcrumb')
     <div class="page-header d-print-none">
         <div class="container-xl">
             <div class="row g-2 align-items-center">
             <div class="col">
                 <h2 class="page-title">
-                    {{ trans('common.subby.price') }}
+                    {{ __('Our Prices') }}
                 </h2>
             </div>
 
@@ -26,16 +25,16 @@
                 <thead>
                   <tr>
                     <td class="w-50">
-                      <h2>{{ trans('common.subby.header') }}</h2>
+                      <h2>Pricing plans for teams of all sizes</h2>
                       <div class="text-muted text-wrap">
-                        {{ trans('common.subby.header_text') }}
+                        Choose an affordable plan that comes with the best features to engage your audience, create customer loyalty and increase sales.
                       </div>
                     </td>
                     @foreach ($plans as $plan)
                         <td class="text-center">
                             <div class="text-uppercase text-muted fw-bold">{{ $plan->name }}</div>
-                            <div class="display-6 fw-bold my-3">{{ $plan->price }} {{ $plan->currency }}</div>
-                            <a href="#" class="btn w-100">{{ trans('common.subby.button_ok') }}</a>
+                            <div class="display-6 fw-bold my-3">{{ $plan->price }} {{ $plan->currency }} <sub>/user/month</sub></div>
+                            <a href="#" class="btn w-100">{{ __('Choose plan') }}</a>
                         </td>
                     @endforeach
                     @php
@@ -65,7 +64,7 @@
                     <td></td>
                     @foreach ($plans as $plan)
                         <td>
-                        <a href="#" class="btn w-100 {{ $plan->id == 2 ? 'btn-green' : '' }}">{{ $user->isSubscribedTo($plan->id) == true ? 'Abonné' :  'Choisir le Plan'}}</a>
+                        <a href="#" class="btn w-100 {{ $plan->id == 2 ? 'btn-green' : '' }}">{{ $user->isSubscribedTo($plan->id) == true ? 'Subscribed' :  'Choose Plan'}}</a>
                         </td>
                     @endforeach
                     </td>

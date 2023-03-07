@@ -47,9 +47,8 @@ class RouteServiceProvider extends ServiceProvider
      */
     protected function mapWebRoutes()
     {
-        Route::prefix('inventory')
-            ->middleware('web')
-            // ->namespace($this->moduleNamespace)
+        Route::middleware('web')
+            ->namespace($this->moduleNamespace)
             ->group(module_path('Product', '/Routes/web.php'));
     }
 

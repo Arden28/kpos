@@ -47,8 +47,7 @@ class RouteServiceProvider extends ServiceProvider
      */
     protected function mapWebRoutes()
     {
-        Route::prefix('crm')
-            ->middleware('web')
+        Route::middleware('web')
             // ->namespace($this->moduleNamespace)
             ->group(module_path('People', '/Routes/web.php'));
     }
