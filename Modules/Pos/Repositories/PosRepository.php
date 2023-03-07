@@ -7,6 +7,7 @@ use App\Traits\CompanySession;
 use Gloudemans\Shoppingcart\Facades\Cart;
 use App\Models\User;
 use Exception;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Modules\Pos\Interfaces\PosInterface;
@@ -72,7 +73,7 @@ class PosRepository implements PosInterface
                     $payment_status = 'Paid';
                 }
                 $sale = Sale::create([
-                    'company_id'=> $this->getCompanyCurrentSession(),
+                    'company_id'=> Auth::user()->currentCompany->id,
                     'pos_id' => $pos,
                     'date' => now()->format('Y-m-d'),
                     'reference' => 'PSL',
@@ -119,7 +120,7 @@ class PosRepository implements PosInterface
 
                 if ($sale->paid_amount > 0) {
                     SalePayment::create([
-                        'company_id'=> $this->getCompanyCurrentSession(),
+                        'company_id'=> Auth::user()->currentCompany->id,
                         'date' => now()->format('Y-m-d'),
                         'reference' => 'INV/'.$sale->reference,
                         'amount' => $sale->paid_amount,
@@ -137,7 +138,7 @@ class PosRepository implements PosInterface
     // public function getLatestPos() {
     //     $pos_id = session('pos_id');
     //     $pos_session = PhysicalPosSession::where('pos_id', $pos_id)
-    //                 ->where('company_id', $this->getCompanyCurrentSession())
+    //                 ->where('company_id', Auth::user()->currentCompany->id)
     //                     ->latest()->first();
     //     $pos = Pos::where('id', $pos_session->pos_id)
     //                 ->where('company_id', $pos_session->company_id)
@@ -163,7 +164,7 @@ class PosRepository implements PosInterface
     public function currentPos() {
         $pos_id = session('pos_id');
         $pos_session = PhysicalPosSession::where('pos_id', $pos_id)
-                    ->where('company_id', $this->getCompanyCurrentSession())
+                    ->where('company_id', Auth::user()->currentCompany->id)
                         ->latest()->first();
         return Pos::where('id', $pos_session->pos_id)
                     ->where('company_id', $pos_session->company_id)

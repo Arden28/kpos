@@ -5,6 +5,7 @@ namespace Modules\Purchase\Http\Controllers;
 use Modules\Purchase\DataTables\PurchaseDataTable;
 use Gloudemans\Shoppingcart\Facades\Cart;
 use Illuminate\Routing\Controller;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Gate;
 use Modules\People\Entities\Supplier;
@@ -46,8 +47,8 @@ class PurchaseController extends Controller
             }
 
             $purchase = Purchase::create([
-                'company_id' => session('browse_company_id'),
-                
+                'company_id' => Auth::user()->currentCompany->id,
+
                 'date' => $request->date,
                 'supplier_id' => $request->supplier_id,
                 'supplier_name' => Supplier::findOrFail($request->supplier_id)->supplier_name,

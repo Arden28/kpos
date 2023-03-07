@@ -5,6 +5,7 @@ namespace Modules\Product\Http\Controllers;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
 use Modules\Product\Entities\Category;
 use Modules\Product\DataTables\ProductCategoriesDataTable;
@@ -30,7 +31,7 @@ class CategoriesController extends Controller
         Category::create([
             'category_code' => $request->category_code,
             'category_name' => $request->category_name,
-            'company_id' => session('browse_company_id'),
+            'company_id' => Auth::user()->currentCompany->id,
         ]);
 
         toast('Product Category Created!', 'success');
@@ -42,7 +43,7 @@ class CategoriesController extends Controller
     public function edit($id) {
         abort_if(Gate::denies('access_product_categories'), 403);
 
-        $category = Category::where('company_id', session('browse_company_id'))->findOrFail($id);
+        $category = Category::where('company_id', Auth::user()->currentCompany->id)->findOrFail($id);
 
         return view('product::categories.edit', compact('category'));
     }

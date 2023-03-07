@@ -5,6 +5,7 @@ namespace Modules\Purchase\Http\Controllers;
 use Modules\Purchase\DataTables\PurchasePaymentsDataTable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Gate;
 use Modules\Purchase\Entities\Purchase;
@@ -45,8 +46,8 @@ class PurchasePaymentsController extends Controller
 
         DB::transaction(function () use ($request) {
             PurchasePayment::create([
-                'company_id' => session('browse_company_id'),
-                
+                'company_id' => Auth::user()->currentCompany->id,
+
                 'date' => $request->date,
                 'reference' => $request->reference,
                 'amount' => $request->amount,

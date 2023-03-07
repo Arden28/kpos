@@ -7,6 +7,7 @@ use Gloudemans\Shoppingcart\Facades\Cart;
 use App\Models\User;
 use Exception;
 use Illuminate\Http\Client\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Modules\People\Entities\Customer;
@@ -47,7 +48,7 @@ class SaleRepository implements SaleInterface
 
                 $sale = Sale::create([
 
-                    'company_id'=> $this->getCompanyCurrentSession(),
+                    'company_id'=> Auth::user()->currentCompany->id,
                     'date' => now()->format('Y-m-d'),
                     'reference' => 'PSL',
                     'customer_id' => $request['customer_id'],
@@ -92,7 +93,7 @@ class SaleRepository implements SaleInterface
 
                 if ($sale->paid_amount > 0) {
                     SalePayment::create([
-                        'company_id'=> $this->getCompanyCurrentSession(),
+                        'company_id'=> Auth::user()->currentCompany->id,
                         'date' => now()->format('Y-m-d'),
                         'reference' => 'INV/'.$sale->reference,
                         'amount' => $sale->paid_amount,

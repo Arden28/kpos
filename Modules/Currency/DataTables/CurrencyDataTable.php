@@ -2,6 +2,7 @@
 
 namespace Modules\Currency\DataTables;
 
+use Illuminate\Support\Facades\Auth;
 use Modules\Currency\Entities\Currency;
 use Yajra\DataTables\Html\Button;
 use Yajra\DataTables\Html\Column;
@@ -21,7 +22,7 @@ class CurrencyDataTable extends DataTable
     }
 
     public function query(Currency $model) {
-        $current_company_id = session('browse_company_id');
+        $current_company_id = Auth::user()->currentCompany->id;
         return $model->where('company_id', $current_company_id)->newQuery();
     }
 

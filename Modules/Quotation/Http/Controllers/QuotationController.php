@@ -5,6 +5,7 @@ namespace Modules\Quotation\Http\Controllers;
 use Gloudemans\Shoppingcart\Facades\Cart;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Gate;
 use Modules\People\Entities\Customer;
@@ -38,7 +39,7 @@ class QuotationController extends Controller
         DB::transaction(function () use ($request) {
             $quotation = Quotation::create([
 
-                'company_id' => session('browse_company_id'),
+                'company_id' => Auth::user()->currentCompany->id,
 
                 'date' => $request->date,
                 'customer_id' => $request->customer_id,

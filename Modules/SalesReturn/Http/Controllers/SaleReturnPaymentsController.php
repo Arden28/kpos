@@ -5,6 +5,7 @@ namespace Modules\SalesReturn\Http\Controllers;
 use Modules\SalesReturn\DataTables\SaleReturnPaymentsDataTable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Gate;
 use Modules\SalesReturn\Entities\SaleReturn;
@@ -45,8 +46,8 @@ class SaleReturnPaymentsController extends Controller
 
         DB::transaction(function () use ($request) {
             SaleReturnPayment::create([
-                'company_id' => session('browse_company_id'),
-                
+                'company_id' => Auth::user()->currentCompany->id,
+
                 'date' => $request->date,
                 'reference' => $request->reference,
                 'amount' => $request->amount,

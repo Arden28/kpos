@@ -2,6 +2,7 @@
 
 namespace Modules\Expense\DataTables;
 
+use Illuminate\Support\Facades\Auth;
 use Modules\Expense\Entities\Expense;
 use Yajra\DataTables\Html\Button;
 use Yajra\DataTables\Html\Column;
@@ -25,7 +26,7 @@ class ExpensesDataTable extends DataTable
 
     public function query(Expense $model) {
         // A modifier
-        $current_company_id = session('browse_company_id');
+        $current_company_id = Auth::user()->currentCompany->id;
         return $model->where('company_id', $current_company_id)->newQuery()->with('category');
     }
 

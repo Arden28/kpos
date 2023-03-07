@@ -2,7 +2,7 @@
 
 namespace Database\Seeders;
 
-use App\Models\Common\Company;
+use App\Models\Company;
 use Illuminate\Database\Seeder;
 use Ramsey\Uuid\Uuid;
 
@@ -16,20 +16,19 @@ class CompanySeeder extends Seeder
     public function run()
     {
 
-        $api_key = Uuid::uuid4();
-
         $company_1 = Company::create([
-            'api_key' => $api_key,
-            'created_by' => 1,
+            'name' => 'Banéo',
+            'user_id' => 1,
+            'personal_company'  => true
         ]);
         $company_1->save();
 
-        $api_key_2 = Uuid::uuid4();
-
         $company_2 = Company::create([
-            'api_key' => $api_key_2,
-            'created_by' => 1,
+            'name' => 'Harvest',
+            'user_id' => 1,
+            'personal_company'  => true
         ]);
         $company_2->save();
+
     }
 }

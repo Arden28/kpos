@@ -9,6 +9,7 @@ use Gloudemans\Shoppingcart\Facades\Cart;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
 use Modules\People\Entities\Customer;
 use Modules\People\Interfaces\CustomerInterface;
@@ -41,7 +42,7 @@ class PosController extends Controller
 
     public function dashboard(){
 
-        $company_id = $this->getCompanyCurrentSession();
+        $company_id = Auth::user()->currentCompany->id;
 
         $pos = $this->posRepository->getAllPos($company_id);
 
@@ -63,7 +64,7 @@ class PosController extends Controller
     public function index() {
         Cart::instance('sale')->destroy();
 
-        $company_id = $this->getCompanyCurrentSession();
+        $company_id = Auth::user()->currentCompany->id;
 
         $physical = $this->getCurrentPos();
         // $physical = Pos::where('id', $pos_id)->where('company_id', $company_id)->first();
@@ -107,7 +108,7 @@ class PosController extends Controller
     {
         try {
 
-            $this->posRepository->createPhysicalPos($request->validated(), $this->getCompanyCurrentSession());
+            $this->posRepository->createPhysicalPos($request->validated(), Auth::user()->currentCompany->id);
 
             toast("Point de Vente créé avec succès!", 'success');
 

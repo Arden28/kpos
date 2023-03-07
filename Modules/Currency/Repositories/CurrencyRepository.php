@@ -5,6 +5,7 @@ namespace Modules\Currency\Repositories;
 use App\Traits\CompanySession;
 use Exception;
 use Illuminate\Http\Client\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
@@ -28,7 +29,7 @@ class CurrencyRepository implements CurrencyInterface
 
         Currency::create([
 
-            'company_id'    => $this->getCompanyCurrentSession(),
+            'company_id'    => Auth::user()->currentCompany->id,
 
             'currency_name' => $request['currency_name'],
             'code' => Str::upper($request['code']),

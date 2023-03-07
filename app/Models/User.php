@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Models\Common\Company;
+use App\Traits\HasCompany;
 use Bpuig\Subby\Traits\HasSubscriptions;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Builder;
@@ -16,7 +17,7 @@ use Spatie\Permission\Traits\HasRoles;
 
 class User extends Authenticatable implements HasMedia
 {
-    use HasSubscriptions, HasFactory, Notifiable, HasRoles, InteractsWithMedia;
+    use HasCompany, HasSubscriptions, HasFactory, Notifiable, HasRoles, InteractsWithMedia;
 
     protected $table = 'users';
     /**
@@ -81,7 +82,7 @@ class User extends Authenticatable implements HasMedia
      */
     public function companies()
     {
-        return $this->hasMany(Company::class, 'created_by', 'id');
+        return $this->hasMany(Company::class, 'user_id', 'id');
     }
 
     public function hasMultipleCompanies()

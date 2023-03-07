@@ -6,6 +6,7 @@ use Modules\Sale\DataTables\SalePaymentsDataTable;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Gate;
 use Modules\Sale\Entities\Sale;
@@ -47,8 +48,8 @@ class SalePaymentsController extends Controller
 
         DB::transaction(function () use ($request) {
             SalePayment::create([
-                'company_id' => session('browse_company_id'),
-                
+                'company_id' => Auth::user()->currentCompany->id,
+
                 'date' => $request->date,
                 'reference' => $request->reference,
                 'amount' => $request->amount,

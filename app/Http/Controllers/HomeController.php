@@ -7,6 +7,7 @@ use App\Models\Common\Company;
 use App\Traits\CompanySession;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Modules\Expense\Entities\Expense;
 use Modules\Product\Entities\Product;
@@ -30,13 +31,13 @@ class HomeController extends Controller
     }
     public function index() {
 
-        // $current_company_id = $this->getCompanyCurrentSession();
-        $sales = Sale::completed()->where('company_id', session('browse_company_id'))->sum('total_amount');
-        $sale_returns = SaleReturn::completed()->where('company_id', session('browse_company_id'))->sum('total_amount');
-        $purchase_returns = PurchaseReturn::completed()->where('company_id', session('browse_company_id'))->sum('total_amount');
+        // $current_company_id = Auth::user()->currentCompany->id;
+        $sales = Sale::completed()->where('company_id', Auth::user()->currentCompany->id)->sum('total_amount');
+        $sale_returns = SaleReturn::completed()->where('company_id', Auth::user()->currentCompany->id)->sum('total_amount');
+        $purchase_returns = PurchaseReturn::completed()->where('company_id', Auth::user()->currentCompany->id)->sum('total_amount');
         $product_costs = 0;
 
-        foreach (Sale::completed()->where('company_id', session('browse_company_id'))->with('saleDetails')->get() as $sale) {
+        foreach (Sale::completed()->where('company_id', Auth::user()->currentCompany->id)->with('saleDetails')->get() as $sale) {
             foreach ($sale->saleDetails??[] as $saleDetail) {
                 $product_costs += $saleDetail->product->product_cost;
             }
@@ -81,13 +82,13 @@ class HomeController extends Controller
     public function currentMonthChart() {
         abort_if(!request()->ajax(), 404);
 
-        $currentMonthSales = Sale::where('company_id', session('browse_company_id'))->where('status', 'Completed')->whereMonth('date', date('m'))
+        $currentMonthSales = Sale::where('company_id', Auth::user()->currentCompany->id)->where('status', 'Completed')->whereMonth('date', date('m'))
                 ->whereYear('date', date('Y'))
                 ->sum('total_amount') / 100;
-        $currentMonthPurchases = Purchase::where('company_id', session('browse_company_id'))->where('status', 'Completed')->whereMonth('date', date('m'))
+        $currentMonthPurchases = Purchase::where('company_id', Auth::user()->currentCompany->id)->where('status', 'Completed')->whereMonth('date', date('m'))
                 ->whereYear('date', date('Y'))
                 ->sum('total_amount') / 100;
-        $currentMonthExpenses = Expense::where('company_id', session('browse_company_id'))->whereMonth('date', date('m'))
+        $currentMonthExpenses = Expense::where('company_id', Auth::user()->currentCompany->id)->whereMonth('date', date('m'))
                 ->whereYear('date', date('Y'))
                 ->sum('amount') / 100;
 
@@ -152,7 +153,7 @@ class HomeController extends Controller
             ->groupBy('month')->orderBy('month')
             ->get()->pluck('amount', 'month');
 
-        $expenses = Expense::where('company_id', session('browse_company_id'))->where('date', '>=', $date_range)
+        $expenses = Expense::where('company_id', Auth::user()->currentCompany->id)->where('date', '>=', $date_range)
             ->select([
                 DB::raw("DATE_FORMAT(date, '%m-%Y') as month"),
                 DB::raw("SUM(amount) as amount")
@@ -195,7 +196,7 @@ class HomeController extends Controller
 
         $date_range = Carbon::today()->subDays(6);
 
-        $sales = Sale::where('company_id', session('browse_company_id'))->where('status', 'Completed')
+        $sales = Sale::where('company_id', Auth::user()->currentCompany->id)->where('status', 'Completed')
             ->where('date', '>=', $date_range)
             ->groupBy(DB::raw("DATE_FORMAT(date,'%d-%m-%y')"))
             ->orderBy('date')
@@ -227,7 +228,7 @@ class HomeController extends Controller
 
         $date_range = Carbon::today()->subDays(6);
 
-        $purchases = Purchase::where('company_id', session('browse_company_id'))->where('status', 'Completed')
+        $purchases = Purchase::where('company_id', Auth::user()->currentCompany->id)->where('status', 'Completed')
             ->where('date', '>=', $date_range)
             ->groupBy(DB::raw("DATE_FORMAT(date,'%d-%m-%y')"))
             ->orderBy('date')

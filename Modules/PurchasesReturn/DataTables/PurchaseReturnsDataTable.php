@@ -2,6 +2,7 @@
 
 namespace Modules\PurchasesReturn\DataTables;
 
+use Illuminate\Support\Facades\Auth;
 use Modules\PurchasesReturn\Entities\PurchaseReturn;
 use Yajra\DataTables\Html\Button;
 use Yajra\DataTables\Html\Column;
@@ -36,7 +37,7 @@ class PurchaseReturnsDataTable extends DataTable
 
     public function query(PurchaseReturn $model) {
         // A modifier
-        $current_company_id = session('browse_company_id');
+        $current_company_id = Auth::user()->currentCompany->id;
         return $model->where('company_id', $current_company_id)->newQuery();
     }
 

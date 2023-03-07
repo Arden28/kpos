@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\Pos;
 
+use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 use Livewire\WithPagination;
 use Modules\Product\Entities\Product;
@@ -32,7 +33,7 @@ class ProductList extends Component
                 return $query->where('category_id', $this->category_id);
             })
             // Récupère les produits en fonction de la companie connectée
-            ->where('company_id', session('browse_company_id'))
+            ->where('company_id', Auth::user()->currentCompany->id)
             ->paginate($this->limit)
         ]);
     }

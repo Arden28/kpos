@@ -3,6 +3,7 @@
 namespace Modules\Pos\DataTables;
 
 use App\Traits\CompanySession;
+use Illuminate\Support\Facades\Auth;
 use Modules\Pos\Traits\PosSession;
 use Modules\Sale\Entities\Sale;
 use Yajra\DataTables\Html\Button;
@@ -40,8 +41,8 @@ class PosOrderDataTable extends DataTable
 
     public function query(Sale $model) {
         // A modifier
-        // $current_company_id = session('browse_company_id');
-        $current_company_id = $this->getCompanyCurrentSession();
+        // $current_company_id = Auth::user()->currentCompany->id;
+        $current_company_id = Auth::user()->currentCompany->id;
         $current_pos = $this->getCurrentPos();
         return $model->where('company_id', $current_company_id)
             ->where('pos_id', $current_pos['id'])->newQuery();

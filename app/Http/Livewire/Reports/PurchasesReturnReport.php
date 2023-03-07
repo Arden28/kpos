@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\Reports;
 
+use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 use Livewire\WithPagination;
 use Modules\PurchasesReturn\Entities\PurchaseReturn;
@@ -48,7 +49,7 @@ class PurchasesReturnReport extends Component
                 return $query->where('payment_status', $this->payment_status);
             })
             // company
-            ->where('company_id', session('browse_company_id'))
+            ->where('company_id', Auth::user()->currentCompany->id)
             ->orderBy('date', 'desc')->paginate(10);
 
         return view('livewire.reports.purchases-return-report', [

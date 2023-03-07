@@ -4,6 +4,7 @@ namespace Modules\People\DataTables;
 
 
 use App\Traits\CompanySession;
+use Illuminate\Support\Facades\Auth;
 use Modules\People\Entities\Customer;
 use Yajra\DataTables\Html\Button;
 use Yajra\DataTables\Html\Column;
@@ -24,7 +25,7 @@ class CustomersDataTable extends DataTable
     }
 
     public function query(Customer $model) {
-        $company_id = $this->getCompanyCurrentSession();
+        $company_id = Auth::user()->currentCompany->id;
         return $model->where('company_id', $company_id)->newQuery();
     }
 

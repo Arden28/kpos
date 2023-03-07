@@ -6,6 +6,7 @@ use App\Traits\CompanySession;
 use Modules\PurchasesReturn\DataTables\PurchaseReturnsDataTable;
 use Gloudemans\Shoppingcart\Facades\Cart;
 use Illuminate\Routing\Controller;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Gate;
 use Modules\People\Entities\Supplier;
@@ -50,7 +51,7 @@ class PurchasesReturnController extends Controller
 
             $purchase_return = PurchaseReturn::create([
 
-                'company_id' => session('browse_company_id'),
+                'company_id' => Auth::user()->currentCompany->id,
 
                 'date' => $request->date,
                 'supplier_id' => $request->supplier_id,
@@ -96,7 +97,7 @@ class PurchasesReturnController extends Controller
 
             if ($purchase_return->paid_amount > 0) {
                 PurchaseReturnPayment::create([
-                    'company_id' =>      $this->getCompanyCurrentSession(),
+                    'company_id' =>      Auth::user()->currentCompany->id,
                     'date'               => $request->date,
                     'reference'          => 'INV/' . $purchase_return->reference,
                     'amount'             => $purchase_return->paid_amount,

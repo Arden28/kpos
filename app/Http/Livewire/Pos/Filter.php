@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\Pos;
 
+use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 
 class Filter extends Component
@@ -13,7 +14,7 @@ class Filter extends Component
     public function mount($categories) {
 
         //Ne récupère que les catégories enregistrées par la companie. A modifier
-        $this->categories = $categories->where('company_id', session('browse_company_id'));
+        $this->categories = $categories->where('company_id', Auth::user()->currentCompany->id);
     }
 
     public function render() {

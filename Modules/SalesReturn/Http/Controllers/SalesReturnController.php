@@ -7,6 +7,7 @@ use Modules\People\Interfaces\CustomerInterface;
 use Modules\SalesReturn\DataTables\SaleReturnsDataTable;
 use Gloudemans\Shoppingcart\Facades\Cart;
 use Illuminate\Routing\Controller;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Gate;
 use Modules\People\Entities\Customer;
@@ -40,7 +41,7 @@ class SalesReturnController extends Controller
 
         Cart::instance('sale_return')->destroy();
 
-        $company = $this->getCompanyCurrentSession();
+        $company = Auth::user()->currentCompany->id;
         $customers = $this->customerRepository->getCustomers($company);
 
         return view('salesreturn::create', compact('customers'));
@@ -61,7 +62,7 @@ class SalesReturnController extends Controller
 
             $sale_return = SaleReturn::create([
 
-                'company_id' => session('browse_company_id'),
+                'company_id' => Auth::user()->currentCompany->id,
 
                 'date' => $request->date,
                 'customer_id' => $request->customer_id,
@@ -134,7 +135,7 @@ class SalesReturnController extends Controller
     public function edit(SaleReturn $sale_return) {
         abort_if(Gate::denies('edit_sale_returns'), 403);
 
-        $company = $this->getCompanyCurrentSession();
+        $company = Auth::user()->currentCompany->id;
         $customers = $this->customerRepository->getCustomers($company);
 
         $sale_return_details = $sale_return->saleReturnDetails;

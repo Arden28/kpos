@@ -29,7 +29,7 @@ class SettingController extends Controller
     public function index() {
         abort_if(Gate::denies('access_settings'), 403);
 
-        $company = $this->getCompanyCurrentSession();
+        $company = Auth::user()->currentCompany->id;
         // Currencies
         $currencies = $this->currencyRepository->getCurrencies($company);
         $settings = Setting::where('company_id', $company)->first();

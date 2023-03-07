@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\Customer;
 
+use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 use Modules\People\Entities\Customer;
 
@@ -28,7 +29,7 @@ class CreateCustomer extends Component
 
         // Save the customer to the database
         Customer::create([
-            'company_id'     => session('browse_company_id'),
+            'company_id'     => Auth::user()->currentCompany->id,
             'customer_name'  => $this->customer_name,
             'customer_phone' => $this->customer_phone,
             'customer_email' => $this->customer_email,

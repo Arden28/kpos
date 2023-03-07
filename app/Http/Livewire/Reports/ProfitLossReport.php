@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\Reports;
 
+use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 use Modules\Expense\Entities\Expense;
 use Modules\Purchase\Entities\Purchase;
@@ -68,7 +69,7 @@ class ProfitLossReport extends Component
                 return $query->whereDate('date', '<=', $this->end_date);
             })
             // company
-            ->where('company_id', session('browse_company_id'))
+            ->where('company_id', Auth::user()->currentCompany->id)
             ->count();
 
         $this->sales_amount = Sale::completed()
@@ -79,7 +80,7 @@ class ProfitLossReport extends Component
                 return $query->whereDate('date', '<=', $this->end_date);
             })
             // company
-            ->where('company_id', session('browse_company_id'))
+            ->where('company_id', Auth::user()->currentCompany->id)
             ->sum('total_amount') / 100;
 
         $this->total_purchases = Purchase::completed()
@@ -90,7 +91,7 @@ class ProfitLossReport extends Component
                 return $query->whereDate('date', '<=', $this->end_date);
             })
             // company
-            ->where('company_id', session('browse_company_id'))
+            ->where('company_id', Auth::user()->currentCompany->id)
             ->count();
 
         $this->purchases_amount = Purchase::completed()
@@ -101,7 +102,7 @@ class ProfitLossReport extends Component
                 return $query->whereDate('date', '<=', $this->end_date);
             })
             // company
-            ->where('company_id', session('browse_company_id'))
+            ->where('company_id', Auth::user()->currentCompany->id)
             ->sum('total_amount') / 100;
 
         $this->total_sale_returns = SaleReturn::completed()
@@ -112,7 +113,7 @@ class ProfitLossReport extends Component
                 return $query->whereDate('date', '<=', $this->end_date);
             })
             // company
-            ->where('company_id', session('browse_company_id'))
+            ->where('company_id', Auth::user()->currentCompany->id)
             ->count();
 
         $this->sale_returns_amount = SaleReturn::completed()
@@ -123,7 +124,7 @@ class ProfitLossReport extends Component
                 return $query->whereDate('date', '<=', $this->end_date);
             })
             // company
-            ->where('company_id', session('browse_company_id'))
+            ->where('company_id', Auth::user()->currentCompany->id)
             ->sum('total_amount') / 100;
 
         $this->total_purchase_returns = PurchaseReturn::completed()
@@ -134,7 +135,7 @@ class ProfitLossReport extends Component
                 return $query->whereDate('date', '<=', $this->end_date);
             })
             // company
-            ->where('company_id', session('browse_company_id'))
+            ->where('company_id', Auth::user()->currentCompany->id)
             ->count();
 
         $this->purchase_returns_amount = PurchaseReturn::completed()
@@ -145,7 +146,7 @@ class ProfitLossReport extends Component
                 return $query->whereDate('date', '<=', $this->end_date);
             })
             // company
-            ->where('company_id', session('browse_company_id'))
+            ->where('company_id', Auth::user()->currentCompany->id)
             ->sum('total_amount') / 100;
 
         $this->expenses_amount = Expense::when($this->start_date, function ($query) {
@@ -155,7 +156,7 @@ class ProfitLossReport extends Component
                 return $query->whereDate('date', '<=', $this->end_date);
             })
             // company
-            ->where('company_id', session('browse_company_id'))
+            ->where('company_id', Auth::user()->currentCompany->id)
             ->sum('amount') / 100;
 
         $this->profit_amount = $this->calculateProfit();
@@ -178,7 +179,7 @@ class ProfitLossReport extends Component
                 return $query->whereDate('date', '<=', $this->end_date);
             })
             // company
-            ->where('company_id', session('browse_company_id'))
+            ->where('company_id', Auth::user()->currentCompany->id)
             ->with('saleDetails')->get();
 
         foreach ($sales as $sale) {

@@ -9,11 +9,14 @@
 // }
 
 // Cache Pos Session
+
+use Illuminate\Support\Facades\Auth;
+
 if (!function_exists('pos')) {
     function pos() {
         $pos = cache()->remember('pos', 24*60, function () {
             return \Modules\Pos\Entities\Pos::find(session('pos_session'))
-            ->where('company_id', session('browse_company_id'))
+            ->where('company_id', Auth::user()->currentCompany->id)
             ->first();
         });
 
@@ -24,8 +27,7 @@ if (!function_exists('pos')) {
 if (!function_exists('settings')) {
     function settings() {
         $settings = cache()->remember('settings', 24*60, function () {
-            return \Modules\Setting\Entities\Setting::where('company_id', session('browse_company_id'))
-            ->where('created_by', auth()->user()->id)
+            return \Modules\Setting\Entities\Setting::where('company_id', Auth::user()->currentCompany->id)
             ->first();
         });
 

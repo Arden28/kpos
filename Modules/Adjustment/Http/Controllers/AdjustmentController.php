@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Modules\Adjustment\DataTables\AdjustmentsDataTable;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 // use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Gate;
@@ -45,7 +46,7 @@ class AdjustmentController extends Controller
 
         DB::transaction(function () use ($request) {
             $adjustment = Adjustment::create([
-                'company_id'  => session('browse_company_id'),
+                'company_id'  => Auth::user()->currentCompany->id,
 
                 'date' => $request->date,
                 'note' => $request->note

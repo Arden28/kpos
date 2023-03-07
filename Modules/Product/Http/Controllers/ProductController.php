@@ -7,6 +7,7 @@ use Modules\Product\DataTables\ProductDataTable;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Storage;
 use Modules\Product\Interfaces\CategoryInterface;
@@ -17,7 +18,7 @@ use Modules\Upload\Entities\Upload;
 
 class ProductController extends Controller
 {
-    use CompanySession;
+    // use CompanySession;
 
     protected $categoryRepository;
 
@@ -37,7 +38,7 @@ class ProductController extends Controller
     public function create() {
         abort_if(Gate::denies('create_products'), 403);
 
-        $company = $this->getCompanyCurrentSession();
+        $company = Auth::user()->currentCompany->id;
         $categories = $this->categoryRepository->getCategories($company);
         return view('product::products.create', compact('categories'));
     }
@@ -68,7 +69,7 @@ class ProductController extends Controller
     public function edit(Product $product) {
         abort_if(Gate::denies('edit_products'), 403);
 
-        $company = $this->getCompanyCurrentSession();
+        $company = Auth::user()->currentCompany->id;
         $categories = $this->categoryRepository->getCategories($company);
         return view('product::products.edit', compact('product', 'categories'));
     }

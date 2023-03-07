@@ -22,12 +22,10 @@ class CreateUsersTable extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->timestamp('phone_verified_at')->nullable();
             $table->string('password');
-            $table->boolean('is_active');
+            $table->boolean('is_active')->default(1);
             $table->rememberToken();
             $table->timestamp('last_logged_in_at')->nullable();
             $table->string('locale')->default(config('app.locale'));
-
-            $table->unsignedBigInteger('company_id')->nullable();
 
             $table->timestamps();
         });

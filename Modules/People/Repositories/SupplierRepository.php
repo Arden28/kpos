@@ -5,6 +5,7 @@ namespace Modules\People\Repositories;
 use App\Traits\CompanySession;
 use Exception;
 use Illuminate\Http\Client\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Modules\People\Entities\Supplier;
@@ -18,7 +19,7 @@ class SupplierRepository implements SupplierInterface
     public function create($request){
 
         Supplier::create([
-            'company_id'     => $this->getCompanyCurrentSession(),
+            'company_id'     => Auth::user()->currentCompany->id,
             'supplier_name'  => $request['supplier_name'],
             'supplier_phone' => $request['supplier_phone'],
             'supplier_email' => $request['supplier_email'],

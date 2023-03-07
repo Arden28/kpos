@@ -2,6 +2,8 @@
 
 namespace App\Traits;
 
+use Illuminate\Support\Facades\Auth;
+
 trait CompanySession {
     /**
      * @param string $request
@@ -12,7 +14,7 @@ trait CompanySession {
         $current_company_id = 0;
 
         if (session()->has('browse_company_id')){
-            $current_company_id = session('browse_company_id');
+            $current_company_id = Auth::user()->currentCompany->id;
         } else {
             $latest_company = $this->companyRepository->getLatestCompany();
 

@@ -134,80 +134,81 @@
               </div>
             </div>
             {{-- Companies --}}
-                @php
-                    // $companies = \App\Models\User::find(Auth::user()->id)->companies;
-                    $companies = settings()->where('created_by', auth()->user()->id)->get();
-                @endphp
+
+            @php
+                $companies = Auth::user()->allCompanies();
+            @endphp
               @can('access_companies')
-                <div class="nav-item dropdown d-none d-md-flex me-3">
-                    <a href="#" class="nav-link px-0" data-bs-toggle="dropdown" tabindex="-1" aria-label="Show notifications">
 
-                    <i class="bi bi-building" style="font-size: 15px;"></i>
+              <div class="nav-item dropdown d-none d-md-flex me-3">
+                  <a href="#" class="nav-link px-0" data-bs-toggle="dropdown" tabindex="-1" aria-label="Show notifications">
 
-                    @if($companies->count() > 1)
-                        <span class="badge bg-red">
-                            {{ $companies->count() }}
-                        </span>
-                    @endif
-                    </a>
-                    <div class="dropdown-menu dropdown-menu-arrow dropdown-menu-end dropdown-menu-card">
-                    <div class="card">
-                        <div class="card-header">
-                        <h3 class="card-title">
-                            @if($companies->count() > 1)
-                            {{ __('Mes Entreprises') }}
-                            @else
-                            {{ __('Mon Entreprise') }}
-                            @endif
-                        </h3>
-                        </div>
-                        <div class="list-group list-group-flush list-group-hoverable">
+                  <i class="bi bi-building" style="font-size: 15px;"></i>
+                      @if($companies->count() > 1)
+                          <span class="badge bg-red">
+                              {{ $companies->count() }}
+                          </span>
+                      @endif
+                  </a>
+                  <div class="dropdown-menu dropdown-menu-arrow dropdown-menu-end dropdown-menu-card">
+                  <div class="card">
+                      <div class="card-header">
+                      <h3 class="card-title">
+                          @if($companies->count() > 1)
+                          {{ __('Mes Entreprises') }}
+                          @else
+                          {{ __('Mon Entreprise') }}
+                          @endif
 
-                            @forelse($companies as $company)
-                            <div class="list-group-item">
-                                <div class="row align-items-center">
-                                <div class="col-auto">
-                                    {{-- When the Company Id == the current connected Company --}}
-                                    @if($company->company_id === session('browse_company_id'))
-                                        <span class="status-dot status-dot-animated bg-green d-block"></span>
-                                    @endif
-                                </div>
-                                <div class="col text-truncate text-muted text-truncate mt-n1">
-                                    <a href="{{ route('settings.index') }}" class="text-body d-block">
-                                        {{ $company->company_name }}
-                                    </a>
-                                </div>
-                                <div class="col-auto">
-                                    {{-- When the Company Id == the current connected Company --}}
-                                    @if($company->company_id === session('browse_company_id'))
-                                        <a href="#" class="list-group-item-actions">
-                                        <!-- Download SVG icon from http://tabler-icons.io/i/star -->
-                                        <i class="bi bi-eye mr-1 text-primary"></i>
-                                        </a>
-                                    @else
-                                        {{-- When the Company Id =! the current connected company --}}
+                      </h3>
+                      </div>
+                      <div class="list-group list-group-flush list-group-hoverable">
+                          @forelse ($companies as $company)
+                              <div class="list-group-item">
+                                  <div class="row align-items-center">
+                                      <div class="col-auto">
+                                      @if(Auth::user()->currentCompany->id == $company->id)
+                                          <span class="status-dot status-dot-animated bg-green d-block"></span>
+                                      @endif
 
-                                        <livewire:company.switch-company :user="auth()->user()->id" :company="$company->company_id" />
+                                      </div>
+                                      <div class="col text-truncate text-muted text-truncate mt-n1">
+                                          <a class="text-body d-block">
+                                              {{ $company->name }}
+                                          </a>
+                                      </div>
+                                      <div class="col-auto">
+                                          {{-- When the Company Id == the current connected Company --}}
+                                          @if(Auth::user()->currentCompany->id == $company->id)
+                                              <a href="#" class="list-group-item-actions">
+                                                  <i class="bi bi-eye mr-1 text-primary"></i>
+                                              </a>
+                                          @else
+                                              <a class="list-group-item-actions">
+                                                  <i class="bi bi-broadcast-pin mr-1 text-primary"></i>
+                                              </a>
+                                          @endif
+                                      </div>
+                                  </div>
+                              </div>
 
-                                    @endif
-                                </div>
-                                </div>
-                            </div>
-                            @empty
-                                <div class="list-group-item">
-                                <div class="row align-items-center">
-                                    <div class="col-auto">
-                                        <p class="col text-truncate">
-                                            {{ __("Vous n'avez encore aucune entreprise.") }}
-                                        </p>
-                                    </div>
-                                </div>
-                                </div>
-                            @endforelse
-                        </div>
-                    </div>
-                    </div>
-                </div>
+                          @empty
+                              <div class="list-group-item">
+                                  <div class="row align-items-center">
+                                      <div class="col-auto">
+                                          <p class="col text-truncate">
+                                              {{ __('Vous n\'avez aucune entreprise.') }}
+                                          </p>
+                                      </div>
+                                  </div>
+                              </div>
+                          @endforelse
+
+                      </div>
+                  </div>
+                  </div>
+              </div>
+
               @endcan
 
             {{-- User --}}

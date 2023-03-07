@@ -6,6 +6,7 @@ use Modules\Expense\DataTables\ExpensesDataTable;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
 use Modules\Expense\Entities\Expense;
 use PhpOffice\PhpSpreadsheet\Calculation\MathTrig\Exp;
@@ -39,8 +40,8 @@ class ExpenseController extends Controller
         ]);
 
         Expense::create([
-            'company_id' => session('browse_company_id'),
-            
+            'company_id' => Auth::user()->currentCompany->id,
+
             'date' => $request->date,
             'category_id' => $request->category_id,
             'amount' => $request->amount,

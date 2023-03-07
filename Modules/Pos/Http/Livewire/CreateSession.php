@@ -4,6 +4,7 @@ namespace Modules\Pos\Http\Livewire;
 
 use App\Interfaces\CompanyInterface;
 use App\Traits\CompanySession;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 use Livewire\Component;
 use Modules\Pos\Entities\PhysicalPosSession;
@@ -52,7 +53,7 @@ class CreateSession extends Component
                     'note' => $this->note,
                     'pos_id' => $this->pos_id,
                     'user_id' => $this->user_id,
-                    'company_id' => $this->getCompanyCurrentSession(),
+                    'company_id' => Auth::user()->currentCompany->id,
                     'is_active' => 1,
                 ]);
 

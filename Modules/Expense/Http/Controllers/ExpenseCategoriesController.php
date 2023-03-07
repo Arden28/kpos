@@ -6,6 +6,7 @@ use Modules\Expense\DataTables\ExpenseCategoriesDataTable;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
 use Modules\Expense\Entities\ExpenseCategory;
 
@@ -27,8 +28,8 @@ class ExpenseCategoriesController extends Controller
         ]);
 
         ExpenseCategory::create([
-            'company_id' => session('browse_company_id'),
-            
+            'company_id' => Auth::user()->currentCompany->id,
+
             'category_name' => $request->category_name,
             'category_description' => $request->category_description
         ]);

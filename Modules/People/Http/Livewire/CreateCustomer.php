@@ -3,6 +3,7 @@
 namespace Modules\People\Http\Livewire;
 
 use App\Traits\CompanySession;
+use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 use Modules\People\Entities\Customer;
 
@@ -37,7 +38,7 @@ class CreateCustomer extends Component
         $this->validate();
 
         $customer = Customer::create([
-            'company_id' => $this->getCompanyCurrentSession(),
+            'company_id' => Auth::user()->currentCompany->id,
 
             'customer_name' => $this->customer_name,
             'customer_email' => $this->customer_email,

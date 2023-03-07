@@ -2,7 +2,7 @@
 
 namespace Modules\People\DataTables;
 
-
+use Illuminate\Support\Facades\Auth;
 use Modules\People\Entities\Supplier;
 use Yajra\DataTables\Html\Button;
 use Yajra\DataTables\Html\Column;
@@ -22,7 +22,7 @@ class SuppliersDataTable extends DataTable
     }
 
     public function query(Supplier $model) {
-        $company_id = session('browse_company_id');
+        $company_id = Auth::user()->currentCompany->id;
         return $model->where('company_id', $company_id)->newQuery();
     }
 

@@ -146,7 +146,7 @@
     {{--Checkout Modal--}}
     @include('livewire.pos.includes.checkout-modal')
     {{-- @include('livewire.pos.includes.customer-modal') --}}
-    @include('people::livewire.includes.customer-modal')
+    {{-- @include('people::livewire.includes.customer-modal') --}}
 
 </div>
 

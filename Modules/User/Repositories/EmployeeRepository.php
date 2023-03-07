@@ -2,12 +2,15 @@
 
 namespace Modules\User\Repositories;
 
+use App\Models\CompanyUser;
 use App\Models\User;
 use App\Traits\CompanySession;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
 use Modules\Upload\Entities\Upload;
 use Modules\User\Interfaces\EmployeeInterface;
+use Modules\User\Notifications\Employees\AccountCreatedNotification;
 
 class EmployeeRepository implements EmployeeInterface{
 
@@ -19,7 +22,7 @@ class EmployeeRepository implements EmployeeInterface{
             ->with(['roles' => function ($query) {
                 $query->select('name')->get();
             }])
-            ->where('company_id', $this->getCompanyCurrentSession())
+            ->where('company_id', Auth::user()->currentCompany->id)
             ->where('id', '!=', auth()->id());
     }
 
@@ -32,10 +35,17 @@ class EmployeeRepository implements EmployeeInterface{
             'password' => Hash::make($request['password']),
             'is_active' => $request['is_active'],
 
-            'company_id' => $this->getCompanyCurrentSession()
         ]);
 
         $user->assignRole($request['role']);
+
+        $company_user = CompanyUser::create([
+            'user_id'     => $user->id,
+            'company_id'    => Auth::user()->currentCompany->id,
+            'role'    => $request['role'],
+        ]);
+
+        $user->notify(new AccountCreatedNotification($user));
 
         // if ($request->has('image')) {
         if ($request['image']) {

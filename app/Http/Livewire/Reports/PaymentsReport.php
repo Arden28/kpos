@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\Reports;
 
+use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 use Livewire\WithPagination;
 use Modules\People\Entities\Customer;
@@ -67,8 +68,8 @@ class PaymentsReport extends Component
     public function getQuery() {
 
         // Get the current connected company
-        $current_company_id = session('browse_company_id');
-        
+        $current_company_id = Auth::user()->currentCompany->id;
+
         if ($this->payments == 'sale') {
             $this->query = SalePayment::query()->where('company_id', $current_company_id)->with('sale');
         } elseif ($this->payments == 'sale_return') {

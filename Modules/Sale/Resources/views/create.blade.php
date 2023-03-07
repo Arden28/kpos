@@ -46,7 +46,7 @@
                                             <div class="form-group">
                                                 <label for="customer_id">Customer <span class="text-danger">*</span></label>
                                                 <select class="form-control" name="customer_id" id="customer_id" required>
-                                                    @foreach(\Modules\People\Entities\Customer::where('company_id', session('browse_company_id'))->get() as $customer)
+                                                    @foreach(\Modules\People\Entities\Customer::where('company_id', Auth::user()->currentCompany->id)->get() as $customer)
                                                         <option value="{{ $customer->id }}">{{ $customer->customer_name }}</option>
                                                     @endforeach
                                                 </select>

@@ -7,8 +7,10 @@ use Gloudemans\Shoppingcart\Facades\Cart;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Modules\People\Entities\Customer;
+use Modules\Pos\Http\Requests\StorePosSaleRequest as RequestsStorePosSaleRequest;
 use Modules\Pos\Interfaces\PosInterface;
 use Modules\Product\Entities\Category;
 use Modules\Product\Entities\Product;
@@ -34,14 +36,14 @@ class PosController extends Controller
     public function index() {
         Cart::instance('sale')->destroy();
 
-        $customers = Customer::where('company_id', session('browse_company_id'))->get();
+        $customers = Customer::where('company_id', Auth::user()->currentCompany->id)->get();
         $product_categories = Category::all();
 
         return view('sale::pos.index', compact('product_categories', 'customers'));
     }
 
 
-    public function store(StorePosSaleRequest $request) {
+    public function store(RequestsStorePosSaleRequest $request) {
 
         // Add POS Purchase
         $this->saleRepository->addSale($request->validated());

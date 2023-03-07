@@ -7,6 +7,7 @@ use Gloudemans\Shoppingcart\Facades\Cart;
 use App\Models\User;
 use Exception;
 use Illuminate\Http\Client\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Modules\People\Entities\Customer;
@@ -24,7 +25,7 @@ class CustomerRepository implements CustomerInterface
     public function create($request){
 
         Customer::create([
-            'company_id'     => $this->getCompanyCurrentSession(),
+            'company_id'     => Auth::user()->currentCompany->id,
             'customer_name'  => $request['customer_name'],
             'customer_phone' => $request['customer_phone'],
             'customer_email' => $request['customer_email'],

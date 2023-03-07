@@ -6,6 +6,7 @@ use App\Traits\CompanySession;
 use Modules\PurchasesReturn\DataTables\PurchaseReturnPaymentsDataTable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Gate;
 use Modules\PurchasesReturn\Entities\PurchaseReturn;
@@ -48,7 +49,7 @@ class PurchaseReturnPaymentsController extends Controller
         DB::transaction(function () use ($request) {
             PurchaseReturnPayment::create([
 
-                'company_id' => $this->getCompanyCurrentSession(),
+                'company_id' => Auth::user()->currentCompany->id,
 
                 'date' => $request->date,
                 'reference' => $request->reference,

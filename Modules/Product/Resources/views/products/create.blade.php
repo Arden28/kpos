@@ -40,7 +40,7 @@
                             <div class="card-body">
 
 
-                                <input type="hidden" class="form-control" name="company_id" value="{{ session('browse_company_id') }}">
+                                <input type="hidden" class="form-control" name="company_id" value="{{ Auth::user()->currentCompany->id }}">
 
                                 <div class="row">
                                   <div class="col-lg-6">

@@ -3,6 +3,7 @@
 namespace App\Http\Livewire;
 
 use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 use Modules\Product\Entities\Product;
 
@@ -24,8 +25,8 @@ class SearchProduct extends Component
     }
 
     public function updatedQuery() {
-        $this->search_results = Product::where('company_id', session('browse_company_id'))->where('product_name', 'like', '%' . $this->query . '%')
-            ->orWhere('product_code', 'like', '%' . $this->query . '%')->where('company_id', session('browse_company_id'))
+        $this->search_results = Product::where('company_id', Auth::user()->currentCompany->id)->where('product_name', 'like', '%' . $this->query . '%')
+            ->orWhere('product_code', 'like', '%' . $this->query . '%')->where('company_id', Auth::user()->currentCompany->id)
             ->take($this->how_many)->get();
     }
 
