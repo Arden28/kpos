@@ -75,7 +75,7 @@
           </div> --}}
         </div>
         <div class="text-center text-muted mt-3">
-          Don't have account yet? <a href="./sign-up.html" tabindex="-1">Sign up</a>
+          {{ __('Vous n\'avez pas de compte ? ') }} <a href="{{ route('register') }}" tabindex="-1">{{ __('S\'inscrire') }}</a>
         </div>
       </div>
     </div>
