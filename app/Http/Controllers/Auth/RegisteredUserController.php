@@ -114,9 +114,9 @@ class RegisteredUserController extends Controller
 
     }
 
-    public function settingSetup($company){
+    public function settingSetup(Company $company){
 
-        Setting::create([
+        $setting = Setting::create([
             'company_id'   => $company->id,
             'reference'     => 'ETS',
             'notification_email' => 'notification@koverae.com',
@@ -124,6 +124,7 @@ class RegisteredUserController extends Controller
             'default_currency_position' => 'suffix',
             'company_address' => 'Brazzaville'
         ]);
+        $setting->save();
 
     }
 
