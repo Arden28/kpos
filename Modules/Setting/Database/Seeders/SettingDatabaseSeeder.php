@@ -17,6 +17,7 @@ class SettingDatabaseSeeder extends Seeder
     {
         $setting_1 = Setting::create([
             'company_id'   => 1,
+            'reference'     =>'BNEO',
             'notification_email' => 'notification@koverae.com',
             'default_currency_id' => 1,
             'default_currency_position' => 'suffix',
@@ -26,6 +27,7 @@ class SettingDatabaseSeeder extends Seeder
 
         $setting_2 = Setting::create([
             'company_id'   => 2,
+            'reference'     => 'HVREST',
             'notification_email' => 'notification@koverae.com',
             'default_currency_id' => 1,
             'default_currency_position' => 'suffix',

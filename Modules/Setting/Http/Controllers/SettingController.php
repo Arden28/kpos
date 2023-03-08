@@ -2,7 +2,7 @@
 
 namespace Modules\Setting\Http\Controllers;
 
-use App\Models\Common\Company;
+use App\Models\Company;
 use App\Traits\CompanySession;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;

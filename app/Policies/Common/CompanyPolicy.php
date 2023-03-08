@@ -2,7 +2,7 @@
 
 namespace App\Policies\Common;
 
-use App\Models\Common\Company;
+use App\Models\Company;
 use App\Models\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
 

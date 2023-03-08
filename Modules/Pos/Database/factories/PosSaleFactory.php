@@ -1,7 +1,7 @@
 <?php
 namespace Modules\Pos\Database\factories;
 
-use App\Models\Common\Company;
+use App\Models\Company;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Modules\Pos\Entities\Pos;
 use Modules\Pos\Entities\PosSale;

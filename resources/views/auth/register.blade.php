@@ -123,7 +123,7 @@
         <div class="form-footer">
           <button type="submit" class="btn btn-primary w-100">{{ __('Commencer') }}</button>
         </div>
-      </form> --}}
+      </form>
 
     </div>
   </div>

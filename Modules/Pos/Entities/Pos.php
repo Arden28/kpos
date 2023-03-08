@@ -4,7 +4,7 @@ namespace Modules\Pos\Entities;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use App\Models\Common\Company;
+use App\Models\Company;
 use Modules\Pos\Entities\PhysicalPosSession;
 use Modules\Sale\Entities\Sale;
 

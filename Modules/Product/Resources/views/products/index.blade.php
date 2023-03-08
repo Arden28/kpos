@@ -12,12 +12,8 @@
     <div class="row g-2 align-items-center">
     <div class="col">
         <h2 class="page-title">
-<<<<<<< HEAD
-            {{ __('Products') }}
-=======
             {{-- {{ trans('modules.pos.products.title') }} --}}
             Tous les produits
->>>>>>> 68148aefd8ad231f9ce4c88aaece1bed137f337e
         </h2>
     </div>
     </div>
@@ -33,12 +29,8 @@
                     <div class="card">
                         <div class="card-body">
                             <a href="{{ route('products.create') }}" class="btn btn-primary">
-<<<<<<< HEAD
-                                {{ __('Add Product') }} <i class="bi bi-plus"></i>
-=======
                                 {{-- {{ trans('modules.pos.products.add') }} <i class="bi bi-plus"></i> --}}
                                 Ajouter un produit <i class="bi bi-plus"></i>
->>>>>>> 68148aefd8ad231f9ce4c88aaece1bed137f337e
                             </a>
 
                             <hr>

@@ -2,7 +2,7 @@
 
 namespace Modules\Expense\Entities;
 
-use App\Models\Common\Company;
+use App\Models\Company;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Support\Carbon;

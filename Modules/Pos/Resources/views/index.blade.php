@@ -108,8 +108,4 @@
             e.returnValue = message; // Set a custom message for some browsers
             return message; // Return the message for other browsers
         });
-<<<<<<< HEAD
-    </script> --}}
-=======
     </script>
->>>>>>> 68148aefd8ad231f9ce4c88aaece1bed137f337e

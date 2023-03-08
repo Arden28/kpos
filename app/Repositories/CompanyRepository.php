@@ -3,7 +3,7 @@
 namespace App\Repositories;
 
 use App\Interfaces\CompanyInterface;
-use App\Models\Common\Company;
+use App\Models\Company;
 
 class CompanyRepository implements CompanyInterface {
 

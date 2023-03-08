@@ -2,7 +2,7 @@
 
 namespace Modules\Pos\Repositories;
 
-use App\Models\Common\Company;
+use App\Models\Company;
 use App\Traits\CompanySession;
 use Gloudemans\Shoppingcart\Facades\Cart;
 use App\Models\User;

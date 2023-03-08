@@ -2,7 +2,7 @@
 
 namespace App\Http\Livewire\Company;
 
-use App\Models\Common\Company;
+use App\Models\Company;
 use App\Models\User;
 use Livewire\Component;
 use Modules\Setting\Entities\Setting;

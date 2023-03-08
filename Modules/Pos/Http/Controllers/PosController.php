@@ -2,7 +2,7 @@
 
 namespace Modules\Pos\Http\Controllers;
 
-use App\Models\Common\Company;
+use App\Models\Company;
 use App\Traits\CompanySession;
 use Exception;
 use Gloudemans\Shoppingcart\Facades\Cart;

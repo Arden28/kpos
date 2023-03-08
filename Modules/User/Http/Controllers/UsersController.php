@@ -53,7 +53,7 @@ class UsersController extends Controller
 
         // Mail::to($request->email)->send(new WelcomeEmail($request->name));
 
-        toast("Nouvel Employé ! Au poste de  '$request->role' Role!", 'success');
+        toast("Nouvel Employé Ajouté ! Au poste de  '$request->role' Role!", 'success');
 
         return redirect()->route('users.index');
     }

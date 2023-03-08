@@ -3,8 +3,10 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
-use App\Models\Common\Company;
+use App\Mail\NewUser;
+use App\Models\Company;
 use App\Models\User;
+use App\Mail\NewKover;
 use App\Providers\RouteServiceProvider;
 use Bpuig\Subby\Models\Plan;
 use Illuminate\Auth\Events\Registered;
@@ -12,8 +14,10 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Validation\Rules;
 use Illuminate\Validation\Rules\Password;
+use Modules\Setting\Entities\Setting;
 
 class RegisteredUserController extends Controller
 {
@@ -67,12 +71,19 @@ class RegisteredUserController extends Controller
             'is_active' => 1
         ]);
 
+        
+        $superAdmin = 'Owner';
+
+        $user->assignRole($superAdmin);
+
         // Excecute this function
         $this->addCompany($request, $user);
 
         event(new Registered($user));
 
         // Auth::login($user);
+
+        toast("Votre compte a été créé! Veuillez vous connecter", 'success');
 
         return redirect()->route('login');
     }
@@ -86,8 +97,13 @@ class RegisteredUserController extends Controller
             'personal_company' => true
         ]);
 
+        // Setup settings
+        $this->settingSetup($company);
+
         // Excecute this function
         $this->updateUser($user, $company->id);
+
+        $this->sendMail($request, $user, $company);
     }
 
     // Change current company id
@@ -97,4 +113,31 @@ class RegisteredUserController extends Controller
         $user->save();
 
     }
+
+    public function settingSetup($company){
+
+        Setting::create([
+            'company_id'   => $company->id,
+            'reference'     => 'ETS',
+            'notification_email' => 'notification@koverae.com',
+            'default_currency_id' => 1,
+            'default_currency_position' => 'suffix',
+            'company_address' => 'Brazzaville'
+        ]);
+
+    }
+
+    // Send welcome email to user
+    public function sendMail($request, $user, $company){
+
+        Mail::to($user->email)->send(new NewKover($request, $user, $company));
+        
+        // $user->notify(new NewKover($request, $user, $company));
+    }
+
+    // 
+    // public function send($request, $user, $company){
+        
+    //     $user->notify(new NotificationsNewKover($user));
+    // }
 }

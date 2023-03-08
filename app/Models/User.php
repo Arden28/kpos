@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-use App\Models\Common\Company;
+use App\Models\Company;
 use App\Traits\HasCompany;
 use Bpuig\Subby\Traits\HasSubscriptions;
 use Illuminate\Contracts\Auth\MustVerifyEmail;

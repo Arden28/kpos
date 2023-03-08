@@ -1,7 +1,7 @@
 <?php
 namespace Modules\Product\Database\factories;
 
-use App\Models\Common\Company;
+use App\Models\Company;
 use Modules\Product\Entities\Category;
 use Illuminate\Database\Eloquent\Factories\Factory;
 

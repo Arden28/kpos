@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Interfaces\CompanyInterface;
-use App\Models\Common\Company;
 use App\Traits\CompanySession;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
