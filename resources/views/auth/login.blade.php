@@ -50,7 +50,7 @@
               <div class="mb-2">
                 <label class="form-check">
                   <input type="checkbox" class="form-check-input"/>
-                  <span class="form-check-label">{{ __('Rester konnecté dur cet appareil') }}</span>
+                  <span class="form-check-label">{{ __('Rester konnecté sur cet appareil') }}</span>
                 </label>
               </div>
               <div class="form-footer">
