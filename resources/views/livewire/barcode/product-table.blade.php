@@ -18,7 +18,7 @@
                         <th class="align-middle">{{ __('Product Name') }}</th>
                         <th class="align-middle">{{ __('Code') }}</th>
                         <th class="align-middle">
-                            {{ __('Quantity') }} <i class="bi bi-question-circle-fill text-info" data-toggle="tooltip" data-placement="top" title="Max Quantity: 100"></i>
+                            {{ __('Quantité') }} <i class="bi bi-question-circle-fill text-info" data-toggle="tooltip" data-placement="top" title="Max Quantity: 100"></i>
                         </th>
                     </tr>
                     </thead>
@@ -32,7 +32,7 @@
                             </td>
                         @else
                             <td colspan="3" class="text-center">
-                                <span class="text-danger">{{ __('Please search & select a product!') }}</span>
+                                <span class="text-danger">{{ __('Veuillez rechercher et sélectionner un produit!') }}</span>
                             </td>
                         @endif
                     </tr>

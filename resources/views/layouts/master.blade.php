@@ -176,3 +176,5 @@
     @include('includes.main-js')
     @livewireScripts
 
+  </body>
+</html>

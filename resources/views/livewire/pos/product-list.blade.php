@@ -29,7 +29,7 @@
                 @empty
                     <div class="col-12">
                         <div class="alert alert-warning mb-0">
-                            {{ __('Products Not Found') }}...
+                            {{ __('Aucun produit trouvé') }}...
                         </div>
                     </div>
                 @endforelse

@@ -3,7 +3,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="checkoutModalLabel">
-                    <i class="bi bi-cart-check text-primary"></i> {{ __('Confirm Sale') }}
+                    <i class="bi bi-cart-check text-primary"></i> {{ __('Confimez la vente') }}
                 </h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
@@ -33,29 +33,30 @@
                             <div class="row">
                                 <div class="col-lg-6">
                                     <div class="form-group">
-                                        <label for="total_amount">{{ __('Total Amount') }} <span class="text-danger">*</span></label>
+                                        <label for="total_amount">{{ __('Montant total') }} <span class="text-danger">*</span></label>
                                         <input id="total_amount" type="text" class="form-control" name="total_amount" value="{{ $total_amount }}" readonly required>
                                     </div>
                                 </div>
                                 <div class="col-lg-6">
                                     <div class="form-group">
-                                        <label for="paid_amount">{{ __('Received Amount') }} <span class="text-danger">*</span></label>
+                                        <label for="paid_amount">{{ __('Montant reçu') }} <span class="text-danger">*</span></label>
                                         <input id="paid_amount" type="text" class="form-control" name="paid_amount" value="{{ $total_amount }}" required>
                                     </div>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label for="payment_method">{{ __('Payment Method') }} <span class="text-danger">*</span></label>
+                                <label for="payment_method">{{ __('Moyen de paiement') }} <span class="text-danger">*</span></label>
                                 <select class="form-control" name="payment_method" id="payment_method" required>
-                                    <option value="Cash">{{ __('Cash') }}</option>
-                                    <option value="Credit Card">{{ __('Credit Card') }}</option>
-                                    <option value="Bank Transfer">{{ __('Bank Transfer') }}</option>
-                                    <option value="Cheque">{{ __('Cheque') }}</option>
-                                    <option value="Other">{{ __('Other') }}</option>
+                                    <option value="">{{ __('Sélectionnez un moyen de paiement') }}</option>
+                                    <option value="Paiement en espèce">{{ __('Paiement en espèce') }}</option>
+                                    <option value="Carte Bancaire">{{ __('Carte Bancaire') }}</option>
+                                    <option value="Momo Pay">{{ __('Momo Pay') }}</option>
+                                    <option value="Chèque">{{ __('Chèque') }}</option>
+                                    <option value="Autre">{{ __('Autre') }}</option>
                                 </select>
                             </div>
                             <div class="form-group">
-                                <label for="note">{{ __('Note (If Needed)') }}</label>
+                                <label for="note">{{ __('Note (Si besoin)') }}</label>
                                 <textarea name="note" id="note" rows="5" class="form-control"></textarea>
                             </div>
                         </div>
@@ -63,7 +64,7 @@
                             <div class="table-responsive">
                                 <table class="table table-striped">
                                     <tr>
-                                        <th>{{ __('Total Products') }}</th>
+                                        <th>{{ __('Produits') }}</th>
                                         <td>
                                                 <span class="badge badge-success">
                                                     {{ Cart::instance($cart_instance)->count() }}
@@ -71,15 +72,15 @@
                                         </td>
                                     </tr>
                                     <tr>
-                                        <th>{{ __('Order Tax') }} ({{ $global_tax }}%)</th>
+                                        <th>{{ __('Taxe') }} ({{ $global_tax }}%)</th>
                                         <td>(+) {{ format_currency(Cart::instance($cart_instance)->tax()) }}</td>
                                     </tr>
                                     <tr>
-                                        <th>{{ __('Discount') }} ({{ $global_discount }}%)</th>
+                                        <th>{{ __('Réduction') }} ({{ $global_discount }}%)</th>
                                         <td>(-) {{ format_currency(Cart::instance($cart_instance)->discount()) }}</td>
                                     </tr>
                                     <tr>
-                                        <th>{{ __('Shipping') }}</th>
+                                        <th>{{ __('Livraison') }}</th>
                                         <input type="hidden" value="{{ $shipping }}" name="shipping_amount">
                                         <td>(+) {{ format_currency($shipping) }}</td>
                                     </tr>
@@ -99,8 +100,8 @@
 
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">{{ __('Close') }}</button>
-                    <button type="submit" class="btn btn-primary">{{ __('Submit') }}</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">{{ __('Annuler') }}</button>
+                    <button type="submit" class="btn btn-primary">{{ __('Confirmer') }}</button>
                 </div>
             </form>
         </div>

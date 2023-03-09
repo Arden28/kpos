@@ -12,15 +12,20 @@
     <link href="{{ asset('assets/dist/css/tabler-vendors.min.css')}}?1668287865" rel="stylesheet"/>
     <link href="{{ asset('assets/dist/css/demo.min.css')}}?1668287865" rel="stylesheet"/>
 
+    @livewireStyles
+    <wireui:scripts />
     <script src="https://unpkg.com/alpinejs" defer></script>
+
     <style>
       @import url('https://rsms.me/inter/inter.css');
       :root {
       	--tblr-font-sans-serif: Inter, -apple-system, BlinkMacSystemFont, San Francisco, Segoe UI, Roboto, Helvetica Neue, sans-serif;
       }
     </style>
-
     @include('includes.main-css1')
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+
   </head>
   <body >
     <script src="{{ asset('assets/dist/js/demo-theme.min.js')}}?1668287865"></script>
@@ -64,7 +69,7 @@
           </div>
         </div>
       </header>
-      <div class="page-wrapper" class="fullscreen"  id="fullscreen-section">
+      <div class="page-wrapper">
         <!-- Page header -->
         @yield('breadcrumb')
 
@@ -96,12 +101,13 @@
       </div>
     </div>
 
-	<script>
+	{{-- <script>
 		function toggleFullscreen() {
 			var element = document.getElementById("fullscreen-section");
 			element.classList.toggle("active");
 		}
-	</script>
+	</script> --}}
     @include('includes.main-js')
+    @livewireScripts
     </body>
 </html>

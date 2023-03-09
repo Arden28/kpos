@@ -74,7 +74,7 @@
                         <tr>
                             <td colspan="8" class="text-center">
                         <span class="text-danger">
-                            Please search & select products!
+                            {{ __('Veuillez rechercher et sélectionner un produit !') }}
                         </span>
                             </td>
                         </tr>
@@ -89,20 +89,20 @@
             <div class="table-responsive">
                 <table class="table table-striped">
                     <tr>
-                        <th>Order Tax ({{ $global_tax }}%)</th>
+                        <th>{{ __('Taxe') }} ({{ $global_tax }}%)</th>
                         <td>(+) {{ format_currency(Cart::instance($cart_instance)->tax()) }}</td>
                     </tr>
                     <tr>
-                        <th>Discount ({{ $global_discount }}%)</th>
+                        <th>{{ __('Réduction') }} ({{ $global_discount }}%)</th>
                         <td>(-) {{ format_currency(Cart::instance($cart_instance)->discount()) }}</td>
                     </tr>
                     <tr>
-                        <th>Shipping</th>
+                        <th>{{ __('Livraison') }}</th>
                         <input type="hidden" value="{{ $shipping }}" name="shipping_amount">
                         <td>(+) {{ format_currency($shipping) }}</td>
                     </tr>
                     <tr>
-                        <th>Grand Total</th>
+                        <th>{{ __('Grand Total') }}</th>
                         @php
                             $total_with_shipping = Cart::instance($cart_instance)->total() + (float) $shipping
                         @endphp
@@ -120,19 +120,19 @@
     <div class="row" style="padding-top: 10px">
         <div class="col-lg-4">
             <div class="form-group">
-                <label for="tax_percentage">{{ __('Order Tax') }} (%)</label>
+                <label for="tax_percentage">{{ __('Taxe') }} (%)</label>
                 <input wire:model.lazy="global_tax" type="number" class="form-control" name="tax_percentage" min="0" max="100" value="{{ $global_tax }}" required>
             </div>
         </div>
         <div class="col-lg-4">
             <div class="form-group">
-                <label for="discount_percentage">{{ __('Discount') }} (%)</label>
+                <label for="discount_percentage">{{ __('Réduction') }} (%)</label>
                 <input wire:model.lazy="global_discount" type="number" class="form-control" name="discount_percentage" min="0" max="100" value="{{ $global_discount }}" required>
             </div>
         </div>
         <div class="col-lg-4">
             <div class="form-group">
-                <label for="shipping_amount">{{ __('Shipping') }}</label>
+                <label for="shipping_amount">{{ __('Livraison') }}</label>
                 <input wire:model.lazy="shipping" type="number" class="form-control" name="shipping_amount" min="0" value="0" required step="0.01">
             </div>
         </div>

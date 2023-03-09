@@ -1,13 +1,9 @@
-@extends('layouts.master')
+@extends('pos::layouts.master')
 
-@section('title', 'POS')
-
-@section('third_party_stylesheets')
-
-@endsection
+@section('title', __('Point Of Sales'))
 
 @section('breadcrumb')
-<div class="page-header d-print-none text-black">
+<div class="page-header d-print-none text-white">
   <div class="container-xl">
     <div class="row g-2 align-items-center">
       <div class="col">
@@ -46,17 +42,20 @@
 @endsection
 
 @section('content')
-    <div class="container-xl">
-        <div class="row">
-            <div class="col-12">
-                @include('utils.alerts')
-            </div>
-            <div class="col-lg-7">
-                <livewire:search-product/>
-                <livewire:pos.product-list :categories="$product_categories"/>
-            </div>
-            <div class="col-lg-5">
-                <livewire:pos.checkout :cart-instance="'sale'" :customers="$customers"/>
+
+    <div class="page-header d-print-none">
+        <div class="container-xl">
+            <div class="row">
+                <div class="col-12">
+                    @include('utils.alerts')
+                </div>
+                <div class="col-lg-7">
+                    <livewire:search-product/>
+                    <livewire:pos.product-list :categories="$product_categories"/>
+                </div>
+                <div class="col-lg-5">
+                    <livewire:pos.checkout :cart-instance="'sale'" :customers="$customers"/>
+                </div>
             </div>
         </div>
     </div>
@@ -96,7 +95,6 @@
         });
     </script>
 
-
     {{-- Disallow page refreshing --}}
     <script>
         window.addEventListener('beforeunload', function (e) {
@@ -111,5 +109,3 @@
             return message; // Return the message for other browsers
         });
     </script>
-
-@endpush

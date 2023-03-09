@@ -7,7 +7,7 @@
                         <div class="row" style="padding-bottom: 12px;">
                             <div class="col-lg-4">
                                 <div class="form-group">
-                                    <label>Start Date <span class="text-danger">*</span></label>
+                                    <label>{{ __('Date de début') }} <span class="text-danger">*</span></label>
                                     <input wire:model.defer="start_date" type="date" class="form-control" name="start_date">
                                     @error('start_date')
                                     <span class="text-danger mt-1">{{ $message }}</span>
@@ -16,7 +16,7 @@
                             </div>
                             <div class="col-lg-4">
                                 <div class="form-group">
-                                    <label>End Date <span class="text-danger">*</span></label>
+                                    <label>{{ __('Date de fin') }}<span class="text-danger">*</span></label>
                                     <input wire:model.defer="end_date" type="date" class="form-control" name="end_date">
                                     @error('end_date')
                                     <span class="text-danger mt-1">{{ $message }}</span>
@@ -25,9 +25,9 @@
                             </div>
                             <div class="col-lg-4">
                                 <div class="form-group">
-                                    <label>Customer</label>
+                                    <label>{{ __('Client') }}</label>
                                     <select wire:model.defer="customer_id" class="form-control" name="customer_id">
-                                        <option value="">Select Customer</option>
+                                        <option value="">{{ __('Sélectionnez un client') }}</option>
                                         @foreach($customers as $customer)
                                             <option value="{{ $customer->id }}">{{ $customer->customer_name }}</option>
                                         @endforeach
@@ -40,21 +40,21 @@
                                 <div class="form-group">
                                     <label>Status</label>
                                     <select wire:model.defer="sale_status" class="form-control" name="sale_status">
-                                        <option value="">Select Status</option>
-                                        <option value="Pending">Pending</option>
-                                        <option value="Shipped">Shipped</option>
-                                        <option value="Completed">Completed</option>
+                                        <option value="">{{ __('Sélectionnez un status') }}</option>
+                                        <option value="Pending">{{ __('En attente') }}</option>
+                                        <option value="Shipped">{{ __('Reçue') }}</option>
+                                        <option value="Completed">{{ __('Confirmée') }}</option>
                                     </select>
                                 </div>
                             </div>
                             <div class="col-lg-6">
                                 <div class="form-group">
-                                    <label>Payment Status</label>
+                                    <label>{{ __('Status de paiement') }}</label>
                                     <select wire:model.defer="payment_status" class="form-control" name="payment_status">
-                                        <option value="">Select Payment Status</option>
-                                        <option value="Paid">Paid</option>
-                                        <option value="Unpaid">Unpaid</option>
-                                        <option value="Partial">Partial</option>
+                                        <option value="">{{ __('Sélectionnez un status') }}</option>
+                                        <option value="Paid">{{ __('Payé') }}</option>
+                                        <option value="Unpaid">{{ __('Non payé') }}</option>
+                                        <option value="Partial">{{ __('Partiel') }}</option>
                                     </select>
                                 </div>
                             </div>
@@ -84,14 +84,14 @@
                         </div>
                         <thead>
                         <tr>
-                            <th>Date</th>
-                            <th>Reference</th>
-                            <th>Customer</th>
-                            <th>Status</th>
-                            <th>Total</th>
-                            <th>Paid</th>
-                            <th>Due</th>
-                            <th>Payment Status</th>
+                            <th>{{ __('Date') }}</th>
+                            <th>{{ __('Reférence') }}</th>
+                            <th>{{ __('Client') }}</th>
+                            <th>{{ __('Status') }}</th>
+                            <th>{{ __('Total') }}</th>
+                            <th>{{ __('Payé') }}</th>
+                            <th>{{ __('Dû') }}</th>
+                            <th>{{ __('Status de paiement') }}</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -138,7 +138,7 @@
                         @empty
                             <tr>
                                 <td colspan="8">
-                                    <span class="text-danger">No Sales Data Available!</span>
+                                    <span class="text-danger">{{ __('Aucune données sur les ventes disponibles !') }}</span>
                                 </td>
                             </tr>
                         @endforelse

@@ -1,6 +1,6 @@
 @extends('layouts.master')
 
-@section('title', __('Purchases Returns'))
+@section('title', __('Rapport des Commandes annulées'))
 
 @section('breadcrumb')
 <div class="page-header d-print-none">
@@ -8,7 +8,7 @@
     <div class="row g-2 align-items-center">
     <div class="col">
         <h2 class="page-title">
-            {{ __('Purchases Returns') }}
+            {{ __('Rapport des Commandes annulées') }}
         </h2>
     </div>
     </div>

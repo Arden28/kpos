@@ -115,7 +115,7 @@
                 </div>
             </div>
 
-            <div class="row">
+            <div class="row" style="margin-top: 10px">
                 <div class="col-lg-4">
                     <div class="form-group">
                         <label for="tax_percentage">{{ __('Taxe') }} (%)</label>
@@ -136,7 +136,7 @@
                 </div>
             </div>
 
-            <div class="form-group d-flex justify-content-center flex-wrap mb-0">
+            <div class="form-group d-flex justify-content-center flex-wrap mb-0" style="margin-top: 10px">
                 <button wire:click="resetCart" type="button" class="btn btn-pill btn-danger mr-3"><i class="bi bi-x"></i> {{ __('Annuler') }}</button>
                 <button wire:loading.attr="disabled" wire:click="proceed" type="button" class="btn btn-pill btn-primary" {{  $total_amount == 0 ? 'disabled' : '' }}><i class="bi bi-check"></i> {{ __('Procéder') }}</button>
             </div>
@@ -146,7 +146,7 @@
     {{--Checkout Modal--}}
     @include('livewire.pos.includes.checkout-modal')
     {{-- @include('livewire.pos.includes.customer-modal') --}}
-    {{-- @include('people::livewire.includes.customer-modal') --}}
+    @include('people::livewire.includes.customer-modal')
 
 </div>
 

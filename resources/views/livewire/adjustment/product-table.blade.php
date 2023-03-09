@@ -19,10 +19,10 @@
             <thead>
             <tr class="align-middle">
                 <th class="align-middle">#</th>
-                <th class="align-middle">{{ __('Product Name') }}</th>
+                <th class="align-middle">{{ __('Nom du Produit') }}</th>
                 <th class="align-middle">{{ __('Code') }}</th>
                 <th class="align-middle">{{ __('Stock') }}</th>
-                <th class="align-middle">{{ __('Quantity') }}</th>
+                <th class="align-middle">{{ __('Quantité') }}</th>
                 <th class="align-middle">{{ __('Type') }}</th>
                 <th class="align-middle">{{ __('Action') }}</th>
             </tr>
@@ -74,7 +74,7 @@
                 <tr>
                     <td colspan="7" class="text-center">
                         <span class="text-danger">
-                            {{ __('Please search & select products!') }}
+                            {{ __('Veuillez rechercher et sélectionner un produit !') }}
                         </span>
                     </td>
                 </tr>

@@ -92,7 +92,7 @@
                   </div>
                   <div class="col">
                     <div class="font-weight-medium">
-                        {{ format_currency($purchase_returns) }} {{ __('Purchases Return ') }}
+                        {{ format_currency($purchase_returns) }} {{ __('Commandes Retournées') }}
                     </div>
                   </div>
                 </div>
@@ -110,7 +110,7 @@
                   </div>
                   <div class="col">
                     <div class="font-weight-medium">
-                        {{ format_currency($profit) }} {{ __('Profit') }}
+                        {{ format_currency($profit) }} {{ __('Bénéfice') }}
                     </div>
                   </div>
                 </div>
@@ -125,7 +125,7 @@
           <div class="col-lg-12">
               <div class="card">
                   <div class="card-header">
-                      {{ __("Monthly Cash Flow (Payment Sent & Received)") }}
+                      {{ __("Flux de trésorie mensuelle (Paiements envoyés & reçus)") }}
                   </div>
                   <div class="card-body">
                       <canvas id="paymentChart"></canvas>

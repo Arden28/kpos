@@ -31,25 +31,25 @@
                         </div>
                     @endif
                     <div class="form-group">
-                        <label>{{ __('Discount Type') }} <span class="text-danger">*</span></label>
+                        <label>{{ __('Type de réduction') }} <span class="text-danger">*</span></label>
                         <select wire:model="discount_type.{{ $cart_item->id }}" class="form-control" required>
-                            <option value="fixed">{{ __('Fixed') }}</option>
-                            <option value="percentage">{{ __('Percentage') }}</option>
+                            <option value="fixed">{{ __('Fixe') }}</option>
+                            <option value="percentage">{{ __('Pourcentage') }}</option>
                         </select>
                     </div>
                     <div class="form-group">
                         @if($discount_type[$cart_item->id] == 'percentage')
-                            <label>{{ __('Discount') }}(%) <span class="text-danger">*</span></label>
+                            <label>{{ __('Réduction') }}(%) <span class="text-danger">*</span></label>
                             <input wire:model.defer="item_discount.{{ $cart_item->id }}" type="number" class="form-control" value="{{ $item_discount[$cart_item->id] }}" min="0" max="100">
                         @elseif($discount_type[$cart_item->id] == 'fixed')
-                            <label>{{ __('Discount') }} <span class="text-danger">*</span></label>
+                            <label>{{ __('Réduction') }} <span class="text-danger">*</span></label>
                             <input wire:model.defer="item_discount.{{ $cart_item->id }}" type="number" class="form-control" value="{{ $item_discount[$cart_item->id] }}">
                         @endif
                     </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-primary">{{ __('Save changes') }}</button>
+                    <button type="submit" class="btn btn-primary">{{ __('Sauvegarder') }}</button>
                 </div>
             </form>
         </div>
