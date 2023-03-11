@@ -25,7 +25,7 @@ class CompanyInvitation extends Model
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function team()
+    public function company()
     {
         return $this->belongsTo(Company::class);
     }

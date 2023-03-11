@@ -2,6 +2,7 @@
 
 namespace Modules\User\DataTables;
 
+use App\Models\CompanyUser;
 use App\Models\User;
 use App\Traits\CompanySession;
 use Modules\User\Interfaces\EmployeeInterface;

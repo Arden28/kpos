@@ -17,5 +17,17 @@ class CompanyUser extends Model
     protected $fillable = [
         'company_id',
         'user_id',
+        'role',
     ];
+
+
+    /**
+     * Get the company that the invitation belongs to.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function company()
+    {
+        return $this->belongsTo(Company::class);
+    }
 }

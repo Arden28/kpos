@@ -5,6 +5,7 @@ namespace Modules\User\Repositories;
 use App\Models\CompanyUser;
 use App\Models\User;
 use App\Traits\CompanySession;
+use App\Traits\HasCompany;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
@@ -16,7 +17,7 @@ use Modules\User\Notifications\Employees\AccountCreatedNotification;
 
 class EmployeeRepository implements EmployeeInterface{
 
-    use CompanySession;
+    use HasCompany;
 
     public function getAllEmployees($model){
 
@@ -24,8 +25,10 @@ class EmployeeRepository implements EmployeeInterface{
             ->with(['roles' => function ($query) {
                 $query->select('name')->get();
             }])
-            ->where('company_id', Auth::user()->currentCompany->id)
-            ->where('id', '!=', auth()->id());
+            ->where('current_company_id', Auth::user()->currentCompany->id)
+            ->where('id', '!=', Auth::user()->id);
+
+        // return $model->company->allUsers();
     }
 
     public function createEmployee($request){

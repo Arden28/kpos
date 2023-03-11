@@ -5,6 +5,7 @@ namespace App\Abstracts;
 use Illuminate\Database\Eloquent\Model;
 use App\Abstracts\Membership;
 use App\Models\CompanyInvitation;
+use App\Models\CompanyUser;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Notifications\Notifiable;
 
@@ -74,11 +75,21 @@ class Company extends Model
      *
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
+    public function companyUsers()
+    {
+        return $this->hasMany(CompanyUser::class);
+    }
+
+
+    /**
+     * Get all of the pending user invitations for the company.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
     public function companyInvitations()
     {
         return $this->hasMany(CompanyInvitation::class);
     }
-
     /**
      * Remove the given user from the company.
      *

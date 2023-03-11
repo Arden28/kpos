@@ -71,7 +71,7 @@ class RegisteredUserController extends Controller
             'is_active' => 1
         ]);
 
-        
+
         $superAdmin = 'Owner';
 
         $user->assignRole($superAdmin);
@@ -132,13 +132,13 @@ class RegisteredUserController extends Controller
     public function sendMail($request, $user, $company){
 
         Mail::to($user->email)->send(new NewKover($request, $user, $company));
-        
+
         // $user->notify(new NewKover($request, $user, $company));
     }
 
-    // 
+    //
     // public function send($request, $user, $company){
-        
+
     //     $user->notify(new NotificationsNewKover($user));
     // }
 }
