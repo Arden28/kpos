@@ -7,6 +7,7 @@ use App\Models\User;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
@@ -49,7 +50,8 @@ class UsersController extends Controller
     public function store(StoreEmployeeRequest $request) {
         abort_if(Gate::denies('access_user_management'), 403);
 
-        $this->employeeRepository->createEmployee($request->validated());
+        $company = Auth::user()->currentCompany->id;
+        $this->employeeRepository->createEmployee($request->validated(), $company);
 
         // Mail::to($request->email)->send(new WelcomeEmail($request->name));
 

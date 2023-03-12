@@ -31,7 +31,7 @@ class EmployeeRepository implements EmployeeInterface{
         // return $model->company->allUsers();
     }
 
-    public function createEmployee($request){
+    public function createEmployee($request, $company){
 
         $user = User::create([
             'name'     => $request['name'],
@@ -39,6 +39,7 @@ class EmployeeRepository implements EmployeeInterface{
             'phone'    => $request['phone'],
             'password' => Hash::make($request['password']),
             'is_active' => $request['is_active'],
+            'current_company_id' => $company,
         ]);
 
         $user->assignRole($request['role']);

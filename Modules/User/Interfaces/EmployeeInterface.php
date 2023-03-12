@@ -8,7 +8,7 @@ interface EmployeeInterface{
     public function getAllEmployees($model);
 
     // Créer un employé
-    public function createEmployee($request);
+    public function createEmployee($request, $company);
 
     public function editEmployee($request, $employee);
 }

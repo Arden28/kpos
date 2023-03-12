@@ -143,7 +143,7 @@
 
         <div class="container-xl">
 
-            @can('show_weekly_sales_purchases|show_month_overview')
+            @can('show_weekly_sales_purchases')
             <div class="row row-cards">
                 @can('show_weekly_sales_purchases')
                 <div class="col-lg-7">
