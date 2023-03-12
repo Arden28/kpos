@@ -233,7 +233,7 @@
                 </li>
 
                 {{-- Customers | Suppliers Management --}}
-                @can('access_customers|access_suppliers')
+                @can('access_customers | access_suppliers')
                 <li class="nav-item">
                   <a class="nav-link" href="{{ route('customers.index') }}" >
                     <span class="nav-link-icon d-md-none d-lg-inline-block"><!-- Download SVG icon from http://tabler-icons.io/i/star -->
@@ -297,7 +297,7 @@
                 </li>
                 @endcan
 
-                @can('access_currencies|access_settings')
+                @can('access_settings')
                 <li class="nav-item dropdown {{ request()->routeIs('currencies*') ? 'c-show' : '' }}">
                   <a class="nav-link dropdown-toggle" href="#navbar-layout" data-bs-toggle="dropdown" data-bs-auto-close="outside" role="button" aria-expanded="false" >
                     <span class="nav-link-icon d-md-none d-lg-inline-block"><!-- Download SVG icon from http://tabler-icons.io/i/layout-2 -->

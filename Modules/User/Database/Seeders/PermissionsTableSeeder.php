@@ -73,6 +73,8 @@ class PermissionsTableSeeder extends Seeder
             //Expense Categories
             'access_expense_categories',
 
+            // GR
+            'access_crm',
             //Customers
             'access_customers',
             'create_customers',
@@ -178,6 +180,6 @@ class PermissionsTableSeeder extends Seeder
         ]);
 
         $role->givePermissionTo($permissions);
-        $role->revokePermissionTo('access_user_management', 'access_companies');
+        $role->revokePermissionTo('access_user_management');
     }
 }
