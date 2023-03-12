@@ -39,7 +39,6 @@ class EmployeeRepository implements EmployeeInterface{
             'phone'    => $request['phone'],
             'password' => Hash::make($request['password']),
             'is_active' => $request['is_active'],
-
         ]);
 
         $user->assignRole($request['role']);

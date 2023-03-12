@@ -6,7 +6,8 @@ Nous avons créé le compte de votre entreprise {{ $company->name }}.
 <br />
 La prochaine étape est de vous connecter à votre compte et configurer les détails sur votre entreprise "{{ $company->name }}".
 <br />
-Voici vos identifiants : 
+Voici vos identifiants :
+    <br />
     <br />
     Nom d'utilisateur: {{ $user->email }}
     <br />

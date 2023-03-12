@@ -44,7 +44,7 @@ class AccountCreatedNotification extends Notification
         return (new MailMessage)
                     ->subject('Bienvenue chez Koverae')
                     ->line('Salut '.$notifiable->name.' nous sommes content de vous avoir à bord !')
-                    ->action('Commencer maintenant', route('login'))
+                    ->action('Commencer maintenant', 'https://www.dashboard.koverae.com/auth/login')
                     ->line('Merci d\'avoir choisi Koverae !');
     }
 

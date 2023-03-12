@@ -38,10 +38,10 @@ class NewKover extends Mailable
         return $this->markdown('emails.new-kover')
         ->subject(__('New Kover'))
         ->with(['request' =>$this->request, 'user' => $this->user, 'company' => $this->company])
-        ->attach(public_path('/assets/images/logo/logo.png'), [
-            'as' => 'logo.png',
-            'mime' => 'image/png',
-        ])
+        // ->attach(public_path('/assets/images/logo/logo.png'), [
+        //     'as' => 'logo.png',
+        //     'mime' => 'image/png',
+        // ])
         ;
     }
 }

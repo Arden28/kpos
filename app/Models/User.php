@@ -17,7 +17,7 @@ use Spatie\MediaLibrary\MediaCollections\File;
 // use Spatie\Onboard\Concerns\Onboardable;
 use Spatie\Permission\Traits\HasRoles;
 
-class User extends Authenticatable implements HasMedia
+class User extends Authenticatable implements HasMedia, MustVerifyEmail
 {
     use HasCompany, HasSubscriptions, HasFactory, Notifiable, HasRoles, InteractsWithMedia;
 
