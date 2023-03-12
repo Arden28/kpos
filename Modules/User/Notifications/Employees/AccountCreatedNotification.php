@@ -6,20 +6,29 @@ use Illuminate\Bus\Queueable;
 use Illuminate\Notifications\Notification;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
+use Illuminate\Support\Facades\Mail;
+use Modules\User\Emails\Employees\WelcomeEmail;
 
 class AccountCreatedNotification extends Notification
 {
     use Queueable;
 
+    protected $request;
+
     protected $user;
+
+    protected $company;
+
     /**
-     * Create a new notification instance.
+     * Create a new message instance.
      *
      * @return void
      */
-    public function __construct($user)
+    public function __construct($request, $user, $company)
     {
+        $this->request = $request;
         $this->user = $user;
+        $this->company = $company;
     }
 
     /**
@@ -41,11 +50,12 @@ class AccountCreatedNotification extends Notification
      */
     public function toMail($notifiable)
     {
-        return (new MailMessage)
-                    ->subject('Bienvenue chez Koverae')
-                    ->line('Salut '.$notifiable->name.' nous sommes content de vous avoir à bord !')
-                    ->action('Commencer maintenant', 'https://www.dashboard.koverae.com/auth/login')
-                    ->line('Merci d\'avoir choisi Koverae !');
+        // return (new MailMessage)
+        //             ->subject('Bienvenue chez Koverae')
+        //             ->line('Salut '.$notifiable->name.' nous sommes content de vous avoir à bord !')
+        //             ->action('Commencer maintenant', 'https://www.dashboard.koverae.com/auth/login')
+        //             ->line('Merci d\'avoir choisi Koverae !');
+        return Mail::to($this->user->email)->send(new WelcomeEmail($this->request, $this->user, $this->company));
     }
 
     /**

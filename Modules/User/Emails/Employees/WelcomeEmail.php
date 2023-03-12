@@ -11,16 +11,22 @@ class WelcomeEmail extends Mailable
 {
     use Queueable, SerializesModels;
 
-    protected $name;
+    protected $request;
+
+    protected $user;
+
+    protected $company;
 
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct($name)
+    public function __construct($request, $user, $company)
     {
-        $this->name = $name;
+        $this->request = $request;
+        $this->user = $user;
+        $this->company = $company;
     }
     /**
      * Build the message.
@@ -29,8 +35,13 @@ class WelcomeEmail extends Mailable
      */
     public function build()
     {
-        return $this->view('user::mail.employees.welcome')
-        ->subject(__('Bienvenue Chez Koverae !'))
-        ->with(['name' => $this->name]);
+        return $this->markdown('user::mail.employees.welcome')
+        ->subject(__('Bienvenue Chez Koverae'))
+        ->with(['request' =>$this->request, 'user' => $this->user, 'company' => $this->company])
+        // ->attach(public_path('/assets/images/logo/logo.png'), [
+        //     'as' => 'logo.png',
+        //     'mime' => 'image/png',
+        // ])
+        ;
     }
 }

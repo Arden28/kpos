@@ -50,7 +50,7 @@ class UsersController extends Controller
     public function store(StoreEmployeeRequest $request) {
         abort_if(Gate::denies('access_user_management'), 403);
 
-        $company = Auth::user()->currentCompany->id;
+        $company = Auth::user()->currentCompany;
         $this->employeeRepository->createEmployee($request->validated(), $company);
 
         // Mail::to($request->email)->send(new WelcomeEmail($request->name));

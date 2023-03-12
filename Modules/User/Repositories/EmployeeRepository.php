@@ -39,7 +39,7 @@ class EmployeeRepository implements EmployeeInterface{
             'phone'    => $request['phone'],
             'password' => Hash::make($request['password']),
             'is_active' => $request['is_active'],
-            'current_company_id' => $company,
+            'current_company_id' => $company['id'],
         ]);
 
         $user->assignRole($request['role']);
@@ -64,6 +64,14 @@ class EmployeeRepository implements EmployeeInterface{
         //     }
         // }
 
+    }
+
+    // Send welcome email to user
+    public function sendMail($request, $user, $company){
+
+        Mail::to($user->email)->send(new WelcomeEmail($request, $user, $company));
+
+        // $user->notify(new NewKover($request, $user, $company));
     }
 
     public function editEmployee($request, $employee){
