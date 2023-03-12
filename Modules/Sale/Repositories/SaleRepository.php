@@ -65,6 +65,7 @@ class SaleRepository implements SaleInterface
                     'note' => $request['note'],
                     'tax_amount' => Cart::instance('sale')->tax() * 100,
                     'discount_amount' => Cart::instance('sale')->discount() * 100,
+                    // 'seller_id' => $request['seller_id'],
                 ]);
 
                 foreach (Cart::instance('sale')->content() as $cart_item) {

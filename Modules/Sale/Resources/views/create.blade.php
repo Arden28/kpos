@@ -1,6 +1,6 @@
 @extends('layouts.master')
 
-@section('title', __('Add Sales'))
+@section('title', __('Ajouter une vente'))
 
 @section('breadcrumb')
 <div class="page-header d-print-none">
@@ -8,7 +8,7 @@
     <div class="row g-2 align-items-center">
     <div class="col">
         <h2 class="page-title">
-            {{ __('Add Sales') }}
+            {{ __('Ajouter une vente') }}
         </h2>
     </div>
     </div>
@@ -34,17 +34,17 @@
                             <form id="sale-form" action="{{ route('sales.store') }}" method="POST">
                                 @csrf
 
-                                <div class="row">
+                                <div class="row" style="margin-bottom: 12px">
                                     <div class="col-lg-4">
                                         <div class="form-group">
-                                            <label for="reference">Reference <span class="text-danger">*</span></label>
+                                            <label for="reference">{{ __('Référence') }} <span class="text-danger">*</span></label>
                                             <input type="text" class="form-control" name="reference" required readonly value="SL">
                                         </div>
                                     </div>
                                     <div class="col-lg-4">
                                         <div class="from-group">
                                             <div class="form-group">
-                                                <label for="customer_id">Customer <span class="text-danger">*</span></label>
+                                                <label for="customer_id">{{ __('Client') }} <span class="text-danger">*</span></label>
                                                 <select class="form-control" name="customer_id" id="customer_id" required>
                                                     @foreach(\Modules\People\Entities\Customer::where('company_id', Auth::user()->currentCompany->id)->get() as $customer)
                                                         <option value="{{ $customer->id }}">{{ $customer->customer_name }}</option>
@@ -53,6 +53,21 @@
                                             </div>
                                         </div>
                                     </div>
+
+                                    {{-- Vendeur à modifier --}}
+                                    {{-- <div class="col-lg-4">
+                                        <div class="from-group">
+                                            <div class="form-group">
+                                                <label for="seller_id">{{ __('Vendeur') }}</label>
+                                                <select class="form-control" name="seller_id" id="seller_id" required>
+                                                    @foreach(\App\Models\User::where('current_company_id', Auth::user()->currentCompany->id)->get() as $seller)
+                                                        <option value="{{ $seller->id }}">{{ $seller->name }}</option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div> --}}
+
                                     <div class="col-lg-4">
                                         <div class="from-group">
                                             <div class="form-group">
