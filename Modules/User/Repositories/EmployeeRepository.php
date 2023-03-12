@@ -50,7 +50,7 @@ class EmployeeRepository implements EmployeeInterface{
             'role'    => $request['role'],
         ]);
 
-        $user->notify(new AccountCreatedNotification($user));
+        $user->notify(new AccountCreatedNotification($request, $user, $company));
 
         // if ($request->has('image')) {
         // if ($request['image']) {
