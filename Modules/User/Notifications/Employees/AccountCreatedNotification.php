@@ -13,22 +13,15 @@ class AccountCreatedNotification extends Notification
 {
     use Queueable;
 
-    protected $request;
-
-    protected $user;
-
-    protected $company;
 
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct($request, $user, $company)
+    public function __construct()
     {
-        $this->request = $request;
-        $this->user = $user;
-        $this->company = $company;
+        //
     }
 
     /**
@@ -50,12 +43,12 @@ class AccountCreatedNotification extends Notification
      */
     public function toMail($notifiable)
     {
-        // return (new MailMessage)
-        //             ->subject('Bienvenue chez Koverae')
-        //             ->line('Salut '.$notifiable->name.' nous sommes content de vous avoir à bord !')
-        //             ->action('Commencer maintenant', 'https://www.dashboard.koverae.com/auth/login')
-        //             ->line('Merci d\'avoir choisi Koverae !');
-        return Mail::to($this->user->email)->send(new WelcomeEmail($this->request, $this->user, $this->company));
+        return (new MailMessage)
+                    ->subject('Bienvenue chez Koverae')
+                    ->line('Salut '.$notifiable->name.' nous sommes content de vous avoir à bord !')
+                    ->action('Commencer maintenant', 'https://www.dashboard.koverae.com/auth/login')
+                    ->line('Merci d\'avoir choisi Koverae !');
+        // return Mail::to($this->user->email)->send(new WelcomeEmail($this->request, $this->user, $this->company));
     }
 
     /**
