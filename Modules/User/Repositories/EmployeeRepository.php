@@ -39,10 +39,12 @@ class EmployeeRepository implements EmployeeInterface{
             'phone'    => $request['phone'],
             'password' => Hash::make($request['password']),
             'is_active' => $request['is_active'],
-            'current_company_id' => $company['id'],
         ]);
 
         $user->assignRole($request['role']);
+
+        $user->current_company_id = Auth::user()->currentCompany->id;
+        $user->save();
 
         $company_user = CompanyUser::create([
             'user_id'     => $user->id,
