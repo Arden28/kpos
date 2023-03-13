@@ -72,7 +72,8 @@
                                         <div class="from-group">
                                             <div class="form-group">
                                                 <label for="date">Date <span class="text-danger">*</span></label>
-                                                <input type="date" class="form-control" name="date" required value="{{ \Carbon\Carbon::now()->format('Y-m-d') }}">
+                                                {{-- <input type="date" class="form-control" name="date" required value="{{ \Carbon\Carbon::now()->format('Y-m-d') }}"> --}}
+                                                <input type="date" id="date" class="form-control" name="date" required value="{{ \Carbon\Carbon::now()->format('Y-m-d') }}">
                                             </div>
                                         </div>
                                     </div>

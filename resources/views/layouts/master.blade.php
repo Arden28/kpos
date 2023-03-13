@@ -41,7 +41,7 @@
 
             @include('user::layouts.navbar-menu')
 
-        @elseif(request()->routeIs('products.*') || request()->routeIs('product-categories.*') || request()->routeIs('barcode.print') || request()->routeIs('adjustments.*'))
+        @elseif(request()->routeIs('inventory.*') || request()->routeIs('inventory.*') || request()->routeIs('product-categories.*') || request()->routeIs('barcode.print') || request()->routeIs('adjustments.*'))
 
             @include('product::layouts.navbar-menu')
 

@@ -13,8 +13,9 @@
               </a>
             </li>
 
-            <li class="nav-item {{ request()->routeIs('inventory.index') ? 'active' : '' }}">
-              <a class="nav-link" href="{{ route('inventory.index') }}" >
+            {{-- <li class="nav-item {{ request()->routeIs('users*') ? 'active' : '' }}"> --}}
+                <li class="nav-item">
+              <a class="nav-link" href="{{ route('hr.index') }}" >
                 <span class="nav-link-icon d-md-none d-lg-inline-block"><!-- Download SVG icon from http://tabler-icons.io/i/home -->
                   <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><polyline points="5 12 3 12 12 3 21 12 19 12" /><path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" /><path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" /></svg>
                 </span>
@@ -24,13 +25,13 @@
               </a>
             </li>
 
-            @can('access_products')
-            <li class="nav-item dropdown {{ request()->routeIs('product-categories*') ? 'active' : '' }}">
+            @can('access_user_management')
+            <li class="nav-item dropdown {{ request()->routeIs('users*') ? 'active' : '' }}">
               <a class="nav-link dropdown-toggle" href="#navbar-base" data-bs-toggle="dropdown" data-bs-auto-close="outside" role="button" aria-expanded="false" >
-                <i class="bi bi-box" style="width: 24px; height:24px"></i>
+                <i class="bi bi-people" style="width: 24px; height:24px"></i>
                 </span>
                 <span class="nav-link-title">
-                  {{ __('Catégories') }}
+                  {{ __('Employés') }}
                 </span>
               </a>
               <div class="dropdown-menu">
@@ -38,35 +39,9 @@
 
                   {{-- Left --}}
                   <div class="dropdown-menu-column">
-                    <a class="dropdown-item  {{ request()->routeIs('*product-categories.index') ? 'active' : '' }}" href="{{ route('product-categories.index') }}">
+                    <a class="dropdown-item  {{ request()->routeIs('*users.index') ? 'active' : '' }}" href="{{ route('users.index') }}">
 
-                      {{ __('Toutes les Catégories') }}
-                    </a>
-
-                  </div>
-
-                </div>
-              </div>
-            </li>
-            @endcan
-
-            @can('access_products')
-            <li class="nav-item dropdown {{ request()->routeIs('products*') ? 'active' : '' }}">
-              <a class="nav-link dropdown-toggle" href="#navbar-base" data-bs-toggle="dropdown" data-bs-auto-close="outside" role="button" aria-expanded="false" >
-                <i class="bi bi-box" style="width: 24px; height:24px"></i>
-                </span>
-                <span class="nav-link-title">
-                  {{ __('Produits') }}
-                </span>
-              </a>
-              <div class="dropdown-menu">
-                <div class="dropdown-menu-columns">
-
-                  {{-- Left --}}
-                  <div class="dropdown-menu-column">
-                    <a class="dropdown-item  {{ request()->routeIs('*products.index') ? 'active' : '' }}" href="{{ route('products.index') }}">
-
-                      {{ __('Tous les produits') }}
+                      {{ __('Tous les employés') }}
                     </a>
 
                   </div>
@@ -74,9 +49,9 @@
                   {{-- Right --}}
                   <div class="dropdown-menu-column">
 
-                    <a class="dropdown-item {{ request()->routeIs('*products.create') ? 'active' : '' }}" href="{{ route('products.create') }}">
+                    <a class="dropdown-item {{ request()->routeIs('*users.create') ? 'active' : '' }}" href="{{ route('users.create') }}">
 
-                        {{ __('Ajouter un produit') }}
+                        {{ __('Ajouter un employé') }}
                     </a>
 
                   </div>
@@ -85,23 +60,13 @@
             </li>
             @endcan
 
-            <li class="nav-item">
-                <a class="nav-link {{ request()->routeIs('barcode.print') ? 'active' : '' }}" href="{{ route('barcode.print') }}">
-                    <i class="bi bi-upc-scan" style="width: 24px; height: 24px;"></i>
-                  </span>
-                  <span class="nav-link-title">
-                    {{ __('Code barre') }}
-                  </span>
-                </a>
-            </li>
-
-            @can('access_adjustments')
-            <li class="nav-item dropdown {{ request()->routeIs('adjustments*') ? 'active' : '' }}">
+            @can('access_user_management')
+            <li class="nav-item dropdown {{ request()->routeIs('roles*') ? 'active' : '' }}">
               <a class="nav-link dropdown-toggle" href="#navbar-base" data-bs-toggle="dropdown" data-bs-auto-close="outside" role="button" aria-expanded="false" >
-                <i class="bi bi-box" style="width: 24px; height:24px"></i>
+                <i class="bi bi-people" style="width: 24px; height:24px"></i>
                 </span>
                 <span class="nav-link-title">
-                  {{ __('Ajustement') }}
+                  {{ __('Rôles') }}
                 </span>
               </a>
               <div class="dropdown-menu">
@@ -109,9 +74,9 @@
 
                   {{-- Left --}}
                   <div class="dropdown-menu-column">
-                    <a class="dropdown-item  {{ request()->routeIs('*adjustments.index') ? 'active' : '' }}" href="{{ route('adjustments.index') }}">
+                    <a class="dropdown-item {{ request()->routeIs('*roles.index') ? 'active' : '' }}" href="{{ route('roles.index') }}">
 
-                      {{ __('Tous les ajustements') }}
+                      {{ __('Tous les rôles') }}
                     </a>
 
                   </div>
@@ -119,9 +84,9 @@
                   {{-- Right --}}
                   <div class="dropdown-menu-column">
 
-                    <a class="dropdown-item {{ request()->routeIs('*adjustments.create') ? 'active' : '' }}" href="{{ route('adjustments.create') }}">
+                    <a class="dropdown-item {{ request()->routeIs('roles.create') ? 'active' : '' }}" href="{{ route('roles.create') }}">
 
-                        {{ __('Ajuster l\inventaire') }}
+                        {{ __('Ajouter un rôle') }}
                     </a>
 
                   </div>

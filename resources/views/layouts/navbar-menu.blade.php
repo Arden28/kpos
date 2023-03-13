@@ -69,7 +69,7 @@
                 @endcan
 
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('products.index') }}" >
+                    <a class="nav-link" href="{{ route('inventory.index') }}" >
                       <span class="nav-link-icon d-md-none d-lg-inline-block"><!-- Download SVG icon from http://tabler-icons.io/i/home -->
                         <i class="bi bi-box-seam" style="width: 24px; height:24px"></i>
                       </span>
