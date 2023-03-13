@@ -233,7 +233,7 @@
                 </li>
 
                 {{-- Customers | Suppliers Management --}}
-                @can('access_customers | access_suppliers')
+                @can('access_customers')
                 <li class="nav-item">
                   <a class="nav-link" href="{{ route('customers.index') }}" >
                     <span class="nav-link-icon d-md-none d-lg-inline-block"><!-- Download SVG icon from http://tabler-icons.io/i/star -->
