@@ -214,7 +214,7 @@
                             {{ __('Sales Return') }}
                           </a>
                           <div class="dropdown-menu">
-                            @can('create_sale-returns')
+                            @can('create_sales')
                             <a href="{{ route('sale-returns.create') }}" class="dropdown-item {{ request()->routeIs('sale-returns.create')? 'active' : '' }}">
                               {{ __('Add Sale Return') }}
                             </a>
