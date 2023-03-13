@@ -207,7 +207,7 @@
                         </div>
                         @endcan
 
-                        @can('access_sale-returns')
+                        @can('access_sales')
                         <div class="dropend">
                           <a class="dropdown-item dropdown-toggle" href="#sidebar-error" data-bs-toggle="dropdown" data-bs-auto-close="outside" role="button" aria-expanded="false" >
                             {{-- <i class="bi bi-receipt"></i> --}}
