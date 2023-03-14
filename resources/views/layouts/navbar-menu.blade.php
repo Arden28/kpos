@@ -98,7 +98,7 @@
 
                         @can('access_purchases')
                         <div class="dropend">
-                            <a class="dropdown-item dropdown-toggle" href="#sidebar-error" data-bs-toggle="dropdown" data-bs-auto-close="outside" role="button" aria-expanded="false" >
+                            <a class="dropdown-item dropdown-toggle {{ request()->routeIs('purchases.*')? 'active' : '' }}" href="#sidebar-error" data-bs-toggle="dropdown" data-bs-auto-close="outside" role="button" aria-expanded="false" >
                             {{-- <i class="bi bi-receipt"></i> --}}
                             {{ __('Purchases') }}
                             </a>
@@ -118,7 +118,7 @@
 
                         @can('access_sales')
                         <div class="dropend">
-                            <a class="dropdown-item dropdown-toggle" href="#sidebar-error" data-bs-toggle="dropdown" data-bs-auto-close="outside" role="button" aria-expanded="false" >
+                            <a class="dropdown-item dropdown-toggle {{ request()->routeIs('sales.*')? 'active' : '' }}" href="#sidebar-error" data-bs-toggle="dropdown" data-bs-auto-close="outside" role="button" aria-expanded="false" >
                             {{-- <i class="bi bi-receipt"></i> --}}
                             {{ __('Sales') }}
                             </a>
@@ -129,7 +129,7 @@
                             </a>
                             @endcan
 
-                            <a href="{{ route('sales.index') }}" class="dropdown-item {{ request()->routeIs('sales.*')? 'active' : '' }}">
+                            <a href="{{ route('sales.index') }}" class="dropdown-item {{ request()->routeIs('sales.index')? 'active' : '' }}">
                                 {{ __('All Sales') }}
                             </a>
                             </div>
@@ -138,25 +138,25 @@
 
                         @can('access_expenses')
                         <div class="dropend">
-                          <a class="dropdown-item dropdown-toggle" href="#sidebar-error" data-bs-toggle="dropdown" data-bs-auto-close="outside" role="button" aria-expanded="false" >
+                          <a class="dropdown-item dropdown-toggle {{ request()->routeIs('expenses.*')? 'active' : '' }}" href="#sidebar-error" data-bs-toggle="dropdown" data-bs-auto-close="outside" role="button" aria-expanded="false" >
                             {{-- <i class="bi bi-receipt"></i> --}}
                             {{ __('Expenses') }}
                           </a>
                           <div class="dropdown-menu">
                             @can('access_expense_categories')
                             <a href="{{ route('expense-categories.index') }}" class="dropdown-item {{ request()->routeIs('expense-categories.*')? 'active' : '' }}">
-                              {{ __('Categories') }}
+                              {{ __('Catégories') }}
                             </a>
                             @endcan
 
                             @can('create_expenses')
                             <a href="{{ route('expenses.create') }}" class="dropdown-item {{ request()->routeIs('expenses.create')? 'active' : '' }}">
-                              {{ __('Add Expense') }}
+                              {{ __('Ajouter une dépense') }}
                             </a>
                             @endcan
 
-                            <a href="{{ route('expenses.index') }}" class="dropdown-item {{ request()->routeIs('expenses.*')? 'active' : '' }}">
-                              {{ __('All Expenses') }}
+                            <a href="{{ route('expenses.index') }}" class="dropdown-item {{ request()->routeIs('expenses.index')? 'active' : '' }}">
+                              {{ __('Toutes les dépenses') }}
                             </a>
                           </div>
                         </div>
@@ -169,7 +169,7 @@
 
                         @can('access_quotations')
                         <div class="dropend">
-                          <a class="dropdown-item dropdown-toggle" href="#sidebar-error" data-bs-toggle="dropdown" data-bs-auto-close="outside" role="button" aria-expanded="false" >
+                          <a class="dropdown-item dropdown-toggle {{ request()->routeIs('quotations.*')? 'active' : '' }}" href="#sidebar-error" data-bs-toggle="dropdown" data-bs-auto-close="outside" role="button" aria-expanded="false" >
                             {{-- <i class="bi bi-receipt"></i> --}}
                             {{ __('Quotations') }}
                           </a>
@@ -189,7 +189,7 @@
 
                         @can('access_purchase_returns')
                         <div class="dropend">
-                          <a class="dropdown-item dropdown-toggle" href="#sidebar-error" data-bs-toggle="dropdown" data-bs-auto-close="outside" role="button" aria-expanded="false" >
+                          <a class="dropdown-item dropdown-toggle {{ request()->routeIs('purchase-returns.*')? 'active' : '' }}" href="#sidebar-error" data-bs-toggle="dropdown" data-bs-auto-close="outside" role="button" aria-expanded="false" >
                             {{-- <i class="bi bi-receipt"></i> --}}
                             {{ __('Purchases Return') }}
                           </a>
@@ -209,7 +209,7 @@
 
                         @can('access_sales')
                         <div class="dropend">
-                          <a class="dropdown-item dropdown-toggle" href="#sidebar-error" data-bs-toggle="dropdown" data-bs-auto-close="outside" role="button" aria-expanded="false" >
+                          <a class="dropdown-item dropdown-toggle {{ request()->routeIs('sale-returns.*')? 'active' : '' }}" href="#sidebar-error" data-bs-toggle="dropdown" data-bs-auto-close="outside" role="button" aria-expanded="false" >
                             {{-- <i class="bi bi-receipt"></i> --}}
                             {{ __('Sales Return') }}
                           </a>
