@@ -45,7 +45,13 @@ class AccountCreatedNotification extends Notification
     {
         return (new MailMessage)
                     ->subject('Bienvenue chez Koverae')
-                    ->line('Salut '.$notifiable->name.' nous sommes content de vous avoir à bord !')
+                    ->line(
+                        'Salut '.$notifiable->name.' nous sommes content de vous avoir à bord !
+                    ')
+                    ->line('
+                        Veuillez à d\'abord changé votre mot de passe pour plus de sécurité. Pour ce faire, vous n\'avez qu\'à cliquer sur
+                        le lien "je ne m\'en souviens plus" à la page de connection.
+                    ')
                     ->action('Commencer maintenant', 'https://www.dashboard.koverae.com/auth/login')
                     ->line('Merci d\'avoir choisi Koverae !');
         // return Mail::to($this->user->email)->send(new WelcomeEmail($this->request, $this->user, $this->company));
