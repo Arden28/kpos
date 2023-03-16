@@ -55,7 +55,7 @@
                                     </div>
 
                                     {{-- Vendeur à modifier --}}
-                                    {{-- <div class="col-lg-4">
+                                    <div class="col-lg-4">
                                         <div class="from-group">
                                             <div class="form-group">
                                                 <label for="seller_id">{{ __('Vendeur') }}</label>
@@ -66,7 +66,7 @@
                                                 </select>
                                             </div>
                                         </div>
-                                    </div> --}}
+                                    </div>
 
                                     <div class="col-lg-4">
                                         <div class="from-group">

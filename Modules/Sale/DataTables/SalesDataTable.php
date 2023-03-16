@@ -17,7 +17,7 @@ class SalesDataTable extends DataTable
 
     public function dataTable($query) {
         return datatables()
-            ->eloquent($query)
+            ->eloquent($query)->with('seller')
             ->addColumn('total_amount', function ($data) {
                 return format_currency($data->total_amount);
             })
@@ -42,7 +42,7 @@ class SalesDataTable extends DataTable
         // A modifier
         // $current_company_id = Auth::user()->currentCompany->id;
         $current_company_id = Auth::user()->currentCompany->id;
-        return $model->where('company_id', $current_company_id)->newQuery();
+        return $model->where('company_id', $current_company_id)->newQuery()->with('seller');
     }
 
     public function html() {
@@ -72,19 +72,26 @@ class SalesDataTable extends DataTable
                 ->className('text-center align-middle'),
 
             Column::make('customer_name')
-                ->title('Customer')
+                ->title('Client')
+                ->className('text-center align-middle'),
+
+            Column::make('seller.name')
+                ->title('Vendeur')
                 ->className('text-center align-middle'),
 
             Column::computed('status')
                 ->className('text-center align-middle'),
 
             Column::computed('total_amount')
+                ->title('Montant total')
                 ->className('text-center align-middle'),
 
             Column::computed('paid_amount')
+                ->title('Motant Payé')
                 ->className('text-center align-middle'),
 
             Column::computed('due_amount')
+                ->title('Reste à Payer')
                 ->className('text-center align-middle'),
 
             Column::computed('payment_status')

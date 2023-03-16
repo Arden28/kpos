@@ -25,7 +25,8 @@ class StoreSaleRequest extends FormRequest
             'paid_amount' => 'required|numeric',
             'status' => 'required|string|max:255',
             'payment_method' => 'required|string|max:255',
-            'note' => 'nullable|string|max:1000'
+            'note' => 'nullable|string|max:1000',
+            'seller_id' => 'required'
         ];
     }
 
