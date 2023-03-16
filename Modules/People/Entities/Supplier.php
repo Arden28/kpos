@@ -5,6 +5,7 @@ namespace Modules\People\Entities;
 use App\Models\Company;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Modules\Product\Entities\Product;
 
 class Supplier extends Model
 {
@@ -20,5 +21,11 @@ class Supplier extends Model
     public function company()
     {
         return $this->belongsTo(Company::class, 'company_id', 'id');
+    }
+
+    // Possède des produits
+    public function products()
+    {
+        return $this->belongsTo(Product::class, 'supplier_id', 'id');
     }
 }

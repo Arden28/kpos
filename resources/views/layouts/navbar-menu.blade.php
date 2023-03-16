@@ -109,7 +109,7 @@
                             </a>
                             @endcan
 
-                            <a href="{{ route('purchases.index') }}" class="dropdown-item {{ request()->routeIs('purchases.*')? 'active' : '' }}">
+                            <a href="{{ route('purchases.index') }}" class="dropdown-item {{ request()->routeIs('purchases.index')? 'active' : '' }}">
                                 {{ __('All Purchases') }}
                             </a>
                             </div>

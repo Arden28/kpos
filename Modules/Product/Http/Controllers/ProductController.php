@@ -10,6 +10,7 @@ use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Storage;
+use Modules\People\Interfaces\SupplierInterface;
 use Modules\Product\Interfaces\CategoryInterface;
 use Modules\Product\Entities\Product;
 use Modules\Product\Http\Requests\StoreProductRequest;
@@ -21,11 +22,13 @@ class ProductController extends Controller
     // use CompanySession;
 
     protected $categoryRepository;
+    protected $supplierRepository;
 
 
-    public function __construct(CategoryInterface $categoryRepository){
+    public function __construct(CategoryInterface $categoryRepository, SupplierInterface $supplierRepository){
 
         $this->categoryRepository = $categoryRepository;
+        $this->supplierRepository = $supplierRepository;
     }
 
     public function index(ProductDataTable $dataTable) {
@@ -40,6 +43,7 @@ class ProductController extends Controller
 
         $company = Auth::user()->currentCompany->id;
         $categories = $this->categoryRepository->getCategories($company);
+        // $suppliers = $this->supplierRepository->getSuppliers($company);
         return view('product::products.create', compact('categories'));
     }
 
@@ -53,7 +57,7 @@ class ProductController extends Controller
             }
         }
 
-        toast('Product Created!', 'success');
+        toast('Le produit a été ajouté !', 'success');
 
         return redirect()->route('products.index');
     }
@@ -96,7 +100,7 @@ class ProductController extends Controller
             }
         }
 
-        toast('Product Updated!', 'info');
+        toast('Le produit a été modifié !', 'info');
 
         return redirect()->route('products.index');
     }
@@ -107,7 +111,7 @@ class ProductController extends Controller
 
         $product->delete();
 
-        toast('Product Deleted!', 'warning');
+        toast('Le produit a été supprimé !', 'warning');
 
         return redirect()->route('products.index');
     }

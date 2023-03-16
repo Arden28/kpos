@@ -1,6 +1,6 @@
 @extends('layouts.master')
 
-@section('title', __('Add Product'))
+@section('title', __('Ajouter un Produit'))
 
 @section('styles')
 
@@ -14,7 +14,7 @@
     <div class="row g-2 align-items-center">
     <div class="col">
         <h2 class="page-title">
-            {{ __('Add Product') }}
+            {{ __('Ajouter un Produit') }}
         </h2>
     </div>
     </div>

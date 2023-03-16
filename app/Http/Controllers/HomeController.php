@@ -125,6 +125,7 @@ class HomeController extends Controller
         $date_range = Carbon::today()->subYear()->format('Y-m-d');
 
         $sale_payments = SalePayment::where('date', '>=', $date_range)
+            ->where('company_id', Auth::user()->currentCompany->id)
             ->select([
                 DB::raw("DATE_FORMAT(date, '%m-%Y') as month"),
                 DB::raw("SUM(amount) as amount")
@@ -133,6 +134,7 @@ class HomeController extends Controller
             ->get()->pluck('amount', 'month');
 
         $sale_return_payments = SaleReturnPayment::where('date', '>=', $date_range)
+            ->where('company_id', Auth::user()->currentCompany->id)
             ->select([
                 DB::raw("DATE_FORMAT(date, '%m-%Y') as month"),
                 DB::raw("SUM(amount) as amount")
@@ -141,6 +143,7 @@ class HomeController extends Controller
             ->get()->pluck('amount', 'month');
 
         $purchase_payments = PurchasePayment::where('date', '>=', $date_range)
+            ->where('company_id', Auth::user()->currentCompany->id)
             ->select([
                 DB::raw("DATE_FORMAT(date, '%m-%Y') as month"),
                 DB::raw("SUM(amount) as amount")
@@ -149,6 +152,7 @@ class HomeController extends Controller
             ->get()->pluck('amount', 'month');
 
         $purchase_return_payments = PurchaseReturnPayment::where('date', '>=', $date_range)
+            ->where('company_id', Auth::user()->currentCompany->id)
             ->select([
                 DB::raw("DATE_FORMAT(date, '%m-%Y') as month"),
                 DB::raw("SUM(amount) as amount")
@@ -157,6 +161,7 @@ class HomeController extends Controller
             ->get()->pluck('amount', 'month');
 
         $expenses = Expense::where('company_id', Auth::user()->currentCompany->id)->where('date', '>=', $date_range)
+            ->where('company_id', Auth::user()->currentCompany->id)
             ->select([
                 DB::raw("DATE_FORMAT(date, '%m-%Y') as month"),
                 DB::raw("SUM(amount) as amount")

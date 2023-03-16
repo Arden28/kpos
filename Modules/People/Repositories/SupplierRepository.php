@@ -15,6 +15,9 @@ class SupplierRepository implements SupplierInterface
 {
     use CompanySession;
 
+    public function getSuppliers($company){
+        return Supplier::where('company_id', $company)->get();
+    }
     // Create a new supplier
     public function create($request){
 

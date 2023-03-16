@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Modules\Product\Database\factories\ProductFactory;
 use Modules\Product\Notifications\NotifyQuantityAlert;
+use Modules\Product\Traits\HasSupplier;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
@@ -14,7 +15,7 @@ use Spatie\MediaLibrary\MediaCollections\Models\Media;
 class Product extends Model implements HasMedia
 {
 
-    use HasFactory, InteractsWithMedia;
+    use HasFactory, HasSupplier, InteractsWithMedia;
 
     protected $guarded = [];
 
@@ -24,6 +25,8 @@ class Product extends Model implements HasMedia
     {
         return $query->where('company_id', $company_id);
     }
+
+
 
     public function category() {
         return $this->belongsTo(Category::class, 'category_id', 'id');
