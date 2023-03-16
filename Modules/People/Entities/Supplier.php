@@ -26,6 +26,6 @@ class Supplier extends Model
     // Possède des produits
     public function products()
     {
-        return $this->belongsTo(Product::class, 'supplier_id', 'id');
+        return $this->hasMany(Product::class, 'supplier_id', 'id');
     }
 }

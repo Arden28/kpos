@@ -43,8 +43,8 @@ class ProductController extends Controller
 
         $company = Auth::user()->currentCompany->id;
         $categories = $this->categoryRepository->getCategories($company);
-        // $suppliers = $this->supplierRepository->getSuppliers($company);
-        return view('product::products.create', compact('categories'));
+        $suppliers = $this->supplierRepository->getSuppliers($company);
+        return view('product::products.create', compact('categories', 'suppliers'));
     }
 
 

@@ -16,7 +16,7 @@ class ProductDataTable extends DataTable
     public function dataTable($query)
     {
         return datatables()
-            ->eloquent($query)->with('category')
+            ->eloquent($query)->with('category', 'supplier')
             ->addColumn('action', function ($data) {
                 return view('product::products.partials.actions', compact('data'));
             })
@@ -36,7 +36,7 @@ class ProductDataTable extends DataTable
     public function query(Product $model)
     {
         $current_company_id = Auth::user()->currentCompany->id;
-        return $model->where('company_id', $current_company_id)->newQuery()->with('category'); //A modifier
+        return $model->where('company_id', $current_company_id)->newQuery()->with('category', 'supplier'); //A modifier
     }
 
     public function html()
@@ -65,27 +65,32 @@ class ProductDataTable extends DataTable
     {
         return [
             Column::computed('product_image')
-                ->title('Image')
+                ->title(__('Image'))
                 ->className('text-center align-middle'),
 
             Column::make('product_name')
-                ->title('Name')
+                ->title(__('Nom'))
                 ->className('text-center align-middle'),
 
             Column::make('product_code')
-                ->title('Code')
+                ->title(__('Code'))
                 ->className('text-center align-middle'),
 
             Column::computed('product_price')
-                ->title('Price')
+                ->title(__('Prix'))
                 ->className('text-center align-middle'),
 
             Column::computed('product_quantity')
-                ->title('Quantity')
+                ->title(__('Quantité'))
                 ->className('text-center align-middle'),
 
+
             Column::make('category.category_name')
-                ->title('Category')
+                ->title(__('Catégorie'))
+                ->className('text-center align-middle'),
+
+            Column::make('supplier.supplier_name')
+                ->title(__('Fournisseur'))
                 ->className('text-center align-middle'),
 
             Column::computed('action')

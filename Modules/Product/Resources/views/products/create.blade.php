@@ -87,17 +87,31 @@
 
                                   </div>
 
+                                  <div class="row">
+                                    <div class="col-lg-6">
+                                      <div class="mb-3">
+                                        <label for="category_id">{{ __('Fournisseur') }}</label>
+                                        <select class="form-control" name="supplier_id" id="supplier_id">
+                                            <option value="" selected disabled>{{ __('Choisissez le fournisseur du produit') }}</option>
+                                            @foreach($suppliers as $supplier)
+                                                <option value="{{ $supplier->id }}">{{ $supplier->supplier_name }}</option>
+                                            @endforeach
+                                        </select>
+                                      </div>
+                                    </div>
+
+                                  </div>
 
                                   <div class="row">
                                     <div class="col-lg-6">
                                       <div class="mb-3">
-                                        <label for="product_cost">{{ __('Cost Price') }} <span class="text-danger">*</span></label>
+                                        <label for="product_cost">{{ __('Prix d\'achat / Production') }} <span class="text-danger">*</span></label>
                                         <input id="product_cost" type="text" class="form-control" name="product_cost" required value="{{ old('product_cost') }}">
                                       </div>
                                     </div>
                                     <div class="col-lg-6">
                                       <div class="mb-3">
-                                        <label for="product_price">{{ __('Sell Price') }} <span class="text-danger">*</span></label>
+                                        <label for="product_price">{{ __('Prix de vente') }} <span class="text-danger">*</span></label>
                                         <input id="product_price" type="text" class="form-control" name="product_price" required value="{{ old('product_price') }}">
                                       </div>
                                     </div>
@@ -107,7 +121,7 @@
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label for="product_quantity">{{ __('Quantity') }} <span class="text-danger">*</span></label>
+                                            <label for="product_quantity">{{ __('Quantité') }} <span class="text-danger">*</span></label>
                                             <input type="number" class="form-control" name="product_quantity" required value="{{ old('product_quantity') }}" min="1">
                                         </div>
                                     </div>
