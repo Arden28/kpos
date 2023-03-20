@@ -45,6 +45,10 @@
 
             @include('product::layouts.navbar-menu')
 
+        @elseif(request()->routeIs('customers.*') || request()->routeIs('suppliers.*') || request()->routeIs('crm.*'))
+
+            @include('people::layouts.navbar-menu')
+
         @elseif(request()->routeIs('app.pos.*'))
 
             @include('pos::layouts.navbar-menu')

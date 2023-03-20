@@ -4,6 +4,7 @@ namespace Modules\Product\DataTables;
 
 use Illuminate\Support\Facades\Auth;
 use Modules\Product\Entities\Product;
+use Modules\Product\Traits\HasWhole;
 use Yajra\DataTables\Html\Button;
 use Yajra\DataTables\Html\Column;
 use Yajra\DataTables\Html\Editor\Editor;
@@ -12,6 +13,7 @@ use Yajra\DataTables\Services\DataTable;
 
 class ProductDataTable extends DataTable
 {
+    use HasWhole;
 
     public function dataTable($query)
     {
@@ -36,7 +38,9 @@ class ProductDataTable extends DataTable
     public function query(Product $model)
     {
         $current_company_id = Auth::user()->currentCompany->id;
-        return $model->where('company_id', $current_company_id)->newQuery()->with('category', 'supplier'); //A modifier
+
+        return $model->where('company_id', $current_company_id)
+        ->newQuery()->with('category', 'supplier'); //A modifier
     }
 
     public function html()

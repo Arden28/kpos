@@ -8,7 +8,7 @@
     <div class="row g-2 align-items-center">
     <div class="col">
         <h2 class="page-title">
-            {{ __('POS') }}
+            {{ __('Point de Vente') }}
         </h2>
     </div>
     </div>
@@ -72,47 +72,41 @@
 
                         </div>
                         <hr>
-                        <div class="container col-md-12">
-                            @php
-                                $latest_session = \Modules\Pos\Entities\PhysicalPosSession::where('pos_id', $p->id)->latest()->first();
-                            @endphp
-                            @if($latest_session)
-                                <p>Dernière session :</p>
-                                <ul>
-                                    @php
+                            <div class="container col-md-12">
+                                @php
+                                    $latest_session = \Modules\Pos\Entities\PhysicalPosSession::where('pos_id', $p->id)->latest()->first();
+                                @endphp
+                                @if($latest_session)
 
-                                        $date = \Carbon\Carbon::parse($latest_session->start_date);
+                                    <ul>
+                                        @php
 
-                                        if($latest_session->end_date){
-                                            $end_date = \Carbon\Carbon::parse($latest_session->end_date)->format('d F Y H:i:s');
-                                        }else{
-                                            $end_date ="";
-                                        }
+                                            $date = \Carbon\Carbon::parse($latest_session->start_date);
 
-                                        if ($date) {
-                                            $formattedDate = $date->format('d F Y H:i:s');
-                                        } else {
-                                            $formattedDate = ''; // or handle the case where the value is not valid
-                                        }
-                                    @endphp
-                                    <li>
-                                        Ouverture : {{ $formattedDate }}
-                                    </li>
-                                    <li>
-                                        Fermeture : {{ $end_date }}
-                                    </li>
-                                    <li>
-                                        Trésorerie Départ :{{ format_currency($latest_session->start_amount) }}
-                                    </li>
-                                    <li>
-                                        Trésorerie Clotûre : {{ format_currency($latest_session->end_amount) }}
-                                    </li>
+                                            if($latest_session->end_date){
+                                                $end_date = \Carbon\Carbon::parse($latest_session->end_date)->format('d F Y H:i:s');
+                                            }else{
+                                                $end_date ="";
+                                            }
 
-                                </ul>
-                            @else
-                                <p>{{ __("Aucne session précédente n'a été trouvée") }}</p>
-                            @endif
-                        </div>
+                                            if ($date) {
+                                                $formattedDate = $date->format('d F Y H:i:s');
+                                            } else {
+                                                $formattedDate = ''; // or handle the case where the value is not valid
+                                            }
+                                        @endphp
+                                        <li>
+                                            Dernière date de fermeture : {{ $end_date }}
+                                        </li>
+                                        <li>
+                                            Dernier solde de fermeture : {{ format_currency($latest_session->end_amount) }}
+                                        </li>
+
+                                    </ul>
+                                @else
+                                    <p>{{ __("Aucne session disponible") }}</p>
+                                @endif
+                            </div>
                     </div>
                 </div>
                 </div>

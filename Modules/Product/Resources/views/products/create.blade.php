@@ -29,13 +29,15 @@
             <form id="product-form" action="{{ route('products.store') }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 <div class="row">
-                    <div class="col-lg-12">
+                    <div class="col-lg-12" style="padding-top: 10px">
                         @include('utils.alerts')
                         <div class="form-group">
-                            <button class="btn btn-primary">{{ __('Add The Product') }} <i class="bi bi-check"></i></button>
+                            <button class="btn btn-primary">{{ __('Ajouter le produit') }} <i class="bi bi-check"></i></button>
                         </div>
                     </div>
-                    <div class="col-lg-12">
+
+
+                    <div class="col-lg-12" style="padding-top: 10px">
                         <div class="card">
                             <div class="card-body">
 
@@ -170,7 +172,7 @@
                         </div>
                     </div>
 
-                    <div class="col-lg-12">
+                    <div class="col-lg-12" style="padding-top: 10px" style="padding-top: 10px">
                         <div class="card">
                             <div class="card-body">
                                 <div class="form-group">
@@ -184,6 +186,7 @@
                             </div>
                         </div>
                     </div>
+
                 </div>
             </form>
         </div>
@@ -266,5 +269,7 @@
             });
         });
     </script>
+
+
 @endpush
 

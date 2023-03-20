@@ -13,7 +13,7 @@ Route::group(['middleware' => 'auth'], function () {
     //Print Barcode
     Route::get('/products/print-barcode', 'BarcodeController@printBarcode')->name('barcode.print');
 
-    Route::get('/inventory/dashboard', 'InventoryController@index')->name('inventory.index');
+    Route::get('dashboard', 'InventoryController@index')->name('inventory.index');
 
     //Product
     Route::resource('products', 'ProductController');

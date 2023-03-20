@@ -2,6 +2,7 @@
 
 use App\Http\Livewire\Customer\CreateCustomer;
 use Illuminate\Support\Facades\Route;
+use Modules\People\Http\Controllers\CrmController;
 use Modules\People\Http\Controllers\CustomersController;
 use Modules\People\Http\Controllers\SuppliersController;
 
@@ -18,7 +19,8 @@ use Modules\People\Http\Controllers\SuppliersController;
 
 
 Route::group(['middleware' => 'auth'], function () {
-
+    // CRM
+    Route::get('/dashboard', [CrmController::class, 'index'])->name('crm.index');
     //Customers
     Route::resource('customers', CustomersController::class);
     // Route::post('/create-customer', CreateCustomer::class)->name('create-customer');

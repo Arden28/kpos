@@ -1,6 +1,6 @@
 @extends('layouts.master')
 
-@section('title', __('All Purchases'))
+@section('title', __('Tous '))
 
 @section('breadcrumb')
 <div class="page-header d-print-none">
@@ -8,7 +8,7 @@
     <div class="row g-2 align-items-center">
     <div class="col">
         <h2 class="page-title">
-            {{ __('All Purchases') }}
+            {{ __('Tous ') }}
         </h2>
     </div>
     </div>

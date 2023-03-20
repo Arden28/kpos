@@ -13,7 +13,7 @@ class PosSale extends Model
 
     protected $table = 'pos_sales';
 
-    protected $fillable = ['pos_id', 'sale_id', 'company_id'];
+    protected $fillable = ['pos_id', 'sale_id', 'company_id', 'cashier_id'];
 
     public function company() {
         return $this->belongsTo(Company::class, 'company_id', 'id');

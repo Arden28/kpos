@@ -74,7 +74,7 @@ class PosRepository implements PosInterface
                 }
                 $sale = Sale::create([
                     'company_id'=> Auth::user()->currentCompany->id,
-                    'pos_id' => $pos,
+                    // 'pos_id' => $pos,
                     'date' => now()->format('Y-m-d'),
                     'reference' => 'PSL',
                     'customer_id' => $request['customer_id'],
@@ -91,6 +91,7 @@ class PosRepository implements PosInterface
                     'note' => $request['note'],
                     'tax_amount' => Cart::instance('sale')->tax() * 100,
                     'discount_amount' => Cart::instance('sale')->discount() * 100,
+                    'seller_id' => Auth::user()->currentCompany->id, //Rendre dynamique
                 ]);
 
 
@@ -129,6 +130,8 @@ class PosRepository implements PosInterface
                     ]);
                 }
 
+                // Create POS sale
+                $this->createPosSale($pos, $sale->id, Auth::user()->currentCompany->id, Auth::user()->id);
             });
 
     }
@@ -184,11 +187,12 @@ class PosRepository implements PosInterface
     }
 
     // Pos Sales
-    public function createPosSale($pos, $sale, $company){
+    public function createPosSale($pos, $sale, $company, $cashier){
         PosSale::create([
             'pos_id' => $pos,
             'sale_id' => $sale,
             'company_id' => $company,
+            'cashier_id' => $cashier,
         ]);
     }
 

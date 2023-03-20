@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddSupplierToProducts extends Migration
+class AddWholeSalesToProducts extends Migration
 {
     /**
      * Run the migrations.
@@ -14,10 +14,8 @@ class AddSupplierToProducts extends Migration
     public function up()
     {
         Schema::table('products', function (Blueprint $table) {
-
-
-            $table->unsignedBigInteger('supplier_id')->nullable()->after('product_barcode_symbology');
-            $table->foreign('supplier_id')->references('id')->on('suppliers')->nullOnDelete();
+            $table->boolean('is_wholesale')->default(false)->after('supplier_id');
+            $table->integer('wholesale_multiplier')->default(1)->after('is_wholesale');
         });
     }
 

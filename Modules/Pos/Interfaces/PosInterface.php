@@ -15,5 +15,5 @@ interface PosInterface
     // Session
     public function startNewSession($request);
 
-    public function createPosSale($pos, $sale, $company);
+    public function createPosSale($pos, $sale, $company, $cashier);
 }

@@ -8,7 +8,7 @@
     <div class="row g-2 align-items-center">
     <div class="col">
         <h2 class="page-title">
-            {{ __('Sales') }}
+            {{ __('Commandes') }}
         </h2>
     </div>
     </div>
@@ -24,15 +24,11 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-body">
-                            <a href="{{ route('app.pos.order') }}" class="btn btn-primary">
-                                Add Sale <i class="bi bi-plus"></i>
-                            </a>
-
-                            <hr>
 
                             <div class="table-responsive">
                                 {!! $dataTable->table() !!}
                             </div>
+
                         </div>
                     </div>
                 </div>

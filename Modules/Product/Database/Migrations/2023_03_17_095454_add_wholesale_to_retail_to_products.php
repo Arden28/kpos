@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddSupplierToProducts extends Migration
+class AddWholesaleToRetailToProducts extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,8 @@ class AddSupplierToProducts extends Migration
      */
     public function up()
     {
-        Schema::table('products', function (Blueprint $table) {
+        Schema::table('', function (Blueprint $table) {
 
-
-            $table->unsignedBigInteger('supplier_id')->nullable()->after('product_barcode_symbology');
-            $table->foreign('supplier_id')->references('id')->on('suppliers')->nullOnDelete();
         });
     }
 
@@ -28,6 +25,8 @@ class AddSupplierToProducts extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('products');
+        Schema::table('', function (Blueprint $table) {
+
+        });
     }
 }

@@ -17,7 +17,7 @@ class DeleteSession extends Component
 
     public $end_amount;
 
-    public $end_date;
+    // public $end_date;
 
     public $end_note;
 
@@ -31,6 +31,7 @@ class DeleteSession extends Component
     }
     public function delete(PhysicalPosSession $pos){
 
+        $pos->end_amount = $this->end_amount;
         $pos->end_date = Carbon::now();
         $pos->is_active = 0;
         $pos->save();

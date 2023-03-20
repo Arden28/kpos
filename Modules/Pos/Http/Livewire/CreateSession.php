@@ -4,6 +4,7 @@ namespace Modules\Pos\Http\Livewire;
 
 use App\Interfaces\CompanyInterface;
 use App\Traits\CompanySession;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 use Livewire\Component;
@@ -34,7 +35,7 @@ class CreateSession extends Component
     protected $rules = [
         'pos_id' => 'required',
         'user_id' => 'required',
-        'start_date' => 'required',
+        // 'start_date' => 'required',
         'start_amount' => 'required',
         'note' => 'max:200',
     ];
@@ -48,7 +49,8 @@ class CreateSession extends Component
         // Si il y'a déjà une session en cours, vous êtes redirigé et une erreur est envoyée
         if(!session()->has('pos_session')){
                 $pos_session = PhysicalPosSession::create([
-                    'start_date' => $this->start_date,
+                    // 'start_date' => $this->start_date,
+                    'start_date' => Carbon::now(),
                     'start_amount' => $this->start_amount,
                     'note' => $this->note,
                     'pos_id' => $this->pos_id,

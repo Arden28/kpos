@@ -1,4 +1,4 @@
-@extends('layouts.master')
+@extends('pos::layouts.master')
 
 @section('title', 'POS')
 
@@ -15,7 +15,7 @@
         <div class="page-pretitle">
           {{ __('Magasin') }}
         </div>
-        <h2 class="page-title">
+        <h2 class="page-title" style="color: white">
           {{ $physical->name }}
         </h2>
 
@@ -25,14 +25,14 @@
         <div class="btn-list">
 
             {{-- close session --}}
-            <livewire:pos::delete-session  :pos="$pos" />
+            {{-- <livewire:pos::delete-session  :pos="$pos" /> --}}
 
-            {{-- <a class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#modal-session-{{ $physical->id }}">
+            <a class="btn btn-primary d-none d-sm-inline-block" data-bs-toggle="modal" data-bs-target="#modal-session-{{ $physical->id }}">
 
                 <i class="bi bi-box-arrow-right"></i>
                 {{ __('Fermer') }}
             </a>
-            @include('pos::includes.modals.delete-session') --}}
+            @include('pos::includes.modals.delete-session')
 
           <a href="#" class="btn btn-primary d-sm-none btn-icon" data-bs-toggle="modal" data-bs-target="#modal-report" aria-label="Create new report">
 

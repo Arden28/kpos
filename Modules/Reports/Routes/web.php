@@ -1,5 +1,7 @@
 <?php
 
+use Illuminate\Support\Facades\Route;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -11,7 +13,13 @@
 |
 */
 
+
 Route::group(['middleware' => 'auth'], function () {
+
+    // Dashboard
+    // Route::get('/dashboard', 'ReportsController@index')
+    //     ->name('dashboards');
+
     //Profit Loss Report
     Route::get('/profit-loss-report', 'ReportsController@profitLossReport')
         ->name('profit-loss-report.index');

@@ -47,7 +47,7 @@ class PosController extends Controller
         $pos = $this->posRepository->getAllPos($company_id);
 
 
-        return view('pos::common.dashboard', compact('pos'));
+        return view('pos::dashboard', compact('pos'));
     }
 
     public function listPos(PosDataTable $dataTable) {
@@ -168,10 +168,7 @@ class PosController extends Controller
             return back()->withError($e->getMessage());
         }
     }
-    public function settings(){
 
-        return view('pos::common.settings');
-    }
 
     public function startSession(StorePosSessionRequest $request){
 

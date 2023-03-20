@@ -1,0 +1,94 @@
+
+                    {{-- <div class="col-lg-12" style="padding-top: 10px" style="padding-top: 10px">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="row inline-block">
+
+                                    <div class="form-group col-6">
+                                        <label for="wholesale">{{ __('En gros') }}</label>
+                                        <input type="checkbox" id="wholesale" name="is_wholesale" value="1" @if(old('is_wholesale')) checked @endif>
+                                    </div>
+
+                                    <div class="form-group col-6">
+                                        <label for="retail">{{ __('De gros à détail') }}</label>
+                                        <input type="checkbox" id="retail" name="is_retail" value="1" @if(old('is_retail')) checked @endif>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div> --}}
+
+                    {{-- If the product is wholesale --}}
+                    {{-- <div id="wholesale-container" style="display:none; padding-top: 10px" class="col-lg-12" >
+                        <div class="card">
+                            <div class="card-body">
+
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="product_quantity">{{ __('Quantité') }} <span class="text-danger">*</span></label>
+                                            <input type="number" class="form-control" name="wholesale_multiplier" required value="{{ old('wholesale_multiplier') }}" min="1">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="product_stock_alert">{{ __('Unité') }} <span class="text-danger">*</span></label>
+                                            <input type="text" class="form-control" name="" required value="">
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                            </div>
+                        </div>
+                    </div> --}}
+
+                    {{-- If the product is retail --}}
+                    {{-- <div id="retail-container" style="display:none; padding-top: 10px" class="col-lg-12" >
+                        <div class="card">
+                            <div class="card-body">
+                                <livewire:product::seachwhole />
+                            </div>
+                        </div>
+                    </div> --}}
+
+
+    {{-- Show / Hide wholesale --}}
+    <script>
+        // Get the wholesale checkbox element
+        var wholesaleCheckbox = document.getElementById('wholesale');
+
+        // Get the wholesale container element
+        var wholesaleContainer = document.getElementById('wholesale-container');
+
+        // Add an event listener to the wholesale checkbox
+        wholesaleCheckbox.addEventListener('change', function() {
+            // If the wholesale checkbox is checked, show the wholesale container
+            if (this.checked) {
+                wholesaleContainer.style.display = 'block';
+            } else {
+                wholesaleContainer.style.display = 'none';
+            }
+        });
+    </script>
+
+
+    {{-- Show / Hide wholesale to details --}}
+    <script>
+        // Get the retail checkbox element
+        var retailCheckbox = document.getElementById('retail');
+
+        // Get the retail container element
+        var retailContainer = document.getElementById('retail-container');
+
+        // Add an event listener to the retail checkbox
+        retailCheckbox.addEventListener('change', function() {
+            // If the retail checkbox is checked, show the retail container
+            if (this.checked) {
+                retailContainer.style.display = 'block';
+            } else {
+                retailContainer.style.display = 'none';
+            }
+        });
+    </script>
