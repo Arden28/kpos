@@ -1,6 +1,6 @@
 @extends('layouts.master')
 
-@section('title', __('Edit Sale'))
+@section('title', __('Modifier une vente'))
 
 @section('breadcrumb')
 <div class="page-header d-print-none">
@@ -8,7 +8,7 @@
     <div class="row g-2 align-items-center">
     <div class="col">
         <h2 class="page-title">
-            {{ __('Edit Sale') }}
+            {{ __('Modifier une vente') }}
         </h2>
     </div>
     </div>
@@ -37,18 +37,32 @@
                                 <div class="row">
                                     <div class="col-lg-4">
                                         <div class="form-group">
-                                            <label for="reference">Reference <span class="text-danger">*</span></label>
+                                            <label for="reference">{{ __('Référence') }} <span class="text-danger">*</span></label>
                                             <input type="text" class="form-control" name="reference" required value="{{ $sale->reference }}" readonly>
                                         </div>
                                     </div>
                                     <div class="col-lg-4">
                                         <div class="from-group">
                                             <div class="form-group">
-                                                <label for="customer_id">Customer <span class="text-danger">*</span></label>
+                                                <label for="customer_id">{{ __('Client') }} <span class="text-danger">*</span></label>
                                                 <select class="form-control" name="customer_id" id="customer_id" required>
                                                     @foreach(\Modules\People\Entities\Customer::all() as $customer)
                                                         <option {{ $sale->customer_id == $customer->id ? 'selected' : '' }} value="{{ $customer->id }}">{{ $customer->customer_name }}</option>
                                                     @endforeach
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4">
+                                        <div class="from-group">
+                                            <div class="form-group">
+                                                <label for="seller_id">{{ __('Vendeur') }} <span class="text-danger">*</span></label>
+                                                <select class="form-control" name="seller_id" id="seller_id" required>
+
+                                                    @foreach(\App\Models\User::where('current_company_id', Auth::user()->currentCompany->id)->get() as $seller)
+                                                        <option {{ $sale->seller_id == $seller->id ? 'selected' : ''  }} value="{{ $seller->id }}">{{ $seller->name }}</option>
+                                                    @endforeach
+
                                                 </select>
                                             </div>
                                         </div>
