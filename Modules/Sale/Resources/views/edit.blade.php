@@ -56,9 +56,9 @@
                                     <div class="col-lg-4">
                                         <div class="from-group">
                                             <div class="form-group">
-                                                <label for="seller_id">{{ __('Vendeur') }} <span class="text-danger">*</span></label>
-                                                <select class="form-control" name="seller_id" id="seller_id" required>
-
+                                                <label for="seller_id">{{ __('Vendeur') }} </label>
+                                                <select class="form-control" name="seller_id" id="seller_id">
+                                                    <option value="0">{{ __('Selectionnez un vendeur') }}</option>
                                                     @foreach(\App\Models\User::where('current_company_id', Auth::user()->currentCompany->id)->get() as $seller)
                                                         <option {{ $sale->seller_id == $seller->id ? 'selected' : ''  }} value="{{ $seller->id }}">{{ $seller->name }}</option>
                                                     @endforeach
@@ -70,7 +70,7 @@
                                     <div class="col-lg-4">
                                         <div class="from-group">
                                             <div class="form-group">
-                                                <label for="date">Date <span class="text-danger">*</span></label>
+                                                <label for="date">{{ __('Date') }} <span class="text-danger">*</span></label>
                                                 <input type="date" class="form-control" name="date" required value="{{ $sale->date }}">
                                             </div>
                                         </div>
