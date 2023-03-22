@@ -5,6 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"/>
     <meta http-equiv="X-UA-Compatible" content="ie=edge"/>
     <title>@yield('title') | Koverae POS</title>
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="{{asset('assets/images/logo/favicon.ico')}}" />
+
     <!-- CSS files -->
     <link href="{{ asset('dist/css/tabler.min.css')}}?1668287865" rel="stylesheet"/>
     <link href="{{ asset('dist/css/tabler-flags.min.css')}}?1668287865" rel="stylesheet"/>
