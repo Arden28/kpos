@@ -7,7 +7,7 @@
 
   <div class="container container-tight py-4">
     <div class="text-center mb-4">
-      <a href="#" class="navbar-brand navbar-brand-autodark"><img src="{{ asset('assets/images/logo/logo.svg') }}" height="136" alt=""></a>
+      <a href="#" class="navbar-brand navbar-brand-autodark"><img src="{{ asset('assets/images/logo/koverae-1.png') }}" height="170" alt="Koverae Logo"></a>
     </div>
 
     <form method="POST" action="{{ route('password.email') }}">

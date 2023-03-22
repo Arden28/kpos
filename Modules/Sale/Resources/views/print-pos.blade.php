@@ -131,7 +131,7 @@
                 <tr style="border-bottom: 0;">
                     <td class="centered" colspan="3">
                         <div style="margin-top: 10px;">
-                            {{-- <img src="{{ asset('assets/images/logo/logo.png') }}" width="55px" height="55px" alt="Koverae.com"> --}}
+                            <img src="{{ asset('assets/images/logo/koverae-1.png') }}" width="75px" height="75px" alt="Koverae.com">
                             <p><i>{{ __('Fait avec Koverae') }}</i> </p>
                         </div>
                     </td>

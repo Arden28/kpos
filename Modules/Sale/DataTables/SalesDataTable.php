@@ -68,6 +68,9 @@ class SalesDataTable extends DataTable
 
     protected function getColumns() {
         return [
+            Column::make('date')
+                ->title('Date')
+                ->className('text-center align-middle'),
             Column::make('reference')
                 ->className('text-center align-middle'),
 
@@ -103,7 +106,7 @@ class SalesDataTable extends DataTable
                 ->className('text-center align-middle'),
 
             Column::make('created_at')
-                ->visible(true)
+                ->visible(false)
         ];
     }
 

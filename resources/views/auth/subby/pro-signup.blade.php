@@ -13,7 +13,7 @@
   <div class="col-12 col-lg-6 col-xl-6 border-top-wide border-primary d-flex flex-column justify-content-center">
     <div class="container container-tight my-5 px-lg-5">
       <div class="text-center mb-4">
-        <a href="#" class="navbar-brand navbar-brand-autodark"><img src="{{ asset('static/logo.png')}}" height="170" alt=""></a>
+        <a href="#" class="navbar-brand navbar-brand-autodark"><img src="{{ asset('assets/images/logo/koverae-1.png') }}" height="170" alt="Koverae Logo"></a>
       </div>
       <h2 class="h3 text-center mb-3">
         {{ __("Essayer KPOS Pro Gratuitement !") }}

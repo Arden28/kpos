@@ -5,7 +5,7 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Quotation Details</title>
+    <title>{{ __('Devis') }}</title>
     <link rel="stylesheet" href="{{ asset('b3/bootstrap.min.css') }}">
 </head>
 <body>
@@ -13,28 +13,36 @@
     <div class="row">
         <div class="col-md-12">
             <div style="text-align: center;margin-bottom: 25px;">
-                <img width="180" src="{{ asset('images/logo.png') }}" alt="Logo">
+                <img src="{{ asset('assets/images/logo/logo.png') }}" alt="Logo">
                 <h4 style="margin-bottom: 20px;">
-                    <span>Reference::</span> <strong>{{ $quotation->reference }}</strong>
+                    <span>{{ __('Référence') }}::</span> <strong>{{ $quotation->reference }}</strong>
                 </h4>
             </div>
             <div class="card">
                 <div class="card-body">
                     <div class="row mb-4">
                         <div class="col-md-6 mb-3 mb-md-0">
-                            <h4 class="mb-2" style="border-bottom: 1px solid #dddddd;padding-bottom: 10px;">Company Info:</h4>
-                            <div><strong>{{ settings()->company_name }}</strong></div>
-                            <div>{{ settings()->company_address }}</div>
-                            <div>Email: {{ settings()->company_email }}</div>
-                            <div>Phone: {{ settings()->company_phone }}</div>
+                            <h4 class="mb-2" style="border-bottom: 1px solid #dddddd;padding-bottom: 10px;">Information sur la Sociéte :</h4>
+                            <div><strong>
+                                {{ Auth::user()->currentCompany->name }}
+                            </strong></div>
+                            <div>
+                                {{ Auth::user()->currentCompany->address }}
+                            </div>
+                            <div>{{ __('Email') }}:
+                                {{ Auth::user()->currentCompany->email }}
+                            </div>
+                            <div>{{ __('Téléphone') }}:
+                                {{ Auth::user()->currentCompany->phone }}
+                            </div>
                         </div>
 
                         <div class="col-md-6 mb-3 mb-md-0">
-                            <h4 class="mb-2" style="border-bottom: 1px solid #dddddd;padding-bottom: 10px;">Customer Info:</h4>
+                            <h4 class="mb-2" style="border-bottom: 1px solid #dddddd;padding-bottom: 10px;">Informations sur le Client:</h4>
                             <div><strong>{{ $customer->customer_name }}</strong></div>
                             <div>{{ $customer->address }}</div>
-                            <div>Email: {{ $customer->customer_email }}</div>
-                            <div>Phone: {{ $customer->customer_phone }}</div>
+                            <div>{{ __('Email') }}: {{ $customer->customer_email }}</div>
+                            <div>{{ __('Téléphone') }}: {{ $customer->customer_phone }}</div>
                         </div>
                     </div>
 
@@ -42,12 +50,12 @@
                         <table class="table table-striped">
                             <thead>
                             <tr>
-                                <th class="align-middle">Product</th>
-                                <th class="align-middle">Net Unit Price</th>
-                                <th class="align-middle">Quantity</th>
-                                <th class="align-middle">Discount</th>
-                                <th class="align-middle">Tax</th>
-                                <th class="align-middle">Sub Total</th>
+                                <th class="align-middle">{{ __('Produit') }}</th>
+                                <th class="align-middle">{{ __('Prix unitaire') }}</th>
+                                <th class="align-middle">{{ __('Quantié') }}</th>
+                                <th class="align-middle">{{ __('Réduction') }}</th>
+                                <th class="align-middle">{{ __('Taxe') }}</th>
+                                <th class="align-middle">{{ __('Sous-Total') }}</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -87,19 +95,19 @@
                             <table class="table">
                                 <tbody>
                                 <tr>
-                                    <td class="left"><strong>Discount ({{ $quotation->discount_percentage }}%)</strong></td>
+                                    <td class="left"><strong>{{ ('Réduction') }} ({{ $quotation->discount_percentage }}%)</strong></td>
                                     <td class="right">{{ format_currency($quotation->discount_amount) }}</td>
                                 </tr>
                                 <tr>
-                                    <td class="left"><strong>Tax ({{ $quotation->tax_percentage }}%)</strong></td>
+                                    <td class="left"><strong>{{ __('Taxe') }} ({{ $quotation->tax_percentage }}%)</strong></td>
                                     <td class="right">{{ format_currency($quotation->tax_amount) }}</td>
                                 </tr>
                                 <tr>
-                                    <td class="left"><strong>Shipping)</strong></td>
+                                    <td class="left"><strong>{{ __('Livraison') }}</strong></td>
                                     <td class="right">{{ format_currency($quotation->shipping_amount) }}</td>
                                 </tr>
                                 <tr>
-                                    <td class="left"><strong>Grand Total</strong></td>
+                                    <td class="left"><strong>{{ __('Grand Total') }}</strong></td>
                                     <td class="right"><strong>{{ format_currency($quotation->total_amount) }}</strong></td>
                                 </tr>
                                 </tbody>
@@ -108,7 +116,7 @@
                     </div>
                     <div class="row" style="margin-top: 25px;">
                         <div class="col-md-12">
-                            <p style="font-style: italic;text-align: center">{{ settings()->company_name }} &copy; {{ date('Y') }}</p>
+                            <p style="font-style: italic;text-align: center">{{ Auth::user()->currentCompany->name }} &copy; {{ date('Y') }}</p>
                         </div>
                     </div>
                 </div>

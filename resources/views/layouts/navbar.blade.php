@@ -6,7 +6,7 @@
           </button>
           <h1 class="navbar-brand navbar-brand-autodark d-none-navbar-horizontal pe-0 pe-md-3">
             <a href=".">
-                <img src="{{ asset('images/logo.png') }}" alt="Koverae POS" class="navbar-brand-image">
+                <img src="{{ asset('assets/images/logo/logo.png') }}" alt="Koverae POS" class="navbar-brand-image">
               {{-- <img src="./dist/img/logo/logo.svg" width="320" height="120"  alt="POS" class="navbar-brand-image"> --}}
             </a>
           </h1>
