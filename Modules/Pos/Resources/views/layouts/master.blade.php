@@ -5,6 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"/>
     <meta http-equiv="X-UA-Compatible" content="ie=edge"/>
     <title> @yield('page_title') | Koverae.com</title>
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="{{asset('assets/images/logo/favicon.ico')}}" />
+
     <!-- CSS files -->
     <link href="{{ asset('assets/dist/css/tabler.min.css')}}?1668287865" rel="stylesheet"/>
     <link href="{{ asset('assets/dist/css/tabler-flags.min.css')}}?1668287865" rel="stylesheet"/>
@@ -38,7 +42,7 @@
           </button>
           <h1 class="navbar-brand navbar-brand-autodark d-none-navbar-horizontal pe-0 pe-md-3">
             <a href=".">
-                <img src="{{ asset('assets/images/logo/logo.png') }}" alt="Koverae POS" class="navbar-brand-image">
+                <img src="{{ asset('assets/images/logo/logo-1.png') }}" alt="Koverae POS" class="navbar-brand-image">
             </a>
           </h1>
 
