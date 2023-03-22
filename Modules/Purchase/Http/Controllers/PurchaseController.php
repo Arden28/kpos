@@ -93,6 +93,8 @@ class PurchaseController extends Controller
 
             if ($purchase->paid_amount > 0) {
                 PurchasePayment::create([
+                    'company_id' => Auth::user()->currentCompany->id,
+
                     'date' => $request->date,
                     'reference' => 'INV/'.$purchase->reference,
                     'amount' => $purchase->paid_amount,

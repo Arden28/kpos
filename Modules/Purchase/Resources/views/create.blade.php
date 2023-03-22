@@ -1,6 +1,6 @@
 @extends('layouts.master')
 
-@section('title', __('Tous '))
+@section('title', __('Ajouter un achat'))
 
 @section('breadcrumb')
 <div class="page-header d-print-none">
@@ -8,7 +8,7 @@
     <div class="row g-2 align-items-center">
     <div class="col">
         <h2 class="page-title">
-            {{ __('Tous ') }}
+            {{ __('Ajouter un achat') }}
         </h2>
     </div>
     </div>
@@ -34,6 +34,7 @@
                             <form id="purchase-form" action="{{ route('purchases.store') }}" method="POST">
                                 @csrf
 
+                                {{-- <input type="hidden" name="company_id" value="{{ Auth::user()->currentCompany->id }}"> --}}
                                 <div class="row" style="padding-bottom: 12px;">
                                     <div class="col-lg-4">
                                         <div class="form-group">

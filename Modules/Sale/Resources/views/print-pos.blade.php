@@ -58,13 +58,13 @@
     <div id="receipt-data">
         <div class="centered">
             <h2 style="margin-bottom: 5px">
-                {{-- {{ settings()->company_name }} --}}
+                {{-- {{ Auth::user()->currentCompany->name }} --}}
                 {{ Auth::user()->currentCompany->name}}
             </h2>
 
             <p style="font-size: 11px;line-height: 15px;margin-top: 0">
-                {{ settings()->company_email }}, {{ settings()->company_phone }}
-                <br>{{ settings()->company_address }}
+                {{ Auth::user()->currentCompany->email }}, {{ Auth::user()->currentCompany->phone }}
+                <br>{{ Auth::user()->currentCompany->address }}
             </p>
         </div>
         <p>

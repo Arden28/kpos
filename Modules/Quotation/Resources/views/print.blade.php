@@ -23,26 +23,26 @@
                     <div class="row mb-4">
                         <div class="col-xs-4 mb-3 mb-md-0">
                             <h4 class="mb-2" style="border-bottom: 1px solid #dddddd;padding-bottom: 10px;">Company Info:</h4>
-                            <div><strong>{{ settings()->company_name }}</strong></div>
-                            <div>{{ settings()->company_address }}</div>
-                            <div>Email: {{ settings()->company_email }}</div>
-                            <div>Phone: {{ settings()->company_phone }}</div>
+                            <div><strong>{{ Auth::user()->currentCompany->name }}</strong></div>
+                            <div>{{ Auth::user()->currentCompany->address }}</div>
+                            <div>{{__('Email')}}: {{ Auth::user()->currentCompany->email }}</div>
+                            <div>{{ __('Téléphone') }}: {{ Auth::user()->currentCompany->phone }}</div>
                         </div>
 
                         <div class="col-xs-4 mb-3 mb-md-0">
                             <h4 class="mb-2" style="border-bottom: 1px solid #dddddd;padding-bottom: 10px;">Customer Info:</h4>
                             <div><strong>{{ $customer->customer_name }}</strong></div>
                             <div>{{ $customer->address }}</div>
-                            <div>Email: {{ $customer->customer_email }}</div>
-                            <div>Phone: {{ $customer->customer_phone }}</div>
+                            <div>{{__('Email')}}: {{ $customer->customer_email }}</div>
+                            <div>{{__('Téléphone')}}: {{ $customer->customer_phone }}</div>
                         </div>
 
                         <div class="col-xs-4 mb-3 mb-md-0">
                             <h4 class="mb-2" style="border-bottom: 1px solid #dddddd;padding-bottom: 10px;">Invoice Info:</h4>
-                            <div>Invoice: <strong>INV/{{ $quotation->reference }}</strong></div>
-                            <div>Date: {{ \Carbon\Carbon::parse($quotation->date)->format('d M, Y') }}</div>
+                            <div>{{ __('Facture') }}: <strong>INV/{{ $quotation->reference }}</strong></div>
+                            <div>{{__('Date')}}: {{ \Carbon\Carbon::parse($quotation->date)->format('d M, Y') }}</div>
                             <div>
-                                Status: <strong>{{ $quotation->status }}</strong>
+                                {{ __('Status') }}: <strong>{{ $quotation->status }}</strong>
                             </div>
                             <div>
                                 Payment Status: <strong>{{ $quotation->payment_status }}</strong>
@@ -121,7 +121,7 @@
                     </div>
                     <div class="row" style="margin-top: 25px;">
                         <div class="col-xs-12">
-                            <p style="font-style: italic;text-align: center">{{ settings()->company_name }} &copy; {{ date('Y') }}</p>
+                            <p style="font-style: italic;text-align: center">{{ Auth::user()->currentCompany->name }} &copy; {{ date('Y') }}</p>
                         </div>
                     </div>
                 </div>

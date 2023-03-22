@@ -1,6 +1,6 @@
 @extends('layouts.master')
 
-@section('title', __('Edit Purchase'))
+@section('title', __('Modifier l\'achat'))
 
 @section('breadcrumb')
 <div class="page-header d-print-none">
@@ -8,7 +8,7 @@
     <div class="row g-2 align-items-center">
     <div class="col">
         <h2 class="page-title">
-            {{ __('Edit Purchase') }}
+            {{ __('Modifier l\'achat') }}
         </h2>
     </div>
     </div>
@@ -37,14 +37,14 @@
                                 <div class="row" style="padding-bottom: 12px;">
                                     <div class="col-lg-4">
                                         <div class="form-group">
-                                            <label for="reference">Reference <span class="text-danger">*</span></label>
+                                            <label for="reference">{{ __('Référence') }} <span class="text-danger">*</span></label>
                                             <input type="text" class="form-control" name="reference" required value="{{ $purchase->reference }}" readonly>
                                         </div>
                                     </div>
                                     <div class="col-lg-4">
                                         <div class="from-group">
                                             <div class="form-group">
-                                                <label for="supplier_id">Supplier <span class="text-danger">*</span></label>
+                                                <label for="supplier_id">{{ __('Fournisseur') }} <span class="text-danger">*</span></label>
                                                 <select class="form-control" name="supplier_id" id="supplier_id" required>
                                                     @foreach(\Modules\People\Entities\Supplier::all() as $supplier)
                                                         <option {{ $purchase->supplier_id == $supplier->id ? 'selected' : '' }} value="{{ $supplier->id }}">{{ $supplier->supplier_name }}</option>
@@ -56,7 +56,7 @@
                                     <div class="col-lg-4">
                                         <div class="from-group">
                                             <div class="form-group">
-                                                <label for="date">Date <span class="text-danger">*</span></label>
+                                                <label for="date">{{__('Date')}} <span class="text-danger">*</span></label>
                                                 <input type="date" class="form-control" name="date" required value="{{ $purchase->date }}">
                                             </div>
                                         </div>
@@ -68,7 +68,7 @@
                                 <div class="row" style="padding-bottom: 12px;">
                                     <div class="col-lg-4">
                                         <div class="form-group">
-                                            <label for="status">Status <span class="text-danger">*</span></label>
+                                            <label for="status">{{ ('Status') }} <span class="text-danger">*</span></label>
                                             <select class="form-control" name="status" id="status" required>
                                                 <option {{ $purchase->status == 'Pending' ? 'selected' : '' }} value="Pending">Pending</option>
                                                 <option {{ $purchase->status == 'Ordered' ? 'selected' : '' }} value="Ordered">Ordered</option>
@@ -79,27 +79,27 @@
                                     <div class="col-lg-4">
                                         <div class="from-group">
                                             <div class="form-group">
-                                                <label for="payment_method">Payment Method <span class="text-danger">*</span></label>
+                                                <label for="payment_method">{{ __('Mode de Paiement') }} <span class="text-danger">*</span></label>
                                                 <input type="text" class="form-control" name="payment_method" required value="{{ $purchase->payment_method }}" readonly>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="col-lg-4">
                                         <div class="form-group">
-                                            <label for="paid_amount">Amount Received <span class="text-danger">*</span></label>
+                                            <label for="paid_amount">{{ __('Montant Payé') }} <span class="text-danger">*</span></label>
                                             <input id="paid_amount" type="text" class="form-control" name="paid_amount" required value="{{ $purchase->paid_amount }}" readonly>
                                         </div>
                                     </div>
                                 </div>
 
                                 <div class="form-group">
-                                    <label for="note">Note (If Needed)</label>
+                                    <label for="note">{{ __('Note (Si besoin)') }}</label>
                                     <textarea name="note" id="note" rows="5" class="form-control">{{ $purchase->note }}</textarea>
                                 </div>
 
                                 <div class="mt-3">
                                     <button type="submit" class="btn btn-primary">
-                                        Update Purchase <i class="bi bi-check"></i>
+                                        {{ __('Mettre à jour') }} <i class="bi bi-check"></i>
                                     </button>
                                 </div>
                             </form>

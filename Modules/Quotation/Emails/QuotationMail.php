@@ -6,6 +6,7 @@ use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Contracts\Queue\ShouldQueue;
+use Illuminate\Support\Facades\Auth;
 
 class QuotationMail extends Mailable
 {
@@ -29,7 +30,7 @@ class QuotationMail extends Mailable
      */
     public function build()
     {
-        return $this->subject('Quotation - ' . settings()->company_name)
+        return $this->subject('Quotation - ' . Auth::user()->currentCompany->_name)
             ->view('quotation::emails.quotation', [
                 'settings' => settings(),
                 'customer' => $this->quotation->customer
