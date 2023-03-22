@@ -4,7 +4,7 @@
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"/>
     <meta http-equiv="X-UA-Compatible" content="ie=edge"/>
-    <title> | Koverae.com</title>
+    <title> @yield('page_title') | Koverae.com</title>
     <!-- CSS files -->
     <link href="{{ asset('assets/dist/css/tabler.min.css')}}?1668287865" rel="stylesheet"/>
     <link href="{{ asset('assets/dist/css/tabler-flags.min.css')}}?1668287865" rel="stylesheet"/>
@@ -12,9 +12,8 @@
     <link href="{{ asset('assets/dist/css/tabler-vendors.min.css')}}?1668287865" rel="stylesheet"/>
     <link href="{{ asset('assets/dist/css/demo.min.css')}}?1668287865" rel="stylesheet"/>
 
-    @livewireStyles
-    <wireui:scripts />
-    <script src="https://unpkg.com/alpinejs" defer></script>
+    {{-- <wireui:scripts /> --}}
+    {{-- <script src="https://unpkg.com/alpinejs" defer></script> --}}
 
     <style>
       @import url('https://rsms.me/inter/inter.css');
@@ -23,6 +22,7 @@
       }
     </style>
     @include('includes.main-css1')
+
     <!-- Bootstrap Icons -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
 
@@ -117,7 +117,8 @@
 			element.classList.toggle("active");
 		}
 	</script> --}}
+
     @include('includes.main-js')
-    @livewireScripts
+
     </body>
 </html>

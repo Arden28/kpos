@@ -103,7 +103,7 @@ class SalesDataTable extends DataTable
                 ->className('text-center align-middle'),
 
             Column::make('created_at')
-                ->visible(false)
+                ->visible(true)
         ];
     }
 

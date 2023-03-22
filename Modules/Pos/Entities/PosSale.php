@@ -2,6 +2,7 @@
 
 namespace Modules\Pos\Entities;
 
+use App\Models\User;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Modules\Pos\Database\factories\PosSaleFactory;
@@ -15,6 +16,8 @@ class PosSale extends Model
 
     protected $fillable = ['pos_id', 'sale_id', 'company_id', 'cashier_id'];
 
+    protected $with = ['sale'];
+
     public function company() {
         return $this->belongsTo(Company::class, 'company_id', 'id');
     }
@@ -23,8 +26,13 @@ class PosSale extends Model
         return $this->belongsTo(Pos::class);
     }
 
+
+    public function cashier()
+    {
+        return $this->belongsTo(User::class, 'cashier_id', 'id');
+    }
     public function sale() {
-        return $this->belongsTo(Sale::class, 'sale_id', 'id');
+        return $this->belongsTo(Sale::class);
     }
     protected static function newFactory()
     {

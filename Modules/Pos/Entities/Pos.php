@@ -21,4 +21,11 @@ class Pos extends PosModel
     ];
     protected $guarded = [];
 
+
+
+    public function sales()
+    {
+        return $this->hasMany(Sale::class, 'pos_id', 'id');
+    }
+
 }

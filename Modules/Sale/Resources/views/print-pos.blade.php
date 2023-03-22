@@ -57,7 +57,10 @@
 <div style="max-width:400px;margin:0 auto">
     <div id="receipt-data">
         <div class="centered">
-            <h2 style="margin-bottom: 5px">{{ settings()->company_name }}</h2>
+            <h2 style="margin-bottom: 5px">
+                {{-- {{ settings()->company_name }} --}}
+                {{ Auth::user()->currentCompany->name}}
+            </h2>
 
             <p style="font-size: 11px;line-height: 15px;margin-top: 0">
                 {{ settings()->company_email }}, {{ settings()->company_phone }}
@@ -67,7 +70,10 @@
         <p>
             {{ __('Date') }}: {{ \Carbon\Carbon::parse($sale->date)->format('d F, Y') }}<br>
             {{ __('Référence') }}: {{ $sale->reference }}<br>
-            {{ __('Nom') }}: {{ $sale->customer_name }}
+            {{ __('Client') }}: {{ $sale->customer_name }} <br>
+            @if($seller)
+                {{ __('Caissier(ière)') }}: {{ $seller->name }}
+            @endif
         </p>
         <table class="table-data">
             <tbody>
@@ -83,24 +89,24 @@
 
             @if($sale->tax_percentage)
                 <tr>
-                    <th colspan="2" style="text-align:left">Tax ({{ $sale->tax_percentage }}%)</th>
+                    <th colspan="2" style="text-align:left">{{__('Taxe')}} ({{ $sale->tax_percentage }}%)</th>
                     <th style="text-align:right">{{ format_currency($sale->tax_amount) }}</th>
                 </tr>
             @endif
             @if($sale->discount_percentage)
                 <tr>
-                    <th colspan="2" style="text-align:left">Discount ({{ $sale->discount_percentage }}%)</th>
+                    <th colspan="2" style="text-align:left">{{ __('Réduction') }} ({{ $sale->discount_percentage }}%)</th>
                     <th style="text-align:right">{{ format_currency($sale->discount_amount) }}</th>
                 </tr>
             @endif
             @if($sale->shipping_amount)
                 <tr>
-                    <th colspan="2" style="text-align:left">Shipping</th>
+                    <th colspan="2" style="text-align:left">{{ __('Livraison') }}</th>
                     <th style="text-align:right">{{ format_currency($sale->shipping_amount) }}</th>
                 </tr>
             @endif
             <tr>
-                <th colspan="2" style="text-align:left">Grand Total</th>
+                <th colspan="2" style="text-align:left">{{ __('Grand Total') }}</th>
                 <th style="text-align:right">{{ format_currency($sale->total_amount) }}</th>
             </tr>
             </tbody>
@@ -109,16 +115,24 @@
             <tbody>
                 <tr style="background-color:#ddd;">
                     <td class="centered" style="padding: 5px;">
-                        Paid By: {{ $sale->payment_method }}
+                        {{ __('Paiement') }}: {{ $sale->payment_method }}
                     </td>
                     <td class="centered" style="padding: 5px;">
-                        Amount: {{ format_currency($sale->paid_amount) }}
+                        {{ __('Montant') }}: {{ format_currency($sale->paid_amount) }}
                     </td>
                 </tr>
                 <tr style="border-bottom: 0;">
                     <td class="centered" colspan="3">
                         <div style="margin-top: 10px;">
-                            {!! \Milon\Barcode\Facades\DNS1DFacade::getBarcodeSVG($sale->reference, 'C128', 1, 25, 'black', false) !!}
+                            {!! \Milon\Barcode\Facades\DNS1DFacade::getBarcodeSVG($sale->reference, 'C128', 1, 25, 'black', true) !!}
+                        </div>
+                    </td>
+                </tr>
+                <tr style="border-bottom: 0;">
+                    <td class="centered" colspan="3">
+                        <div style="margin-top: 10px;">
+                            {{-- <img src="{{ asset('assets/images/logo/logo.png') }}" width="55px" height="55px" alt="Koverae.com"> --}}
+                            <p><i>{{ __('Fait avec Koverae') }}</i> </p>
                         </div>
                     </td>
                 </tr>

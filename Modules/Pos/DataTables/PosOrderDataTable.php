@@ -4,6 +4,8 @@ namespace Modules\Pos\DataTables;
 
 use App\Traits\CompanySession;
 use Illuminate\Support\Facades\Auth;
+use Modules\Pos\Entities\Pos;
+use Modules\Pos\Entities\PosSale;
 use Modules\Pos\Traits\PosSession;
 use Modules\Sale\Entities\Sale;
 use Yajra\DataTables\Html\Button;
@@ -18,7 +20,7 @@ class PosOrderDataTable extends DataTable
 
     public function dataTable($query) {
         return datatables()
-            ->eloquent($query)
+            ->eloquent($query)->with('seller')
             ->addColumn('total_amount', function ($data) {
                 return format_currency($data->total_amount);
             })
@@ -35,68 +37,83 @@ class PosOrderDataTable extends DataTable
                 return view('sale::partials.payment-status', compact('data'));
             })
             ->addColumn('action', function ($data) {
-                return view('sale::partials.actions', compact('data'));
+                return view('pos::pos.orders.partials.actions', compact('data'));
             });
     }
 
-    public function query(Sale $model) {
-        // A modifier
-        // $current_company_id = Auth::user()->currentCompany->id;
+    public function query(PosSale $model) {
+
         $current_company_id = Auth::user()->currentCompany->id;
-        $current_pos = $this->getCurrentPos();
-        return $model->where('company_id', $current_company_id)
-            ->where('pos_id', $current_pos['id'])->newQuery();
+        // return $model->where('company_id', Auth::user()->currentCompany->id)->newQuery()->with('sale', 'cashier');// A modifier en fonction de la company en cours d'utilisation
+
+        return $model->orderBy('id', 'DESC')
+        ->join('sales', 'pos_sales.sale_id', '=', 'sales.id')
+        ->join('users', 'pos_sales.company_id', '=', 'users.current_company_id')
+        ->select('pos_sales.*')
+        ->with('sale', 'cashier')
+
+        ->newQuery()->groupBy('id'); //Datas are duplicates, I have to fix it up
     }
 
     public function html() {
         return $this->builder()
-            ->setTableId('sales-table')
+            ->setTableId('pos_sales-table')
             ->columns($this->getColumns())
             ->minifiedAjax()
             ->dom("<'row'<'col-md-3'l><'col-md-5 mb-2'B><'col-md-4'f>> .
                                 'tr' .
                                 <'row'<'col-md-5'i><'col-md-7 mt-2'p>>")
-            ->orderBy(8)
+            ->orderBy(4)
             ->buttons(
                 Button::make('excel')
                     ->text('<i class="bi bi-file-earmark-excel-fill"></i> Excel'),
                 Button::make('print')
-                    ->text('<i class="bi bi-printer-fill"></i> Print'),
+                    ->text('<i class="bi bi-printer-fill"></i> '.__('Print')),
                 Button::make('reset')
-                    ->text('<i class="bi bi-x-circle"></i> Reset'),
+                    ->text('<i class="bi bi-x-circle"></i> '.__('Reset')),
                 Button::make('reload')
-                    ->text('<i class="bi bi-arrow-repeat"></i> Reload')
+                    ->text('<i class="bi bi-arrow-repeat"></i> '.__('Reload'))
             );
     }
 
     protected function getColumns() {
         return [
-            Column::make('reference')
+            Column::make('sale.date')
+                ->title('Date')
+                ->addClass('text-center'),
+
+            Column::make('sale.reference')
+                ->addClass('text-center')
+                ->title('Numéro'),
+
+            Column::make('sale.customer_name')
+                ->addClass('text-center')
+                ->title('Client'),
+
+            Column::make('cashier.name')
+                ->addClass('text-center')
+                ->title('Caissier(ière)'),
+
+                Column::computed('sale.total_amount')
+                ->title('Montant total')
                 ->className('text-center align-middle'),
 
-            Column::make('customer_name')
-                ->title('Customer')
+            Column::computed('sale.paid_amount')
+                ->title('Motant Payé')
                 ->className('text-center align-middle'),
 
-            Column::computed('status')
+            Column::computed('sale.due_amount')
+                ->title('Reste à Payer')
                 ->className('text-center align-middle'),
 
-            Column::computed('total_amount')
-                ->className('text-center align-middle'),
-
-            Column::computed('paid_amount')
-                ->className('text-center align-middle'),
-
-            Column::computed('due_amount')
-                ->className('text-center align-middle'),
-
-            Column::computed('payment_status')
+            Column::computed('sale.payment_status')
+                ->title('Status')
                 ->className('text-center align-middle'),
 
             Column::computed('action')
-                ->exportable(false)
+                ->exportable(true)
                 ->printable(false)
-                ->className('text-center align-middle'),
+                ->addClass('text-center'),
 
             Column::make('created_at')
                 ->visible(false)
@@ -104,6 +121,6 @@ class PosOrderDataTable extends DataTable
     }
 
     protected function filename() {
-        return 'Sales_' . date('YmdHis');
+        return 'Pos_sales' . date('YmdHis');
     }
 }

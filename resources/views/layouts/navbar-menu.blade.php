@@ -240,7 +240,7 @@
                         <i class="bi bi-people-fill" style="width: 24px; height:24px"></i>
                     </span>
                     <span class="nav-link-title">
-                      {{ __('GR') }}
+                      {{ __('CRM') }}
                     </span>
                   </a>
                 </li>
@@ -297,7 +297,21 @@
                 </li>
                 @endcan
 
-                @can('access_settings')
+                {{-- Settings --}}
+                @can('access_pos')
+                <li class="nav-item">
+                  <a class="nav-link" href="{{ route('settings.index') }}" >
+                    <span class="nav-link-icon d-md-none d-lg-inline-block"><!-- Download SVG icon from http://tabler-icons.io/i/star -->
+                        <i class="bi bi-gear" style="width: 24px; height:24px;"></i>
+                    </span>
+                    <span class="nav-link-title">
+                      {{ __('Paramètres') }}
+                    </span>
+                  </a>
+                </li>
+                @endcan
+
+                {{-- @can('access_settings')
                 <li class="nav-item dropdown {{ request()->routeIs('currencies*') ? 'c-show' : '' }}">
                   <a class="nav-link dropdown-toggle" href="#navbar-layout" data-bs-toggle="dropdown" data-bs-auto-close="outside" role="button" aria-expanded="false" >
                     <span class="nav-link-icon d-md-none d-lg-inline-block"><!-- Download SVG icon from http://tabler-icons.io/i/layout-2 -->
@@ -327,7 +341,7 @@
                     </div>
                   </div>
                 </li>
-                @endcan
+                @endcan --}}
 
 
                 <li class="nav-item dropdown">

@@ -51,9 +51,10 @@ class PosDataTable extends DataTable
     protected function getColumns() {
         return [
             Column::make('name')
+                ->title('Nom de la Boutique')
                 ->addClass('text-center'),
 
-            Column::make('name')
+            Column::make('address')
                 ->addClass('text-center'),
 
             Column::make('name')

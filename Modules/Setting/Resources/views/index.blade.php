@@ -1,6 +1,6 @@
 @extends('layouts.master')
 
-@section('title', __('General Settings'))
+@section('title', __('Paramètes'))
 
 @section('breadcrumb')
 <div class="page-header d-print-none">
@@ -8,7 +8,7 @@
     <div class="row g-2 align-items-center">
     <div class="col">
         <h2 class="page-title">
-            {{ __('General Settings') }}
+            {{ __('Paramètes') }}
         </h2>
     </div>
     </div>
@@ -21,59 +21,80 @@
     <div class="page-header d-print-none">
         <div class="container-xl">
             <div class="row">
-                <div class="col-lg-12">
+
+                <div class="col-lg-12" style="padding-bottom: 20px;">
                     @include('utils.alerts')
                     <div class="card">
                         <div class="card-header bg-primary text-white">
-                            <h5 class="mb-0">{{ __('General Settings') }}</h5>
+                            <h3 class="mb-0">{{ __('Société') }}</h3>
                         </div>
                         <div class="card-body">
+
                             <form action="{{ route('settings.update', $settings->id) }}" method="POST">
                                 @csrf
                                 @method('patch')
                                 <div class="row">
                                     <div class="col-lg-4">
                                         <div class="form-group">
-                                            <label for="company_name">{{ __('Company Name') }} <span class="text-danger">*</span></label>
-                                            <input type="text" class="form-control" name="company_name" value="{{ $settings->company_name }}" required>
+                                            <label for="company_name">{{ __('Nom de la société') }} <span class="text-danger">*</span></label>
+                                            <input type="text" class="form-control" name="company_name" value="{{ Auth::user()->currentCompany->name }}" placeholder="Ex: ETS Marie Reine" required>
                                         </div>
                                     </div>
                                     <div class="col-lg-4">
                                         <div class="form-group">
-                                            <label for="company_email">{{ __('Company Email') }} <span class="text-danger">*</span></label>
-                                            <input type="text" class="form-control" name="company_email" value="{{ $settings->company_email }}" required>
+                                            <label for="company_email">{{ __('Email') }} <span class="text-danger">*</span></label>
+                                            <input type="text" class="form-control" name="company_email" value="{{ Auth::user()->currentCompany->email }}" placeholder="Ex: contact@mariereine.com" required>
                                         </div>
                                     </div>
-                                    <div class="col-lg-4">
+                                    <div class="col-lg-4" style="padding-bottom: 10px">
                                         <div class="form-group">
-                                            <label for="company_phone">{{ __('Company Phone') }} <span class="text-danger">*</span></label>
-                                            <input type="text" class="form-control" name="company_phone" value="{{ $settings->company_phone }}" required>
+                                            <label for="company_phone">{{ __('Téléphone') }} <span class="text-danger">*</span></label>
+                                            <input type="text" class="form-control" name="company_phone" value="{{ Auth::user()->currentCompany->phone }}" placeholder="EX: +242064995612" required>
                                         </div>
                                     </div>
                                 </div>
 
                                 <div class="row">
-                                    <div class="col-lg-4">
+
+                                    <div class="col-lg-6" style="padding-bottom: 10px">
+                                        <div class="form-group">
+                                            <label for="company_address">{{ __('Adresse') }} <span class="text-danger">*</span></label>
+                                            <input type="text" class="form-control" name="company_address" value="{{ Auth::user()->currentCompany->address }}">
+                                        </div>
+                                    </div>
+
+                                    {{-- <div class="col-lg-6">
+                                        <div class="form-group">
+                                            <label for="footer_text">{{ __('Footer Text') }} <span class="text-danger">*</span></label>
+                                            <textarea rows="3" name="footer_text" class="form-control">{!! $settings->footer_text !!}</textarea>
+                                        </div>
+                                    </div> --}}
+
+                                </div>
+
+
+                                <div class="row">
+                                    <div class="col-lg-4" style="padding-bottom: 10px">
                                         <div class="form-group">
                                             <label for="default_currency_id">{{ __('Default Currency') }} <span class="text-danger">*</span></label>
                                             <select name="default_currency_id" id="default_currency_id" class="form-control" required>
-                                                <option>Select a currency</option>
+                                                <option>{{ __('Choisissez votre devise') }}</option>
                                                 @foreach($currencies as $currency)
                                                     <option {{ $settings->default_currency_id == $currency->id ? 'selected' : '' }} value="{{ $currency->id }}">{{ $currency->currency_name }}</option>
                                                 @endforeach
                                             </select>
                                         </div>
                                     </div>
-                                    <div class="col-lg-4">
+                                    <div class="col-lg-4" style="padding-bottom: 10px">
                                         <div class="form-group">
-                                            <label for="default_currency_position">{{ __('Default Currency Position') }} <span class="text-danger">*</span></label>
+                                            <label for="default_currency_position">{{ __('Placement Devise') }} <span class="text-danger">*</span></label>
                                             <select name="default_currency_position" id="default_currency_position" class="form-control" required>
-                                                <option {{ $settings->default_currency_position == 'prefix' ? 'selected' : '' }} value="prefix">{{ __('Prefix') }}</option>
-                                                <option {{ $settings->default_currency_position == 'suffix' ? 'selected' : '' }} value="suffix">{{ __('Suffix') }}</option>
+                                                <option {{ $settings->default_currency_position == 'prefix' ? 'selected' : '' }} value="prefix">{{ __('Avant') }}</option>
+                                                <option {{ $settings->default_currency_position == 'suffix' ? 'selected' : '' }} value="suffix">{{ __('Après') }}</option>
                                             </select>
                                         </div>
                                     </div>
-                                    <div class="col-lg-4">
+                                    <div class="col-lg-4" style="padding-bottom: 10px">
                                         <div class="form-group">
                                             <label for="notification_email">{{ __('Notification Email') }} <span class="text-danger">*</span></label>
                                             <input type="text" class="form-control" name="notification_email" value="{{ $settings->notification_email }}" required>
@@ -81,30 +102,17 @@
                                     </div>
                                 </div>
 
-                                <div class="row">
-                                    <div class="col-lg-6">
-                                        <div class="form-group">
-                                            <label for="company_address">{{ __('Company Address') }} <span class="text-danger">*</span></label>
-                                            <input type="text" class="form-control" name="company_address" value="{{ $settings->company_address }}">
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-6">
-                                        <div class="form-group">
-                                            <label for="footer_text">{{ __('Footer Text') }} <span class="text-danger">*</span></label>
-                                            <textarea rows="3" name="footer_text" class="form-control">{!! $settings->footer_text !!}</textarea>
-                                        </div>
-                                    </div>
-                                </div>
 
                                 <div class="form-group mb-0">
-                                    <button type="submit" class="btn btn-primary"><i class="bi bi-check"></i> {{ __('Save Changes') }}</button>
+                                    <button type="submit" class="btn btn-primary"><i class="bi bi-check"></i> {{ __('Sauvegarder') }}</button>
                                 </div>
                             </form>
+
                         </div>
                     </div>
                 </div>
 
-                <div class="col-lg-12">
+                {{-- <div class="col-lg-12">
                     @if (session()->has('settings_smtp_message'))
                         <div class="alert alert-warning alert-dismissible fade show" role="alert">
                             <div class="alert-body">
@@ -116,7 +124,7 @@
                         </div>
                     @endif
 
-                    {{-- <div class="card">
+                    <div class="card">
                         <div class="card-header bg-primary text-white">
                             <h5 class="mb-0">Mail Settings</h5>
                         </div>
@@ -192,7 +200,7 @@
                                 </div>
                             </form>
                         </div>
-                    </div> --}}
+                    </div>
 
 
                     <div class="card">
@@ -273,7 +281,9 @@
                         </div>
                     </div>
 
-                </div>
+                </div> --}}
+
+
             </div>
         </div>
     </div>

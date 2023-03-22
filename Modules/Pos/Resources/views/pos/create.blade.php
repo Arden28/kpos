@@ -47,6 +47,18 @@
                                         </div>
                                     </div>
 
+                                    <div class="col-lg-12">
+                                        <div class="form-group">
+                                            <label for="address">{{ __('Adresse') }} <span class="text-danger">*</span></label>
+                                            <input type="text" name="address"  class="form-control @error('address') is-invalid @enderror"
+                                            value="{{ old('address') }}"
+                                            placeholder="{{ __('address') }}">
+                                            @error('address')
+                                            <div class="invalid-feedback">{{ $message }}</div>
+                                            @enderror
+                                        </div>
+                                    </div>
+
                                 </div>
 
                             </div>

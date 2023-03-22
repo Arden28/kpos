@@ -41,9 +41,12 @@ class PosRepository implements PosInterface
 
     public function createPhysicalPos($request, $company){
 
-            // $code = Uuid::uuid4();
+            $code = Uuid::uuid4();
+
             $pos = Pos::create([
                 'name' => $request['name'],
+                'code' => $code,
+                'address' => $request['address'],
                 'company_id' => $company,
             ]);
             $pos->save();
@@ -159,6 +162,7 @@ class PosRepository implements PosInterface
 
             $pos->update([
                 'name' => $request['name'],
+                'address' => $request['address'],
             ]);
 
         });

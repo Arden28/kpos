@@ -53,6 +53,9 @@
 
             @include('pos::layouts.navbar-menu')
 
+
+        @elseif(request()->routeIs('settings.*'))
+            @include('setting::layouts.navbar-menu')
         @else
 
         @include('layouts.navbar-menu')

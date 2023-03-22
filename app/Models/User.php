@@ -10,6 +10,7 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Modules\Pos\Entities\PosSale;
 use Modules\Sale\Entities\Sale;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
@@ -91,6 +92,11 @@ class User extends Authenticatable implements HasMedia, MustVerifyEmail
     public function sales()
     {
         return $this->hasMany(Sale::class, 'seller_id', 'id');
+    }
+
+    public function pos_sales()
+    {
+        return $this->hasMany(PosSale::class, 'cashier_id', 'id');
     }
 
     public function hasMultipleCompanies()

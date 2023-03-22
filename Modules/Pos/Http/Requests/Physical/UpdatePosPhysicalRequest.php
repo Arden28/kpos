@@ -16,7 +16,8 @@ class UpdatePosPhysicalRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required|unique:pos,name',
+            'name' => 'required',
+            'address' => 'max:200',
         ];
     }
 

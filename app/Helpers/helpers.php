@@ -24,6 +24,8 @@ if (!function_exists('pos')) {
     }
 }
 
+// Penser à mettre les information sur l'entreprise en cache, afin de permettre un chargement rapide
+
 if (!function_exists('settings')) {
     function settings() {
         $settings = cache()->remember('settings', 24*60, function () {

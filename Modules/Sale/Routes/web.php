@@ -25,20 +25,26 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/sales/pdf/{id}', function ($id) {
         $sale = \Modules\Sale\Entities\Sale::findOrFail($id);
         $customer = \Modules\People\Entities\Customer::findOrFail($sale->customer_id);
+        $seller = \App\Models\User::findOrFail($sale->seller_id);
 
         $pdf = PDF::loadView('sale::print', [
             'sale' => $sale,
             'customer' => $customer,
+            'seller' => $seller,
         ])->setPaper('a4');
 
         return $pdf->stream('sale-'. $sale->reference .'.pdf');
     })->name('sales.pdf');
 
+    // POS BILL
     Route::get('/sales/pos/pdf/{id}', function ($id) {
         $sale = \Modules\Sale\Entities\Sale::findOrFail($id);
+        $seller = \App\Models\User::findOrFail($sale->seller_id);
+
 
         $pdf = PDF::loadView('sale::print-pos', [
             'sale' => $sale,
+            'seller' => $seller,
         ])->setPaper('a7')
             ->setOption('margin-top', 8)
             ->setOption('margin-bottom', 8)

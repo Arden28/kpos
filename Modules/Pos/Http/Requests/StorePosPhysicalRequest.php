@@ -16,6 +16,8 @@ class StorePosPhysicalRequest extends FormRequest
     {
         return [
             'name' => 'required|unique:pos,name',
+            'code' => 'unique:pos,code',
+            'address' => 'required|max:200',
         ];
     }
 

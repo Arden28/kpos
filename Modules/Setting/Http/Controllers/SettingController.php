@@ -38,22 +38,31 @@ class SettingController extends Controller
     }
 
 
-    public function update(StoreSettingsRequest $request,Setting $setting) {
+    public function update(StoreSettingsRequest $request, Setting $setting) {
+        $company = Company::find(Auth::user()->currentCompany->id);
+
+        $company->name = $request->company_name;
+        $company->email = $request->company_email;
+        $company->phone = $request->company_name;
+        $company->address = $request->company_address;
+        $company->save();
+        // $company->update([
+        //     'name' => $request->company_name,
+        //     'email' => $request->company_email,
+        //     'phone' => $request->company_phone,
+        //     'address' => $request->company_address,
+        // ]);
 
         $setting->update([
-            'company_name' => $request->company_name,
-            'company_email' => $request->company_email,
-            'company_phone' => $request->company_phone,
             'notification_email' => $request->notification_email,
-            'company_address' => $request->company_address,
             'default_currency_id' => $request->default_currency_id,
             'default_currency_position' => $request->default_currency_position,
-            'footer_text' => $request->footer_text
+            // 'footer_text' => $request->footer_text
         ]);
 
         cache()->forget('settings');
 
-        toast('Settings Updated!', 'info');
+        toast('Modifications sauvegardées !', 'info');
 
         return redirect()->route('settings.index');
     }
