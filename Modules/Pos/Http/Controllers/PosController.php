@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\Gate;
 use Modules\People\Entities\Customer;
 use Modules\People\Interfaces\CustomerInterface;
 use Modules\Pos\DataTables\PosDataTable;
+use Modules\Pos\DataTables\SinglePosSessionDataTable;
 use Modules\Pos\Entities\PhysicalPosSession;
 use Modules\Pos\Entities\Pos;
 use Modules\Pos\Http\Requests\Physical\UpdatePosPhysicalRequest;
@@ -51,6 +52,12 @@ class PosController extends Controller
     }
 
     public function listPos(PosDataTable $dataTable) {
+        abort_if(Gate::denies('access_product_categories'), 403);
+
+        return $dataTable->render('pos::pos.list');
+    }
+
+    public function singlePosSession(SinglePosSessionDataTable $dataTable) {
         abort_if(Gate::denies('access_product_categories'), 403);
 
         return $dataTable->render('pos::pos.list');

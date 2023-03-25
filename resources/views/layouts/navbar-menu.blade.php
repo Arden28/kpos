@@ -96,10 +96,9 @@
                       {{-- Left --}}
                       <div class="dropdown-menu-column">
 
-                        @can('access_purchases')
+                        {{-- @can('access_purchases')
                         <div class="dropend">
                             <a class="dropdown-item dropdown-toggle {{ request()->routeIs('purchases.*')? 'active' : '' }}" href="#sidebar-error" data-bs-toggle="dropdown" data-bs-auto-close="outside" role="button" aria-expanded="false" >
-                            {{-- <i class="bi bi-receipt"></i> --}}
                             {{ __('Purchases') }}
                             </a>
                             <div class="dropdown-menu">
@@ -114,7 +113,7 @@
                             </a>
                             </div>
                         </div>
-                        @endcan
+                        @endcan --}}
 
                         @can('access_sales')
                         <div class="dropend">
@@ -182,26 +181,6 @@
 
                             <a href="{{ route('quotations.index') }}" class="dropdown-item {{ request()->routeIs('quotations.*')? 'active' : '' }}">
                               {{ __('All Quotations') }}
-                            </a>
-                          </div>
-                        </div>
-                        @endcan
-
-                        @can('access_purchase_returns')
-                        <div class="dropend">
-                          <a class="dropdown-item dropdown-toggle {{ request()->routeIs('purchase-returns.*')? 'active' : '' }}" href="#sidebar-error" data-bs-toggle="dropdown" data-bs-auto-close="outside" role="button" aria-expanded="false" >
-                            {{-- <i class="bi bi-receipt"></i> --}}
-                            {{ __('Purchases Return') }}
-                          </a>
-                          <div class="dropdown-menu">
-                            @can('create_purchase_returns')
-                            <a href="{{ route('purchase-returns.create') }}" class="dropdown-item {{ request()->routeIs('purchase-returns.create')? 'active' : '' }}">
-                              {{ __('Add Purchase Return') }}
-                            </a>
-                            @endcan
-
-                            <a href="{{ route('purchase-returns.index') }}" class="dropdown-item {{ request()->routeIs('purchase-returns.index')? 'active' : '' }}">
-                              {{ __('All Purchases Return') }}
                             </a>
                           </div>
                         </div>

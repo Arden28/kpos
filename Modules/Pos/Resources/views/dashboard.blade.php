@@ -1,6 +1,6 @@
 @extends('layouts.master')
 
-@section('title', __('Point Of Sales'))
+@section('title', __('Point de Vente'))
 
 @section('breadcrumb')
 <div class="page-header d-print-none">
@@ -104,7 +104,7 @@
 
                                     </ul>
                                 @else
-                                    <p>{{ __("Aucne session disponible") }}</p>
+                                    <p>{{ __("Aucune session disponible") }}</p>
                                 @endif
                             </div>
                     </div>

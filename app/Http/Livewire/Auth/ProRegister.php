@@ -15,6 +15,13 @@ class ProRegister extends Component
 {
     public $currentStep = 1;
 
+    public $billingCycle = 'monthly';
+
+    public $billingCycles = [
+        'monthly' => 'Par Mois',
+        'annual' => 'Par An',
+    ];
+
     // public $subscription;
     public $selectedPlanId;
 
@@ -41,6 +48,7 @@ class ProRegister extends Component
     public function selectSubscription($selectedPlanId)
     {
         $this->selectedPlanId = $selectedPlanId;
+
     }
 
     public function selectPaymentMethod($selectedPaymentMethod)
@@ -74,7 +82,14 @@ class ProRegister extends Component
 
     public function render()
     {
-        $plans = Plan::all();
+        if($this->billingCycle === 'monthly')
+            $plans = Plan::where('invoice_interval', 'month')->get();
+
+        elseif($this->billingCycle === 'annual'){
+            $plans = Plan::where('invoice_interval', 'year')->get();
+
+        }
+
         return view('livewire.auth.pro-register',
             [
                 'plans' => $plans,

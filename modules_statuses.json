@@ -17,5 +17,6 @@
     "Lang": true,
     "Pos": true,
     "Core": true,
-    "Subby": true
+    "Subby": true,
+    "Inventory": true
 }

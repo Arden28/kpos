@@ -4,7 +4,7 @@
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"/>
     <meta http-equiv="X-UA-Compatible" content="ie=edge"/>
-    <title>@yield('title') | Koverae POS</title>
+    <title>@yield('title') | Koverae</title>
     <!-- Favicon -->
     <link rel="icon" type="image/x-icon" href="{{asset('assets/images/logo/favicon.ico')}}" />
 
@@ -44,9 +44,9 @@
 
             @include('user::layouts.navbar-menu')
 
-        @elseif(request()->routeIs('inventory.*') || request()->routeIs('products.*') || request()->routeIs('product-categories.*') || request()->routeIs('barcode.print') || request()->routeIs('adjustments.*'))
+        @elseif(request()->routeIs('inventory.*') || request()->routeIs('products.*') || request()->routeIs('product-categories.*') || request()->routeIs('barcode.print') || request()->routeIs('adjustments.*') || request()->routeIs('purchases.*') || request()->routeIs('purchase-payments.*') || request()->routeIs('purchase-returns*') || request()->routeIs('purchase-return-payments*') )
 
-            @include('product::layouts.navbar-menu')
+            @include('inventory::layouts.navbar-menu')
 
         @elseif(request()->routeIs('customers.*') || request()->routeIs('suppliers.*') || request()->routeIs('crm.*'))
 

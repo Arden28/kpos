@@ -7,6 +7,7 @@ use App\Models\User;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Modules\Pos\Entities\PhysicalPosSession;
 use Modules\Pos\Entities\Pos;
 use Modules\Pos\Entities\PosSale;
 use Modules\Sale\Database\factories\SaleFactory;
@@ -23,9 +24,13 @@ class Sale extends Model
     //     return $builder->where('pos_id');
     // }
 
-    public function pos_sales()
+    public function pos()
     {
-        return $this->hasMany(PosSale::class, 'sale_id', 'id' );
+        return $this->belongsTo(PosSale::class, 'pos_id', 'id' );
+    }
+
+    public function physical_pos_session() {
+        return $this->belongsTo(PhysicalPosSession::class, 'pos_id', 'id');
     }
 
     public function company() {

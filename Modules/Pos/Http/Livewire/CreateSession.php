@@ -59,12 +59,18 @@ class CreateSession extends Component
                     'is_active' => 1,
                 ]);
 
-                if($pos_session->save()){
-                    session(['pos_session' => true]);
-                    session(['pos_id' => $this->pos_id]);
-                }
+                    if($pos_session->save()){
 
-            return redirect()->route('app.pos.index');
+                        session(['pos_session' => true]);
+                        session(['pos_id' => $this->pos_id]);
+
+                        return redirect()->route('app.pos.index');
+
+                    }else{
+                        session()->flash('message', __('Une erreur est survenue. Veuillez rééssayer plutard.'));
+                        redirect()->route('app.pos.dashboard');
+                    }
+
 
         }else{
 

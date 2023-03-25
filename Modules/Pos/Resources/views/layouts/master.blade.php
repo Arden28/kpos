@@ -42,7 +42,7 @@
           </button>
           <h1 class="navbar-brand navbar-brand-autodark d-none-navbar-horizontal pe-0 pe-md-3">
             <a href=".">
-                <img src="{{ asset('assets/images/logo/logo-1.png') }}" alt="Koverae POS" class="navbar-brand-image">
+                <img src="{{ asset('assets/images/logo/logo-1.png') }}" alt="Koverae" class="navbar-brand-image">
             </a>
           </h1>
 

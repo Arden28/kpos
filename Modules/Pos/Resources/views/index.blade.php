@@ -1,6 +1,6 @@
 @extends('pos::layouts.master')
 
-@section('title', 'POS')
+@section('page_title',   $physical->name )
 
 @section('third_party_stylesheets')
 

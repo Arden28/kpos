@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Modules\Pos\Entities\Pos;
+use Modules\Sale\Entities\Sale;
 
 class PhysicalPosSession extends Model
 {
@@ -19,5 +20,10 @@ class PhysicalPosSession extends Model
 
     public function pos() {
         return $this->belongsTo(Pos::class, 'pos_id', 'id');
+    }
+
+    public function sales()
+    {
+        return $this->hasMany(Sale::class, 'pos_id', 'id');
     }
 }

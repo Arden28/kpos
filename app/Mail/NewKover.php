@@ -35,7 +35,7 @@ class NewKover extends Mailable
      */
     public function build()
     {
-        return $this->markdown('emails.new-kover')
+        return $this->view('emails.new-kover')
         ->subject(__('New Kover'))
         ->with(['request' =>$this->request, 'user' => $this->user, 'company' => $this->company])
         // ->attach(public_path('/assets/images/logo/logo.png'), [

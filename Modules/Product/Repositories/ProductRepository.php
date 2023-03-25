@@ -2,7 +2,7 @@
 
 namespace Modules\Product\Repositories;
 
-use Modules\Classes\Interfaces\ProductInterface;
+use Modules\Product\Interfaces\ProductInterface;
 use Modules\Product\Entities\Product;
 
 class ProductRepository implements ProductInterface

@@ -19,8 +19,9 @@ class CreatePosTable extends Migration
             $table->string('code')->nullable();
             $table->string('address')->nullable();
             $table->foreignId('company_id');
+            $table->foreignId('current_pos_id')->nullable();
 
-            // $table->foreign('company_id')->references('id')->on('companies')->onDelete('cascade');
+            // $table->foreign('current_pos_id')->references('id')->on('physical_pos_sessions')->nullOnDelete();
 
             $table->timestamps();
         });
