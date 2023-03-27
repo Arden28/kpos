@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreatePhysicalPosTable extends Migration
+class CreateCashPosTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,13 @@ class CreatePhysicalPosTable extends Migration
      */
     public function up()
     {
-        Schema::create('physical_pos', function (Blueprint $table) {
+        Schema::create('cash_pos', function (Blueprint $table) {
             $table->id();
-            $table->string('name')->unique();
-            $table->unsignedBigInteger('company_id');
+            $table->unsignedBigInteger('pos_id');
+            $table->string('amount')->nullable();
 
-            $table->foreign('company_id')->references('id')->on('companies')->onDelete('cascade');
-
+            $table->string('last_transaction')->nullable();
+            $table->foreign('pos_id')->references('id')->on('pos')->onDelete('cascade');
             $table->timestamps();
         });
     }
@@ -31,6 +31,6 @@ class CreatePhysicalPosTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('physical_pos');
+        Schema::dropIfExists('cash_pos');
     }
 }

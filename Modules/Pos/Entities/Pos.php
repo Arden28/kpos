@@ -22,22 +22,4 @@ class Pos extends PosModel
     ];
     protected $guarded = [];
 
-    public function scopeIsActive(Builder $query, $current_pos_id)
-    {
-        return $query->where('id', $current_pos_id);
-    }
-
-    public function company() {
-        return $this->belongsTo(Company::class, 'company_id', 'id');
-    }
-
-    public function physical_pos_session()
-    {
-        return $this->hasMany(PhysicalPosSession::class, 'pos_id', 'id');
-    }
-    public function sales()
-    {
-        return $this->hasMany(Sale::class, 'pos_id', 'id');
-    }
-
 }

@@ -4,7 +4,7 @@
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"/>
     <meta http-equiv="X-UA-Compatible" content="ie=edge"/>
-    <title> @yield('page_title') | Koverae.com</title>
+    <title> @yield('page_title') | Koverae</title>
 
     <!-- Favicon -->
     <link rel="icon" type="image/x-icon" href="{{asset('assets/images/logo/favicon.ico')}}" />
@@ -58,7 +58,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="{{ route('app.pos.order') }}" >
+                  <a href="#" class="nav-link" data-bs-toggle="modal" data-bs-target="#modal-cash" >
                     <span class="nav-link-icon d-md-none d-lg-inline-block"><!-- Download SVG icon from http://tabler-icons.io/i/home -->
                         <i class="bi bi-cash"></i>
                     </span>

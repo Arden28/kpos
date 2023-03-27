@@ -69,7 +69,6 @@
                             @else
                                 <a class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#modal-session-{{ $p->id }}">{{ __('Nouvelle Session') }}</a>
                             @endif
-
                         </div>
                         <hr>
                             <div class="container col-md-12">

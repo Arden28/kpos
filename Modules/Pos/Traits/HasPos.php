@@ -1,6 +1,6 @@
 <?php
 
-namespace Moules\Pos\Traits;
+namespace Modules\Pos\Traits;
 
 use App\Abstracts\Membership;
 use Modules\Pos\Entities\Pos;
@@ -50,10 +50,8 @@ trait HasPos{
      */
     public function pos()
     {
-        return $this->belongsToMany(Pos::class, Membership::class)
-                        ->withPivot('role')
-                        ->withTimestamps()
-                        ->as('membership');
+        return $this->belongsToMany(Pos::class);
     }
+
 
 }

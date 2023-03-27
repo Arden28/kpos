@@ -1,6 +1,6 @@
 @extends('layouts.master')
 
-@section('title', __('Add Adjustment'))
+@section('title', __('Ajuster l\'inventaire'))
 
 @section('breadcrumb')
 <div class="page-header d-print-none">
@@ -8,7 +8,7 @@
     <div class="row g-2 align-items-center">
     <div class="col">
         <h2 class="page-title">
-            {{ __('Add Adjustment') }}
+            {{ __('Ajuster l\'inventaire') }}
         </h2>
     </div>
     </div>

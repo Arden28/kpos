@@ -8,6 +8,7 @@ interface PosInterface
 
     public function currentPos();
     public function createPhysicalPos($request, $company);
+    public function createPosCash($pos);
 
     public function createPos($request, $pos);
 

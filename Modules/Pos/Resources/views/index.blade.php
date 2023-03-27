@@ -27,6 +27,12 @@
             {{-- close session --}}
             {{-- <livewire:pos::delete-session  :pos="$pos" /> --}}
 
+            <a class="btn btn-primary d-none d-sm-inline-block" wire:click="refresh">
+
+                <i class="bi bi-refresh"></i>
+                {{ __('Actualiser') }}
+            </a>
+
             <a class="btn btn-primary d-none d-sm-inline-block" data-bs-toggle="modal" data-bs-target="#modal-session-{{ $physical->id }}">
 
                 <i class="bi bi-box-arrow-right"></i>
@@ -60,6 +66,7 @@
             </div>
         </div>
     </div>
+    <livewire:pos::cash :physical="$physical"/>
 @endsection
 
 @push('page_scripts')
@@ -98,7 +105,7 @@
 
 
     {{-- Disallow page refreshing --}}
-    <script>
+    {{-- <script>
         window.addEventListener('beforeunload', function (e) {
         // Cancel the event
             e.preventDefault();
@@ -110,6 +117,6 @@
             e.returnValue = message; // Set a custom message for some browsers
             return message; // Return the message for other browsers
         });
-    </script>
-<script src="https://cdn.jsdelivr.net/gh/livewire/turbolinks@v0.1.x/dist/livewire-turbolinks.js" data-turbolinks-eval="false" data-turbo-eval="false"></script>
+    </script> --}}
+{{-- <script src="https://cdn.jsdelivr.net/gh/livewire/turbolinks@v0.1.x/dist/livewire-turbolinks.js" data-turbolinks-eval="false" data-turbo-eval="false"></script> --}}
 @endpush

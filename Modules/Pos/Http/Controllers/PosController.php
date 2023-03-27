@@ -22,12 +22,13 @@ use Modules\Pos\Http\Requests\StorePosPhysicalRequest;
 use Modules\Pos\Http\Requests\StorePosSaleRequest;
 use Modules\Pos\Http\Requests\StorePosSessionRequest;
 use Modules\Pos\Interfaces\PosInterface;
+use Modules\Pos\Traits\HasPos;
 use Modules\Pos\Traits\PosSession;
 use Modules\Product\Entities\Category;
 
 class PosController extends Controller
 {
-    use CompanySession, PosSession;
+    use CompanySession, PosSession, HasPos;
 
     protected $posRepository;
 
@@ -45,7 +46,8 @@ class PosController extends Controller
 
         $company_id = Auth::user()->currentCompany->id;
 
-        $pos = $this->posRepository->getAllPos($company_id);
+        // $pos = $this->posRepository->getAllPos($company_id);
+        $pos = Auth::user()->currentCompany->pos;
 
 
         return view('pos::dashboard', compact('pos'));

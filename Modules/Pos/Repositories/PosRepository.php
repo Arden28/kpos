@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Hash;
 use Modules\Pos\Interfaces\PosInterface;
 use Modules\Sale\Http\Requests\StorePosSaleRequest;
 use Modules\People\Entities\Customer;
+use Modules\Pos\Entities\CashPos;
 use Modules\Pos\Entities\PhysicalPosSession;
 use Modules\Pos\Entities\Pos;
 use Modules\Pos\Entities\PosSale;
@@ -51,6 +52,17 @@ class PosRepository implements PosInterface
             ]);
             $pos->save();
 
+            // Create Pos Cash
+            $this->createPosCash($pos->id);
+    }
+
+    public function createPosCash($pos){
+
+        $cash = CashPos::create([
+            'pos_id' => $pos,
+        ]);
+
+        $cash->save();
     }
     /**
      * Store a newly created resource in storage.

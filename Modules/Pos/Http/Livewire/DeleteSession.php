@@ -13,6 +13,8 @@ use Modules\Pos\Entities\PhysicalPosSession;
 class DeleteSession extends Component
 {
 
+    public $listeners = ['refreshShop'];
+
     public $pos;
 
     public $end_amount;
@@ -29,6 +31,7 @@ class DeleteSession extends Component
     public function exit(){
         redirect()->route('app.pos.dashboard');
     }
+
     public function delete(PhysicalPosSession $pos){
 
         $pos->end_amount = $this->end_amount;

@@ -8,10 +8,12 @@ use App\Models\CompanyInvitation;
 use App\Models\CompanyUser;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Notifications\Notifiable;
+use Modules\Pos\Entities\Pos;
+use Modules\Pos\Traits\HasPos;
 
 class Company extends Model
 {
-    use HasFactory, Notifiable;
+    use HasFactory, Notifiable, HasPos;
     /**
      * Get the owner of the company.
      *
@@ -124,4 +126,10 @@ class Company extends Model
 
         $this->delete();
     }
+
+    public function pos()
+    {
+        return $this->hasMany(Pos::class);
+    }
+
 }

@@ -53,9 +53,11 @@ class Checkout extends Component
         if ($this->customer_id != null) {
             $this->dispatchBrowserEvent('showCheckoutModal');
         } else {
-            session()->flash('message', 'Please Select Customer!');
+            session()->flash('message', 'Veuillez sélectionner un client !');
         }
     }
+
+
 
     public function calculateTotal() {
         return Cart::instance($this->cart_instance)->total() + $this->shipping;

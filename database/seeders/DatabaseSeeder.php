@@ -30,7 +30,7 @@ class DatabaseSeeder extends Seeder
         $this->call(CurrencyDatabaseSeeder::class);
         $this->call(SettingDatabaseSeeder::class);
         // $this->call(PosDatabaseSeeder::class);
-        // $this->call(ProductDatabaseSeeder::class);
+        $this->call(ProductDatabaseSeeder::class);
         // $this->call(SaleDatabaseSeeder::class);
 
     }

@@ -7,10 +7,11 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Notifications\Notifiable;
 use App\Abstracts\Company as CompanyModel;
 use Illuminate\Database\Eloquent\Builder;
+use Modules\Pos\Traits\HasPos;
 
 class Company extends CompanyModel
 {
-
+    // use HasPos;
     /**
      * The attributes that are mass assignable.
      *
