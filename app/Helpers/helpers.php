@@ -72,7 +72,7 @@ if (!function_exists('enterprise')) {
         $enterpriseYear = Plan::find(2);
         
         // Get the subscription for the authenticated user and plan
-        $enterprise = PlanSubscription::where('user_id', auth()->user()->id)
+        $enterprise = PlanSubscription::where('subscriber_id', auth()->user()->id)
         ->whereIn('plan_id', [$enterpriseMonth->id, $enterpriseYear->id])
         ->first();
 
