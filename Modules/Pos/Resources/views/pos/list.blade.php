@@ -1,6 +1,6 @@
 @extends('layouts.master')
 
-@section('title', __('Point Of Sales'))
+@section('page_title', __('Point de Ventes'))
 
 @section('third_party_stylesheets')
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.25/css/dataTables.bootstrap4.min.css">
@@ -12,7 +12,7 @@
     <div class="row g-2 align-items-center">
     <div class="col">
         <h2 class="page-title">
-            {{ __('POS') }}
+            {{ __('Point de Ventes') }}
         </h2>
     </div>
     </div>

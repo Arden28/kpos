@@ -17,6 +17,13 @@ class AddCompanyInfos extends Migration
             $table->string('email')->unique()->nullable()->after('name');
             $table->string('phone')->unique()->nullable()->after('email');
             $table->text('address')->nullable()->after('phone');
+            $table->text('city')->nullable()->after('phone');
+            $table->text('country')->nullable()->after('phone');
+
+            $table->text('domain')->nullable()->after('address');
+            $table->string('size')->nullable()->after('domain');
+            $table->string('primary_interest')->nullable()->after('size');
+            $table->string('default_currency')->nullable()->after('primary_interest');
         });
     }
 

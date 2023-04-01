@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Jobs\SendWelcomeMailJob;
 use App\Mail\NewUser;
 use App\Models\Company;
 use App\Models\User;
@@ -57,9 +58,12 @@ class RegisteredUserController extends Controller
             'phone' => ['required', 'string', 'regex:/^([0-9\s\-\+\(\)]*)$/', 'min:10', 'unique:'.User::class],
             'password' => ['required', 'confirmed', Rules\Password::defaults()
                                                     ->letters()
-                                                    ->numbers()
-                                                    ->symbols()],
+                                                    ->numbers()],
             'company_name' => ['required', 'string',  'max:50'],
+            'company_reference' => ['string',  'max:10'],
+            'type' => ['required', 'string'],
+            'company_size' => ['required', 'string'],
+            'primary_interest' => ['required', 'string'],
 
         ]);
 
@@ -94,7 +98,11 @@ class RegisteredUserController extends Controller
         $company = Company::create([
             'name' => $request->company_name,
             'user_id' => $user->id,
-            'personal_company' => true
+            'personal_company' => true,
+            'reference' => $request->company_reference,
+            'domain' => $request->type,
+            'size' => $request->company_size,
+            'primary_interest' => $request->primary_interest,
         ]);
 
         // Setup settings

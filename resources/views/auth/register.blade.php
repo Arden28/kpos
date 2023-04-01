@@ -52,13 +52,26 @@
         </div>
 
         <div class="mb-3">
+            <label class="form-label">{{ __('Référence de l\'entreprise') }}</label>
+            <input type="text" placeholder="Ex: MR" class="form-control"
+                name="company_reference" value="{{ old('company_reference') }}">
+            <x-input-error :messages="$errors->get('company_reference')" class="mt-2" />
+        </div>
+
+        <div class="mb-3">
             <label class="form-label">{{ __('Quel est votre d\'activité ?') }}</label>
             <select class="form-control" name="type">
                 <option value="">{{ __('Séléctionnez votre domain') }}</option>
-                <option value="Magasin de vêtements">{{ __('Magasin de vêtements') }}</option>
-                <option value="Magasin de bijoux">{{ __('Magasin de bijoux') }}</option>
-                <option value="Dépots de boissons">{{ __('Dépots de boissons') }}</option>
-                <option value="Magasin d'électronique">{{ __("Magasin électronique") }}</option>
+                <option value="clothing_store">{{ __('Magasin de vêtements') }}</option>
+                <option value="jewelry_store">{{ __('Magasin de bijoux') }}</option>
+                <option value="beverage_depot">{{ __('Dépots de boissons') }}</option>
+                <option value="beverage_depot">{{ __('Dépots de ciments') }}</option>
+                <option value="beverage_depot">{{ __('Dépots d\'eau') }}</option>
+                <option value="electronics_store">{{ __("Magasin électronique") }}</option>
+                <option value="retail_store">{{ __('Commerce de vente en détail') }}</option>
+                <option value="minimarket">{{ __('Superette') }}</option>
+                <option value="super_market">{{ __('Super Marché') }}</option>
+                <option value="store_chain">{{ __("Chaîne de magasin") }}</option>
             </select>
             <x-input-error :messages="$errors->get('type')" class="mt-2" />
         </div>

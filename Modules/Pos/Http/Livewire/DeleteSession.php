@@ -17,17 +17,25 @@ class DeleteSession extends Component
 
     public $pos;
 
+    public $sales;
+
     public $end_amount;
 
     // public $end_date;
 
     public $end_note;
 
-    public function mount()
+    public function mount($sales)
     {
         $this->pos = $this->pos->id; //A modifier
+        $this->sales = $sales; //A modifier
     }
 
+    // public function defaultValue($sales){
+    //     format_currency($sales->sum(function($sales) {
+    //         return $sales->sale->paid_amount;
+    //     }) );
+    // }
     public function exit(){
         redirect()->route('app.pos.dashboard');
     }

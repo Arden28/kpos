@@ -1,6 +1,6 @@
 @extends('layouts.master')
 
-@section('page_title', trans('dashboards.main.title'))
+@section('page_title', __('Tableau de bord'))
 
 @section('breadcrumb')
     <div class="page-header d-print-none">
@@ -8,14 +8,16 @@
             <div class="row g-2 align-items-center">
             <div class="col">
                 <h2 class="page-title">
-                    {{ trans('dashboards.main.dashboard') }}
+                    {{ __('Tableau de bord') }}
                 </h2>
             </div>
-            {{-- <div class="col">
+            <div class="col">
                 <h2 class="page-title">
+                    <p>salut</p>
                     <livewire:onboarding />
                 </h2>
-            </div> --}}
+            </div>
+
             <!-- Page title actions -->
             {{-- @can('create_pos_sales')
                     <div class="col-auto ms-auto d-print-none">

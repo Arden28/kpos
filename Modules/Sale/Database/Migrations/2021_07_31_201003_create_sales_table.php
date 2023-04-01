@@ -17,6 +17,7 @@ class CreateSalesTable extends Migration
             $table->id();
             $table->unsignedBigInteger('company_id');
             $table->unsignedBigInteger('pos_id')->nullable(); // A modifier
+            $table->unsignedBigInteger('pos_sale_id')->nullable(); // A modifier
             $table->date('date');
             $table->string('reference');
             $table->unsignedBigInteger('customer_id')->nullable();

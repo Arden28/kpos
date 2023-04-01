@@ -10,6 +10,8 @@
 
 // Cache Pos Session
 
+use Bpuig\Subby\Models\Plan;
+use Bpuig\Subby\Models\PlanSubscription;
 use Illuminate\Support\Facades\Auth;
 
 if (!function_exists('pos')) {
@@ -22,6 +24,63 @@ if (!function_exists('pos')) {
 
         return $pos;
     }
+}
+
+if (!function_exists('standard')) {
+    function standard() {
+
+        // Get the plan you want to check for
+        $standardMonth = Plan::find(1);
+        $standardYear = Plan::find(2);
+        
+        // Get the subscription for the authenticated user and plan
+        $standard = PlanSubscription::where('user_id', auth()->user()->id)
+        ->whereIn('plan_id', [$standardMonth->id, $standardYear->id])
+        ->first();
+
+        return $standard;
+
+    };
+
+
+}
+
+if (!function_exists('medium')) {
+    function medium() {
+
+        // Get the plan you want to check for
+        $mediumMonth = Plan::find(1);
+        $mediumYear = Plan::find(2);
+        
+        // Get the subscription for the authenticated user and plan
+        $medium = PlanSubscription::where('user_id', auth()->user()->id)
+        ->whereIn('plan_id', [$mediumMonth->id, $mediumYear->id])
+        ->first();
+
+        return $medium;
+
+    };
+
+
+}
+
+if (!function_exists('enterprise')) {
+    function enterprise() {
+
+        // Get the plan you want to check for
+        $enterpriseMonth = Plan::find(1);
+        $enterpriseYear = Plan::find(2);
+        
+        // Get the subscription for the authenticated user and plan
+        $enterprise = PlanSubscription::where('user_id', auth()->user()->id)
+        ->whereIn('plan_id', [$enterpriseMonth->id, $enterpriseYear->id])
+        ->first();
+
+        return $enterprise;
+
+    };
+
+
 }
 
 // Penser à mettre les information sur l'entreprise en cache, afin de permettre un chargement rapide

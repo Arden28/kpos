@@ -39,14 +39,14 @@
                                 <div class="row">
                                     <div class="col-lg-6">
                                         <div class="form-group">
-                                            <label for="currency_name">Currency Name <span class="text-danger">*</span></label>
-                                            <input type="text" class="form-control" name="currency_name" required>
+                                            <label for="currency_name">{{ __('Nom de la Devise') }} <span class="text-danger">*</span></label>
+                                            <input type="text" class="form-control" name="currency_name" placeholder="Ex: Franc CFA" required>
                                         </div>
                                     </div>
                                     <div class="col-lg-6">
                                         <div class="form-group">
-                                            <label for="code">Currency Code <span class="text-danger">*</span></label>
-                                            <input type="text" class="form-control" name="code" required>
+                                            <label for="code">{{ __('Code de la Devise') }} <span class="text-danger">*</span></label>
+                                            <input type="text" class="form-control" name="code" placeholder="FCFA" required>
                                         </div>
                                     </div>
                                 </div>
@@ -54,23 +54,25 @@
                                 <div class="row">
                                     <div class="col-lg-4">
                                         <div class="form-group">
-                                            <label for="symbol">Symbol <span class="text-danger">*</span></label>
-                                            <input type="text" class="form-control" name="symbol" required>
+                                            <label for="symbol">{{ __('Symbole') }} <span class="text-danger">*</span></label>
+                                            <input type="text" class="form-control" name="symbol" placeholder="XAF" required>
                                         </div>
                                     </div>
                                     <div class="col-lg-4">
                                         <div class="form-group">
                                             <label for="thousand_separator">Thousand Separator <span class="text-danger">*</span></label>
-                                            <input type="text" class="form-control" name="thousand_separator" required>
+                                            <input type="text" class="form-control" name="thousand_separator" placeholder="Ex: ." required>
                                         </div>
                                     </div>
                                     <div class="col-lg-4">
                                         <div class="form-group">
                                             <label for="decimal_separator">Decimal Separator <span class="text-danger">*</span></label>
-                                            <input type="text" class="form-control" name="decimal_separator" required>
+                                            <input type="text" class="form-control" name="decimal_separator" placeholder="Ex: ," required>
                                         </div>
                                     </div>
+
                                 </div>
+
                             </div>
                         </div>
                     </div>

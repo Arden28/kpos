@@ -29,6 +29,11 @@ class Sale extends Model
         return $this->belongsTo(PosSale::class, 'pos_id', 'id' );
     }
 
+    public function pos_sales()
+    {
+        return $this->hasMany(PosSale::class, 'sale_id', 'id' );
+    }
+
     public function physical_pos_session() {
         return $this->belongsTo(PhysicalPosSession::class, 'pos_id', 'id');
     }
@@ -61,6 +66,27 @@ class Sale extends Model
 
     public function scopeCompleted($query) {
         return $query->where('status', 'Completed');
+    }
+
+    /**
+     * Scope a query to only include sales with cash payment method.
+     *
+     * @param  \Illuminate\Database\Eloquent\Builder  $query
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function scopeCashPayment($query): Builder
+    {
+        return $query->where('payment_method', 'Cash');
+    }
+
+    /**
+     * Determine if the sale's payment method is cash.
+     *
+     * @return bool
+     */
+    public function isCashPayment()
+    {
+        return $this->payment_method === 'Cash';
     }
 
     public function getShippingAmountAttribute($value) {

@@ -206,6 +206,7 @@ class PosRepository implements PosInterface
     public function createPosSale($pos, $sale, $company, $cashier){
         PosSale::create([
             'pos_id' => $pos,
+            'pos_session_id' => session('pos_session_id'),
             'sale_id' => $sale,
             'company_id' => $company,
             'cashier_id' => $cashier,

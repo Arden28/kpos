@@ -22,7 +22,7 @@ use Spatie\Permission\Traits\HasRoles;
 
 class User extends Authenticatable implements HasMedia, MustVerifyEmail
 {
-    use HasCompany, HasSubscriptions, HasFactory, Notifiable, HasRoles, InteractsWithMedia;
+    use HasCompany, HasPos, HasSubscriptions, HasFactory, Notifiable, HasRoles, InteractsWithMedia;
 
     protected $table = 'users';
     /**

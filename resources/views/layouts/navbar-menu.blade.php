@@ -6,7 +6,8 @@
               <ul class="navbar-nav">
 
                 <li class="nav-item {{ request()->routeIs('dashboard') ? 'active' : '' }}" data-turbolinks>
-                    <a class="nav-link" href="{{ route('dashboard') }}" >
+                    <a class="btn" style="margin-right: 5px;" href="{{ route('dashboard') }}" >
+                        {{-- <a class="nav-link" href="{{ route('dashboard') }}" > --}}
                       <span class="nav-link-icon d-md-none d-lg-inline-block"><!-- Download SVG icon from http://tabler-icons.io/i/home -->
                         <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><polyline points="5 12 3 12 12 3 21 12 19 12" /><path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" /><path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" /></svg>
                       </span>
@@ -17,8 +18,9 @@
                 </li>
 
                 @can('access_reports')
-                <li class="nav-item dropdown"  data-turbolinks="false" {{ request()->routeIs('*-report.index') ? 'active' : '' }}">
-                  <a class="nav-link dropdown-toggle" href="#navbar-base" data-bs-toggle="dropdown" data-bs-auto-close="outside" role="button" aria-expanded="false" >
+                <li class="nav-item dropdown {{ request()->routeIs('*-report.index') ? 'active' : '' }}"  data-turbolinks="false" >
+                    {{-- <a class="nav-link dropdown-toggle" href="#navbar-base" data-bs-toggle="dropdown" data-bs-auto-close="outside" role="button" aria-expanded="false" > --}}
+                  <a class="btn" style="margin-right: 5px;" href="#navbar-base" data-bs-toggle="dropdown" data-bs-auto-close="outside" role="button" aria-expanded="false" >
                     <i class="bi bi-clipboard-data" style="width: 24px; height:24px"></i>
                     </span>
                     <span class="nav-link-title">
@@ -69,7 +71,8 @@
                 @endcan
 
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('inventory.index') }}" >
+                    <a class="btn" style="margin-right: 5px;" href="{{ route('inventory.index') }}" >
+                        {{-- <a class="nav-link" href="{{ route('inventory.index') }}" > --}}
                       <span class="nav-link-icon d-md-none d-lg-inline-block"><!-- Download SVG icon from http://tabler-icons.io/i/home -->
                         <i class="bi bi-box-seam" style="width: 24px; height:24px"></i>
                       </span>
@@ -82,7 +85,9 @@
                 <li class="nav-item dropdown
                 {{ request()->routeIs('products.*') || request()->routeIs('product-categories.*') ? 'active' : '' }}
                 ">
-                  <a class="nav-link dropdown-toggle" data-turbolinks="false" href="#navbar-base" data-bs-toggle="dropdown" data-bs-auto-close="outside" role="button" aria-expanded="false" >
+                  {{-- <a class="nav-link dropdown-toggle" data-turbolinks="false" href="#navbar-base" data-bs-toggle="dropdown" data-bs-auto-close="outside" role="button" aria-expanded="false" > --}}
+
+                <a class="btn" style="margin-right: 5px;" data-turbolinks="false" href="#navbar-base" data-bs-toggle="dropdown" data-bs-auto-close="outside" role="button" aria-expanded="false" >
                     <span class="nav-link-icon d-md-none d-lg-inline-block"><!-- Download SVG icon from http://tabler-icons.io/i/package -->
                         <i class="bi bi-app" style="width: 24px; height: 24px;"></i>
                     </span>
@@ -214,7 +219,8 @@
                 {{-- Customers | Suppliers Management --}}
                 @can('access_customers')
                 <li class="nav-item">
-                  <a class="nav-link" href="{{ route('customers.index') }}" >
+                  <a class="btn" style="margin-right: 5px;" href="{{ route('customers.index') }}" >
+                    {{-- <a class="nav-link" href="{{ route('customers.index') }}" > --}}
                     <span class="nav-link-icon d-md-none d-lg-inline-block"><!-- Download SVG icon from http://tabler-icons.io/i/star -->
                         <i class="bi bi-people-fill" style="width: 24px; height:24px"></i>
                     </span>
@@ -251,7 +257,8 @@
                 {{-- Employee Management --}}
                 @can('access_user_management')
                 <li class="nav-item {{ request()->routeIs('roles*') ? 'active' : '' }}">
-                  <a class="nav-link" href="{{ route('users.index') }}" >
+                  <a class="btn" style="margin-right: 5px;" href="{{ route('users.index') }}" >
+                    {{-- <a class="nav-link" href="{{ route('users.index') }}" > --}}
                     <span class="nav-link-icon d-md-none d-lg-inline-block"><!-- Download SVG icon from http://tabler-icons.io/i/star -->
                         <i class="bi bi-people" style="width: 24px; height:24px"></i>
                     </span>
@@ -265,12 +272,23 @@
                 {{-- POS Management --}}
                 @can('access_pos')
                 <li class="nav-item">
-                  <a class="nav-link" href="{{ route('app.pos.index') }}" >
-                    <span class="nav-link-icon d-md-none d-lg-inline-block"><!-- Download SVG icon from http://tabler-icons.io/i/star -->
-                        <i class="bi bi-shop" style="width: 24px; height:24px"></i>
-                    </span>
+                @if(auth()->user()->subscriptions()->count() === 0)
+                
+                    @if (standard() && standard()->isActive()) {
+                        <a class="btn" style="margin-right: 5px;" href="{{ route('app.pos.index') }}" >
+                    @else
+                    <a  class="btn" style="margin-right: 5px;" data-bs-toggle="modal" data-bs-target="#modal-report">
+                    @endif
+                @else
+                  <a class="btn" style="margin-right: 5px;" href="{{ route('app.pos.index') }}" >
+                @endif
+                
+                    <i class="bi bi-shop" style="width: 24px; height:24px"></i>
                     <span class="nav-link-title">
                       {{ __('POS') }}
+                      <span class="nav-link-icon d-md-none d-lg-inline-block"><!-- Download SVG icon from http://tabler-icons.io/i/star -->
+                        @include('utils.standard_badge')
+                      </span>
                     </span>
                   </a>
                 </li>
@@ -279,7 +297,8 @@
                 {{-- Settings --}}
                 @can('access_pos')
                 <li class="nav-item">
-                  <a class="nav-link" href="{{ route('settings.index') }}" >
+                  <a class="btn" style="margin-right: 5px;" href="{{ route('settings.index') }}" >
+                    {{-- <a class="nav-link" href="{{ route('settings.index') }}" > --}}
                     <span class="nav-link-icon d-md-none d-lg-inline-block"><!-- Download SVG icon from http://tabler-icons.io/i/star -->
                         <i class="bi bi-gear" style="width: 24px; height:24px;"></i>
                     </span>
@@ -324,7 +343,7 @@
 
 
                 <li class="nav-item dropdown">
-                  <a class="nav-link dropdown-toggle" href="#navbar-help" data-bs-toggle="dropdown" data-bs-auto-close="outside" role="button" aria-expanded="false" >
+                  <a class="btn" style="margin-right: 5px;" href="#navbar-help" data-bs-toggle="dropdown" data-bs-auto-close="outside" role="button" aria-expanded="false" >
                     <i class="bi bi-life-preserver" style="width: 24px; height: 24px;"></i>
                     </span>
                     <span class="nav-link-title">
@@ -347,7 +366,8 @@
 
 
                 <li class="nav-item disabled">
-                    <a class="nav-link" href="#" >
+                    <a class="btn" href="#" >
+                        {{-- <a class="nav-link" href="#" > --}}
                       <span class="nav-link-icon d-md-none d-lg-inline-block">
                         <i class="bi bi-app-indicator"></i>
                       </span>

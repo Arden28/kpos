@@ -1,6 +1,6 @@
 @extends('pos::layouts.master')
 
-@section('title', __('Commandes'))
+@section('page_title', __('Commandes'))
 
 @section('breadcrumb')
 <div class="page-header d-print-none">

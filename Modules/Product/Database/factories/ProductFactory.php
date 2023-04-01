@@ -29,8 +29,8 @@ class ProductFactory extends Factory
             'category_id' => function () {
                 return Category::inRandomOrder()->first()->id;
             },
-            'product_name' => $this->faker->sentence(3),
-            'product_code' => $this->faker->unique()->numerify('####'),
+            'product_name' => $this->faker->word(3),
+            'product_code' => $this->faker->unique()->numerify('#############'),
             'product_barcode_symbology' => $this->faker->randomElement(['UPC-A', 'EAN-13', 'Code 128']),
             'product_quantity' => $this->faker->numberBetween(50, 100),
             'product_cost' => $this->faker->numberBetween(10, 50),

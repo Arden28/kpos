@@ -7,7 +7,9 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Notifications\Notifiable;
+use Modules\Pos\Entities\CashPos;
 use Modules\Pos\Entities\PosSale;
+use Modules\Sale\Entities\Sale;
 
 class Pos extends Model
 {
@@ -38,6 +40,11 @@ class Pos extends Model
     {
         return $this->hasMany(PhysicalPosSession::class, 'pos_id', 'id');
     }
+    // public function sales()
+    // {
+    //     return $this->hasMany(Sale::class, 'pos_id', 'id');
+    // }
+
     public function pos_sales()
     {
         return $this->hasMany(PosSale::class, 'pos_id', 'id');

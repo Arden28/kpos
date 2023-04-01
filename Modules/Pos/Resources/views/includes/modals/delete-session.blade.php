@@ -4,14 +4,23 @@
       <div class="modal-content">
         <div class="modal-header">
             <h5 class="modal-title">{{ $physical->name }}</h5>
-          <h5 class="modal-title">
-            Total {{ $physical->pos_sales->count() }} commande(s): 0,00 XAF
+            @php
+                $pos_sales = Auth::user()->currentPos()->getSessionSales(session('pos_session_id'));
 
+                // $sales = Auth::user()->currentPos()->getSessionCashTransactions(session('pos_session_id'));
+            @endphp
+          <h5 class="modal-title">
+            Total {{ $pos_sales->count() }} commande(s): {{ format_currency($pos_sales->sum(function($pos_sales) {
+                return $pos_sales->sale->paid_amount;
+            }) )
+            }}
           </h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
-
-        <livewire:pos::delete-session  :pos="$pos" />
+        {{-- @foreach ($sales as $sale)
+            <p>{{ $sale->paid_amount }}</p>
+        @endforeach --}}
+        <livewire:pos::delete-session  :pos="$pos" :sales="$pos_sales"/>
 
       </div>
     </div>

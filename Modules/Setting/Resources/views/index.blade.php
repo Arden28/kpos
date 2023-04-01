@@ -8,7 +8,7 @@
     <div class="row g-2 align-items-center">
     <div class="col">
         <h2 class="page-title">
-            {{ __('Paramètes') }}
+            {{ __('Paramètes Généraux') }}
         </h2>
     </div>
     </div>
@@ -63,20 +63,26 @@
                                         </div>
                                     </div>
 
-                                    {{-- <div class="col-lg-6">
+                                    <div class="col-lg-4" style="padding-bottom: 10px">
                                         <div class="form-group">
-                                            <label for="footer_text">{{ __('Footer Text') }} <span class="text-danger">*</span></label>
-                                            <textarea rows="3" name="footer_text" class="form-control">{!! $settings->footer_text !!}</textarea>
+                                            <label for="notification_email">{{ __('Notification Email') }} <span class="text-danger">*</span></label>
+                                            <input type="text" class="form-control" name="notification_email" value="{{ $settings->notification_email }}" required>
                                         </div>
-                                    </div> --}}
+                                    </div>
 
                                 </div>
 
+                                <hr>
 
                                 <div class="row">
                                     <div class="col-lg-4" style="padding-bottom: 10px">
-                                        <div class="form-group">
-                                            <label for="default_currency_id">{{ __('Default Currency') }} <span class="text-danger">*</span></label>
+                                            <div class="input-group">
+                                                <div class="input-group-prepend">
+                                                    <a href="#" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal-currency">
+                                                        <i class="bi bi-currency-exchange"></i>
+                                                    </a>
+                                                </div>
+                                            {{-- <label for="default_currency_id">{{ __('Default Currency') }} <span class="text-danger">*</span></label> --}}
                                             <select name="default_currency_id" id="default_currency_id" class="form-control" required>
                                                 <option>{{ __('Choisissez votre devise') }}</option>
                                                 @foreach($currencies as $currency)
@@ -86,18 +92,13 @@
                                         </div>
                                     </div>
                                     <div class="col-lg-4" style="padding-bottom: 10px">
-                                        <div class="form-group">
-                                            <label for="default_currency_position">{{ __('Placement Devise') }} <span class="text-danger">*</span></label>
+                                        <div class="input-group">
+                                            {{-- <label for="default_currency_position">{{ __('Placement Devise') }} <span class="text-danger">*</span></label> --}}
                                             <select name="default_currency_position" id="default_currency_position" class="form-control" required>
+                                                <option value="">{{ __('Comment se place le symbole de votre devise ?') }}</option>
                                                 <option {{ $settings->default_currency_position == 'prefix' ? 'selected' : '' }} value="prefix">{{ __('Avant') }}</option>
                                                 <option {{ $settings->default_currency_position == 'suffix' ? 'selected' : '' }} value="suffix">{{ __('Après') }}</option>
                                             </select>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-4" style="padding-bottom: 10px">
-                                        <div class="form-group">
-                                            <label for="notification_email">{{ __('Notification Email') }} <span class="text-danger">*</span></label>
-                                            <input type="text" class="form-control" name="notification_email" value="{{ $settings->notification_email }}" required>
                                         </div>
                                     </div>
                                 </div>
@@ -287,5 +288,8 @@
             </div>
         </div>
     </div>
+
+    @include('currency::livewire.includes.create-currency-modal')
+
 @endsection
 

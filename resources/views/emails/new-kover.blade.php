@@ -1,4 +1,4 @@
-{{-- <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -119,7 +119,7 @@
                 © <script>document.write(new Date().getFullYear());</script> Koverae | 725 Immeuble Lemina</p>
             <a href="#" class="link">{{ __('Condition d\'utilisation') }}</a>
             <a href="#" class="link" style="padding-left: 15px"
-              >{{ __('Politique de Confidentio=alité') }}</a
+              >{{ __('Politique de Confidentialité') }}</a
             >
           </td>
         </tr>
@@ -172,8 +172,8 @@
   </body>
 </html>
 
- --}}
 
+{{--
 @component('mail::message')
 # Salut {{ $user->name }}
 
@@ -199,4 +199,4 @@ En aucun cas nous vous demanderons vos identifiants, sauf en page de connection.
 Merci,<br>
 {{ config('app.name') }}
 
-@endcomponent
+@endcomponent --}}

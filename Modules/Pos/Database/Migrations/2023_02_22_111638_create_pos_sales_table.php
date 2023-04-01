@@ -18,6 +18,7 @@ class CreatePosSalesTable extends Migration
             $table->unsignedBigInteger('pos_id');
             $table->unsignedBigInteger('sale_id');
             $table->unsignedBigInteger('company_id');
+            $table->foreignId('pos_session_id')->nullable();
 
             $table->foreign('pos_id')->references('id')->on('pos')->onDelete('cascade');
             $table->foreign('sale_id')->references('id')->on('sales')->onDelete('cascade');

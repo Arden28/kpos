@@ -17,6 +17,7 @@ class CreateCashPosTable extends Migration
             $table->id();
             $table->unsignedBigInteger('pos_id');
             $table->string('amount')->nullable();
+            $table->string('stated_amount')->nullable();
 
             $table->string('last_transaction')->nullable();
             $table->foreign('pos_id')->references('id')->on('pos')->onDelete('cascade');

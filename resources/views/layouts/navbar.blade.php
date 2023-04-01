@@ -16,11 +16,11 @@
                 <div class="btn-list">
 
                     @if(auth()->user()->subscriptions()->count() === 0)
-                            <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#modal-report">
+                            <a type="button" href="{{ route('register.pro') }}" class="btn" >
                                 <!-- Download SVG icon from http://tabler-icons.io/i/brand-github -->
                                 <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" /></svg>
                                 {{ __('Passer à la version pro') }}
-                            </button>
+                            </a>
                     @endif
                   <livewire:subby::plan />
 
@@ -74,7 +74,7 @@
                 </div>
               </div>
               {{-- Notifications --}}
-                {{-- @php
+                @php
                     $low_quantity_products = \Modules\Product\Entities\Product::select('id', 'product_quantity', 'product_stock_alert', 'product_code')->whereColumn('product_quantity', '<=', 'product_stock_alert')->get();
                     $notifications = $low_quantity_products->count();
                 @endphp
@@ -131,7 +131,7 @@
                     </div>
                   </div>
                 </div>
-              </div> --}}
+              </div>
 
             </div>
             {{-- Companies --}}
@@ -181,7 +181,7 @@
                                       <div class="col-auto">
                                           {{-- When the Company Id == the current connected Company --}}
                                           @if(Auth::user()->currentCompany->id == $company->id)
-                                              <a href="#" class="list-group-item-actions">
+                                              <a href="{{ route('settings.index') }}" class="list-group-item-actions">
                                                   <i class="bi bi-eye mr-1 text-primary"></i>
                                               </a>
                                           @else

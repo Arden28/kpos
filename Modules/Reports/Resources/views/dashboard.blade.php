@@ -15,7 +15,7 @@
                 </h2>
             </div> --}}
             <!-- Page title actions -->
-            @can('create_pos_sales')
+            {{-- @can('create_pos_sales')
                     <div class="col-auto ms-auto d-print-none">
                         <div class="btn-list">
 
@@ -23,14 +23,10 @@
                             <i class="bi bi-plus"></i>
                             {{ __('Add an order') }}
                         </a>
-                        {{-- <a href="#" class="btn btn-primary d-none d-sm-inline-block {{ request()->routeIs('app.pos.index') ? 'disabled' : '' }}" data-bs-toggle="modal" data-bs-target="#modal-report">
-                            <i class="bi bi-plus"></i>
-                            {{ __('Add an order') }}
-                        </a> --}}
 
                         </div>
                     </div>
-            @endcan
+            @endcan --}}
             </div>
         </div>
     </div>

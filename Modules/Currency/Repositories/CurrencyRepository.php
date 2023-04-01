@@ -20,7 +20,7 @@ class CurrencyRepository implements CurrencyInterface
     // Get all currencies depends on the current company
     public function getCurrencies($company){
 
-        return Currency::where('company_id', $company)->get();
+        return Currency::whereIn('company_id', [$company, 0])->get();
 
     }
     // Create a new supplier

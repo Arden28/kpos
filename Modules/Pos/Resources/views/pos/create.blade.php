@@ -1,6 +1,6 @@
 @extends('layouts.master')
 
-@section('title', __('Ajouter un point de vente'))
+@section('page_title', __('Ajouter un point de vente'))
 
 @section('breadcrumb')
 <div class="page-header d-print-none">

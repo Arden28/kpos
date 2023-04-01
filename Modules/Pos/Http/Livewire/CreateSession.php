@@ -8,6 +8,7 @@ use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 use Livewire\Component;
+use Modules\Pos\Entities\CashPos;
 use Modules\Pos\Entities\PhysicalPosSession;
 use Modules\Pos\Entities\Pos;
 
@@ -61,7 +62,13 @@ class CreateSession extends Component
 
                     if($pos_session->save()){
 
+                        // Upadate Cash
+                        $cash = CashPos::where('pos_id', $pos_session->pos_id)->first();
+                        $cash->amount = $pos_session->start_amount;
+                        $cash->save();
+
                         session(['pos_session' => true]);
+                        session(['pos_session_id' => $pos_session->id]);
                         session(['pos_id' => $this->pos_id]);
 
                         return redirect()->route('app.pos.index');

@@ -9,7 +9,7 @@ class CashPos extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['pos_id', 'amount'];
+    protected $fillable = ['pos_id', 'amount', 'stated_amount'];
 
     /**
      * Get the company that the invitation belongs to.

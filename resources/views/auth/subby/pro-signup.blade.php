@@ -16,7 +16,7 @@
         <a href="#" class="navbar-brand navbar-brand-autodark"><img src="{{ asset('assets/images/logo/koverae-1.png') }}" height="170" alt="Koverae Logo"></a>
       </div>
       <h2 class="h3 text-center mb-3">
-        {{ __("Essayer KPOS Pro Gratuitement !") }}
+        {{ __("Essayer Koverae Pro Gratuitement !") }}
         <br />
       </h2>
       <div class="col-lg-12">
@@ -24,6 +24,10 @@
             <li>
                     <svg xmlns="http://www.w3.org/2000/svg" class="icon text-green" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M5 12l5 5l10 -10" /></svg>
                     {{ __('Gratuit pendant 30 jours') }}
+            </li>
+            <li>
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon text-green" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M5 12l5 5l10 -10" /></svg>
+                    {{ __('Assistance personnelle pendant toute la durée de votre essaie') }}
             </li>
             <li>
                     <svg xmlns="http://www.w3.org/2000/svg" class="icon text-green" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M5 12l5 5l10 -10" /></svg>

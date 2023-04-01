@@ -43,7 +43,7 @@ class SettingController extends Controller
 
         $company->name = $request->company_name;
         $company->email = $request->company_email;
-        $company->phone = $request->company_name;
+        $company->phone = $request->company_phone;
         $company->address = $request->company_address;
         $company->save();
         // $company->update([
