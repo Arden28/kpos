@@ -56,7 +56,7 @@ class HomeController extends Controller
     $revenue = ($sales - $sale_returns) / 100;
     $profit = $revenue - $product_costs;
 
-    return view('reports::dashboard', [
+    return view('home', [
         'revenue'          => $revenue,
         'sale_returns'     => $sale_returns / 100,
         'purchase_returns' => $purchase_returns / 100,

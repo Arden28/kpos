@@ -1,6 +1,6 @@
 @extends('layouts.master')
 
-@section('title', __('Add Expense'))
+@section('title', __('Ajouter une dépense - Finance & Facturation'))
 
 
 @section('breadcrumb')
@@ -9,7 +9,7 @@
     <div class="row g-2 align-items-center">
     <div class="col">
         <h2 class="page-title">
-            {{ __('Add Expense') }}
+            {{ __('Ajouter une dépense') }}
         </h2>
     </div>
     </div>
@@ -27,7 +27,7 @@
                     <div class="col-lg-12">
                         @include('utils.alerts')
                         <div class="form-group">
-                            <button class="btn btn-primary">Create Expense <i class="bi bi-check"></i></button>
+                            <button class="btn btn-primary">{{ __('Ajouter') }} <i class="bi bi-check"></i></button>
                         </div>
                     </div>
                     <div class="col-lg-12">
@@ -36,13 +36,13 @@
                                 <div class="row">
                                     <div class="col-lg-6">
                                         <div class="form-group">
-                                            <label for="reference">Reference <span class="text-danger">*</span></label>
+                                            <label for="reference">{{ __('Référence') }} <span class="text-danger">*</span></label>
                                             <input type="text" class="form-control" name="reference" required readonly value="EXP">
                                         </div>
                                     </div>
                                     <div class="col-lg-6">
                                         <div class="form-group">
-                                            <label for="date">Date <span class="text-danger">*</span></label>
+                                            <label for="date">{{ __('Date') }} <span class="text-danger">*</span></label>
                                             <input type="date" class="form-control" name="date" required value="{{ \Carbon\Carbon::now()->format('Y-m-d') }}">
                                         </div>
                                     </div>
@@ -51,7 +51,7 @@
                                 <div class="row">
                                     <div class="col-lg-6">
                                         <div class="form-group">
-                                            <label for="category_id">Category <span class="text-danger">*</span></label>
+                                            <label for="category_id">{{ __('Catégorie') }} <span class="text-danger">*</span></label>
                                             <select name="category_id" id="category_id" class="form-control" required>
                                                 <option value="" selected>Select Category</option>
                                                 @foreach(\Modules\Expense\Entities\ExpenseCategory::all() as $category)
@@ -62,14 +62,14 @@
                                     </div>
                                     <div class="col-lg-6">
                                         <div class="form-group">
-                                            <label for="amount">Amount <span class="text-danger">*</span></label>
+                                            <label for="amount">{{ __('Montant') }} <span class="text-danger">*</span></label>
                                             <input id="amount" type="text" class="form-control" name="amount" required>
                                         </div>
                                     </div>
                                 </div>
 
                                 <div class="form-group">
-                                    <label for="details">Details</label>
+                                    <label for="details">{{ __('Détails') }}</label>
                                     <textarea class="form-control" rows="6" name="details"></textarea>
                                 </div>
                             </div>

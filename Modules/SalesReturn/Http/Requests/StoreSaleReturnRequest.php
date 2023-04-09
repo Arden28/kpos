@@ -16,6 +16,7 @@ class StoreSaleReturnRequest extends FormRequest
     {
         return [
             'customer_id' => 'required|numeric',
+            'account_id' => 'nullable|numeric',
             'reference' => 'required|string|max:255',
             'tax_percentage' => 'required|integer|min:0|max:100',
             'discount_percentage' => 'required|integer|min:0|max:100',

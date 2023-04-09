@@ -10,6 +10,7 @@ use Illuminate\Http\Client\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+use Modules\Financial\Entities\Accounting\AccountBook;
 use Modules\People\Entities\Customer;
 use Modules\Product\Entities\Category;
 use Modules\Product\Entities\Product;
@@ -49,6 +50,7 @@ class SaleRepository implements SaleInterface
                 $sale = Sale::create([
 
                     'company_id'=> Auth::user()->currentCompany->id,
+                    'account_id' => $request['account_id'],
                     'date' => $request['date'],
                     // 'date' => now()->format('Y-m-d'),
                     'reference' => 'PSL',
@@ -68,6 +70,30 @@ class SaleRepository implements SaleInterface
                     'discount_amount' => Cart::instance('sale')->discount() * 100,
                     'seller_id' => $request['seller_id'],
                 ]);
+
+                // Register to the book.
+
+                $current_balance = $sale->account->balance;
+
+                $book = AccountBook::create([
+                    'company_id' => Auth::user()->currentCompany->id,
+                    'account_id' => $sale->account_id,
+                    'user_id' => Auth::user()->id,
+                    'detail' => 'Vente',
+                    'balance' => $sale->paid_amount,
+                    'debit' => $sale->paid_amount,
+                    'date' => now()->format('d-m-Y H:i:s'),
+                ]);
+
+                $book->save();
+
+                $new_balance = $current_balance + $book->balance;
+
+                $sale->account->balance = $new_balance;
+                $sale->account->save();
+
+                $book->balance = $new_balance;
+                $book->save();
 
                 foreach (Cart::instance('sale')->content() as $cart_item) {
 

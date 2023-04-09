@@ -18,6 +18,7 @@ class CreateExpenseCategoriesTable extends Migration
             $table->unsignedBigInteger('company_id');
             $table->string('category_name');
             $table->text('category_description')->nullable();
+            $table->foreignId('account_id')->nullable();
 
             $table->foreign('company_id')->references('id')->on('companies')->cascadeOnDelete();
             $table->timestamps();

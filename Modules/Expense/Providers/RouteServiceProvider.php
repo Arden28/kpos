@@ -48,6 +48,7 @@ class RouteServiceProvider extends ServiceProvider
     protected function mapWebRoutes()
     {
         Route::middleware('web')
+            ->prefix('finance')
             ->namespace($this->moduleNamespace)
             ->group(module_path('Expense', '/Routes/web.php'));
     }

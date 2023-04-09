@@ -6,8 +6,10 @@ use App\Traits\CompanySession;
 use Modules\Sale\DataTables\SalesDataTable;
 use Gloudemans\Shoppingcart\Facades\Cart;
 use Illuminate\Routing\Controller;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Gate;
+use Modules\Financial\Interfaces\Accounting\AccountInterface;
 use Modules\People\Entities\Customer;
 use Modules\Product\Entities\Product;
 use Modules\Sale\Entities\Sale;
@@ -23,10 +25,15 @@ class SaleController extends Controller
 
     protected $saleRepository;
 
-    public function __construct(SaleInterface $saleRepository){
+    protected $accountRepository;
+
+    public function __construct(SaleInterface $saleRepository, AccountInterface $accountRepository){
 
         $this->saleRepository = $saleRepository;
+        $this->accountRepository = $accountRepository;
+
     }
+
 
     public function index(SalesDataTable $dataTable) {
         abort_if(Gate::denies('access_sales'), 403);
@@ -40,7 +47,9 @@ class SaleController extends Controller
 
         Cart::instance('sale')->destroy();
 
-        return view('sale::create');
+        $accounts = $this->accountRepository->getCompanyAccounts(Auth::user()->currentCompany->id);
+
+        return view('sale::create', compact('accounts'));
     }
 
 

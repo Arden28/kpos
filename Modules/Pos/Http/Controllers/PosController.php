@@ -11,6 +11,7 @@ use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
+use Modules\Financial\Interfaces\Accounting\AccountInterface;
 use Modules\People\Entities\Customer;
 use Modules\People\Interfaces\CustomerInterface;
 use Modules\Pos\DataTables\PosDataTable;
@@ -34,11 +35,14 @@ class PosController extends Controller
 
     protected $customerRepository;
 
-    public function __construct(PosInterface $posRepository, CustomerInterface $customerRepository){
+    protected $accountRepository;
+
+    public function __construct(PosInterface $posRepository, CustomerInterface $customerRepository, AccountInterface $accountRepository){
 
         $this->middleware(['subscribed']);
         $this->posRepository = $posRepository;
         $this->customerRepository = $customerRepository;
+        $this->accountRepository = $accountRepository;
     }
 
 
@@ -93,7 +97,8 @@ class PosController extends Controller
      */
     public function createPhysical()
     {
-        return view('pos::pos.create');
+        $accounts = $this->accountRepository->getCompanyAccounts(Auth::user()->currentCompany->id);
+        return view('pos::pos.create', compact('accounts'));
     }
 
 
@@ -152,6 +157,8 @@ class PosController extends Controller
             $pos_id = $pos['id'];
 
             $this->posRepository->createPos($request->validated(), $pos_id);
+
+            // $this->accountRepository->addInAccountBook($request->validated(), $pos['account_id'], Auth::user()->currentCompany->id);
 
             toast('Commande encaissée avec succès!', 'success');
 

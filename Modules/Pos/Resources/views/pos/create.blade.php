@@ -1,6 +1,6 @@
 @extends('layouts.master')
 
-@section('page_title', __('Ajouter un point de vente'))
+@section('title', __('Ajouter un point de vente'))
 
 @section('breadcrumb')
 <div class="page-header d-print-none">
@@ -26,7 +26,7 @@
                     <div class="col-lg-12">
                         @include('utils.alerts')
                         <div class="form-group">
-                            <button class="btn btn-primary">{{ __('Nouveau Point de vente') }} <i class="bi bi-check"></i></button>
+                            <button class="btn btn-primary">{{ __('Ajouter') }} <i class="bi bi-check"></i></button>
                         </div>
                     </div>
                     <br />
@@ -35,7 +35,7 @@
                             <div class="card-body">
                                 <div class="row">
 
-                                    <div class="col-lg-12">
+                                    <div class="col-lg-12" style="margin-bottom: 10px">
                                         <div class="form-group">
                                             <label for="name">{{ __('Nom') }} <span class="text-danger">*</span></label>
                                             <input type="text" name="name"  class="form-control @error('name') is-invalid @enderror"
@@ -47,7 +47,7 @@
                                         </div>
                                     </div>
 
-                                    <div class="col-lg-12">
+                                    <div class="col-lg-12" style="margin-bottom: 10px">
                                         <div class="form-group">
                                             <label for="address">{{ __('Adresse') }} <span class="text-danger">*</span></label>
                                             <input type="text" name="address"  class="form-control @error('address') is-invalid @enderror"
@@ -58,6 +58,8 @@
                                             @enderror
                                         </div>
                                     </div>
+
+                                    @include('financial::includes.accounts.choice')
 
                                 </div>
 
@@ -71,3 +73,17 @@
 
 @endsection
 
+@push('page_scripts')
+
+    <script>
+        const accountForm = document.getElementById('account-form');
+        const showAccountFormButton = document.getElementById('show-account-form');
+        let isAccountFormVisible = false;
+        showAccountFormButton.addEventListener('click', function() {
+            isAccountFormVisible = !isAccountFormVisible;
+            accountForm.style.display = isAccountFormVisible ? 'block' : 'none';
+            showAccountFormButton.innerHTML = isAccountFormVisible ? 'Cacher' : 'Connecter un Compte';
+        });
+    </script>
+
+@endpush

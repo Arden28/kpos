@@ -10,6 +10,7 @@ use Exception;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+use Modules\Financial\Entities\Accounting\AccountBook;
 use Modules\Pos\Interfaces\PosInterface;
 use Modules\Sale\Http\Requests\StorePosSaleRequest;
 use Modules\People\Entities\Customer;
@@ -49,6 +50,7 @@ class PosRepository implements PosInterface
                 'code' => $code,
                 'address' => $request['address'],
                 'company_id' => $company,
+                'account_id' => $request['account_id'],
             ]);
             $pos->save();
 
@@ -90,7 +92,7 @@ class PosRepository implements PosInterface
                 $sale = Sale::create([
                     'company_id'=> Auth::user()->currentCompany->id,
                     // 'pos_id' => $pos,
-                    'date' => now()->format('Y-m-d'),
+                    'date' => now()->format('d-m-Y H:i:s'),
                     'reference' => 'PSL',
                     'customer_id' => $request['customer_id'],
                     'customer_name' => Customer::findOrFail($request['customer_id'])['customer_name'],
@@ -147,6 +149,33 @@ class PosRepository implements PosInterface
 
                 // Create POS sale
                 $this->createPosSale($pos, $sale->id, Auth::user()->currentCompany->id, Auth::user()->id);
+
+                // Register to the book.
+                $physical = Pos::find($pos)->first();
+
+                $current_balance = $physical->account->balance;
+
+                $book = AccountBook::create([
+                    'company_id' => Auth::user()->currentCompany->id,
+                    'account_id' => $physical->account_id,
+                    'user_id' => Auth::user()->id,
+                    'detail' => 'Vente(Pdv: '.$physical->name.')',
+                    'balance' => $sale->paid_amount,
+                    'debit' => $sale->paid_amount,
+                    'date' => now()->format('d-m-Y H:i:s'),
+                ]);
+
+                $book->save();
+
+                $new_balance = $current_balance + $book->balance;
+
+                $physical->account->balance = $new_balance;
+                $physical->account->save();
+
+                $book->balance = $new_balance;
+                $book->save();
+
+
             });
 
     }

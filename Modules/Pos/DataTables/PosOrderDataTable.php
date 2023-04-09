@@ -52,7 +52,7 @@ class PosOrderDataTable extends DataTable
         ->select('pos_sales.*')
         ->with('sale', 'cashier')
 
-        ->newQuery()->groupBy('id'); //Datas are duplicates, I have to fix it up
+        ->newQuery()->groupBy('id');
     }
 
     public function html() {

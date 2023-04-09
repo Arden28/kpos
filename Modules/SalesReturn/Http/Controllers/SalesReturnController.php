@@ -64,6 +64,7 @@ class SalesReturnController extends Controller
 
                 'company_id' => Auth::user()->currentCompany->id,
 
+                'account_id' => $request->account_id,
                 'date' => $request->date,
                 'customer_id' => $request->customer_id,
                 'customer_name' => Customer::findOrFail($request->customer_id)->customer_name,

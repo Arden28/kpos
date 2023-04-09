@@ -17,58 +17,18 @@
                     </a>
                 </li>
 
-                @can('access_reports')
-                <li class="nav-item dropdown {{ request()->routeIs('*-report.index') ? 'active' : '' }}"  data-turbolinks="false" >
-                    {{-- <a class="nav-link dropdown-toggle" href="#navbar-base" data-bs-toggle="dropdown" data-bs-auto-close="outside" role="button" aria-expanded="false" > --}}
-                  <a class="btn" style="margin-right: 5px;" href="#navbar-base" data-bs-toggle="dropdown" data-bs-auto-close="outside" role="button" aria-expanded="false" >
-                    <i class="bi bi-clipboard-data" style="width: 24px; height:24px"></i>
+
+                <li class="nav-item {{ request()->routeIs('accounting') ? 'active' : '' }}" data-turbolinks>
+                  <a class="btn" style="margin-right: 5px;" href="{{ route('finance.index') }}" >
+                      {{-- <a class="nav-link" href="{{ route('dashboard') }}" > --}}
+                    <span class="nav-link-icon d-md-none d-lg-inline-block">
+                      <i class="bi bi-clipboard-data" style="width: 24px; height:24px"></i>
                     </span>
                     <span class="nav-link-title">
-                      {{ __('Analytics') }}
+                        {{ __('Finance') }}
                     </span>
                   </a>
-                  <div class="dropdown-menu">
-                    <div class="dropdown-menu-columns">
-
-                      {{-- Left --}}
-                      <div class="dropdown-menu-column">
-                        <a class="dropdown-item {{ request()->routeIs('profit-loss-report.index') ? 'active' : '' }}" href="{{ route('profit-loss-report.index') }}">
-
-                          {{ __('Profit / Loss Report') }}
-                        </a>
-                        <a class="dropdown-item {{ request()->routeIs('payments-report.index') ? 'active' : '' }}" href="{{ route('payments-report.index') }}">
-
-                          {{ __('Payments Report') }}
-                        </a>
-                        <a class="dropdown-item {{ request()->routeIs('sales-report.index') ? 'active' : '' }}" href="{{ route('sales-report.index') }}">
-
-                            {{ __('Sales Report') }}
-                        </a>
-                      </div>
-
-                      {{-- Right --}}
-                      <div class="dropdown-menu-column">
-
-                        <a class="dropdown-item {{ request()->routeIs('purchases-report.index') ? 'active' : '' }}" href="{{ route('purchases-report.index') }}">
-
-                            {{ __('Purchases Report') }}
-                        </a>
-
-                        <a class="dropdown-item {{ request()->routeIs('sales-return-report.index') ? 'active' : '' }}" href="{{ route('sales-return-report.index') }}">
-
-                            {{ __('Sales Return Report') }}
-                        </a>
-
-                        <a class="dropdown-item {{ request()->routeIs('purchases-return-report.index') ? 'c-active' : '' }}" href="{{ route('purchases-return-report.index') }}">
-
-                            {{ __('Purchases Return Report') }}
-                        </a>
-
-                      </div>
-                    </div>
-                  </div>
-                </li>
-                @endcan
+              </li>
 
                 <li class="nav-item">
                     <a class="btn" style="margin-right: 5px;" href="{{ route('inventory.index') }}" >
@@ -273,7 +233,7 @@
                 @can('access_pos')
                 <li class="nav-item">
                 @if(auth()->user()->subscriptions()->count() === 0)
-                
+
                     @if (standard() && standard()->isActive()) {
                         <a class="btn" style="margin-right: 5px;" href="{{ route('app.pos.index') }}" >
                     @else
@@ -282,7 +242,7 @@
                 @else
                   <a class="btn" style="margin-right: 5px;" href="{{ route('app.pos.index') }}" >
                 @endif
-                
+
                     <i class="bi bi-shop" style="width: 24px; height:24px"></i>
                     <span class="nav-link-title">
                       {{ __('POS') }}

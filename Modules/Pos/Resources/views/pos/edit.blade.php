@@ -1,6 +1,6 @@
 @extends('layouts.master')
 
-@section('page_title', 'Modifier le Point de vente')
+@section('title', 'Modifier le Point de vente')
 
 @section('breadcrumb')
 <div class="page-header d-print-none">

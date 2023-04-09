@@ -18,6 +18,7 @@ class StorePosPhysicalRequest extends FormRequest
             'name' => 'required|unique:pos,name',
             'code' => 'unique:pos,code',
             'address' => 'required|max:200',
+            'account_id' => 'gt:0|integer',
         ];
     }
 

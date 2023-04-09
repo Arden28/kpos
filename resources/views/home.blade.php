@@ -1,6 +1,6 @@
 @extends('layouts.master')
 
-@section('page_title', __('Tableau de bord'))
+@section('title', __('Tableau de bord'))
 
 @section('breadcrumb')
     <div class="page-header d-print-none">
@@ -11,12 +11,12 @@
                     {{ __('Tableau de bord') }}
                 </h2>
             </div>
-            <div class="col">
+            {{-- <div class="col">
                 <h2 class="page-title">
                     <p>salut</p>
                     <livewire:onboarding />
                 </h2>
-            </div>
+            </div> --}}
 
             <!-- Page title actions -->
             {{-- @can('create_pos_sales')

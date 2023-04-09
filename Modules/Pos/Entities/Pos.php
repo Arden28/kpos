@@ -9,6 +9,7 @@ use Modules\Pos\Abstracts\Pos as PosModel;
 use Modules\Pos\Entities\PhysicalPosSession;
 use Modules\Sale\Entities\Sale;
 use Illuminate\Database\Eloquent\Builder;
+use Modules\Financial\Entities\Accounting\Account;
 
 class Pos extends PosModel
 {
@@ -18,8 +19,14 @@ class Pos extends PosModel
         'name',
         'code',
         'address',
-        'company_id'
+        'company_id',
+        'account_id'
     ];
     protected $guarded = [];
+
+    public function account() {
+        return $this->belongsTo(Account::class, 'account_id', 'id');
+    }
+
 
 }

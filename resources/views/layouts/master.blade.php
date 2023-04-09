@@ -4,7 +4,7 @@
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"/>
     <meta http-equiv="X-UA-Compatible" content="ie=edge"/>
-    <title>@yield('title') | Koverae</title>
+    <title>@yield('title') | Koverae </title>
     <!-- Favicon -->
     <link rel="icon" type="image/x-icon" href="{{asset('assets/images/logo/favicon.ico')}}" />
 
@@ -58,7 +58,13 @@
 
 
         @elseif(request()->routeIs('settings.*'))
+
             @include('setting::layouts.navbar-menu')
+
+        @elseif(request()->routeIs('finance.*') || request()->routeIs('account.*') || request()->routeIs('book.*') || request()->routeIs('expense-categories.*') || request()->routeIs('expenses.*') || request()->routeIs('*-report.*') )
+
+            @include('financial::layouts.navbar-menu')
+
         @else
 
         @include('layouts.navbar-menu')

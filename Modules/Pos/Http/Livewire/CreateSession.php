@@ -8,6 +8,7 @@ use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 use Livewire\Component;
+use Modules\Financial\Entities\Accounting\Account;
 use Modules\Pos\Entities\CashPos;
 use Modules\Pos\Entities\PhysicalPosSession;
 use Modules\Pos\Entities\Pos;
@@ -16,6 +17,9 @@ class CreateSession extends Component
 {
     use CompanySession;
     public $p;
+
+    public $account;
+
     public $pos_id;
     public $user_id;
     public $start_date;
@@ -28,6 +32,9 @@ class CreateSession extends Component
 
     public function mount()
     {
+        // $this->account_id = Account::find($this->account)->first();
+
+        $this->start_amount = $this->account->balance;
         $this->pos_id = $this->p->id; //A modifier
         $this->user_id = auth()->user()->id;
     }

@@ -32,7 +32,7 @@ if (!function_exists('standard')) {
         // Get the plan you want to check for
         $standardMonth = Plan::find(1);
         $standardYear = Plan::find(2);
-        
+
         // Get the subscription for the authenticated user and plan
         $standard = PlanSubscription::where('subscriber_id', auth()->user()->id)
         ->whereIn('plan_id', [$standardMonth->id, $standardYear->id])
@@ -49,9 +49,9 @@ if (!function_exists('medium')) {
     function medium() {
 
         // Get the plan you want to check for
-        $mediumMonth = Plan::find(1);
-        $mediumYear = Plan::find(2);
-        
+        $mediumMonth = Plan::find(3);
+        $mediumYear = Plan::find(4);
+
         // Get the subscription for the authenticated user and plan
         $medium = PlanSubscription::where('subscriber_id', auth()->user()->id)
         ->whereIn('plan_id', [$mediumMonth->id, $mediumYear->id])
@@ -68,9 +68,9 @@ if (!function_exists('enterprise')) {
     function enterprise() {
 
         // Get the plan you want to check for
-        $enterpriseMonth = Plan::find(1);
-        $enterpriseYear = Plan::find(2);
-        
+        $enterpriseMonth = Plan::find(5);
+        $enterpriseYear = Plan::find(6);
+
         // Get the subscription for the authenticated user and plan
         $enterprise = PlanSubscription::where('subscriber_id', auth()->user()->id)
         ->whereIn('plan_id', [$enterpriseMonth->id, $enterpriseYear->id])
@@ -80,8 +80,8 @@ if (!function_exists('enterprise')) {
 
     };
 
-
 }
+
 
 // Penser à mettre les information sur l'entreprise en cache, afin de permettre un chargement rapide
 

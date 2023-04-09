@@ -7,6 +7,7 @@ use App\Models\User;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Modules\Financial\Entities\Accounting\Account;
 use Modules\Pos\Entities\PhysicalPosSession;
 use Modules\Pos\Entities\Pos;
 use Modules\Pos\Entities\PosSale;
@@ -40,6 +41,10 @@ class Sale extends Model
 
     public function company() {
         return $this->belongsTo(Company::class, 'company_id', 'id');
+    }
+
+    public function account() {
+        return $this->belongsTo(Account::class, 'account_id', 'id');
     }
 
     public function seller()

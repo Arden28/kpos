@@ -9,14 +9,24 @@ use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
 use Modules\Expense\Entities\ExpenseCategory;
+use Modules\Financial\Interfaces\Accounting\AccountInterface;
 
 class ExpenseCategoriesController extends Controller
 {
 
+    protected $accountRepository;
+
+    public function __construct(AccountInterface $accountRepository){
+        $this->accountRepository = $accountRepository;
+    }
+
+
     public function index(ExpenseCategoriesDataTable $dataTable) {
         abort_if(Gate::denies('access_expense_categories'), 403);
 
-        return $dataTable->render('expense::categories.index');
+        $accounts = $this->accountRepository->getCompanyAccounts(Auth::user()->currentCompany->id);
+
+        return $dataTable->render('expense::categories.index', compact('accounts'));
     }
 
     public function store(Request $request) {
@@ -24,17 +34,19 @@ class ExpenseCategoriesController extends Controller
 
         $request->validate([
             'category_name' => 'required|string|max:255|unique:expense_categories,category_name',
-            'category_description' => 'nullable|string|max:1000'
+            'category_description' => 'nullable|string|max:1000',
+            'account_id' => 'required|integer',
         ]);
 
         ExpenseCategory::create([
             'company_id' => Auth::user()->currentCompany->id,
 
             'category_name' => $request->category_name,
-            'category_description' => $request->category_description
+            'category_description' => $request->category_description,
+            'account_id' => $request->account_id
         ]);
 
-        toast('Expense Category Created!', 'success');
+        toast('La Catégorie de Dépense a été créée !', 'success');
 
         return redirect()->route('expense-categories.index');
     }
@@ -60,7 +72,7 @@ class ExpenseCategoriesController extends Controller
             'category_description' => $request->category_description
         ]);
 
-        toast('Expense Category Updated!', 'info');
+        toast('La Catégorie de Dépense a été Mis à jours !', 'info');
 
         return redirect()->route('expense-categories.index');
     }
@@ -75,7 +87,7 @@ class ExpenseCategoriesController extends Controller
 
         $expenseCategory->delete();
 
-        toast('Expense Category Deleted!', 'warning');
+        toast('La Catégorie de Dépense a été supprimée!', 'warning');
 
         return redirect()->route('expense-categories.index');
     }

@@ -9,6 +9,8 @@ use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
 use Modules\Expense\Entities\Expense;
+use Modules\Expense\Entities\ExpenseCategory;
+use Modules\Financial\Entities\Accounting\AccountBook;
 use PhpOffice\PhpSpreadsheet\Calculation\MathTrig\Exp;
 
 class ExpenseController extends Controller
@@ -48,7 +50,33 @@ class ExpenseController extends Controller
             'details' => $request->details
         ]);
 
-        toast('Expense Created!', 'success');
+        // Register to the book.
+        $category = ExpenseCategory::find($request->category_id)->first();
+
+        $current_balance = $category->account->balance;
+
+        $book = AccountBook::create([
+            'company_id' => Auth::user()->currentCompany->id,
+            'account_id' => $category->account_id,
+            'user_id' => Auth::user()->id,
+            'detail' => 'Dépense(Pour : '.$category->category_name.')',
+            'note' => $request->details,
+            'balance' => $request->amount,
+            'credit' => $request->amount,
+            'date' => now()->format('d-m-Y H:i:s'),
+        ]);
+
+        $book->save();
+
+        $new_balance = $current_balance - $book->balance;
+
+        $category->account->balance = $new_balance;
+        $category->account->save();
+
+        $book->balance = $new_balance;
+        $book->save();
+
+        toast('Votre Dépense a bien été ajoutée!', 'success');
 
         return redirect()->route('expenses.index');
     }
@@ -80,7 +108,7 @@ class ExpenseController extends Controller
             'details' => $request->details
         ]);
 
-        toast('Expense Updated!', 'info');
+        toast('Votre Dépense a bien été mise à jours!', 'info');
 
         return redirect()->route('expenses.index');
     }
@@ -91,7 +119,7 @@ class ExpenseController extends Controller
 
         $expense->delete();
 
-        toast('Expense Deleted!', 'warning');
+        toast('Votre Dépense a bien été supprimée !', 'warning');
 
         return redirect()->route('expenses.index');
     }

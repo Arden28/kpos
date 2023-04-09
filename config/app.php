@@ -185,6 +185,8 @@ return [
 
         Modules\User\Providers\UserServiceProvider::class,
 
+        Modules\Financial\Providers\FinancialServiceProvider::class,
+
         Modules\Subby\Providers\SubbyServiceProvider::class,
 
     ],

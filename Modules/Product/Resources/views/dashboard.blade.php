@@ -1,35 +1,20 @@
 @extends('layouts.master')
 
+@section('title', 'Gérez votre Inventaire ')
+
 @section('breadcrumb')
-    <div class="page-header d-print-none">
-        <div class="container-xl">
-            <div class="row g-2 align-items-center">
-            <div class="col">
-                <h2 class="page-title">
-                    {{ __('Tableau de bord') }}
-                </h2>
-            </div>
-            <!-- Page title actions -->
-            @can('create_pos_sales')
-                    <div class="col-auto ms-auto d-print-none">
-                        <div class="btn-list">
+<div class="page-header d-print-none">
 
-                        <a href="{{ route('app.pos.index') }}" class="btn btn-primary d-none d-sm-inline-block {{ request()->routeIs('app.pos.index') ? 'disabled' : '' }}">
-                            <i class="bi bi-plus"></i>
-                            {{ __('Add an order') }}
-                        </a>
-                        {{-- <a href="#" class="btn btn-primary d-none d-sm-inline-block {{ request()->routeIs('app.pos.index') ? 'disabled' : '' }}" data-bs-toggle="modal" data-bs-target="#modal-report">
-                            <i class="bi bi-plus"></i>
-                            {{ __('Add an order') }}
-                        </a> --}}
-
-                        </div>
-                    </div>
-            @endcan
-            </div>
+    <div class="container-xl col-12" style="margin-bottom: 10px">
+        <div class="card">
+          <div class="card-header">
+            <h2>{{ __('Gérez votre Invenraire') }}</h2>
+          </div>
         </div>
     </div>
+</div>
 @endsection
+
 
 @section('content')
 <!-- Page body -->

@@ -1,6 +1,6 @@
 @extends('layouts.master')
 
-@section('title', __('Expense Categories'))
+@section('title', __('Catégories de dépenses - Finance & Facturation'))
 
 @section('third_party_stylesheets')
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.25/css/dataTables.bootstrap4.min.css">
@@ -12,7 +12,7 @@
     <div class="row g-2 align-items-center">
     <div class="col">
         <h2 class="page-title">
-            {{ __('Expense Categories') }}
+            {{ __('Catégories de dépenses') }}
         </h2>
     </div>
     </div>
@@ -31,7 +31,7 @@
                         <div class="card-body">
                             <!-- Button trigger modal -->
                             <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#categoryCreateModal">
-                                Add Category <i class="bi bi-plus"></i>
+                                {{ __('Ajouter une Catégorie') }} <i class="bi bi-plus"></i>
                             </button>
 
                             <hr>
@@ -51,7 +51,7 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="categoryCreateModalLabel">Create Category</h5>
+                    <h5 class="modal-title" id="categoryCreateModalLabel">{{ __('Ajouter une Catégorie dépense') }}</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -60,16 +60,20 @@
                     @csrf
                     <div class="modal-body">
                         <div class="form-group">
-                            <label for="category_name">Category Name <span class="text-danger">*</span></label>
+                            <label for="category_name">{{ __('Nom de la Catégorie') }} <span class="text-danger">*</span></label>
                             <input class="form-control" type="text" name="category_name" required>
                         </div>
+
                         <div class="form-group">
-                            <label for="category_description">Description</label>
+                            <label for="category_description">{{ __('Description') }}</label>
                             <textarea class="form-control" name="category_description" id="category_description" rows="5"></textarea>
                         </div>
+
+                        @include('financial::includes.accounts.choice')
+
                     </div>
                     <div class="modal-footer">
-                        <button type="submit" class="btn btn-primary">Create <i class="bi bi-check"></i></button>
+                        <button type="submit" class="btn btn-primary">{{ __('Ajouter') }} <i class="bi bi-check"></i></button>
                     </div>
                 </form>
             </div>
@@ -79,4 +83,17 @@
 
 @push('page_scripts')
     {!! $dataTable->scripts() !!}
+
+
+    <script>
+        const accountForm = document.getElementById('account-form');
+        const showAccountFormButton = document.getElementById('show-account-form');
+        let isAccountFormVisible = false;
+        showAccountFormButton.addEventListener('click', function() {
+            isAccountFormVisible = !isAccountFormVisible;
+            accountForm.style.display = isAccountFormVisible ? 'block' : 'none';
+            showAccountFormButton.innerHTML = isAccountFormVisible ? 'Cacher' : 'Connecter un Compte';
+        });
+    </script>
+
 @endpush

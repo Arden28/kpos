@@ -57,16 +57,19 @@ class ExpensesDataTable extends DataTable
                 ->className('text-center align-middle'),
 
             Column::make('reference')
+                ->title(__('Référence'))
                 ->className('text-center align-middle'),
 
             Column::make('category.category_name')
-                ->title('Category')
+                ->title('Catégorie')
                 ->className('text-center align-middle'),
 
             Column::computed('amount')
+                ->title(__('Montant'))
                 ->className('text-center align-middle'),
 
             Column::make('details')
+                ->title(__('Détails'))
                 ->className('text-center align-middle'),
 
             Column::computed('action')

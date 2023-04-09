@@ -7,8 +7,12 @@
           <h5 class="modal-title">{{ $p->name }}</h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
+        @if($p->account_id != null)
+            <livewire:pos::create-session  :p="$p" :account="$p->account"/>
+        @else
+            <livewire:pos::create-session  :p="$p"/>
+        @endif
 
-        <livewire:pos::create-session  :p="$p"/>
 
       </div>
     </div>

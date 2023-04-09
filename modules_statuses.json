@@ -18,5 +18,6 @@
     "Pos": true,
     "Core": true,
     "Subby": true,
-    "Inventory": true
+    "Inventory": true,
+    "Financial": true
 }

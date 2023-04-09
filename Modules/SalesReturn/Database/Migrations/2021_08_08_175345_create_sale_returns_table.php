@@ -16,6 +16,7 @@ class CreateSaleReturnsTable extends Migration
         Schema::create('sale_returns', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('company_id');
+            $table->foreignId('account_id')->nullable();
             $table->date('date');
             $table->string('reference');
             $table->unsignedBigInteger('customer_id')->nullable();
