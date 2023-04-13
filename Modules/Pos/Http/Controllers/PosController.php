@@ -39,7 +39,9 @@ class PosController extends Controller
 
     public function __construct(PosInterface $posRepository, CustomerInterface $customerRepository, AccountInterface $accountRepository){
 
-        $this->middleware(['subscribed']);
+        // If the customer has a standard plan
+        $this->middleware(['subscribed.standard', 'subscribed.medium']);
+
         $this->posRepository = $posRepository;
         $this->customerRepository = $customerRepository;
         $this->accountRepository = $accountRepository;

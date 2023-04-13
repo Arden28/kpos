@@ -73,7 +73,7 @@ class ProductDataTable extends DataTable
                 ->className('text-center align-middle'),
 
             Column::make('product_name')
-                ->title(__('Nom'))
+                ->title(__('Désignation'))
                 ->className('text-center align-middle'),
 
             Column::make('product_code')

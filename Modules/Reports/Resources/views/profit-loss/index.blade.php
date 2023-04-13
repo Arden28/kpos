@@ -1,6 +1,6 @@
 @extends('layouts.master')
 
-@section('title', __('Rapport des Gains | Pertes'))
+@section('title', __('Rapport des Gains | Pertes - Finance'))
 
 @section('breadcrumb')
 <div class="page-header d-print-none">

@@ -1,6 +1,6 @@
 @extends('layouts.master')
 
-@section('title', __('Rapport des Paiements'))
+@section('title', __('Rapport des Paiements - Finance'))
 
 @section('breadcrumb')
 <div class="page-header d-print-none">

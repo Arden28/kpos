@@ -24,6 +24,8 @@ Route::group(['middleware' => 'auth'], function () {
 
 
     Route::resource('book', AccountBookController::class)->except('show', 'edit', 'update');
-    // Account Books
 
+    // Account Books
+    Route::post('book/deposit/{id}', [AccountBookController::class, 'deposit'])->name('book.deposit');
+    Route::post('book/withdrawal/{id}', [AccountBookController::class, 'withdrawal'])->name('book.withdrawal');
 });

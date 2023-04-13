@@ -32,35 +32,35 @@
                             <div class="table-responsive">
                                 <table class="table table-bordered table-striped mb-0">
                                     <tr>
-                                        <th>{{ __('Product Code') }}</th>
+                                        <th>{{ __('Code du Produit') }}</th>
                                         <td>{{ $product->product_code }}</td>
                                     </tr>
                                     <tr>
-                                        <th>{{ __('Barcode Symbology') }}</th>
+                                        <th>{{ __('Symbole de code barre') }}</th>
                                         <td>{{ $product->product_barcode_symbology }}</td>
                                     </tr>
                                     <tr>
-                                        <th>{{ __('Name') }}</th>
+                                        <th>{{ __('Désignation') }}</th>
                                         <td>{{ $product->product_name }}</td>
                                     </tr>
                                     <tr>
-                                        <th>{{ __('Category') }}</th>
+                                        <th>{{ __('Catégorie') }}</th>
                                         <td>{{ $product->category->category_name }}</td>
                                     </tr>
                                     <tr>
-                                        <th>{{ __('Cost') }}</th>
+                                        <th>{{ __('Prix d\'achat') }}</th>
                                         <td>{{ format_currency($product->product_cost) }}</td>
                                     </tr>
                                     <tr>
-                                        <th>{{ __('Price') }}</th>
+                                        <th>{{ __('Prix de vente') }}</th>
                                         <td>{{ format_currency($product->product_price) }}</td>
                                     </tr>
                                     <tr>
-                                        <th>{{ __('Quantity') }}</th>
+                                        <th>{{ __('Quantité') }}</th>
                                         <td>{{ $product->product_quantity . ' ' . $product->product_unit }}</td>
                                     </tr>
                                     <tr>
-                                        <th>{{ __('Stock Worth') }}</th>
+                                        <th>{{ __('Valeur du stock') }}</th>
                                         <td>
                                             {{ __('COST') }}:: {{ format_currency($product->product_cost * $product->product_quantity) }} /
                                             {{ __('PRICE') }}:: {{ format_currency($product->product_price * $product->product_quantity) }}

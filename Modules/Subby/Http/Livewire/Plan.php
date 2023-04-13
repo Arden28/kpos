@@ -10,4 +10,9 @@ class Plan extends Component
     {
         return view('subby::livewire.plan');
     }
+
+    public function start(){
+
+        redirect()->route('register.pro');
+    }
 }

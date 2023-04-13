@@ -25,6 +25,8 @@ class AccountController extends Controller
 
         $this->accountRepository = $accountRepository;
 
+        // abort_if(Gate::denies('access_account_management'), 403);
+
     }
 
     /**
@@ -33,7 +35,7 @@ class AccountController extends Controller
      */
     public function index(AccountsDataTable $dataTable) {
 
-        abort_if(Gate::denies('access_reports'), 403);
+        abort_if(Gate::denies('access_account_management'), 403);
 
         return $dataTable->render('financial::accounts.index');
     }
@@ -46,6 +48,8 @@ class AccountController extends Controller
      */
     public function store(AccountStoreRequest $request)
     {
+        abort_if(Gate::denies('create_account'), 403);
+
         $request->validated();
 
         $user = Auth::user()->id;
@@ -89,6 +93,7 @@ class AccountController extends Controller
      */
     public function show(Account $account, AccountBooksDataTable $dataTable)
     {
+        abort_if(Gate::denies('access_account_book'), 403);
 
         // return view('financial::accounts.books.index', compact('account'));
         return $dataTable->render('financial::accounts.books.index', compact('account'));

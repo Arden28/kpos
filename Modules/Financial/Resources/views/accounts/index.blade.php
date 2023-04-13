@@ -31,9 +31,11 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-body">
-                            <a class="btn btn-primary"  data-toggle="modal" data-target="#accountCreateModal">
-                                {{ __('Ajouter un compte') }} <i class="bi bi-plus"></i>
-                            </a>
+                            @can('create_account')
+                                <a class="btn btn-primary"  data-toggle="modal" data-target="#accountCreateModal">
+                                    {{ __('Ajouter un compte') }} <i class="bi bi-plus"></i>
+                                </a>
+                            @endcan
 
                             <hr>
 

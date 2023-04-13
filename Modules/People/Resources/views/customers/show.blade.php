@@ -1,6 +1,6 @@
 @extends('layouts.master')
 
-@section('title', __('Customer Details'))
+@section('title', __('Profil Client'))
 
 
 @section('breadcrumb')
@@ -9,7 +9,7 @@
     <div class="row g-2 align-items-center">
     <div class="col">
         <h2 class="page-title">
-            {{ __('Customer Details') }}
+            {{ __('Profil Client') }}
         </h2>
     </div>
     </div>
@@ -28,27 +28,27 @@
                             <div class="table-responsive">
                                 <table class="table table-bordered">
                                     <tr>
-                                        <th>Customer Name</th>
+                                        <th>{{ __('Nom') }}</th>
                                         <td>{{ $customer->customer_name }}</td>
                                     </tr>
                                     <tr>
-                                        <th>Customer Email</th>
+                                        <th>{{ __('Email du client') }}</th>
                                         <td>{{ $customer->customer_email }}</td>
                                     </tr>
                                     <tr>
-                                        <th>Customer Phone</th>
+                                        <th>{{ __('Numéro de téléphone du client') }}</th>
                                         <td>{{ $customer->customer_phone }}</td>
                                     </tr>
                                     <tr>
-                                        <th>City</th>
+                                        <th>{{ __('Ville du client') }}</th>
                                         <td>{{ $customer->city }}</td>
                                     </tr>
                                     <tr>
-                                        <th>Country</th>
+                                        <th>{{ __('Pays du client') }}</th>
                                         <td>{{ $customer->country }}</td>
                                     </tr>
                                     <tr>
-                                        <th>Address</th>
+                                        <th>{{ __('Adresse') }}</th>
                                         <td>{{ $customer->address }}</td>
                                     </tr>
                                 </table>

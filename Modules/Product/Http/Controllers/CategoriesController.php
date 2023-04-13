@@ -34,7 +34,7 @@ class CategoriesController extends Controller
             'company_id' => Auth::user()->currentCompany->id,
         ]);
 
-        toast('Product Category Created!', 'success');
+        toast('La catégorie de produit a été ajouté!', 'success');
 
         return redirect()->back();
     }
@@ -62,7 +62,7 @@ class CategoriesController extends Controller
             'category_name' => $request->category_name,
         ]);
 
-        toast('Product Category Updated!', 'info');
+        toast('La catégorie de produit a été mise à jour!', 'info');
 
         return redirect()->route('product-categories.index');
     }
@@ -79,7 +79,7 @@ class CategoriesController extends Controller
 
         $category->delete();
 
-        toast('Product Category Deleted!', 'warning');
+        toast('La catégorie de produit a été supprimée!', 'warning');
 
         return redirect()->route('product-categories.index');
     }

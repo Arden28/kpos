@@ -16,8 +16,8 @@ class UpdateEmployeeRequest extends FormRequest
     {
         return [
             'name'     => 'required|string|max:255',
-            'email'    => 'required|email|max:255|unique:users,email',
-            'phone'    => 'required|min:9|max:255|unique:users,phone',
+            'email'    => 'required|email|max:255',
+            'phone'    => 'required|min:9|max:255',
             'role'     => 'string',
             'image'     => 'required',
         ];

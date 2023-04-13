@@ -178,7 +178,7 @@ class PlanTableSeeder extends Seeder
         ]);
 
         $annualPlan2 = Plan::create([
-            'tag' => 'medium annuel',
+            'tag' => 'medium annual',
             'name' => 'Medium',
             'description' => '156000 FCFA par an (13000 FCFA par mois)',
             'price' => 156000,
@@ -351,7 +351,7 @@ class PlanTableSeeder extends Seeder
         ]);
 
         $annualPlan3 = Plan::create([
-            'tag' => 'enterprise annuel',
+            'tag' => 'enterprise annual',
             'name' => 'Enterprise',
             'description' => '504000 FCFA par an (42000 FCFA par mois)',
             'price' => 504000,
@@ -395,7 +395,7 @@ class PlanTableSeeder extends Seeder
             // $plan_2 = Plan::create([
             //     'id'    => 2,
             //     'tag' => 'yearly',
-            //     'name' => 'Annuel',
+            //     'name' => 'annual',
             //     'description' => 'For small and medium enterprises',
             //     'price' => 120000.00,
             //     'signup_fee' => 0.00,

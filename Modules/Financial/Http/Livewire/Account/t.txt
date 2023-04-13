@@ -1,3 +1,4 @@
+
 <?php
 
 namespace Modules\Financial\Http\Livewire\Account;
@@ -10,25 +11,29 @@ use Modules\Financial\Entities\Accounting\AccountBook;
 
 class Deposit extends Component
 {
-
     public $data;
+
 
     public $amount;
 
-    public $date;
+    // public $detail;
+
     public $note;
 
-    protected $rules = [
-        'amount' => 'required|min:6',
-        'date' => 'required',
-        'note' => 'max:150',
-    ];
+    public $date;
 
-    public function submit()
-    {
-        $this->validate();
 
-        // Execution doesn't reach here if validation fails.
+    // public function mount()
+    // {
+    //     $this->date = $this->data->id; //A modifier
+    // }
+
+
+    public function deposit(){
+
+        // $this->validate();
+
+        $current_balance = $this->data->account->balance;
 
         $book = AccountBook::create([
             'company_id' => Auth::user()->currentCompany->id,
@@ -37,11 +42,24 @@ class Deposit extends Component
             'detail' => 'Dépôt',
             'balance' => $this->amount,
             'debit' => $this->amount,
-            'amount' => $this->amount,
-            'date' => $this->date,
-            'note' => $this->note,
+            'date' => now()->format('d-m-Y H:i:s'),
         ]);
+
         $book->save();
+
+        $new_balance = $current_balance + $book->balance;
+
+        $this->data->account->balance = $new_balance;
+        $this->data->account->save();
+
+        $book->balance = $new_balance;
+        $book->save();
+
+
+        toast('Le dépôt a bien été effectué !', 'success');
+
+        return redirect()->back();
+
     }
 
 

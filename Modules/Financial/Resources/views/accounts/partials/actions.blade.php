@@ -10,9 +10,15 @@
 </a>
 @endcan
 
-@can('add_deposit')
-<a  data-bs-toggle="modal" data-bs-target="#modal-session-{{ $data->id }}" style="margin-top: 5px;" class="btn btn-green btn-sm">
+@can('account_deposit')
+<a  data-bs-toggle="modal" data-bs-target="#modal-deposit-{{ $data->id }}" style="margin-top: 5px;" class="btn btn-green btn-sm">
     <i class="bi bi-cash-stack"></i> {{ __('Dépôt') }}
+</a>
+@endcan
+
+@can('account_withdrawal')
+<a  data-bs-toggle="modal" data-bs-target="#modal-withdrawal-{{ $data->id }}" style="margin-top: 5px;" class="btn btn-purple btn-sm">
+    <i class="bi bi-wallet2"></i> {{ __('Retrait') }}
 </a>
 @endcan
 
@@ -37,19 +43,9 @@
 </button>
 @endcan
 
+{{-- Deposit --}}
+@include('financial::includes.modals.deposit')
 
-<div class="modal modal-blur fade" id="modal-session-{{ $data->id }}" tabindex="-1" role="dialog" aria-hidden="true">
-    <div class="modal-dialog modal-md" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title">{{ __('Dépôt') }}</h5>
-          <h5 class="modal-title">{{ $data->name }}</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-
-            <livewire:financial::account.deposit :data="$data"/>
-
-      </div>
-    </div>
-</div>
+{{-- Withdrawal --}}
+@include('financial::includes.modals.withdrawal')
 

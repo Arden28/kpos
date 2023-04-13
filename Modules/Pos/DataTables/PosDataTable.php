@@ -55,9 +55,11 @@ class PosDataTable extends DataTable
                 ->addClass('text-center'),
 
             Column::make('address')
+                ->title('Adresse de la Boutique')
                 ->addClass('text-center'),
 
             Column::make('name')
+                ->title('Nom de la Boutique')
                 ->addClass('text-center'),
 
             Column::computed('action')

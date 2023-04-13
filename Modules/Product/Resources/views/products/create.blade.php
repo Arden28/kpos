@@ -47,7 +47,7 @@
                                 <div class="row">
                                   <div class="col-lg-6">
                                     <div class="mb-3">
-                                      <label for="product_name">{{ __('Product Name') }} <span class="text-danger">*</span></label>
+                                      <label for="product_name">{{ __('Désignation') }} <span class="text-danger">*</span></label>
                                       <input type="text" class="form-control" name="product_name" required value="{{ old('product_name') }}">
                                     </div>
                                   </div>
@@ -64,9 +64,9 @@
                                 <div class="row">
                                     <div class="col-lg-6">
                                       <div class="mb-3">
-                                        <label for="category_id">{{ __('Category') }} <span class="text-danger">*</span></label>
+                                        <label for="category_id">{{ __('Categorie') }} <span class="text-danger">*</span></label>
                                         <select class="form-control" name="category_id" id="category_id" required>
-                                            <option value="" selected disabled>{{ __('Select Category') }}</option>
+                                            <option value="" selected disabled>{{ __('Sélectionnez une Catégorie') }}</option>
                                             @foreach($categories as $category)
                                                 <option value="{{ $category->id }}">{{ $category->category_name }}</option>
                                             @endforeach
@@ -75,9 +75,9 @@
                                     </div>
                                     <div class="col-lg-6">
                                       <div class="mb-3">
-                                        <label for="barcode_symbology">{{ __('Barcode Symbology') }} <span class="text-danger">*</span></label>
+                                        <label for="barcode_symbology">{{ __('Symbole Code-barre') }} <span class="text-danger">*</span></label>
                                         <select class="form-control" name="product_barcode_symbology" id="barcode_symbology" required>
-                                            <option value="" selected disabled>{{ __('Select Symbology') }}</option>
+                                            <option value="" selected disabled>{{ __('Choisissez votre symbole de code barre') }}</option>
                                             <option value="C128">Code 128</option>
                                             <option value="C39">Code 39</option>
                                             <option value="UPCA">UPC-A</option>
@@ -90,19 +90,9 @@
                                   </div>
 
                                   <div class="row">
-                                    <div class="col-lg-6">
-                                      <div class="mb-3">
-                                        <label for="category_id">{{ __('Fournisseur') }}</label>
-                                        <select class="form-control" name="supplier_id" id="supplier_id">
-                                            <option value="" selected disabled>{{ __('Choisissez le fournisseur du produit') }}</option>
-                                            @foreach($suppliers as $supplier)
-                                                <option value="{{ $supplier->id }}">{{ $supplier->supplier_name }}</option>
-                                            @endforeach
-                                        </select>
-                                      </div>
-                                    </div>
-
+                                    @include('people::includes.choice.suppliers')
                                   </div>
+
 
                                   <div class="row">
                                     <div class="col-lg-6">
@@ -129,7 +119,7 @@
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label for="product_stock_alert">{{ __('Alert Quantity') }} <span class="text-danger">*</span></label>
+                                            <label for="product_stock_alert">{{ __('Quantité d\'alerte') }} <span class="text-danger">*</span></label>
                                             <input type="number" class="form-control" name="product_stock_alert" required value="{{ old('product_stock_alert') }}" min="0" max="100">
                                         </div>
                                     </div>
@@ -138,25 +128,25 @@
                                 <div class="row">
                                     <div class="col-md-4">
                                         <div class="form-group">
-                                            <label for="product_order_tax">{{ __('Tax') }} (%)</label>
+                                            <label for="product_order_tax">{{ __('Taxe') }} (%)</label>
                                             <input type="number" class="form-control" name="product_order_tax" value="{{ old('product_order_tax') }}" min="1">
                                         </div>
                                     </div>
                                     <div class="col-md-4">
                                         <div class="form-group">
-                                            <label for="product_tax_type">{{ __('Tax type') }}</label>
-                                            <select class="form-control" name="product_tax_type" id=j_type">
-                                                <option value="" selected disabled>{{ __('Select Tax Type') }}</option>
-                                                <option value="1">{{ __('Exclusive') }}</option>
-                                                <option value="2">{{ __('Inclusive') }}</option>
+                                            <label for="product_tax_type">{{ __('Type de Taxe') }}</label>
+                                            <select class="form-control" name="product_tax_type" id="j_type">
+                                                <option value="" selected disabled>{{ __('Sélectionnez votre Type de Taxe') }}</option>
+                                                <option value="1">{{ __('Exclusif') }}</option>
+                                                <option value="2">{{ __('Inclusif') }}</option>
                                             </select>
                                         </div>
                                     </div>
                                     <div class="col-md-4">
                                         <div class="form-group">
-                                            <label for="product_unit">{{ __('Unit') }}
+                                            <label for="product_unit">{{ __('Unité') }}
                                                 <span class="form-help" data-bs-toggle="popover" data-bs-placement="top" data-bs-html="true"
-                                                 data-bs-content="<p>{{ __('This text will be placed after the product quantity. Ex: 20 bottles') }}</p>
+                                                 data-bs-content="<p>{{ __('Ce texte sera placé après la quantité de produit. Ex : 20 bouteilles') }}</p>
                                                 ">?</span>
                                                 <span class="text-danger">*</span></label>
                                             <input type="text" class="form-control" name="product_unit" value="{{ old('product_unit') }}" required>
@@ -176,7 +166,7 @@
                         <div class="card">
                             <div class="card-body">
                                 <div class="form-group">
-                                    <label for="image">{{ __('Product Images') }} <i class="bi bi-question-circle-fill text-info" data-toggle="tooltip" data-placement="top" title="{{ __('Max Files: 3, Max File Size: 1MB, Image Size: 400x400') }}"></i></label>
+                                    <label for="image">{{ __('Images du Produit') }} <i class="bi bi-question-circle-fill text-info" data-toggle="tooltip" data-placement="top" title="{{ __('Max Files: 3, Max File Size: 1MB, Image Size: 400x400') }}"></i></label>
                                     <div class="dropzone d-flex flex-wrap align-items-center justify-content-center" id="document-dropzone">
                                         <div class="dz-message" data-dz-message>
                                             <i class="bi bi-cloud-arrow-up"></i>
@@ -267,6 +257,18 @@
                 $('#product_cost').val(product_cost);
                 $('#product_price').val(product_price);
             });
+        });
+    </script>
+
+
+    <script>
+        const supplierForm = document.getElementById('supplier-form');
+        const showSupplierFormButton = document.getElementById('show-supplier-form');
+        let isSupplierFormVisible = false;
+        showSupplierFormButton.addEventListener('click', function() {
+            isSupplierFormVisible = !isSupplierFormVisible;
+            supplierForm.style.display = isSupplierFormVisible ? 'block' : 'none';
+            showSupplierFormButton.innerHTML = isSupplierFormVisible ? 'Cacher' : 'Ajouter un Fournisseur';
         });
     </script>
 

@@ -10,9 +10,11 @@
                 <div class="row g-0 flex-fill">
                   <div class="col-12 col-lg-12 col-xl-12  d-flex flex-column justify-content-center">
                         <div class="container justify-content-center">
-                            <p>Vous devez souscrire à un abonnement ou changer afin d'acceder à cette fonctionnalité.</p>
+                            <p>{{ __('Vous avez découvert une fonctionnalité premium. Vous devez souscrire à un abonnement ou changer afin d\'acceder à cette fonctionnalité.') }}</p>
                             <div class="form-footer">
-                              <a href="{{ route('register.pro') }}" class="btn btn-primary w-100">Commencer</a>
+                                <button wire:click="start" class="btn btn-primary w-100">
+                                    {{ __('Commencer votre essaie gratuit de 30 J') }}
+                                </button>
                             </div>
                         </div>
                   </div>

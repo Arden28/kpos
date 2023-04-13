@@ -24,13 +24,6 @@ class PermissionsTableSeeder extends Seeder
             // Human Resources Management
             'access_human_resources_management',
 
-            //Dashboard
-            'show_total_stats',
-            'show_month_overview',
-            'show_weekly_sales_purchases',
-            'show_monthly_cashflow',
-            'show_notifications',
-
             //Products
             'access_products',
             'create_products',
@@ -63,15 +56,6 @@ class PermissionsTableSeeder extends Seeder
 
             //Send Quotation On Email
             'send_quotation_mails',
-
-            //Expenses
-            'access_expenses',
-            'create_expenses',
-            'edit_expenses',
-            'delete_expenses',
-
-            //Expense Categories
-            'access_expense_categories',
 
             // GR
             'access_crm',
@@ -132,9 +116,6 @@ class PermissionsTableSeeder extends Seeder
             //Purchase Return Payments
             'access_purchase_return_payments',
 
-            //Reports
-            'access_reports',
-
             //Currencies
             'access_currencies',
             'create_currencies',
@@ -155,6 +136,37 @@ class PermissionsTableSeeder extends Seeder
             'edit_pos',
             'delete_pos',
             'view_pos',
+
+            //Dashboard
+            'show_total_stats',
+            'show_month_overview',
+            'show_weekly_sales_purchases',
+            'show_monthly_cashflow',
+            'show_notifications',
+
+            // Accounting
+            'access_account_management',
+            'create_account',
+            'edit_account',
+            'delete_account',
+            'close_account',
+            'account_withdrawal',
+            'account_deposit',
+            'access_account_book',
+            'delete_account_book',
+
+            //Reports
+            'access_reports',
+
+            //Expenses
+            'access_expenses',
+            'create_expenses',
+            'edit_expenses',
+            'delete_expenses',
+
+            //Expense Categories
+            'access_expense_categories',
+
         ];
 
         foreach ($permissions as $permission) {

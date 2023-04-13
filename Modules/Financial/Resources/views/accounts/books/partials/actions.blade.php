@@ -1,5 +1,5 @@
 
-@can('delete_account')
+@can('delete_account_book')
 <button id="delete" class="btn btn-danger btn-sm" style="margin-top: 5px;" onclick="
     event.preventDefault();
     if (confirm('Êtes vous sûr de vouloir supprimer cette transaction définitivement ?')) {

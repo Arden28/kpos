@@ -32,8 +32,8 @@
                                         <option value="">{{ __('Sélectionnez un Paiements') }}</option>
                                         <option value="sale">{{ __('Ventes') }}</option>
                                         <option value="sale_return">{{ __('Ventes annulées') }}</option>
-                                        <option value="purchase">{{ __('Commandes') }}</option>
-                                        <option value="purchase_return">{{ __('Commandes annulées') }}</option>
+                                        <option value="purchase">{{ __('Achat') }}</option>
+                                        <option value="purchase_return">{{ __('Achat annulés') }}</option>
                                     </select>
                                     @error('payments')
                                     <span class="text-danger mt-1">{{ $message }}</span>

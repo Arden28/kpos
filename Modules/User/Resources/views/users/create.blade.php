@@ -46,7 +46,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="form">
+                                <div class="row">
                                     <div class="col-lg-6">
                                         <div class="form-group">
                                             <label for="email">{{ __('Email') }} <span class="text-danger">*</span></label>
@@ -61,7 +61,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="form-row">
+                                <div class="row">
                                     <div class="col-lg-6">
                                         <div class="form-group">
                                             <label for="password">{{ __('Mot de passe') }} <span class="text-danger">*</span></label>
@@ -77,38 +77,46 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="form-group">
-                                    <label for="role">{{ __('Rôle') }} <span class="text-danger">*</span></label>
-                                    <select class="form-control" name="role" id="role" required>
-                                        <option value="" selected disabled>{{ __('Selectionner un Rôle') }}</option>
-                                        @foreach(\Spatie\Permission\Models\Role::where('name', '!=', 'Super Admin')->get() as $role)
-                                            <option value="{{ $role->name }}">{{ $role->name }}</option>
-                                        @endforeach
-                                    </select>
-                                </div>
+                                <div class="row">
 
-                                <div class="form-group">
-                                    <label for="is_active">{{ __('Status') }} <span class="text-danger">*</span></label>
-                                    <select class="form-control" name="is_active" id="is_active" required>
-                                        <option value="" selected disabled>{{ __('Selectionner un Statut') }}</option>
-                                        <option value="1">{{ __('Actif') }}</option>
-                                        <option value="2">{{ __('Inactif') }}</option>
-                                    </select>
+                                    <div class="col-lg-6">
+                                        <div class="form-group">
+                                            <label for="role">{{ __('Rôle') }} <span class="text-danger">*</span></label>
+                                            <select class="form-control" name="role" id="role" required>
+                                                <option value="" selected disabled>{{ __('Selectionner un Rôle') }}</option>
+                                                @foreach(\Spatie\Permission\Models\Role::where('name', '!=', 'Super Admin')->get() as $role)
+                                                    <option value="{{ $role->name }}">{{ $role->name }}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-6">
+                                        <div class="form-group">
+                                            <label for="is_active">{{ __('Status') }} <span class="text-danger">*</span></label>
+                                            <select class="form-control" name="is_active" id="is_active" required>
+                                                <option value="" selected disabled>{{ __('Selectionner un Statut') }}</option>
+                                                <option value="1">{{ __('Actif') }}</option>
+                                                <option value="2">{{ __('Inactif') }}</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
                                 </div>
                             </div>
                         </div>
                     </div>
 
-                    {{-- <div class="col-lg-4">
+                    <div class="col-lg-4">
                         <div class="card">
                             <div class="card-body">
                                 <div class="form-group">
-                                    <label for="image">Profile Image <span class="text-danger">*</span></label>
+                                    <label for="image">{{ __('Photo de Profil') }} <span class="text-danger">*</span></label>
                                     <input id="image" type="file" name="image" data-max-file-size="500KB">
                                 </div>
                             </div>
                         </div>
-                    </div> --}}
+                    </div>
 
                 </div>
             </form>

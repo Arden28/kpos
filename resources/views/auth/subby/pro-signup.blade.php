@@ -1,6 +1,6 @@
 @extends('layouts.auth')
 
-@section('page_title', __('Get Started For Free'))
+@section('page_title', __('Commencer à développer votre entreprise gratuitement !'))
 
 @section('content')
 <div class="row g-0 flex-fill">

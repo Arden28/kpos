@@ -71,6 +71,9 @@ class Kernel extends HttpKernel
         'connected' => \Modules\Auth\Http\Middleware\CheckCompany::class,
 
         'subscribed' => \Modules\Subby\Http\Middleware\Subscribed::class,
+        'subscribed.standard' => \Modules\Subby\Http\Middleware\StandardPlan::class,
+        'subscribed.medium' => \Modules\Subby\Http\Middleware\MediumPlan::class,
+        'subscribed.enterprise' => \Modules\Subby\Http\Middleware\EnterprisePlan::class,
         'opened' => \Modules\Pos\Http\Middleware\PosOpened::class,
     ];
 }

@@ -14,6 +14,22 @@
           <div class="card-header">
             <h2>{{ $account->account_name }}</h2>
           </div>
+          <div class="card-body">
+            <div class="datagrid">
+              <div class="datagrid-item">
+                <div class="datagrid-title">{{ __('Nom du Compte :') }}</div>
+                <div class="datagrid-content">{{ $account->account_name }}</div>
+              </div>
+              <div class="datagrid-item">
+                <div class="datagrid-title">{{ __('Type :') }}</div>
+                <div class="datagrid-content"></div>
+              </div>
+              <div class="datagrid-item">
+                <div class="datagrid-title">{{ __('Solde') }}</div>
+                <div class="datagrid-content {{ $account->balance > 0 ? 'text-green' : 'text-red' }}">{{ format_currency($account->balance) }}</div>
+              </div>
+            </div>
+          </div>
         </div>
     </div>
 </div>

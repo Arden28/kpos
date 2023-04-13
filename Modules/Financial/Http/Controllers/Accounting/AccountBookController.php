@@ -5,14 +5,17 @@ namespace Modules\Financial\Http\Controllers\Accounting;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
 use Modules\Financial\DataTables\AccountBooksDataTable;
 use Modules\Financial\DataTables\FluxDataTable;
 use Modules\Financial\Entities\Accounting\Account;
 use Modules\Financial\Entities\Accounting\AccountBook;
+use Modules\Financial\Http\Requests\Account\AccountBookRequest;
 
 class AccountBookController extends Controller
 {
+
     /**
      * Display a listing of the resource.
      * @return Renderable
@@ -24,55 +27,82 @@ class AccountBookController extends Controller
         return $dataTable->render('financial::accounts.flux', compact('account'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     * @return Renderable
-     */
-    public function create()
-    {
-        return view('financial::create');
+    public function deposit(AccountBookRequest $request, $id){
+
+        $request->validated();
+
+        $account = Account::find($id)->first();
+
+        $user = Auth::user()->id;
+        $company = Auth::user()->currentCompany->id;
+
+        $current_balance = $account->balance;
+
+        $book = AccountBook::create([
+            'company_id' => $company,
+            'account_id' => $account->id,
+            'user_id' => $user,
+            'detail' => 'Dépôt.',
+            'balance' => $account->balance,
+            'debit' => $request->amount,
+            'date' => now()->format('d-m-Y H:i:s'),
+            'note' => $request->note,
+
+        ]);
+        $book->save();
+
+        $new_balance = $current_balance + $request->amount;
+
+        $account->balance = $new_balance;
+        $account->save();
+
+        $book->balance = $new_balance;
+        $book->save();
+
+        toast('Le dépôt a été effectué !', 'success');
+
+        return redirect()->back();
     }
 
-    /**
-     * Store a newly created resource in storage.
-     * @param Request $request
-     * @return Renderable
-     */
-    public function store(Request $request)
-    {
-        //
+    public function withdrawal(AccountBookRequest $request, $id){
+
+        $request->validated();
+
+        $account = Account::find($id)->first();
+
+        $user = Auth::user()->id;
+        $company = Auth::user()->currentCompany->id;
+
+        $current_balance = $account->balance;
+
+        $book = AccountBook::create([
+            'company_id' => $company,
+            'account_id' => $account->id,
+            'user_id' => $user,
+            'detail' => 'Retrait.',
+            'balance' => $account->balance,
+            'credit' => $request->amount,
+            // 'date' => $request->date,
+            'date' => now()->format('d-m-Y H:i:s'),
+            'note' => $request->note,
+
+        ]);
+
+        $book->save();
+
+        $new_balance = $current_balance - $request->amount;
+
+        $account->balance = $new_balance;
+        $account->save();
+
+        $book->balance = $new_balance;
+        $book->save();
+
+        toast('Le retrait a été effectué !', 'success');
+
+        return redirect()->back();
     }
 
-    /**
-     * Show the specified resource.
-     * @param int $id
-     * @return Renderable
-     */
-    public function show($id)
-    {
-        return view('financial::show');
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     * @param int $id
-     * @return Renderable
-     */
-    public function edit($id)
-    {
-        return view('financial::edit');
-    }
-
-    /**
-     * Update the specified resource in storage.
-     * @param Request $request
-     * @param int $id
-     * @return Renderable
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
 
     /**
      * Remove the specified resource from storage.

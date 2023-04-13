@@ -82,15 +82,23 @@ class UsersDataTable extends DataTable
     protected function getColumns() {
         return [
             Column::computed('image')
+                ->title(__('Image'))
                 ->className('text-center align-middle'),
 
             Column::make('name')
+                ->title(__('Nom(s) & Prénom(s'))
                 ->className('text-center align-middle'),
 
             Column::make('email')
+                ->title(__('Adresse Mail'))
+                ->className('text-center align-middle'),
+
+            Column::make('phone')
+                ->title(__('Numéro de Téléphone'))
                 ->className('text-center align-middle'),
 
             Column::computed('role')
+                ->title(__('Désignation'))
                 ->className('text-center align-middle'),
 
             Column::computed('status')

@@ -1,6 +1,6 @@
 @extends('layouts.master')
 
-@section('title', __('Edit Supplier'))
+@section('title', __('Mettre à jour le Fournisseur - CRM'))
 
 
 @section('breadcrumb')
@@ -9,7 +9,7 @@
     <div class="row g-2 align-items-center">
     <div class="col">
         <h2 class="page-title">
-            {{ __('Edit Supplier') }}
+            {{ __('Mettre à jour le Fournisseur') }}
         </h2>
     </div>
     </div>
@@ -28,7 +28,7 @@
                     <div class="col-lg-12">
                         @include('utils.alerts')
                         <div class="form-group">
-                            <button class="btn btn-primary">Update Supplier <i class="bi bi-check"></i></button>
+                            <button class="btn btn-primary">{{ __('Sauvegarder') }} <i class="bi bi-check"></i></button>
                         </div>
                     </div>
                     <div class="col-lg-12">
@@ -37,13 +37,13 @@
                                 <div class="row">
                                     <div class="col-lg-6">
                                         <div class="form-group">
-                                            <label for="supplier_name">Supplier Name <span class="text-danger">*</span></label>
+                                            <label for="supplier_name">{{ __('Nom du fournisseur') }} <span class="text-danger">*</span></label>
                                             <input type="text" class="form-control" name="supplier_name" required value="{{ $supplier->supplier_name }}">
                                         </div>
                                     </div>
                                     <div class="col-lg-6">
                                         <div class="form-group">
-                                            <label for="supplier_email">Email <span class="text-danger">*</span></label>
+                                            <label for="supplier_email">{{ __('Email') }} <span class="text-danger">*</span></label>
                                             <input type="email" class="form-control" name="supplier_email" required value="{{ $supplier->supplier_email }}">
                                         </div>
                                     </div>
@@ -52,19 +52,19 @@
                                 <div class="row">
                                     <div class="col-lg-4">
                                         <div class="form-group">
-                                            <label for="supplier_phone">Phone <span class="text-danger">*</span></label>
+                                            <label for="supplier_phone">{{ __('Téléphone') }} <span class="text-danger">*</span></label>
                                             <input type="text" class="form-control" name="supplier_phone" required value="{{ $supplier->supplier_phone }}">
                                         </div>
                                     </div>
                                     <div class="col-lg-4">
                                         <div class="form-group">
-                                            <label for="city">City <span class="text-danger">*</span></label>
+                                            <label for="city">{{ __('Ville') }} <span class="text-danger">*</span></label>
                                             <input type="text" class="form-control" name="city" required value="{{ $supplier->city }}">
                                         </div>
                                     </div>
                                     <div class="col-lg-4">
                                         <div class="form-group">
-                                            <label for="country">Country <span class="text-danger">*</span></label>
+                                            <label for="country">{{ __('Pays') }} <span class="text-danger">*</span></label>
                                             <input type="text" class="form-control" name="country" required value="{{ $supplier->country }}">
                                         </div>
                                     </div>
@@ -73,7 +73,7 @@
                                 <div class="row">
                                     <div class="col-lg-12">
                                         <div class="form-group">
-                                            <label for="address">Address <span class="text-danger">*</span></label>
+                                            <label for="address">{{ __('Adresse') }} <span class="text-danger">*</span></label>
                                             <input type="text" class="form-control" name="address" required value="{{ $supplier->address }}">
                                         </div>
                                     </div>

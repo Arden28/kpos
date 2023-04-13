@@ -9,14 +9,13 @@
         @csrf
         <div class="modal-content">
             <div class="modal-header">
-            <h5 wire:loading.flex class="modal-title">New report</h5>
             <h5 class="modal-title">{{ __('Ajouter un nouveau client') }}</h5>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
 
             <div class="modal-body">
             <div class="mb-3">
-                <label class="form-label">{{ __('Client Name') }}</label>
+                <label class="form-label">{{ __('Nom') }}</label>
                 <input type="text" class="form-control" wire:model="customer_name" required placeholder="{{ __('Nom(s) & Prénom') }}">
                 @error('customer_name') <span class="error">{{ $message }}</span> @enderror
             </div>
@@ -67,7 +66,7 @@
             </div>
             <div class="modal-footer">
             <a href="#" class="btn btn-link link-secondary" data-bs-dismiss="modal">
-                {{ __('Cancel') }}
+                {{ __('Annuler') }}
             </a>
                 <button type="submit" class="btn btn-primary ms-auto">{{ __('Ajouter') }}</button>
             </div>

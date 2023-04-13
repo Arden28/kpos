@@ -1,6 +1,6 @@
 @extends('layouts.master')
 
-@section('title', __('Show Supplier'))
+@section('title', __('Détails du Fournisseur - CRM '))
 
 
 @section('breadcrumb')
@@ -9,7 +9,7 @@
     <div class="row g-2 align-items-center">
     <div class="col">
         <h2 class="page-title">
-            {{ __('Show Supplier') }}
+            {{ __('Détails du Fournisseur ' ) }} {{ $supplier->supplier_name }}
         </h2>
     </div>
     </div>
@@ -28,27 +28,27 @@
                             <div class="table-responsive">
                                 <table class="table table-bordered">
                                     <tr>
-                                        <th>Supplier Name</th>
+                                        <th>Nom du Fournisseur</th>
                                         <td>{{ $supplier->supplier_name }}</td>
                                     </tr>
                                     <tr>
-                                        <th>Supplier Email</th>
+                                        <th>Email du Fournisseur</th>
                                         <td>{{ $supplier->supplier_email }}</td>
                                     </tr>
                                     <tr>
-                                        <th>Supplier Phone</th>
+                                        <th>Téléphone du Fournisseur</th>
                                         <td>{{ $supplier->supplier_phone }}</td>
                                     </tr>
                                     <tr>
-                                        <th>City</th>
+                                        <th>Ville</th>
                                         <td>{{ $supplier->city }}</td>
                                     </tr>
                                     <tr>
-                                        <th>Country</th>
+                                        <th>Pays</th>
                                         <td>{{ $supplier->country }}</td>
                                     </tr>
                                     <tr>
-                                        <th>Address</th>
+                                        <th>Adresse</th>
                                         <td>{{ $supplier->address }}</td>
                                     </tr>
                                 </table>

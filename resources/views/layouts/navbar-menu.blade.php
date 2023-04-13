@@ -232,15 +232,15 @@
                 {{-- POS Management --}}
                 @can('access_pos')
                 <li class="nav-item">
-                @if(auth()->user()->subscriptions()->count() === 0)
+                @if(auth()->user()->subscriptions()->count() > 0)
 
-                    @if (standard() && standard()->isActive()) {
+                    @if (standard() && standard()->isActive())
                         <a class="btn" style="margin-right: 5px;" href="{{ route('app.pos.index') }}" >
                     @else
                     <a  class="btn" style="margin-right: 5px;" data-bs-toggle="modal" data-bs-target="#modal-report">
                     @endif
                 @else
-                  <a class="btn" style="margin-right: 5px;" href="{{ route('app.pos.index') }}" >
+                    <a  class="btn" style="margin-right: 5px;" data-bs-toggle="modal" data-bs-target="#modal-report">
                 @endif
 
                     <i class="bi bi-shop" style="width: 24px; height:24px"></i>

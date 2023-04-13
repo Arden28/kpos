@@ -8,4 +8,4 @@
     <img src="{{ asset('images/illustrations/errors/undraw_bug_fixing_oc7a.svg') }}" height="128" alt="">
 @endsection
 
-@section('message', __("Sorry, you don't have the permission to visit this page."))
+@section('message', __("Désolé. Vous n'avez pas la permission de visiter cette page."))

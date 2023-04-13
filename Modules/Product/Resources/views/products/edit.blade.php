@@ -1,6 +1,6 @@
 @extends('layouts.master')
 
-@section('title', 'Edit Product')
+@section('title', 'Mettre à jour un Produit - Inventaire')
 
 @section('styles')
 
@@ -14,7 +14,7 @@
     <div class="row g-2 align-items-center">
     <div class="col">
         <h2 class="page-title">
-            {{ __('Edit Product') }}
+            {{ __('Mettre à jour un Produit') }}
         </h2>
     </div>
     </div>
@@ -32,7 +32,7 @@
                     <div class="col-lg-12">
                         @include('utils.alerts')
                         <div class="form-group">
-                            <button class="btn btn-primary">{{ __('Update Product') }} <i class="bi bi-check"></i></button>
+                            <button class="btn btn-primary">{{ __('Sauvegarder') }} <i class="bi bi-check"></i></button>
                         </div>
                     </div>
                     <div class="col-lg-12">

@@ -1,6 +1,6 @@
 @extends('layouts.master')
 
-@section('title', __('Customers'))
+@section('title', __('Clients - CRM '))
 
 @section('third_party_stylesheets')
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.25/css/dataTables.bootstrap4.min.css">
@@ -12,7 +12,7 @@
     <div class="row g-2 align-items-center">
     <div class="col">
         <h2 class="page-title">
-            {{ __('Customers') }}
+            {{ __('Clients') }}
         </h2>
     </div>
     </div>
@@ -29,7 +29,7 @@
                     <div class="card">
                         <div class="card-body">
                             <a href="{{ route('customers.create', Auth::user()->id) }}" class="btn btn-primary">
-                                Add Customer <i class="bi bi-plus"></i>
+                                {{ __('Ajouter un client') }} <i class="bi bi-plus"></i>
                             </a>
 
                             <hr>
