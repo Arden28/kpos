@@ -20,7 +20,7 @@ Voici vos identifiants :
 
 En aucun cas nous vous demanderons vos identifiants, sauf en page de connection. Veuillez à les garder secrets.
 
-Merci,<br>
+Merci de votre confiance,<br>
 {{ config('app.name') }}
 
 @endcomponent
