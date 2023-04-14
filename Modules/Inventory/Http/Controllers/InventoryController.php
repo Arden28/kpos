@@ -6,15 +6,21 @@ use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Auth;
+use Modules\Inventory\Interfaces\CategoryInterface;
 use Modules\Inventory\Interfaces\ProductInterface;
 
 class InventoryController extends Controller
 {
     protected $productRepository;
 
-    public function __construct(ProductInterface $productRepository){
+    protected $categoryRepository;
+
+
+    public function __construct(CategoryInterface $categoryRepository, ProductInterface $productRepository){
 
         $this->productRepository = $productRepository;
+
+        $this->categoryRepository = $categoryRepository;
     }
 
     /**
@@ -24,7 +30,10 @@ class InventoryController extends Controller
     public function index()
     {
         $products = $this->productRepository->getProducts(Auth::user()->currentCompany->id);
-        return view('inventory::index', compact('products'));
+
+        $categories = $this->categoryRepository->getCategories(Auth::user()->currentCompany->id);
+
+        return view('inventory::index', compact('products', 'categories'));
     }
 
     /**

@@ -8,7 +8,7 @@
                             <i class="bi bi-search text-primary"></i>
                         </div>
                     </div>
-                    <input wire:keydown.escape="resetQuery" wire:model.debounce.500ms="query" type="text" class="form-control" placeholder="Tapez le nom du produit ou son code....">
+                    <input wire:keydown.escape="resetQuery" wire:model.debounce.500ms="query" type="text" class="form-control" placeholder="Tapez le nom du produit, son code, ou scanez son code....">
                 </div>
             </div>
         </div>

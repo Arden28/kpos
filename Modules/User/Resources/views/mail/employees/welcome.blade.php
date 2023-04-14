@@ -11,7 +11,7 @@ Voici vos identifiants :
     <br />
     Nom d'utilisateur: {{ $user->email }}
     <br />
-    Mot de passe : {{ $request->password }}
+    Mot de passe : {{ $request['password'] }}
 <br />
 
 @component('mail::button', ['url' => 'https://www.dashboard.koverae.com/auth/login'])

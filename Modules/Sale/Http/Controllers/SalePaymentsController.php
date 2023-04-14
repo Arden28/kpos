@@ -9,6 +9,7 @@ use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Gate;
+use Modules\Financial\Entities\Accounting\AccountBook;
 use Modules\Sale\Entities\Sale;
 use Modules\Sale\Entities\SalePayment;
 
@@ -75,9 +76,41 @@ class SalePaymentsController extends Controller
                 'due_amount' => $due_amount * 100,
                 'payment_status' => $payment_status
             ]);
+
+            // Register to the book.
+
+            $current_balance = $sale->account->balance;
+
+            if($due_amount > 0){
+                $detail = 'Vente(Ajout. Reste: '.format_currency($due_amount).')';
+            }else{
+                $detail = 'Vente(Complétée)';
+            }
+
+            $book = AccountBook::create([
+                'company_id' => Auth::user()->currentCompany->id,
+                'account_id' => $sale->account_id,
+                'user_id' => Auth::user()->id,
+                'detail' => $detail,
+                'note' => $request->note,
+                'balance' => $request->amount,
+                'debit' => $request->amount,
+                'date' => now()->format('d-m-Y H:i:s'),
+            ]);
+
+            $book->save();
+
+            $new_balance = $current_balance + $book->balance;
+
+            $sale->account->balance = $new_balance;
+            $sale->account->save();
+
+            $book->balance = $new_balance;
+            $book->save();
+
         });
 
-        toast('Sale Payment Created!', 'success');
+        toast('Paiement Ajouté!', 'success');
 
         return redirect()->route('sales.index');
     }
@@ -133,7 +166,7 @@ class SalePaymentsController extends Controller
             ]);
         });
 
-        toast('Sale Payment Updated!', 'info');
+        toast('Paiement mis à jour!', 'info');
 
         return redirect()->route('sales.index');
     }
@@ -144,7 +177,7 @@ class SalePaymentsController extends Controller
 
         $salePayment->delete();
 
-        toast('Sale Payment Deleted!', 'warning');
+        toast('Paiement supprimé!', 'warning');
 
         return redirect()->route('sales.index');
     }

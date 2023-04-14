@@ -1,6 +1,6 @@
 @extends('layouts.master')
 
-@section('title', __('Print Barcode'))
+@section('title', __('Imrimez des Codes Barres'))
 
 @push('page_css')
     @livewireStyles
@@ -12,7 +12,7 @@
     <div class="row g-2 align-items-center">
     <div class="col">
         <h2 class="page-title">
-            {{ __('Print Barcode') }}
+            {{ __('Imprimer des Codes Barres') }}
         </h2>
     </div>
     </div>

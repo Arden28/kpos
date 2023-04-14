@@ -13,9 +13,9 @@
               </a>
             </li>
 
-            <li class="nav-item {{ request()->routeIs('inventory*') ? 'active' : '' }}">
+            <li class="nav-item">
                 {{-- <li class="nav-item"> --}}
-              <a class="nav-link" href="{{ route('inventory.index') }}" >
+              <a class="btn {{ request()->routeIs('inventory*') ? 'active' : '' }}" style="margin-right: 5px;" href="{{ route('inventory.index') }}" >
                 <span class="nav-link-icon d-md-none d-lg-inline-block"><!-- Download SVG icon from http://tabler-icons.io/i/home -->
                   <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><polyline points="5 12 3 12 12 3 21 12 19 12" /><path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" /><path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" /></svg>
                 </span>
@@ -27,8 +27,8 @@
 
 
             @can('access_products')
-            <li class="nav-item dropdown {{ request()->routeIs('products*') || request()->routeIs('*product-categories.index') ? 'active' : '' }}">
-              <a class="nav-link dropdown-toggle" href="#navbar-base" data-bs-toggle="dropdown" data-bs-auto-close="outside" role="button" aria-expanded="false" >
+            <li class="nav-item dropdown">
+              <a class="btn {{ request()->routeIs('products*') || request()->routeIs('*product-categories.index') ? 'active' : '' }}" style="margin-right: 5px;" href="#navbar-base" data-bs-toggle="dropdown" data-bs-auto-close="outside" role="button" aria-expanded="false" >
                 <i class="bi bi-box" style="width: 24px; height:24px"></i>
                 </span>
                 <span class="nav-link-title">
@@ -70,9 +70,8 @@
 
 
             @can('access_products')
-            <li class="nav-item dropdown
-            {{ request()->routeIs('adjustments*') || request()->routeIs('purchases*') || request()->routeIs('purchase-payments.*') || request()->routeIs('purchase-return-payments.*') || request()->routeIs('purchase-returns*') ? 'active' : '' }}">
-              <a class="nav-link dropdown-toggle" href="#navbar-base" data-bs-toggle="dropdown" data-bs-auto-close="outside" role="button" aria-expanded="false" >
+            <li class="nav-item dropdown ">
+              <a style="margin-right: 5px;" class="btn {{ request()->routeIs('adjustments*') || request()->routeIs('purchases*') || request()->routeIs('purchase-payments.*') || request()->routeIs('purchase-return-payments.*') || request()->routeIs('purchase-returns*') ? 'active' : '' }}" href="#navbar-base" data-bs-toggle="dropdown" data-bs-auto-close="outside" role="button" aria-expanded="false" >
                 <i class="bi bi-tools" style="width: 24px; height:24px"></i>
                 </span>
                 <span class="nav-link-title">
@@ -115,8 +114,8 @@
             @endcan
 
 
-            <li class="nav-item {{ request()->routeIs('barcode.print') ? 'active' : '' }}">
-                <a class="nav-link {{ request()->routeIs('barcode.print') ? 'active' : '' }}" href="{{ route('barcode.print') }}">
+            <li class="nav-item">
+                <a class="btn {{ request()->routeIs('barcode.print') ? 'active' : '' }}" href="{{ route('barcode.print') }}">
                     <i class="bi bi-upc-scan" style="width: 24px; height: 24px;"></i>
                   </span>
                   <span class="nav-link-title">

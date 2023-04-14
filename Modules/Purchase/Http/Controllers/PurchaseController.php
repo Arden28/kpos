@@ -8,6 +8,7 @@ use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Gate;
+use Modules\Financial\Entities\Accounting\AccountBook;
 use Modules\People\Entities\Supplier;
 use Modules\Product\Entities\Product;
 use Modules\Purchase\Entities\Purchase;
@@ -101,10 +102,42 @@ class PurchaseController extends Controller
                     'purchase_id' => $purchase->id,
                     'payment_method' => $request->payment_method
                 ]);
+
+                // Register to the book.
+
+                $current_balance = $purchase->account->balance;
+
+                if($due_amount > 0){
+                    $detail = 'Achat(Paiement Avancé. Reste: '.format_currency($due_amount).')';
+                }else{
+                    $detail = 'Achat(Paiement Complété)';
+                }
+
+                $book = AccountBook::create([
+                    'company_id' => Auth::user()->currentCompany->id,
+                    'account_id' => $purchase->account_id,
+                    'user_id' => Auth::user()->id,
+                    'detail' => $detail,
+                    'note' => $request->note,
+                    'balance' => $request->paid_amount,
+                    'credit' => $request->paid_amount,
+                    'date' => now()->format('d-m-Y H:i:s'),
+                ]);
+
+                $book->save();
+
+                $new_balance = $current_balance + $book->balance;
+
+                $purchase->account->balance = $new_balance;
+                $purchase->account->save();
+
+                $book->balance = $new_balance;
+                $book->save();
+
             }
         });
 
-        toast('Purchase Created!', 'success');
+        toast('La commande a bien été ajouté!', 'success');
 
         return redirect()->route('purchases.index');
     }
@@ -217,7 +250,7 @@ class PurchaseController extends Controller
             Cart::instance('purchase')->destroy();
         });
 
-        toast('Purchase Updated!', 'info');
+        toast('La commande a bien été mise à jour!', 'info');
 
         return redirect()->route('purchases.index');
     }
@@ -228,7 +261,7 @@ class PurchaseController extends Controller
 
         $purchase->delete();
 
-        toast('Purchase Deleted!', 'warning');
+        toast('La commande a bien été supprimée!', 'warning');
 
         return redirect()->route('purchases.index');
     }

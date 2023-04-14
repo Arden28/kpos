@@ -4,15 +4,13 @@
 
 @section('breadcrumb')
 <div class="page-header d-print-none">
-<div class="container-xl">
-    <div class="row g-2 align-items-center">
-    <div class="col">
-        <h2 class="page-title">
-            {{ __('Ressources Humaines') }}
-        </h2>
+    <div class="container-xl col-12" style="margin-bottom: 10px">
+        <div class="card">
+          <div class="card-header">
+            <h2>{{ __('Gérez vos Ressources Humaines') }}</h2>
+          </div>
+        </div>
     </div>
-    </div>
-</div>
 </div>
 @endsection
 
@@ -33,7 +31,7 @@
                   </div>
                   <div class="col">
                     <div class="font-weight-medium">
-                       Employés :
+                       {{ __('Employés') }} :
                     </div>
                   </div>
                 </div>
@@ -51,7 +49,7 @@
                   </div>
                   <div class="col">
                     <div class="font-weight-medium">
-                        Postes :
+                        {{ __('Postes') }} :
                     </div>
                   </div>
                 </div>
@@ -61,19 +59,6 @@
 
         </div>
       </div>
-      @endcan
-
-      @can('show_monthly_cashflow')
-          <div class="col-lg-12">
-              <div class="card">
-                  <div class="card-header">
-                      Fréquence de commande
-                  </div>
-                  <div class="card-body">
-                      <canvas id="paymentChart"></canvas>
-                  </div>
-              </div>
-          </div>
       @endcan
 
 

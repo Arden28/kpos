@@ -1,6 +1,6 @@
 @extends('layouts.master')
 
-@section('title', __('Product '.$product->product_name) )
+@section('title', __('Produit '.$product->product_name) )
 
 @section('breadcrumb')
 <div class="page-header d-print-none">
@@ -8,7 +8,7 @@
     <div class="row g-2 align-items-center">
     <div class="col">
         <h2 class="page-title">
-            {{ __('Product '.$product->product_name ) }}
+            {{ __('Produit '.$product->product_name ) }}
         </h2>
     </div>
     </div>
@@ -62,16 +62,16 @@
                                     <tr>
                                         <th>{{ __('Valeur du stock') }}</th>
                                         <td>
-                                            {{ __('COST') }}:: {{ format_currency($product->product_cost * $product->product_quantity) }} /
-                                            {{ __('PRICE') }}:: {{ format_currency($product->product_price * $product->product_quantity) }}
+                                            {{ __('Valeur Brute') }}: {{ format_currency($product->product_cost * $product->product_quantity) }} /
+                                            {{ __('Valeur de Vente') }}: {{ format_currency($product->product_price * $product->product_quantity) }}
                                         </td>
                                     </tr>
                                     <tr>
                                         <th>{{ __('Alert Quantity') }}</th>
-                                        <td>{{ $product->product_stock_alert }}</td>
+                                        <td>{{ $product->product_stock_alert . ' ' . $product->product_unit }}</td>
                                     </tr>
                                     <tr>
-                                        <th>{{ __('Tax') }} (%)</th>
+                                        <th>{{ __('Taxe') }} (%)</th>
                                         <td>{{ $product->product_order_tax ?? 'N/A' }}</td>
                                     </tr>
                                     <tr>

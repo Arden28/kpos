@@ -4,6 +4,7 @@ namespace Modules\Purchase\Entities;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Modules\Financial\Entities\Accounting\Account;
 
 class Purchase extends Model
 {
@@ -15,6 +16,11 @@ class Purchase extends Model
     public function company() {
         return $this->belongsTo(Company::class, 'company_id', 'id');
     }
+
+    public function account() {
+        return $this->belongsTo(Account::class, 'account_id', 'id');
+    }
+
     public function purchaseDetails() {
         return $this->hasMany(PurchaseDetail::class, 'purchase_id', 'id');
     }

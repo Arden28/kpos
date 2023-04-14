@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Modules\Subby\Http\Controllers\StripeController;
 use Modules\Subby\Http\Controllers\SubbyController;
 
 /*
@@ -18,3 +19,7 @@ use Modules\Subby\Http\Controllers\SubbyController;
 Route::prefix('subscribe')->middleware(['auth'])->group(function() {
     Route::get('/plans', [SubbyController::class, 'index'])->name('subby.index');
 });
+
+// Stripe
+Route::get('/stripe-payment', [StripeController::class, 'handleGet']);
+Route::post('/stripe-payment', [StripeController::class, 'handlePost'])->name('stripe.payment');

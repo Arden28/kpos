@@ -15,10 +15,10 @@
                 <table class="table table-bordered mb-0">
                     <thead>
                     <tr class="align-middle">
-                        <th class="align-middle">{{ __('Product Name') }}</th>
+                        <th class="align-middle">{{ __('Nom du Produit') }}</th>
                         <th class="align-middle">{{ __('Code') }}</th>
                         <th class="align-middle">
-                            {{ __('Quantité') }} <i class="bi bi-question-circle-fill text-info" data-toggle="tooltip" data-placement="top" title="Max Quantity: 100"></i>
+                            {{ __('Quantité') }} <i class="bi bi-question-circle-fill text-info" data-toggle="tooltip" data-placement="top" title="Quantité Maximale: 100"></i>
                         </th>
                     </tr>
                     </thead>
@@ -41,7 +41,7 @@
             </div>
             <div class="mt-3">
                 <button wire:click="generateBarcodes({{ $product }}, {{ $quantity }})" type="button" class="btn btn-primary">
-                    <i class="bi bi-upc-scan"></i> {{ __('Generate Barcodes') }}
+                    <i class="bi bi-upc-scan"></i> {{ __('Générer') }}
                 </button>
             </div>
         </div>
@@ -74,7 +74,7 @@
                                 {!! $barcode !!}
                             </div>
                             <p style="font-size: 15px;color: #000;">
-                                Price:: {{ format_currency($product->product_price) }}
+                                {{ __('Prix') }}:: {{ format_currency($product->product_price) }}
                             </p>
                         </div>
                     @endforeach

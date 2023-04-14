@@ -12,7 +12,7 @@
     <div class="container-xl col-12" style="margin-bottom: 10px">
         <div class="card">
           <div class="card-header">
-            <h2>{{ __('Gérez vos Ressources Humaines') }}</h2>
+            <h2>{{ __('Employés') }}</h2>
           </div>
         </div>
     </div>
@@ -29,7 +29,7 @@
                         <div class="card-body">
                             <!-- Button trigger modal -->
                             <a href="{{ route('users.create') }}" class="btn btn-primary">
-                                {{ __('Add User') }} <i class="bi bi-plus"></i>
+                                {{ __('Ajouter un Employé') }} <i class="bi bi-plus"></i>
                             </a>
 
                             <hr>

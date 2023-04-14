@@ -71,29 +71,6 @@ class SaleRepository implements SaleInterface
                     'seller_id' => $request['seller_id'],
                 ]);
 
-                // Register to the book.
-
-                $current_balance = $sale->account->balance;
-
-                $book = AccountBook::create([
-                    'company_id' => Auth::user()->currentCompany->id,
-                    'account_id' => $sale->account_id,
-                    'user_id' => Auth::user()->id,
-                    'detail' => 'Vente',
-                    'balance' => $sale->paid_amount,
-                    'debit' => $sale->paid_amount,
-                    'date' => now()->format('d-m-Y H:i:s'),
-                ]);
-
-                $book->save();
-
-                $new_balance = $current_balance + $book->balance;
-
-                $sale->account->balance = $new_balance;
-                $sale->account->save();
-
-                $book->balance = $new_balance;
-                $book->save();
 
                 foreach (Cart::instance('sale')->content() as $cart_item) {
 
@@ -128,6 +105,38 @@ class SaleRepository implements SaleInterface
                         'sale_id' => $sale->id,
                         'payment_method' => $paymentMethod
                     ]);
+
+                    // Register to the book.
+
+                    $current_balance = $sale->account->balance;
+
+                    if($due_amount > 0){
+                        $detail = 'Vente(Partielle. Reste à payer: '.format_currency($due_amount).')';
+                    }else{
+                        $detail = 'Vente';
+                    }
+
+                    $book = AccountBook::create([
+                        'company_id' => Auth::user()->currentCompany->id,
+                        'account_id' => $sale->account_id,
+                        'user_id' => Auth::user()->id,
+                        'detail' => $detail,
+                        'note' => $request['note'],
+                        'balance' => $sale->paid_amount,
+                        'debit' => $sale->paid_amount,
+                        'date' => now()->format('d-m-Y H:i:s'),
+                    ]);
+
+                    $book->save();
+
+                    $new_balance = $current_balance + $book->balance;
+
+                    $sale->account->balance = $new_balance;
+                    $sale->account->save();
+
+                    $book->balance = $new_balance;
+                    $book->save();
+
                 }
             });
 

@@ -111,6 +111,10 @@
                                     <textarea name="note" id="note" rows="5" class="form-control"></textarea>
                                 </div>
 
+                                <div class="form-group" style="padding-top: 10px;">
+                                    @include('financial::includes.accounts.choice')
+                                </div>
+
                                 <div class="mt-3">
                                     <button type="submit" class="btn btn-primary">
                                         {{ __('Create Purchase') }} <i class="bi bi-check"></i>
@@ -146,4 +150,16 @@
             });
         });
     </script>
+
+    <script>
+        const accountForm = document.getElementById('account-form');
+        const showAccountFormButton = document.getElementById('show-account-form');
+        let isAccountFormVisible = false;
+        showAccountFormButton.addEventListener('click', function() {
+            isAccountFormVisible = !isAccountFormVisible;
+            accountForm.style.display = isAccountFormVisible ? 'block' : 'none';
+            showAccountFormButton.innerHTML = isAccountFormVisible ? 'Cacher' : 'Connecter un Compte';
+        });
+    </script>
+
 @endpush

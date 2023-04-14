@@ -1,6 +1,6 @@
 @extends('layouts.master')
 
-@section('title', __('Sales'))
+@section('title', __('Ventes'))
 
 @section('breadcrumb')
 <div class="page-header d-print-none">
@@ -8,7 +8,7 @@
     <div class="row g-2 align-items-center">
     <div class="col">
         <h2 class="page-title">
-            {{ __('Sales') }}
+            {{ __('Ventes') }}
         </h2>
     </div>
     </div>
@@ -25,7 +25,7 @@
                     <div class="card">
                         <div class="card-body">
                             <a href="{{ route('sales.create') }}" class="btn btn-primary">
-                                Add Sale <i class="bi bi-plus"></i>
+                                {{ __('Ajouter une vente') }} <i class="bi bi-plus"></i>
                             </a>
 
                             <hr>

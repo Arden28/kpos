@@ -52,7 +52,9 @@ class EmployeeRepository implements EmployeeInterface{
             'role'    => $request['role'],
         ]);
 
-        $user->notify(new AccountCreatedNotification());
+        $this->sendMail($request, $user, $company);
+
+        // $user->notify(new AccountCreatedNotification());
         // $user->notify(new AccountCreatedNotification($request, $user, $company));
 
 
