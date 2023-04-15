@@ -52,6 +52,7 @@ class RouteServiceProvider extends ServiceProvider
                 ->group(base_path('routes/auth.php'));
         });
     }
+
     /**
      * Configure the rate limiters for the application.
      *
