@@ -32,7 +32,7 @@
                     <div class="col-lg-12" style="padding-top: 10px">
                         @include('utils.alerts')
                         <div class="form-group">
-                            <button class="btn btn-primary">{{ __('Ajouter le produit') }} <i class="bi bi-check"></i></button>
+                            <button type="submit" class="btn btn-primary">{{ __('Ajouter le produit') }} <i class="bi bi-check"></i></button>
                         </div>
                     </div>
 
@@ -65,14 +65,22 @@
                                     <div class="col-lg-6">
                                       <div class="mb-3">
                                         <label for="category_id">{{ __('Categorie') }} <span class="text-danger">*</span></label>
-                                        <select class="form-control" name="category_id" id="category_id" required>
-                                            <option value="" selected disabled>{{ __('Sélectionnez une Catégorie') }}</option>
-                                            @foreach($categories as $category)
-                                                <option value="{{ $category->id }}">{{ $category->category_name }}</option>
-                                            @endforeach
-                                        </select>
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                                <a href="#" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#categoryCreateModal">
+                                                    <i class="bi bi-plus"></i>
+                                                </a>
+                                            </div>
+                                            <select class="form-control" name="category_id" id="category_id" required>
+                                                <option value="" selected disabled>{{ __('Sélectionnez une Catégorie') }}</option>
+                                                @foreach($categories as $category)
+                                                    <option value="{{ $category->id }}">{{ $category->category_name }}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
                                       </div>
                                     </div>
+
                                     <div class="col-lg-6">
                                       <div class="mb-3">
                                         <label for="barcode_symbology">{{ __('Symbole Code-barre') }} <span class="text-danger">*</span></label>
@@ -181,6 +189,9 @@
             </form>
         </div>
     </div>
+
+    @include('product::livewire.includes.category-modal')
+
 @endsection
 
 @section('third_party_scripts')

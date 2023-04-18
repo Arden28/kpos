@@ -12,6 +12,7 @@ use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
 use Modules\Financial\Interfaces\Accounting\AccountInterface;
+use Modules\People\DataTables\CustomersDataTable;
 use Modules\People\Entities\Customer;
 use Modules\People\Interfaces\CustomerInterface;
 use Modules\Pos\DataTables\PosDataTable;
@@ -40,7 +41,7 @@ class PosController extends Controller
     public function __construct(PosInterface $posRepository, CustomerInterface $customerRepository, AccountInterface $accountRepository){
 
         // If the customer has a standard plan
-        $this->middleware(['subscribed.standard', 'subscribed.medium']);
+        $this->middleware(['subscribed.standard']);
 
         $this->posRepository = $posRepository;
         $this->customerRepository = $customerRepository;
@@ -198,5 +199,15 @@ class PosController extends Controller
             return back()->withError($e->getMessage());
         }
     }
+
+    // Customer
+
+    public function customer(CustomersDataTable $dataTable) {
+        abort_if(Gate::denies('access_customers'), 403);
+
+        return $dataTable->render('pos::pos.customers.index');
+    }
+
+
 
 }

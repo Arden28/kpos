@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Notifications\Notifiable;
 use Modules\Pos\Entities\CashPos;
+use Modules\Pos\Entities\PhysicalPosSession;
 use Modules\Pos\Entities\PosSale;
 use Modules\Sale\Entities\Sale;
 
@@ -15,10 +16,10 @@ class Pos extends Model
 {
     use HasFactory, Notifiable;
 
-    public function scopeIsActive(Builder $query, $current_pos_id)
-    {
-        return $query->where('id', $current_pos_id);
-    }
+    // public function scopeIsActive(Builder $query, $current_pos_id)
+    // {
+    //     return $query->where('id', $current_pos_id);
+    // }
 
     /**
      * Get the owner of the pos.
@@ -40,6 +41,15 @@ class Pos extends Model
     {
         return $this->hasMany(PhysicalPosSession::class, 'pos_id', 'id');
     }
+
+    public function currentPosSession()
+    {
+        return $this->physical_pos_session()
+                    ->where('is_active', true)
+                    ->latest('created_at')
+                    ->first();
+    }
+
     // public function sales()
     // {
     //     return $this->hasMany(Sale::class, 'pos_id', 'id');

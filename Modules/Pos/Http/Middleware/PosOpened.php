@@ -5,6 +5,7 @@ namespace Modules\Pos\Http\Middleware;
 use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
+use Modules\Pos\Entities\Pos;
 
 class PosOpened
 {
@@ -17,6 +18,7 @@ class PosOpened
      */
     public function handle(Request $request, Closure $next)
     {
+        // $pos = Pos::find(1);
        if (session()->has('pos_session')) {
 
             return $next($request);

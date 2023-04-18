@@ -1,6 +1,6 @@
 <?php
 
-namespace Modules\People\Http\Livewire;
+namespace Modules\People\Http\Livewire\Customer;
 
 use App\Traits\CompanySession;
 use Illuminate\Support\Facades\Auth;

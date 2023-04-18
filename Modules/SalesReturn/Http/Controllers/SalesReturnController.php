@@ -10,6 +10,7 @@ use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Gate;
+use Modules\Financial\Interfaces\Accounting\AccountInterface;
 use Modules\People\Entities\Customer;
 use Modules\Product\Entities\Product;
 use Modules\SalesReturn\Entities\SaleReturn;
@@ -24,9 +25,12 @@ class SalesReturnController extends Controller
 
     protected $customerRepository;
 
-    public function __construct(CustomerInterface $customerRepository){
+    protected $accountRepository;
+
+    public function __construct(CustomerInterface $customerRepository, AccountInterface $accountRepository){
 
         $this->customerRepository = $customerRepository;
+        $this->accountRepository = $accountRepository;
     }
 
     public function index(SaleReturnsDataTable $dataTable) {
@@ -43,8 +47,9 @@ class SalesReturnController extends Controller
 
         $company = Auth::user()->currentCompany->id;
         $customers = $this->customerRepository->getCustomers($company);
+        $accounts = $this->accountRepository->getCompanyAccounts(Auth::user()->currentCompany->id);
 
-        return view('salesreturn::create', compact('customers'));
+        return view('salesreturn::create', compact('customers', 'accounts'));
     }
 
 

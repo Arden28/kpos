@@ -40,7 +40,7 @@ class FinancialController extends Controller
         }
 
         $revenue = ($sales - $sale_returns) / 100;
-        $profit = $revenue - $product_costs;
+        $profit = ($revenue - $product_costs) / 100;
 
         return view('financial::dashboard', [
         'revenue'          => $revenue,

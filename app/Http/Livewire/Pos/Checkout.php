@@ -75,7 +75,7 @@ class Checkout extends Component
         });
 
         if ($exists->isNotEmpty()) {
-            session()->flash('message', 'Product exists in the cart!');
+            session()->flash('message', 'Le produit est déja dans votre panier!');
 
             return;
         }
@@ -119,7 +119,7 @@ class Checkout extends Component
 
     public function updateQuantity($row_id, $product_id) {
         if ($this->check_quantity[$product_id] < $this->quantity[$product_id]) {
-            session()->flash('message', 'The requested quantity is not available in stock.');
+            session()->flash('message', __('La quantité demandé n\'est pas disponible en stock.'));
 
             return;
         }
@@ -173,7 +173,7 @@ class Checkout extends Component
             $this->updateCartOptions($row_id, $product_id, $cart_item, $discount_amount);
         }
 
-        session()->flash('discount_message' . $product_id, 'Discount added to the product!');
+        session()->flash('discount_message' . $product_id, 'Réduction ajoutée au produit!');
     }
 
     public function calculate($product) {

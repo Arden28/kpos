@@ -64,10 +64,19 @@
                     <div class="card-body p-0">
                         <div class="container col-md-12 text-center" style="margin-top: 12px">
 
-                            @if(session()->has('pos_session') && session('pos_id') == $p->id)
-                                <a href="{{ route('app.pos.index') }}" class="btn btn-outline-warning" >{{ __('Continuer la vente') }}</a>
+                            {{-- @if(session()->has('pos_session') && session('pos_id') == $p->id) --}}
+                            @if($p->isActive() && $p->currentPosSession())
+
+                                @if($p->id == Auth::user()->current_pos_id)
+                                    <livewire:pos::session.keep-on :session="$p->currentPosSession()" />
+                                @else
+                                    <livewire:pos::session.join :session="$p->currentPosSession()" />
+                                @endif
+
                             @else
+
                                 <a class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#modal-session-{{ $p->id }}">{{ __('Nouvelle Session') }}</a>
+
                             @endif
                         </div>
                         <hr>
@@ -75,10 +84,10 @@
                                 @php
                                     $latest_session = \Modules\Pos\Entities\PhysicalPosSession::where('pos_id', $p->id)->latest()->first();
                                 @endphp
-                                @if($latest_session)
+                                @if($p->currentPosSession())
 
                                     <ul>
-                                        @php
+                                        {{-- @php
 
                                             $date = \Carbon\Carbon::parse($latest_session->start_date);
 
@@ -93,12 +102,12 @@
                                             } else {
                                                 $formattedDate = ''; // or handle the case where the value is not valid
                                             }
-                                        @endphp
+                                        @endphp --}}
                                         <li>
-                                            Dernière date de fermeture : {{ $end_date }}
+                                            Dernière date de fermeture : {{ $p->currentPosSession()->end_date }}
                                         </li>
                                         <li>
-                                            Dernier solde de fermeture : {{ format_currency($latest_session->end_amount) }}
+                                            Dernier solde de fermeture : {{ format_currency($p->currentPosSession()->end_amount) }}
                                         </li>
 
                                     </ul>

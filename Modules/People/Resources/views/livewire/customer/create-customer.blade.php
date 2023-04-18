@@ -5,7 +5,7 @@
             {{ session('message') }}
         </div>
     @endif
-    <form  wire:submit.prevent="submit">
+    <form wire:submit.prevent="submit">
         @csrf
         <div class="modal-content">
             <div class="modal-header">

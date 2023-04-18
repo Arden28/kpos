@@ -1,0 +1,13 @@
+{
+    "name": "Kmodule",
+    "alias": "kmodule",
+    "description": "",
+    "keywords": [],
+    "priority": 0,
+    "providers": [
+        "Modules\\Kmodule\\Providers\\KmoduleServiceProvider"
+    ],
+    "aliases": {},
+    "files": [],
+    "requires": []
+}

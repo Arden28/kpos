@@ -20,20 +20,23 @@ class StandardPlan
     public function handle(Request $request, Closure $next)
     {
 
-        // $user = User::find(auth()->user()->id);
 
-        // // Get the plan you want to check for
-        // $standardMonth = Plan::find(1);
-        // $standardYear = Plan::find(2);
+        // Get the plan you want to check for
+        $standardMonth = Plan::find(1);
+        $standardYear = Plan::find(2);
 
-        // // Get the subscription for the authenticated user and plan
-        // $standard = PlanSubscription::where('subscriber_id', auth()->user()->id)
-        // ->whereIn('plan_id', [$standardMonth->id, $standardYear->id])
-        // ->first();
+        $mediumMonth = Plan::find(3);
+        $mediumYear = Plan::find(4);
 
+        // Get the subscription for the authenticated user and plan
+        $standard = PlanSubscription::where('subscriber_id', auth()->user()->id)
+        ->whereIn('plan_id', [$standardMonth->id, $standardYear->id, $mediumMonth->id, $mediumYear->id])
+        ->first();
+
+        // return $standard;
 
         // If the customer has a standard subscription
-        if (standard()) {
+        if ($standard) {
             return $next($request);
         }else{
             return redirect()->route('register.pro');

@@ -69,10 +69,19 @@ class CreateSession extends Component
 
                     if($pos_session->save()){
 
-                        // Upadate Cash
+                        // Update Cash
                         $cash = CashPos::where('pos_id', $pos_session->pos_id)->first();
                         $cash->amount = $pos_session->start_amount;
                         $cash->save();
+
+                        // Update Pos
+                        $pos = Pos::where('id', $this->pos_id)->first();
+                        $pos->current_pos_session_id = $pos_session->id;
+                        $pos->is_active = 1;
+
+                        $pos->save();
+
+                        // Auth::user()->current_pos_id = $this->pos_id;
 
                         session(['pos_session' => true]);
                         session(['pos_session_id' => $pos_session->id]);

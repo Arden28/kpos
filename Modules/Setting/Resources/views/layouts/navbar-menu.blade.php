@@ -13,8 +13,8 @@
               </a>
             </li>
 
-            <li class="nav-item {{ request()->routeIs('settings.index') ? 'active' : '' }}">
-              <a class="nav-link" href="{{ route('settings.index') }}" >
+            <li class="nav-item">
+              <a class="btn {{ request()->routeIs('settings.index') ? 'active' : '' }}" style="margin-right: 5px;" href="{{ route('settings.index') }}" >
                 <span class="nav-link-icon d-md-none d-lg-inline-block"><!-- Download SVG icon from http://tabler-icons.io/i/home -->
                     <i class="bi bi-gear" style="width: 24px; height:24px;"></i>
                 </span>
@@ -24,8 +24,8 @@
               </a>
             </li>
 
-            <li class="nav-item {{ request()->routeIs('settings.inventory') ? 'active' : '' }}">
-                <a class="nav-link" href="{{ route('settings.index') }}" >
+            <li class="nav-item">
+                <a class="btn {{ request()->routeIs('settings.inventory') ? 'active' : '' }}" style="margin-right: 5px;" href="{{ route('settings.index') }}" >
                   <span class="nav-link-icon d-md-none d-lg-inline-block"><!-- Download SVG icon from http://tabler-icons.io/i/home -->
                       <i class="bi bi-box-seam" style="width: 24px; height:24px;"></i>
                   </span>
@@ -36,7 +36,7 @@
               </li>
               @can('access_customers')
               <li class="nav-item">
-                <a class="nav-link" href="{{ route('customers.index') }}" >
+                <a class="btn {{ request()->routeIs('crm.*') ? 'active' : '' }}" href="{{ route('customers.index') }}" style="margin-right: 5px;" >
                   <span class="nav-link-icon d-md-none d-lg-inline-block"><!-- Download SVG icon from http://tabler-icons.io/i/star -->
                       <i class="bi bi-people-fill" style="width: 24px; height:24px"></i>
                   </span>
@@ -49,7 +49,7 @@
 
               @can('access_pos')
               <li class="nav-item">
-                <a class="nav-link" href="{{ route('app.pos.index') }}" >
+                <a class="btn" href="{{ route('app.pos.index') }}" style="margin-right: 5px;" >
                   <span class="nav-link-icon d-md-none d-lg-inline-block"><!-- Download SVG icon from http://tabler-icons.io/i/star -->
                       <i class="bi bi-shop" style="width: 24px; height:24px"></i>
                   </span>

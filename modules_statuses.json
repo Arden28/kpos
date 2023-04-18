@@ -19,5 +19,6 @@
     "Core": true,
     "Subby": true,
     "Inventory": true,
-    "Financial": true
+    "Financial": true,
+    "Kmodule": true
 }

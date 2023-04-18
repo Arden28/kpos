@@ -15,8 +15,9 @@ class PhysicalPosSession extends Model
 
     protected $fillable = ['pos_id', 'user_id', 'company_id', 'start_date', 'start_amount', 'note', 'is_active'];
 
-    public function isActive(Builder $builder) {
-        return $builder->where('is_active', 1);
+    public function scopeIsActive($query)
+    {
+        return $query->where('is_active', true);
     }
 
     public function pos() {

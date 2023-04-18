@@ -62,8 +62,8 @@ Route::group(['middleware' => 'auth'], function() {
     // Physical Pos Session
     Route::post('/app/pos/session', [PosController::class, 'startSession'])->name('app.pos.session.store');
 
-    // Physical Pos Session
-    // Route::get('/app/pos/{id}/', [PosController::class, 'editPhysical'])->name('app.pos.edit');
+    // Customers
+    Route::get('/app/pos/customer', [PosController::class, 'customer'])->name('app.pos.customer');
 
 
     // Docs

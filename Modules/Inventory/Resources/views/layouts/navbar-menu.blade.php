@@ -46,6 +46,11 @@
                       {{ __('Catégories de Produits') }}
                     </a>
 
+                    {{-- <a class="dropdown-item {{ request()->routeIs('*products.create') ? 'active' : '' }}" href="{{ route('products.create') }}">
+
+                        {{ __('Unités') }}
+                    </a> --}}
+
                   </div>
 
                   {{-- Right --}}

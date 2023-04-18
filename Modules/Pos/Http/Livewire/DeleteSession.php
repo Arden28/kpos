@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Session;
 use Livewire\Component;
 use Modules\Pos\Entities\PhysicalPos;
 use Modules\Pos\Entities\PhysicalPosSession;
+use Modules\Pos\Entities\Pos;
 
 class DeleteSession extends Component
 {
@@ -25,9 +26,12 @@ class DeleteSession extends Component
 
     public $end_note;
 
+    public $pos_id;
+
     public function mount($sales)
     {
         $this->pos = $this->pos->id; //A modifier
+        $this->pos_id = $this->pos->pos_id;
         $this->sales = $sales; //A modifier
     }
 
@@ -46,6 +50,11 @@ class DeleteSession extends Component
         $pos->end_date = Carbon::now();
         $pos->is_active = 0;
         $pos->save();
+
+        // Update Pos
+        $pos = Pos::where('id', $this->pos_id)->first();
+        $pos->current_pos_session_id = $this->pos;
+        $pos->is_active = 1;
 
         session()->forget('pos_session');
         session()->forget('pos_id');

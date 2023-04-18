@@ -79,7 +79,7 @@
                 </li>
 
                 <li class="nav-item">
-                  <a class="nav-link" href="{{ route('app.pos.order') }}" >
+                  <a class="nav-link" href="{{ route('app.pos.customer') }}" >
                     <span class="nav-link-icon d-md-none d-lg-inline-block"><!-- Download SVG icon from http://tabler-icons.io/i/home -->
                         <i class="bi bi-people" style="width: 24px; height: 24px;"></i>
                     </span>

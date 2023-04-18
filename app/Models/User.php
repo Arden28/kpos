@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Models\Company;
 use App\Traits\HasCompany;
+use Bpuig\Subby\Traits\HasSubscriptionPeriodUsage;
 use Bpuig\Subby\Traits\HasSubscriptions;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Builder;
@@ -23,7 +24,7 @@ use Spatie\Permission\Traits\HasRoles;
 
 class User extends Authenticatable implements HasMedia, MustVerifyEmail
 {
-    use HasCompany, HasPos, HasSubscriptions, HasFactory, Notifiable, HasRoles, InteractsWithMedia;
+    use HasCompany, HasPos, HasSubscriptions, HasSubscriptionPeriodUsage, HasFactory, Notifiable, HasRoles, InteractsWithMedia;
 
     protected $table = 'users';
     /**

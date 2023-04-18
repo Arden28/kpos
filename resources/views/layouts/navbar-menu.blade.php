@@ -234,10 +234,11 @@
                 <li class="nav-item">
                 @if(auth()->user()->subscriptions()->count() > 0)
 
-                    @if (standard() && standard()->isActive())
+                    {{-- @if (standard() && standard()->isActive() === true) --}}
+                    @if (standard())
                         <a class="btn" style="margin-right: 5px;" href="{{ route('app.pos.index') }}" >
                     @else
-                    <a  class="btn" style="margin-right: 5px;" data-bs-toggle="modal" data-bs-target="#modal-report">
+                        <a  class="btn" style="margin-right: 5px;" data-bs-toggle="modal" data-bs-target="#modal-report">
                     @endif
                 @else
                     <a  class="btn" style="margin-right: 5px;" data-bs-toggle="modal" data-bs-target="#modal-report">

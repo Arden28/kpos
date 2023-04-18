@@ -38,8 +38,8 @@ class HomeController extends Controller
  * DASHBOARD
  *
  */
-
- public function index() {
+public function index()
+{
 
     // $current_company_id = Auth::user()->currentCompany->id;
     $sales = Sale::completed()->where('company_id', Auth::user()->currentCompany->id)->sum('total_amount');
@@ -54,14 +54,14 @@ class HomeController extends Controller
     }
 
     $revenue = ($sales - $sale_returns) / 100;
-    $profit = $revenue - $product_costs;
+    $profit = ($revenue - $product_costs) / 100;
 
     return view('home', [
-        'revenue'          => $revenue,
-        'sale_returns'     => $sale_returns / 100,
-        'purchase_returns' => $purchase_returns / 100,
-        'profit'           => $profit
-    ]);
+    'revenue'          => $revenue,
+    'sale_returns'     => $sale_returns / 100,
+    'purchase_returns' => $purchase_returns / 100,
+    'profit'           => $profit
+]);
 }
 
 

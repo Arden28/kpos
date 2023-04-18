@@ -60,16 +60,16 @@
                         @csrf
                         <div class="modal-body">
                             <div class="form-group">
-                                <label for="category_code">{{ __('Category Code') }} <span class="text-danger">*</span></label>
+                                <label for="category_code">{{ __('Code de la Catégorie') }} <span class="text-danger">*</span></label>
                                 <input class="form-control" type="text" name="category_code" required>
                             </div>
                             <div class="form-group">
-                                <label for="category_name">{{ __('Category Name') }} <span class="text-danger">*</span></label>
+                                <label for="category_name">{{ __('Nom de la Catégorie') }} <span class="text-danger">*</span></label>
                                 <input class="form-control" type="text" name="category_name" required>
                             </div>
                         </div>
                         <div class="modal-footer">
-                            <button type="submit" class="btn btn-primary">{{ __('Add') }} <i class="bi bi-check"></i></button>
+                            <button type="submit" class="btn btn-primary">{{ __('Ajouter') }} <i class="bi bi-check"></i></button>
                         </div>
                     </form>
                 </div>
