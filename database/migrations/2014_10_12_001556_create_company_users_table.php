@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('company_id');
             $table->foreignId('user_id');
+            $table->foreignId('team_id')->nullable();
             $table->string('role')->nullable();
             $table->timestamps();
 

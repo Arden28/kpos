@@ -26,11 +26,11 @@ class Subscribed
         //     ->where('subscriber_id', $user->id)->first();
 
         // isSubscribedTo($planId->id)
-        if ($user->subscriptions()->count() == 0) {
-
+        if (! Auth::user()->team->subscription()) {
             return redirect()->route('register.pro');
         }
-            return $next($request);
+        
+        return $next($request);
 
     }
 }

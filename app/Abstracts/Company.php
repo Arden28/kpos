@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 use App\Abstracts\Membership;
 use App\Models\CompanyInvitation;
 use App\Models\CompanyUser;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Notifications\Notifiable;
 use Modules\Pos\Entities\Pos;

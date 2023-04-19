@@ -17,7 +17,7 @@ class EnterprisePlan
     public function handle(Request $request, Closure $next)
     {
         // If the customer has a enterprise subscription
-        if (standard()) {
+        if (enterprise()) {
             return $next($request);
         }else{
             return redirect()->route('register.pro');

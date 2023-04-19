@@ -3,6 +3,7 @@
 namespace Modules\Pos\Http\Livewire;
 
 use App\Interfaces\CompanyInterface;
+use App\Models\User;
 use App\Traits\CompanySession;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
@@ -75,13 +76,15 @@ class CreateSession extends Component
                         $cash->save();
 
                         // Update Pos
-                        $pos = Pos::where('id', $this->pos_id)->first();
-                        $pos->current_pos_session_id = $pos_session->id;
-                        $pos->is_active = 1;
+                        $physical = Pos::where('id', $this->pos_id)->first();
+                        $physical->current_pos_session_id = $pos_session->id;
+                        $physical->is_active = 0;
+                        $physical->save();
 
-                        $pos->save();
-
-                        // Auth::user()->current_pos_id = $this->pos_id;
+                        // Update user current pos id
+                        $user = User::find(Auth::user()->id)->first();
+                        $user->current_pos_id = $physical->id;
+                        $user->save();
 
                         session(['pos_session' => true]);
                         session(['pos_session_id' => $pos_session->id]);

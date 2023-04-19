@@ -223,7 +223,7 @@
                         <i class="bi bi-people" style="width: 24px; height:24px"></i>
                     </span>
                     <span class="nav-link-title">
-                      {{ __('RH') }}
+                      {{ __('Personnel') }}
                     </span>
                   </a>
                 </li>
@@ -232,11 +232,11 @@
                 {{-- POS Management --}}
                 @can('access_pos')
                 <li class="nav-item">
-                @if(auth()->user()->subscriptions()->count() > 0)
+                @if(Auth::user()->team->subscription())
 
                     {{-- @if (standard() && standard()->isActive() === true) --}}
                     @if (standard())
-                        <a class="btn" style="margin-right: 5px;" href="{{ route('app.pos.index') }}" >
+                        <a class="btn" style="margin-right: 5px;" href="{{ route('app.pos.dashboard') }}" >
                     @else
                         <a  class="btn" style="margin-right: 5px;" data-bs-toggle="modal" data-bs-target="#modal-report">
                     @endif
@@ -326,9 +326,8 @@
                 </li>
 
 
-                <li class="nav-item disabled">
+                {{-- <li class="nav-item disabled">
                     <a class="btn" href="#" >
-                        {{-- <a class="nav-link" href="#" > --}}
                       <span class="nav-link-icon d-md-none d-lg-inline-block">
                         <i class="bi bi-app-indicator"></i>
                       </span>
@@ -336,7 +335,7 @@
                           {{ __('Apps Store') }}
                       </span>
                     </a>
-                </li>
+                </li> --}}
 
               </ul>
               {{-- Search --}}

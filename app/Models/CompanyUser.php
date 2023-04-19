@@ -18,6 +18,7 @@ class CompanyUser extends Model
         'company_id',
         'user_id',
         'role',
+        'team_id',
     ];
 
 
@@ -29,5 +30,15 @@ class CompanyUser extends Model
     public function company()
     {
         return $this->belongsTo(Company::class);
+    }
+
+    /**
+     * Get the company that the invitation belongs to.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'user_id', 'id');
     }
 }

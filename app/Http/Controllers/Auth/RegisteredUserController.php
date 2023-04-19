@@ -8,6 +8,7 @@ use App\Mail\NewUser;
 use App\Models\Company;
 use App\Models\User;
 use App\Mail\NewKover;
+use App\Models\Team;
 use App\Providers\RouteServiceProvider;
 use Bpuig\Subby\Models\Plan;
 use Illuminate\Auth\Events\Registered;
@@ -19,6 +20,7 @@ use Illuminate\Support\Facades\Mail;
 use Illuminate\Validation\Rules;
 use Illuminate\Validation\Rules\Password;
 use Modules\Setting\Entities\Setting;
+use Ramsey\Uuid\Uuid;
 
 class RegisteredUserController extends Controller
 {
@@ -80,6 +82,9 @@ class RegisteredUserController extends Controller
 
         $user->assignRole($superAdmin);
 
+        // Execute team creation
+        $this->createTeam($user);
+
         // Excecute this function
         $this->addCompany($request, $user);
 
@@ -112,6 +117,22 @@ class RegisteredUserController extends Controller
         $this->updateUser($user, $company->id);
 
         $this->sendMail($request, $user, $company);
+    }
+
+    // Create user team account
+    public function createTeam($user){
+
+        $code = Uuid::uuid4();
+
+        $team = Team::create([
+            'uuid' => $code,
+            'user_id' => $user->id,
+        ]);
+        // $team->save();
+
+        $user->team_id = $team->id;
+        $user->save();
+
     }
 
     // Change current company id

@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Models\Company;
 use App\Traits\HasCompany;
+use App\Traits\HasTeam;
 use Bpuig\Subby\Traits\HasSubscriptionPeriodUsage;
 use Bpuig\Subby\Traits\HasSubscriptions;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
@@ -24,7 +25,7 @@ use Spatie\Permission\Traits\HasRoles;
 
 class User extends Authenticatable implements HasMedia, MustVerifyEmail
 {
-    use HasCompany, HasPos, HasSubscriptions, HasSubscriptionPeriodUsage, HasFactory, Notifiable, HasRoles, InteractsWithMedia;
+    use HasTeam, HasCompany, HasPos, HasFactory, Notifiable, HasRoles, InteractsWithMedia;
 
     protected $table = 'users';
     /**
@@ -39,7 +40,8 @@ class User extends Authenticatable implements HasMedia, MustVerifyEmail
         'password',
         'role',
         'is_active',
-        'company_id'
+        'current_company_id',
+        'team_id'
     ];
 
     /**
@@ -84,12 +86,27 @@ class User extends Authenticatable implements HasMedia, MustVerifyEmail
     public function isEmployee(Builder $builder, User $employee) {
         return $builder->where($employee->getRoleNames(),'!=', 'Super Admin');
     }
+
+    // Get Team
+    public function team()
+    {
+        return $this->belongsTo(Team::class, 'team_id');
+    }
+
     /**
      * Get the companies for the user.
      */
     public function companies()
     {
         return $this->hasMany(Company::class, 'user_id', 'id');
+    }
+
+    /**
+     * Get the company_user for the user.
+     */
+    public function company_user()
+    {
+        return $this->hasOne(CompanyUser::class, 'user_id', 'id');
     }
 
     public function accounts()

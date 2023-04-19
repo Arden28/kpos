@@ -37,7 +37,7 @@ if (!function_exists('standard')) {
         $mediumYear = Plan::find(4);
 
         // Get the subscription for the authenticated user and plan
-        $standard = PlanSubscription::where('subscriber_id', auth()->user()->id)
+        $standard = PlanSubscription::where('subscriber_id', Auth::user()->team->id)
         ->whereIn('plan_id', [$standardMonth->id, $standardYear->id, $mediumMonth->id, $mediumYear->id])
         ->first();
 
@@ -59,7 +59,7 @@ if (!function_exists('medium')) {
         $enterpriseYear = Plan::find(6);
 
         // Get the subscription for the authenticated user and plan
-        $medium = PlanSubscription::where('subscriber_id', auth()->user()->id)
+        $medium = PlanSubscription::where('subscriber_id', Auth::user()->team->id)
         ->whereIn('plan_id', [$mediumMonth->id, $mediumYear->id, $enterpriseMonth->id, $enterpriseYear->id])
         ->first();
 
@@ -74,12 +74,18 @@ if (!function_exists('enterprise')) {
     function enterprise() {
 
         // Get the plan you want to check for
+        $standardMonth = Plan::find(1);
+        $standardYear = Plan::find(2);
+
+        $mediumMonth = Plan::find(3);
+        $mediumYear = Plan::find(4);
+
         $enterpriseMonth = Plan::find(5);
         $enterpriseYear = Plan::find(6);
 
         // Get the subscription for the authenticated user and plan
-        $enterprise = PlanSubscription::where('subscriber_id', auth()->user()->id)
-        ->whereIn('plan_id', [$enterpriseMonth->id, $enterpriseYear->id])
+        $enterprise = PlanSubscription::where('subscriber_id', Auth::user()->team->id)
+        ->whereIn('plan_id', [$standardMonth->id, $standardYear->id, $mediumMonth->id, $mediumYear->id, $enterpriseMonth->id, $enterpriseYear->id])
         ->first();
 
         return $enterprise;

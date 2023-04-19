@@ -2,8 +2,10 @@
 
 namespace Modules\Pos\Http\Livewire;
 
+use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Artisan;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Session;
 use Livewire\Component;
@@ -30,8 +32,8 @@ class DeleteSession extends Component
 
     public function mount($sales)
     {
-        $this->pos = $this->pos->id; //A modifier
         $this->pos_id = $this->pos->pos_id;
+        $this->pos = $this->pos->id; //A modifier
         $this->sales = $sales; //A modifier
     }
 
@@ -52,9 +54,15 @@ class DeleteSession extends Component
         $pos->save();
 
         // Update Pos
-        $pos = Pos::where('id', $this->pos_id)->first();
-        $pos->current_pos_session_id = $this->pos;
-        $pos->is_active = 1;
+        $physical = Pos::where('id', $this->pos_id)->first();
+        $physical->current_pos_session_id = 0;
+        $physical->is_active = 0;
+        $physical->save();
+
+        // Update user current pos id
+        $user = User::find(Auth::user()->id)->first();
+        $user->current_pos_id = 0;
+        $user->save();
 
         session()->forget('pos_session');
         session()->forget('pos_id');
@@ -63,15 +71,7 @@ class DeleteSession extends Component
         session()->flash('message', __('Vous avez cloturé cette session !'));
         redirect()->route('app.pos.dashboard');
     }
-    // public function deleteSession(){
 
-    //     session()->forget('pos_session');
-    //     session()->forget('pos_id');
-    //     cache()->forget('pos');
-
-    //     session()->flash('message', __('Vous avez cloturé cette session !'));
-    //     redirect()->route('app.pos.dashboard');
-    // }
 
     public function render()
     {

@@ -39,6 +39,8 @@ class EmployeeRepository implements EmployeeInterface{
             'phone'    => $request['phone'],
             'password' => Hash::make($request['password']),
             'is_active' => $request['is_active'],
+            'team_id' => Auth::user()->team->id,
+            
         ]);
 
         $user->assignRole($request['role']);
@@ -50,6 +52,7 @@ class EmployeeRepository implements EmployeeInterface{
             'user_id'     => $user->id,
             'company_id'    => Auth::user()->currentCompany->id,
             'role'    => $request['role'],
+            'team_id' => Auth::user()->team->id,
         ]);
 
         $this->sendMail($request, $user, $company);

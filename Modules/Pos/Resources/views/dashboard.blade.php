@@ -84,10 +84,10 @@
                                 @php
                                     $latest_session = \Modules\Pos\Entities\PhysicalPosSession::where('pos_id', $p->id)->latest()->first();
                                 @endphp
-                                @if($p->currentPosSession())
+                                @if($latest_session)
 
                                     <ul>
-                                        {{-- @php
+                                        @php
 
                                             $date = \Carbon\Carbon::parse($latest_session->start_date);
 
@@ -102,12 +102,12 @@
                                             } else {
                                                 $formattedDate = ''; // or handle the case where the value is not valid
                                             }
-                                        @endphp --}}
+                                        @endphp
                                         <li>
-                                            Dernière date de fermeture : {{ $p->currentPosSession()->end_date }}
+                                            Dernière date de fermeture : {{ $end_date }}
                                         </li>
                                         <li>
-                                            Dernier solde de fermeture : {{ format_currency($p->currentPosSession()->end_amount) }}
+                                            Dernier solde de fermeture : {{ format_currency($latest_session->end_amount) }}
                                         </li>
 
                                     </ul>

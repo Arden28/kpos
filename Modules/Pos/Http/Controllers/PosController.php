@@ -82,10 +82,15 @@ class PosController extends Controller
 
         $company_id = Auth::user()->currentCompany->id;
 
-        $physical = $this->getCurrentPos();
+        // Le Point de vente auquel appartient la session | The POS in which belongs pos_session
+        $physical = Pos::find(session('pos_id'))->first();
         // $physical = Pos::where('id', $pos_id)->where('company_id', $company_id)->first();
+        // $physical = $this->getCurrentPos();
 
-        $pos = PhysicalPosSession::where('pos_id', $physical['id'])->latest()->first();
+        // La session en cours | The current session
+        $pos = $physical->currentPosSession();
+        // $pos = PhysicalPosSession::where('pos_id', $physical['id'])->latest()->first();
+        // $pos = $physical->currentPosSession();
         // Get Customer depends on the current company
         $customers = $this->customerRepository->getCustomers($company_id);
 

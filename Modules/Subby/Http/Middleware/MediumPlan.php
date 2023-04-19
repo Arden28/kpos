@@ -20,17 +20,6 @@ class MediumPlan
     public function handle(Request $request, Closure $next)
     {
 
-        // $user = User::find(auth()->user()->id);
-
-        // // Get the plan you want to check for
-        // $mediumMonth = Plan::find(3);
-        // $mediumYear = Plan::find(4);
-
-        // // Get the subscription for the authenticated user and plan
-        // $medium = PlanSubscription::where('subscriber_id', auth()->user()->id)
-        // ->whereIn('plan_id', [$mediumMonth->id, $mediumYear->id])
-        // ->first();
-
         // If the customer has a medium subscription
         if (medium()) {
             return $next($request);
