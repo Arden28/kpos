@@ -87,11 +87,8 @@ class AccountController extends Controller
     }
 
     /**
-     * Show the specified resource.
-     * @param int $id
-     * @return Renderable
      */
-    public function show(Account $account, AccountBooksDataTable $dataTable)
+    public function show(AccountBooksDataTable $dataTable, Account $account)
     {
         abort_if(Gate::denies('access_account_book'), 403);
 
@@ -148,4 +145,5 @@ class AccountController extends Controller
 
         return redirect()->route('account.index');
     }
+
 }

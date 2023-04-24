@@ -3,9 +3,9 @@
 @section('title', __('Ajouter un Produit'))
 
 @section('styles')
-
+{{--
     <!-- CoreUI CSS -->
-    {{-- <link rel="stylesheet" href="{{ mix('css/app.css') }}" crossorigin="anonymous"> --}}
+    <link rel="stylesheet" href="{{ mix('css/app.css') }}" crossorigin="anonymous"> --}}
 @endsection
 
 @section('breadcrumb')

@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Gate;
 use Modules\Financial\Entities\Accounting\AccountBook;
+use Modules\Financial\Interfaces\Accounting\AccountInterface;
 use Modules\People\Entities\Supplier;
 use Modules\Product\Entities\Product;
 use Modules\Purchase\Entities\Purchase;
@@ -19,6 +20,13 @@ use Modules\Purchase\Http\Requests\UpdatePurchaseRequest;
 
 class PurchaseController extends Controller
 {
+    protected $accountRepository;
+
+    public function __construct(AccountInterface $accountRepository){
+
+        $this->accountRepository = $accountRepository;
+
+    }
 
     public function index(PurchaseDataTable $dataTable) {
         abort_if(Gate::denies('access_purchases'), 403);
@@ -32,7 +40,9 @@ class PurchaseController extends Controller
 
         Cart::instance('purchase')->destroy();
 
-        return view('purchase::create');
+        $accounts = $this->accountRepository->getCompanyAccounts(Auth::user()->currentCompany->id);
+
+        return view('purchase::create', compact('accounts'));
     }
 
 
@@ -49,7 +59,7 @@ class PurchaseController extends Controller
 
             $purchase = Purchase::create([
                 'company_id' => Auth::user()->currentCompany->id,
-
+                'account_id' => $request['account_id'],
                 'date' => $request->date,
                 'supplier_id' => $request->supplier_id,
                 'supplier_name' => Supplier::findOrFail($request->supplier_id)->supplier_name,
@@ -104,36 +114,37 @@ class PurchaseController extends Controller
                 ]);
 
                 // Register to the book.
+                if($purchase){
+                    $current_balance = $purchase->account->balance;
 
-                $current_balance = $purchase->account->balance;
+                    if($due_amount > 0){
+                        $detail = 'Achat(Paiement Avancé. Reste: '.format_currency($due_amount).')';
+                    }else{
+                        $detail = 'Achat(Paiement Complété)';
+                    }
 
-                if($due_amount > 0){
-                    $detail = 'Achat(Paiement Avancé. Reste: '.format_currency($due_amount).')';
-                }else{
-                    $detail = 'Achat(Paiement Complété)';
+                    $book = AccountBook::create([
+                        'company_id' => Auth::user()->currentCompany->id,
+                        'account_id' => $purchase->account_id,
+                        'user_id' => Auth::user()->id,
+                        'detail' => $detail,
+                        'note' => $request->note,
+                        'balance' => $request->paid_amount,
+                        'credit' => $request->paid_amount,
+                        'date' => now()->format('d-m-Y H:i:s'),
+                    ]);
+
+                    $book->save();
+
+                    $new_balance = $current_balance - $book->balance;
+
+                    $purchase->account->balance = $new_balance;
+                    $purchase->account->save();
+
+                    $book->balance = $new_balance;
+                    $book->save();
+
                 }
-
-                $book = AccountBook::create([
-                    'company_id' => Auth::user()->currentCompany->id,
-                    'account_id' => $purchase->account_id,
-                    'user_id' => Auth::user()->id,
-                    'detail' => $detail,
-                    'note' => $request->note,
-                    'balance' => $request->paid_amount,
-                    'credit' => $request->paid_amount,
-                    'date' => now()->format('d-m-Y H:i:s'),
-                ]);
-
-                $book->save();
-
-                $new_balance = $current_balance + $book->balance;
-
-                $purchase->account->balance = $new_balance;
-                $purchase->account->save();
-
-                $book->balance = $new_balance;
-                $book->save();
-
             }
         });
 

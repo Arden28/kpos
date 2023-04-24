@@ -17,9 +17,13 @@ use Modules\Financial\Http\Controllers\Accounting\AccountController;
 */
 
 
-Route::group(['middleware' => 'auth'], function () {
+Route::middleware(['module:finance', 'auth'])->group(function () {
     // Overview
     Route::get('/dashboard', [FinancialController::class, 'index'])->name('finance.index');
+
+    // Accounting Balance
+    Route::get('/account/balance', [FinancialController::class, 'accountingBalance'])->name('finance.balance');
+
     Route::resource('account', AccountController::class);
 
 

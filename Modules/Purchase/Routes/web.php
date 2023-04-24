@@ -14,7 +14,7 @@
 use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Support\Facades\Route;
 
-Route::group(['middleware' => 'auth'], function () {
+Route::middleware(['module:inventory', 'auth'])->group(function () {
 
     //Generate PDF
     Route::get('/purchases/pdf/{id}', function ($id) {

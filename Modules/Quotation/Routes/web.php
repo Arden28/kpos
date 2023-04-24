@@ -1,5 +1,8 @@
 <?php
 
+use Barryvdh\DomPDF\Facade\Pdf;
+use Illuminate\Support\Facades\Route;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -11,13 +14,14 @@
 |
 */
 
-Route::group(['middleware' => 'auth'], function () {
+
+Route::middleware(['module:sales', 'auth'])->group(function () {
     //Generate PDF
     Route::get('/quotations/pdf/{id}', function ($id) {
         $quotation = \Modules\Quotation\Entities\Quotation::findOrFail($id);
         $customer = \Modules\People\Entities\Customer::findOrFail($quotation->customer_id);
 
-        $pdf = \PDF::loadView('quotation::print', [
+        $pdf = Pdf::loadView('quotation::print', [
             'quotation' => $quotation,
             'customer' => $customer,
         ])->setPaper('a4');

@@ -3,6 +3,7 @@
 namespace Modules\Setting\Http\Controllers;
 
 use App\Models\Company;
+use App\Models\Team;
 use App\Traits\CompanySession;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
@@ -34,7 +35,9 @@ class SettingController extends Controller
         $currencies = $this->currencyRepository->getCurrencies($company);
         $settings = Setting::where('company_id', $company)->first();
 
-        return view('setting::index', compact('settings', 'currencies'));
+        $team = Team::find(Auth::user()->team->id)->first();
+        
+        return view('setting::index', compact('settings', 'currencies', 'team'));
     }
 
 

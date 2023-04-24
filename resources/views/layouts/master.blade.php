@@ -14,6 +14,9 @@
     <link href="{{ asset('assets/dist/css/tabler-payments.min.css')}}?1668287865" rel="stylesheet"/>
     <link href="{{ asset('assets/dist/css/tabler-vendors.min.css')}}?1668287865" rel="stylesheet"/>
     <link href="{{ asset('assets/dist/css/demo.min.css')}}?1668287865" rel="stylesheet"/>
+    <!-- CoreUI CSS -->
+    <link rel="stylesheet" href="{{ mix('css/app.css') }}" crossorigin="anonymous">
+
 
     @livewireStyles
     <wireui:scripts />
@@ -40,30 +43,40 @@
 
             @include('layouts.navbar-menu')
 
+        <!-- HR -->
         @elseif(request()->routeIs('users.*') || request()->routeIs('roles.*') || request()->routeIs('hr.*') )
 
             @include('user::layouts.navbar-menu')
 
+        <!-- Inventory -->
         @elseif(request()->routeIs('inventory.*') || request()->routeIs('products.*') || request()->routeIs('product-categories.*') || request()->routeIs('barcode.print') || request()->routeIs('adjustments.*') || request()->routeIs('purchases.*') || request()->routeIs('purchase-payments.*') || request()->routeIs('purchase-returns*') || request()->routeIs('purchase-return-payments*') )
 
             @include('inventory::layouts.navbar-menu')
 
+        <!-- CRM -->
         @elseif(request()->routeIs('customers.*') || request()->routeIs('suppliers.*') || request()->routeIs('crm.*'))
 
             @include('people::layouts.navbar-menu')
 
+        <!-- POS -->
         @elseif(request()->routeIs('app.pos.*'))
 
             @include('pos::layouts.navbar-menu')
 
-
+        <!-- Setting -->
         @elseif(request()->routeIs('settings.*'))
 
             @include('setting::layouts.navbar-menu')
 
+        <!-- Finance -->
         @elseif(request()->routeIs('finance.*') || request()->routeIs('account.*') || request()->routeIs('book.*') || request()->routeIs('expense-categories.*') || request()->routeIs('expenses.*') || request()->routeIs('*-report.*') )
 
             @include('financial::layouts.navbar-menu')
+
+        <!-- Sales -->
+        @elseif(request()->routeIs('sales.*') || request()->routeIs('sale-returns.*') || request()->routeIs('quotations.*'))
+
+            @include('sale::layouts.navbar-menu')
 
         @else
 

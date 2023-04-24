@@ -36,7 +36,14 @@ class AccountBooksDataTable extends DataTable
         // A modifier
 
         $current_company_id = Auth::user()->currentCompany->id;
-        return $model->orderBy('id', 'DESC')->where('company_id', $current_company_id)->with('user', 'account')->newQuery();
+        // return $model->orderBy('id', 'DESC')->where('company_id', $current_company_id)->with('user', 'account')->newQuery();
+        return $model->orderBy('id', 'DESC')
+        ->join('accounts', 'account_books.account_id', '=', 'accounts.id')
+        ->join('users', 'account_books.company_id', '=', 'users.current_company_id')
+        ->select('account_books.*')
+        ->with('account', 'user')
+
+        ->newQuery()->groupBy('id');
     }
 
     public function html() {

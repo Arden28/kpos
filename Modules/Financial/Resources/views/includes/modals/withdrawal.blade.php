@@ -18,7 +18,7 @@
                         <h2>{{ __('Compte sélectionné') }} : {{ $data->account_name }}</h2>
                     </div>
                 </div>
-
+                <input type="hidden" value="{{ $data->id }}" name="account_id">
                 <div class="col-lg-12">
                 <div class="mb-3">
                     <label class="form-label">{{ __('Montant') }} : </label>

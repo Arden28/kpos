@@ -22,6 +22,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
+        $this->call(ModuleSeeder::class);    
         $this->call(PlanTableSeeder::class);
         // $this->call(PlanFeatureTableSeeder::class);
         $this->call(PermissionsTableSeeder::class);

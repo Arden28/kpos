@@ -68,7 +68,7 @@ class AccountBookController extends Controller
 
         $request->validated();
 
-        $account = Account::find($id)->first();
+        $account = Account::find($request->account_id);
 
         $user = Auth::user()->id;
         $company = Auth::user()->currentCompany->id;

@@ -1,6 +1,6 @@
 @extends('layouts.master')
 
-@section('title', __('Currencies'))
+@section('title', __('Toutes les Devises'))
 
 @section('third_party_stylesheets')
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.25/css/dataTables.bootstrap4.min.css">
@@ -12,7 +12,7 @@
     <div class="row g-2 align-items-center">
     <div class="col">
         <h2 class="page-title">
-            {{ __('Currencies') }}
+            {{ __('Toutes les Devises') }}
         </h2>
     </div>
     </div>
@@ -29,11 +29,11 @@
                     <div class="card">
                         <div class="card-body">
                             <a href="{{ route('currencies.create') }}" class="btn btn-primary">
-                                {{ __('Add Currency') }} <i class="bi bi-plus"></i>
+                                {{ __('Ajouter un Devise') }} <i class="bi bi-plus"></i>
                             </a>
 
                             <a href="{{ url()->previous() }}" class="btn btn-warning">
-                                {{ __('Return') }} <i class="bi bi-arrow-return-left"></i>
+                                {{ __('Retour') }} <i class="bi bi-arrow-return-left"></i>
                             </a>
                             <hr>
 

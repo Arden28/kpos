@@ -18,7 +18,7 @@ use Modules\People\Http\Controllers\SuppliersController;
 */
 
 
-Route::group(['middleware' => 'auth'], function () {
+Route::middleware(['module:crm', 'auth'])->group(function () {
     // CRM
     Route::get('/dashboard', [CrmController::class, 'index'])->name('crm.index');
     //Customers

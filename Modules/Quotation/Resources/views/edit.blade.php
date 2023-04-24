@@ -1,6 +1,6 @@
 @extends('layouts.master')
 
-@section('title', __('Edit Quotations'))
+@section('title', __('Modifier un devis'))
 
 @section('breadcrumb')
 <div class="page-header d-print-none">
@@ -8,7 +8,7 @@
     <div class="row g-2 align-items-center">
     <div class="col">
         <h2 class="page-title">
-            {{ __('Edit Quotations') }}
+            {{ __('Modifier un devis') }}
         </h2>
     </div>
     </div>
@@ -37,14 +37,14 @@
                                 <div class="row" style="padding-bottom: 12px;">
                                     <div class="col-lg-4">
                                         <div class="form-group">
-                                            <label for="reference">{{ __('Reference') }} <span class="text-danger">*</span></label>
+                                            <label for="reference">{{ __('Réference') }} <span class="text-danger">*</span></label>
                                             <input type="text" class="form-control" name="reference" required value="{{ $quotation->reference }}" readonly>
                                         </div>
                                     </div>
                                     <div class="col-lg-4">
                                         <div class="from-group">
                                             <div class="form-group">
-                                                <label for="customer_id">{{ __('Customer') }} <span class="text-danger">*</span></label>
+                                                <label for="customer_id">{{ __('Clients') }} <span class="text-danger">*</span></label>
                                                 <select class="form-control" name="customer_id" id="customer_id" required>
                                                     @foreach(\Modules\People\Entities\Customer::all() as $customer)
                                                         <option {{ $quotation->customer_id == $customer->id ? 'selected' : '' }} value="{{ $customer->id }}">{{ $customer->customer_name }}</option>
@@ -78,13 +78,13 @@
                                 </div>
 
                                 <div class="form-group">
-                                    <label for="note">{{ __('Note (If Needed)') }}</label>
+                                    <label for="note">{{ __('Note (Si besoin)') }}</label>
                                     <textarea name="note" id="note" rows="5" class="form-control">{{ $quotation->note }}</textarea>
                                 </div>
 
                                 <div class="mt-3">
                                     <button type="submit" class="btn btn-primary">
-                                        {{ __('Update Quotation') }} <i class="bi bi-check"></i>
+                                        {{ __('Sauvegarder') }} <i class="bi bi-check"></i>
                                     </button>
                                 </div>
                             </form>

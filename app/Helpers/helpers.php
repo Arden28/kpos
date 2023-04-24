@@ -1,18 +1,43 @@
 <?php
 
-// if (!function_exists('module')) {
-//     function module() {
-//         $module = Nwidart\Modules\Facades\Module::find('Pos');
-
-//         return $module;
-//     }
-// }
-
-// Cache Pos Session
-
+use App\Models\Module;
+use App\Models\Team;
 use Bpuig\Subby\Models\Plan;
 use Bpuig\Subby\Models\PlanSubscription;
 use Illuminate\Support\Facades\Auth;
+
+if (!function_exists('modules')) {
+    function modules() {
+        $modules = App\Models\Module::all();
+
+        return $modules;
+    }
+}
+
+
+if (!function_exists('team')) {
+    function team($id) {
+        $team = App\Models\Team::find('id', $id)->first();
+
+        return $team;
+    }
+}
+
+
+if (!function_exists('module')) {
+    function module($slug) {
+
+        $team = Team::find(Auth::user()->team->id)->first();
+
+        $module = Module::where('slug', $slug)->first();
+
+        if($module->isInstalledBy($team)){
+            return $module->isInstalledBy($team);
+        }
+    }
+}
+
+// Cache Pos Session
 
 if (!function_exists('pos')) {
     function pos() {
@@ -23,6 +48,17 @@ if (!function_exists('pos')) {
         });
 
         return $pos;
+    }
+}
+
+
+if (!function_exists('subscribed')) {
+    function subscribed($id) {
+        $subscribed = PlanSubscription::where('subscriber_id', $id)->first();
+
+        if($subscribed){
+            return $subscribed;
+        }
     }
 }
 

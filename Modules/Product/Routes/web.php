@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 
-Route::group(['middleware' => 'auth'], function () {
+Route::middleware(['module:inventory', 'auth'])->group(function () {
     //Print Barcode
     Route::get('/products/print-barcode', 'BarcodeController@printBarcode')->name('barcode.print');
 

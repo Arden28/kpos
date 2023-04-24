@@ -58,7 +58,7 @@ class SaleController extends Controller
         // Add Sale
         $this->saleRepository->addSale($request->validated());
 
-        toast('Sale Created!', 'success');
+        toast('Vente enregistrée!', 'success');
 
         return redirect()->route('sales.index');
     }
@@ -110,7 +110,7 @@ class SaleController extends Controller
         // Edit Sale
         $this->saleRepository->updateSale($request->validated(), $sale);
 
-        toast('Sale Updated!', 'info');
+        toast('Vente modifiée!', 'info');
 
         return redirect()->route('sales.index');
     }
@@ -121,7 +121,7 @@ class SaleController extends Controller
 
         $sale->delete();
 
-        toast(__('Sale Deleted!'), 'warning');
+        toast(__('Votre vente a bien été supprimée!'), 'warning');
 
         return redirect()->route('sales.index');
     }

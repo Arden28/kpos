@@ -93,7 +93,7 @@
                       {{ __('Liste des comptes') }}
                     </a>
 
-                    <a class="dropdown-item {{ request()->routeIs('account.index') ? 'active' : '' }}" href="{{ route('account.index') }}">
+                    <a class="dropdown-item {{ request()->routeIs('finance.balance') ? 'active' : '' }}" href="{{ route('finance.balance') }}">
 
                       {{ __('Balance Comptable') }}
                     </a>
@@ -102,7 +102,7 @@
                   {{-- Right --}}
                   <div class="dropdown-menu-column">
 
-                    <a class="dropdown-item {{ request()->routeIs('suppliers.create') ? 'active' : '' }}" href="{{ route('suppliers.create') }}">
+                    <a class="dropdown-item {{ request()->routeIs('suppliers.create') ? 'active' : '' }}" href="#">
 
                         {{ __('Bilan Comptable') }}
                     </a>

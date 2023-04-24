@@ -19,7 +19,7 @@ use Modules\Pos\Http\Controllers\PosOrderController;
 |
 */
 
-Route::middleware(['auth', 'opened'])->group( function() {
+Route::middleware(['module:pos', 'auth', 'opened'])->group( function() {
 
     Route::post('/app/pos', [PosController::class, 'store'])->name('app.pos.store');
 
@@ -37,7 +37,7 @@ Route::middleware(['auth', 'opened'])->group( function() {
 });
 
 
-Route::group(['middleware' => 'auth'], function() {
+Route::middleware(['module:pos', 'auth'])->group(function() {
 
     Route::get('/app/pos/dashboard', [PosController::class, 'dashboard'])->name('app.pos.dashboard');
 

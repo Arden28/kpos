@@ -56,15 +56,5 @@ class SuperUserSeeder extends Seeder
             // 'free' // Payment method service defined in config
         );
 
-        // $user->newSubscription(
-        //     'main', // identifier tag of the subscription. If your application offers a single subscription, you might call this 'main' or 'primary'
-        //     $plan, // Plan or PlanCombination instance your subscriber is subscribing to
-        //     $plan->name, // Human-readable name for your subscription
-        //     $plan->description, // Description
-        //     null, // Start date for the subscription, defaults to now()
-        //     // 'free' // Payment method service defined in config
-        // );
-
-        // $user->isSubscribedTo($plan);
     }
 }

@@ -75,5 +75,6 @@ class Kernel extends HttpKernel
         'subscribed.medium' => \Modules\Subby\Http\Middleware\MediumPlan::class,
         'subscribed.enterprise' => \Modules\Subby\Http\Middleware\EnterprisePlan::class,
         'opened' => \Modules\Pos\Http\Middleware\PosOpened::class,
+        'module'    => \App\Http\Middleware\CheckIfModuleInstalled::class,
     ];
 }

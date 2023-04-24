@@ -15,11 +15,15 @@ use Barryvdh\DomPDF\Facade\Pdf;
 */
 
 
-Route::group(['middleware' => 'auth'], function () {
+Route::middleware(['module:sales', 'auth'])->group(function () {
 
     //POS
     // Route::get('/app/pos', 'PosController@index')->name('app.pos.index');
     // Route::post('/app/pos', 'PosController@store')->name('app.pos.store');
+
+    // Sales Module
+    // Route::get('/sales/dashbo', 'SalePaymentsController@index')->name('sale-payments.index');
+
 
     //Generate PDF
     Route::get('/sales/pdf/{id}', function ($id) {
@@ -27,7 +31,7 @@ Route::group(['middleware' => 'auth'], function () {
         $customer = \Modules\People\Entities\Customer::findOrFail($sale->customer_id);
         $seller = \App\Models\User::findOrFail($sale->seller_id);
 
-        $pdf = PDF::loadView('sale::print', [
+        $pdf = Pdf::loadView('sale::print', [
             'sale' => $sale,
             'customer' => $customer,
             'seller' => $seller,
@@ -64,4 +68,6 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/sale-payments/{sale_id}/edit/{salePayment}', 'SalePaymentsController@edit')->name('sale-payments.edit');
     Route::patch('/sale-payments/update/{salePayment}', 'SalePaymentsController@update')->name('sale-payments.update');
     Route::delete('/sale-payments/destroy/{salePayment}', 'SalePaymentsController@destroy')->name('sale-payments.destroy');
+
+
 });

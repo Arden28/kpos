@@ -227,4 +227,12 @@ class FinancialController extends Controller
 
     }
 
+
+
+
+    // Accounting Balance
+    public function accountingBalance(){
+        return view('financial::accounts.balance');
+    }
+
 }

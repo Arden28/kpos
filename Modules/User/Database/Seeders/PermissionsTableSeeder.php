@@ -24,25 +24,28 @@ class PermissionsTableSeeder extends Seeder
             // Human Resources Management
             'access_human_resources_management',
 
-            //Products
-            'access_products',
-            'create_products',
-            'show_products',
-            'edit_products',
-            'delete_products',
+            // Inventory
 
-            //Product Categories
-            'access_product_categories',
+                'access_inventory',
+                //Products
+                'access_products',
+                'create_products',
+                'show_products',
+                'edit_products',
+                'delete_products',
 
-            //Barcode Printing
-            'print_barcodes',
+                //Product Categories
+                'access_product_categories',
 
-            //Adjustments
-            'access_adjustments',
-            'create_adjustments',
-            'show_adjustments',
-            'edit_adjustments',
-            'delete_adjustments',
+                //Barcode Printing
+                'print_barcodes',
+
+                //Adjustments
+                'access_adjustments',
+                'create_adjustments',
+                'show_adjustments',
+                'edit_adjustments',
+                'delete_adjustments',
 
             //Quotaions
             'access_quotations',
@@ -57,21 +60,22 @@ class PermissionsTableSeeder extends Seeder
             //Send Quotation On Email
             'send_quotation_mails',
 
-            // GR
-            'access_crm',
-            //Customers
-            'access_customers',
-            'create_customers',
-            'show_customers',
-            'edit_customers',
-            'delete_customers',
+            // CRM
+                // GR
+                'access_crm',
+                //Customers
+                'access_customers',
+                'create_customers',
+                'show_customers',
+                'edit_customers',
+                'delete_customers',
 
-            //Suppliers
-            'access_suppliers',
-            'create_suppliers',
-            'show_suppliers',
-            'edit_suppliers',
-            'delete_suppliers',
+                //Suppliers
+                'access_suppliers',
+                'create_suppliers',
+                'show_suppliers',
+                'edit_suppliers',
+                'delete_suppliers',
 
             //Sales
             'access_sales',

@@ -1,6 +1,6 @@
 @extends('layouts.master')
 
-@section('title', __('Show Quotations'))
+@section('title', __('Détails Devis '. $quotation->reference))
 
 @section('breadcrumb')
 <div class="page-header d-print-none">
@@ -8,7 +8,7 @@
     <div class="row g-2 align-items-center">
     <div class="col">
         <h2 class="page-title">
-            {{ __('Show Quotations') }}
+            {{ __('Détails Devis '. $quotation->reference) }}
         </h2>
     </div>
     </div>
@@ -25,42 +25,40 @@
                     <div class="card">
                         <div class="card-header d-flex flex-wrap align-items-center">
                             <div>
-                                Reference: <strong>{{ $quotation->reference }}</strong>
+                                {{ __('Référence') }}: <strong>{{ $quotation->reference }}</strong>
                             </div>
                             <a target="_blank" class="btn btn-sm btn-secondary mfs-auto mfe-1 d-print-none" href="{{ route('quotations.pdf', $quotation->id) }}">
-                                <i class="bi bi-printer"></i> Print
+                                <i class="bi bi-printer"></i> {{ __('Imprimer') }}
                             </a>
-                            <a target="_blank" class="btn btn-sm btn-info mfe-1 d-print-none" href="{{ route('quotations.pdf', $quotation->id) }}">
-                                <i class="bi bi-save"></i> Save
-                            </a>
+
                         </div>
                         <div class="card-body">
                             <div class="row mb-4">
                                 <div class="col-sm-4 mb-3 mb-md-0">
-                                    <h5 class="mb-2 border-bottom pb-2">Company Info:</h5>
+                                    <h5 class="mb-2 border-bottom pb-2">{{ __('Info Companie') }}:</h5>
                                     <div><strong>{{ Auth::user()->currentCompany->name }}</strong></div>
                                     <div>{{ Auth::user()->currentCompany->address }}</div>
-                                    <div>Email: {{ Auth::user()->currentCompany->email }}</div>
-                                    <div>Phone: {{ Auth::user()->currentCompany->phone }}</div>
+                                    <div>{{ __('Email') }}: {{ Auth::user()->currentCompany->email }}</div>
+                                    <div>{{ __('Téléphone') }}: {{ Auth::user()->currentCompany->phone }}</div>
                                 </div>
 
                                 <div class="col-sm-4 mb-3 mb-md-0">
-                                    <h5 class="mb-2 border-bottom pb-2">Customer Info:</h5>
+                                    <h5 class="mb-2 border-bottom pb-2">{{ __('Info Client') }}:</h5>
                                     <div><strong>{{ $customer->customer_name }}</strong></div>
                                     <div>{{ $customer->address }}</div>
-                                    <div>Email: {{ $customer->customer_email }}</div>
-                                    <div>Phone: {{ $customer->customer_phone }}</div>
+                                    <div>{{ __('Email') }}: {{ $customer->customer_email }}</div>
+                                    <div>{{ __('Téléphone') }}: {{ $customer->customer_phone }}</div>
                                 </div>
 
                                 <div class="col-sm-4 mb-3 mb-md-0">
                                     <h5 class="mb-2 border-bottom pb-2">Invoice Info:</h5>
-                                    <div>Invoice: <strong>INV/{{ $quotation->reference }}</strong></div>
-                                    <div>Date: {{ \Carbon\Carbon::parse($quotation->date)->format('d M, Y') }}</div>
+                                    <div>{{ __('Facture') }}: <strong>INV/{{ $quotation->reference }}</strong></div>
+                                    <div>{{ __('Date') }}: {{ \Carbon\Carbon::parse($quotation->date)->format('d M, Y') }}</div>
                                     <div>
-                                        Status: <strong>{{ $quotation->status }}</strong>
+                                        {{ __('Status') }}: <strong>{{ $quotation->status }}</strong>
                                     </div>
                                     <div>
-                                        Payment Status: <strong>{{ $quotation->payment_status }}</strong>
+                                        {{ __('Status de Paiement') }}: <strong>{{ $quotation->payment_status }}</strong>
                                     </div>
                                 </div>
 
@@ -70,12 +68,12 @@
                                 <table class="table table-striped">
                                     <thead>
                                     <tr>
-                                        <th class="align-middle">Product</th>
-                                        <th class="align-middle">Net Unit Price</th>
-                                        <th class="align-middle">Quantity</th>
-                                        <th class="align-middle">Discount</th>
-                                        <th class="align-middle">Tax</th>
-                                        <th class="align-middle">Sub Total</th>
+                                        <th class="align-middle">{{ __('Produit') }}</th>
+                                        <th class="align-middle">{{ __('Prix Uinitaire') }}</th>
+                                        <th class="align-middle">{{ __('Quantité') }}</th>
+                                        <th class="align-middle">{{ __('Réduction') }}</th>
+                                        <th class="align-middle">{{ __('Taxe') }}</th>
+                                        <th class="align-middle">{{ __('Sub Total') }}</th>
                                     </tr>
                                     </thead>
                                     <tbody>
@@ -114,22 +112,22 @@
                                 <div class="col-lg-4 col-sm-5 ml-md-auto">
                                     <table class="table">
                                         <tbody>
-                                        <tr>
-                                            <td class="left"><strong>Discount ({{ $quotation->discount_percentage }}%)</strong></td>
-                                            <td class="right">{{ format_currency($quotation->discount_amount) }}</td>
-                                        </tr>
-                                        <tr>
-                                            <td class="left"><strong>Tax ({{ $quotation->tax_percentage }}%)</strong></td>
-                                            <td class="right">{{ format_currency($quotation->tax_amount) }}</td>
-                                        </tr>
-                                        <tr>
-                                            <td class="left"><strong>Shipping</strong></td>
-                                            <td class="right">{{ format_currency($quotation->shipping_amount) }}</td>
-                                        </tr>
-                                        <tr>
-                                            <td class="left"><strong>Grand Total</strong></td>
-                                            <td class="right"><strong>{{ format_currency($quotation->total_amount) }}</strong></td>
-                                        </tr>
+                                            <tr>
+                                                <td class="left"><strong>{{ __('Réduction') }} ({{ $quotation->discount_percentage }}%)</strong></td>
+                                                <td class="right">{{ format_currency($quotation->discount_amount) }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="left"><strong>{{ __('Taxe') }} ({{ $quotation->tax_percentage }}%)</strong></td>
+                                                <td class="right">{{ format_currency($quotation->tax_amount) }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="left"><strong>{{ __('Livraison') }}</strong></td>
+                                                <td class="right">{{ format_currency($quotation->shipping_amount) }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="left"><strong>{{ __('Grand Total') }}</strong></td>
+                                                <td class="right"><strong>{{ format_currency($quotation->total_amount) }}</strong></td>
+                                            </tr>
                                         </tbody>
                                     </table>
                                 </div>

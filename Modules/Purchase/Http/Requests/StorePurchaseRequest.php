@@ -16,6 +16,7 @@ class StorePurchaseRequest extends FormRequest
     {
         return [
             // 'company_id' => 'numeric',
+            'account_id' => 'required|numeric',
             'supplier_id' => 'required|numeric',
             'reference' => 'required|string|max:255',
             'tax_percentage' => 'required|integer|min:0|max:100',

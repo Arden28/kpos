@@ -14,6 +14,7 @@ class AccountBookRequest extends FormRequest
     public function rules()
     {
         return [
+            'account_id' => 'required|numeric|gt:0',
             'amount' => 'required',
             'date' => 'required',
             'note' => 'max:150',

@@ -26,6 +26,13 @@ class ProductDataTable extends DataTable
                 $url = $data->getFirstMediaUrl('images', 'thumb');
                 return '<img src="'.$url.'" border="0" width="50" class="img-thumbnail" align="center"/>';
             })
+            // ->addColumn('supplier_name', function ($data) {
+            //     if($data->supplier->supplier_name !== null){
+            //         return $data->supplier->supplier_name;
+            //     }else{
+            //         return format_currency($data->product_price);
+            //     }
+            // })
             ->addColumn('product_price', function ($data) {
                 return format_currency($data->product_price);
             })
@@ -53,16 +60,15 @@ class ProductDataTable extends DataTable
                                 'tr' .
                                 <'row'<'col-md-5'i><'col-md-7 mt-2'p>>")
                     ->orderBy(7)
-                    ->buttons(
-                        Button::make('excel')
-                            ->text('<i class="bi bi-file-earmark-excel-fill"></i> Excel'),
-                        Button::make('print')
-                            ->text('<i class="bi bi-printer-fill"></i> '.__('Print')),
-                        Button::make('reset')
-                            ->text('<i class="bi bi-x-circle"></i> '.__('Reset')),
-                        Button::make('reload')
-                            ->text('<i class="bi bi-arrow-repeat"></i> '.__('Reload'))
-                    );
+                    ->buttons([
+                        Button::make('add'),
+                        Button::make('excel'),
+                        Button::make('csv'),
+                        Button::make('pdf'),
+                        Button::make('print'),
+                        Button::make('reset'),
+                        Button::make('reload'),
+                    ]);
     }
 
     protected function getColumns()

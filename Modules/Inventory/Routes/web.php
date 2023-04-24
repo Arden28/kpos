@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 
-Route::group(['middleware' => 'auth'], function () {
+Route::middleware(['module:inventory', 'auth'])->group(function () {
 
     Route::get('dashboard', 'InventoryController@index')->name('inventory.index');
 

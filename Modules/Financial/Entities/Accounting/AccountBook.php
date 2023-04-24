@@ -10,7 +10,7 @@ class AccountBook extends Model
 {
     use HasFactory;
 
-    // protected $table = 'account_books';
+    protected $table = 'account_books';
 
     protected $fillable = ['company_id', 'account_id', 'detail', 'note', 'user_id', 'credit', 'debit', 'balance', 'date'];
 

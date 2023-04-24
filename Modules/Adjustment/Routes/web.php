@@ -1,5 +1,7 @@
 <?php
 
+
+use Illuminate\Support\Facades\Route;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -11,7 +13,7 @@
 |
 */
 
-Route::group(['middleware' => 'auth'], function () {
+Route::middleware(['module:inventory', 'auth'])->group(function () {
     //Product Adjustment
     Route::resource('adjustments', 'AdjustmentController');
 });

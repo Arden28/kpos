@@ -19,12 +19,12 @@
             <table class="table table-bordered">
                 <thead class="thead-dark">
                 <tr>
-                    <th class="align-middle">{{ __('Product') }}</th>
-                    <th class="align-middle">{{ __('Net Unit Price') }}</th>
+                    <th class="align-middle">{{ __('Produit') }}</th>
+                    <th class="align-middle">{{ __('Prix Unitaire') }}</th>
                     <th class="align-middle">{{ __('Stock') }}</th>
-                    <th class="align-middle">{{ __('Quantity') }}</th>
-                    <th class="align-middle">{{ __('Discount') }}</th>
-                    <th class="align-middle">{{ __('Tax') }}</th>
+                    <th class="align-middle">{{ __('Quantité') }}</th>
+                    <th class="align-middle">{{ __('Réduction') }}</th>
+                    <th class="align-middle">{{ __('Taxe') }}</th>
                     <th class="align-middle">{{ __('Sub Total') }}</th>
                     <th class="align-middle">{{ __('Action') }}</th>
                 </tr>

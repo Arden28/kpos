@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 
-Route::group(['middleware' => 'auth'], function () {
+Route::middleware(['module:finance', 'auth'])->group(function () {
 
     // Dashboard
     // Route::get('/dashboard', 'ReportsController@index')

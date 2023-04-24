@@ -5,8 +5,8 @@
             <div class="container-xl">
               <ul class="navbar-nav">
 
-                <li class="nav-item {{ request()->routeIs('dashboard') ? 'active' : '' }}" data-turbolinks>
-                    <a class="btn" style="margin-right: 5px;" href="{{ route('dashboard') }}" >
+                <li class="nav-item" data-turbolinks>
+                    <a class="btn {{ request()->routeIs('dashboard') ? 'active' : '' }}" style="margin-right: 5px;" href="{{ route('dashboard') }}" >
                         {{-- <a class="nav-link" href="{{ route('dashboard') }}" > --}}
                       <span class="nav-link-icon d-md-none d-lg-inline-block"><!-- Download SVG icon from http://tabler-icons.io/i/home -->
                         <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><polyline points="5 12 3 12 12 3 21 12 19 12" /><path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" /><path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" /></svg>
@@ -17,9 +17,9 @@
                     </a>
                 </li>
 
-
-                <li class="nav-item {{ request()->routeIs('accounting') ? 'active' : '' }}" data-turbolinks>
-                  <a class="btn" style="margin-right: 5px;" href="{{ route('finance.index') }}" >
+                @if(module('finance'))
+                <li class="nav-item" data-turbolinks>
+                  <a class="btn {{ request()->routeIs('accounting') ? 'active' : '' }}" style="margin-right: 5px;" href="{{ route('finance.index') }}" >
                       {{-- <a class="nav-link" href="{{ route('dashboard') }}" > --}}
                     <span class="nav-link-icon d-md-none d-lg-inline-block">
                       <i class="bi bi-clipboard-data" style="width: 24px; height:24px"></i>
@@ -28,26 +28,26 @@
                         {{ __('Finance') }}
                     </span>
                   </a>
-              </li>
-
-                <li class="nav-item">
-                    <a class="btn" style="margin-right: 5px;" href="{{ route('inventory.index') }}" >
-                        {{-- <a class="nav-link" href="{{ route('inventory.index') }}" > --}}
-                      <span class="nav-link-icon d-md-none d-lg-inline-block"><!-- Download SVG icon from http://tabler-icons.io/i/home -->
-                        <i class="bi bi-box-seam" style="width: 24px; height:24px"></i>
-                      </span>
-                      <span class="nav-link-title">
-                          {{ __('Inventaire') }}
-                      </span>
-                    </a>
                 </li>
+                @endif
 
-                <li class="nav-item dropdown
-                {{ request()->routeIs('products.*') || request()->routeIs('product-categories.*') ? 'active' : '' }}
-                ">
-                  {{-- <a class="nav-link dropdown-toggle" data-turbolinks="false" href="#navbar-base" data-bs-toggle="dropdown" data-bs-auto-close="outside" role="button" aria-expanded="false" > --}}
+                @if(module('inventory'))
+                    <li class="nav-item">
+                        <a class="btn" style="margin-right: 5px;" href="{{ route('inventory.index') }}" >
+                            {{-- <a class="nav-link" href="{{ route('inventory.index') }}" > --}}
+                        <span class="nav-link-icon d-md-none d-lg-inline-block"><!-- Download SVG icon from http://tabler-icons.io/i/home -->
+                            <i class="bi bi-box-seam" style="width: 24px; height:24px"></i>
+                        </span>
+                        <span class="nav-link-title">
+                            {{ __('Inventaire') }}
+                        </span>
+                        </a>
+                    </li>
+                @endif
 
-                <a class="btn" style="margin-right: 5px;" data-turbolinks="false" href="#navbar-base" data-bs-toggle="dropdown" data-bs-auto-close="outside" role="button" aria-expanded="false" >
+                {{-- <li class="nav-item dropdown {{ request()->routeIs('products.*') || request()->routeIs('product-categories.*') ? 'active' : '' }}">
+
+                  <a class="btn" style="margin-right: 5px;" data-turbolinks="false" href="#navbar-base" data-bs-toggle="dropdown" data-bs-auto-close="outside" role="button" aria-expanded="false" >
                     <span class="nav-link-icon d-md-none d-lg-inline-block"><!-- Download SVG icon from http://tabler-icons.io/i/package -->
                         <i class="bi bi-app" style="width: 24px; height: 24px;"></i>
                     </span>
@@ -58,32 +58,11 @@
                   <div class="dropdown-menu">
                     <div class="dropdown-menu-columns">
 
-                      {{-- Left --}}
                       <div class="dropdown-menu-column">
-
-                        {{-- @can('access_purchases')
-                        <div class="dropend">
-                            <a class="dropdown-item dropdown-toggle {{ request()->routeIs('purchases.*')? 'active' : '' }}" href="#sidebar-error" data-bs-toggle="dropdown" data-bs-auto-close="outside" role="button" aria-expanded="false" >
-                            {{ __('Purchases') }}
-                            </a>
-                            <div class="dropdown-menu">
-                            @can('create_purchases')
-                            <a href="{{ route('purchases.create') }}" class="dropdown-item {{ request()->routeIs('purchases.create')? 'active' : '' }}">
-                                {{ __('Add Purchase') }}
-                            </a>
-                            @endcan
-
-                            <a href="{{ route('purchases.index') }}" class="dropdown-item {{ request()->routeIs('purchases.index')? 'active' : '' }}">
-                                {{ __('All Purchases') }}
-                            </a>
-                            </div>
-                        </div>
-                        @endcan --}}
 
                         @can('access_sales')
                         <div class="dropend">
                             <a class="dropdown-item dropdown-toggle {{ request()->routeIs('sales.*')? 'active' : '' }}" href="#sidebar-error" data-bs-toggle="dropdown" data-bs-auto-close="outside" role="button" aria-expanded="false" >
-                            {{-- <i class="bi bi-receipt"></i> --}}
                             {{ __('Sales') }}
                             </a>
                             <div class="dropdown-menu">
@@ -103,7 +82,6 @@
                         @can('access_expenses')
                         <div class="dropend">
                           <a class="dropdown-item dropdown-toggle {{ request()->routeIs('expenses.*')? 'active' : '' }}" href="#sidebar-error" data-bs-toggle="dropdown" data-bs-auto-close="outside" role="button" aria-expanded="false" >
-                            {{-- <i class="bi bi-receipt"></i> --}}
                             {{ __('Expenses') }}
                           </a>
                           <div class="dropdown-menu">
@@ -128,13 +106,11 @@
 
                       </div>
 
-                      {{-- Right --}}
                       <div class="dropdown-menu-column">
 
                         @can('access_quotations')
                         <div class="dropend">
                           <a class="dropdown-item dropdown-toggle {{ request()->routeIs('quotations.*')? 'active' : '' }}" href="#sidebar-error" data-bs-toggle="dropdown" data-bs-auto-close="outside" role="button" aria-expanded="false" >
-                            {{-- <i class="bi bi-receipt"></i> --}}
                             {{ __('Quotations') }}
                           </a>
                           <div class="dropdown-menu">
@@ -154,15 +130,12 @@
                         @can('access_sales')
                         <div class="dropend">
                           <a class="dropdown-item dropdown-toggle {{ request()->routeIs('sale-returns.*')? 'active' : '' }}" href="#sidebar-error" data-bs-toggle="dropdown" data-bs-auto-close="outside" role="button" aria-expanded="false" >
-                            {{-- <i class="bi bi-receipt"></i> --}}
                             {{ __('Sales Return') }}
                           </a>
                           <div class="dropdown-menu">
-                            {{-- @can('create_sales') --}}
                             <a href="{{ route('sale-returns.create') }}" class="dropdown-item {{ request()->routeIs('sale-returns.create')? 'active' : '' }}">
                               {{ __('Add Sale Return') }}
                             </a>
-                            {{-- @endcan --}}
 
                             <a href="{{ route('sale-returns.index') }}" class="dropdown-item {{ request()->routeIs('sale-returns.index')? 'active' : '' }}">
                               {{ __('All Sales Return') }}
@@ -174,9 +147,10 @@
                       </div>
                     </div>
                   </div>
-                </li>
+                </li> --}}
 
                 {{-- Customers | Suppliers Management --}}
+                @if(module('crm'))
                 @can('access_customers')
                 <li class="nav-item">
                   <a class="btn" style="margin-right: 5px;" href="{{ route('customers.index') }}" >
@@ -190,31 +164,28 @@
                   </a>
                 </li>
                 @endcan
+                @endif
 
-                {{-- @can('access_customers|access_suppliers')
-                <div class="dropend">
-                  <a class="dropdown-item dropdown-toggle {{ request()->routeIs('customers.*') || request()->routeIs('suppliers.*') ? 'active' : '' }}" href="#sidebar-error" data-bs-toggle="dropdown" data-bs-auto-close="outside" role="button" aria-expanded="false" >
-                    {{ __('CRM') }}
-                    <span class="badge badge-sm bg-green-lt text-uppercase ms-auto">{{ __('New') }}</span>
+
+                {{-- Sales Management --}}
+                @if(module('sales'))
+                @can('access_sales')
+                <li class="nav-item">
+                  <a class="btn" style="margin-right: 5px;" href="{{ route('quotations.index') }}" >
+                    <span class="nav-link-icon d-md-none d-lg-inline-block">
+                        <i class="bi bi-bar-chart-line-fill" style="width: 24px; height:24px"></i>
+                    </span>
+                    <span class="nav-link-title">
+                      {{ __('Ventes') }}
+                    </span>
                   </a>
-                  <div class="dropdown-menu">
-                    @can('access_customers')
-                    <a href="{{ route('customers.index') }}" class="dropdown-item {{ request()->routeIs('customers.*')? 'active' : '' }}">
-                      {{ __('Customers') }}
-                    </a>
-                    @endcan
+                </li>
+                @endcan
+                @endif
 
-                    @can('access_suppliers')
-                    <a href="{{ route('suppliers.index') }}" class="dropdown-item {{ request()->routeIs('suppliers.*')? 'active' : '' }}">
-                      {{ __('Suppliers') }}
-                    </a>
-                    @endcan
-
-                  </div>
-                </div>
-                @endcan --}}
 
                 {{-- Employee Management --}}
+                @if(module('hr'))
                 @can('access_user_management')
                 <li class="nav-item {{ request()->routeIs('roles*') ? 'active' : '' }}">
                   <a class="btn" style="margin-right: 5px;" href="{{ route('users.index') }}" >
@@ -224,39 +195,43 @@
                     </span>
                     <span class="nav-link-title">
                       {{ __('Personnel') }}
+                      {{-- <span class="badge badge-sm bg-green-lt text-uppercase ms-auto">{{ __('New') }}</span> --}}
                     </span>
                   </a>
                 </li>
                 @endcan
-
-                {{-- POS Management --}}
-                @can('access_pos')
-                <li class="nav-item">
-                @if(Auth::user()->team->subscription())
-
-                    {{-- @if (standard() && standard()->isActive() === true) --}}
-                    @if (standard())
-                        <a class="btn" style="margin-right: 5px;" href="{{ route('app.pos.dashboard') }}" >
-                    @else
-                        <a  class="btn" style="margin-right: 5px;" data-bs-toggle="modal" data-bs-target="#modal-report">
-                    @endif
-                @else
-                    <a  class="btn" style="margin-right: 5px;" data-bs-toggle="modal" data-bs-target="#modal-report">
                 @endif
 
-                    <i class="bi bi-shop" style="width: 24px; height:24px"></i>
-                    <span class="nav-link-title">
-                      {{ __('POS') }}
-                      <span class="nav-link-icon d-md-none d-lg-inline-block"><!-- Download SVG icon from http://tabler-icons.io/i/star -->
-                        @include('utils.standard_badge')
-                      </span>
-                    </span>
-                  </a>
-                </li>
+                {{-- POS Management --}}
+                @if(module('pos'))
+                @can('access_pos')
+                    <li class="nav-item">
+                        @if(subscribed(Auth::user()->team->id))
+
+                            {{-- @if (standard() && standard()->isActive() === true) --}}
+                            @if (standard())
+                                <a class="btn" style="margin-right: 5px;" href="{{ route('app.pos.dashboard') }}" >
+                            @else
+                                <a  class="btn" style="margin-right: 5px;" data-bs-toggle="modal" data-bs-target="#modal-report">
+                            @endif
+                        @else
+                            <a  class="btn" style="margin-right: 5px;" data-bs-toggle="modal" data-bs-target="#modal-report">
+                        @endif
+
+                        <i class="bi bi-shop" style="width: 24px; height:24px"></i>
+                        <span class="nav-link-title">
+                        {{ __('POS') }}
+                        <span class="nav-link-icon d-md-none d-lg-inline-block"><!-- Download SVG icon from http://tabler-icons.io/i/star -->
+                            @include('utils.standard_badge')
+                        </span>
+                        </span>
+                    </a>
+                    </li>
                 @endcan
+                @endif
 
                 {{-- Settings --}}
-                @can('access_pos')
+                @can('access_settings')
                 <li class="nav-item">
                   <a class="btn" style="margin-right: 5px;" href="{{ route('settings.index') }}" >
                     {{-- <a class="nav-link" href="{{ route('settings.index') }}" > --}}

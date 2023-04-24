@@ -2,7 +2,8 @@
 
 namespace App\Http\Livewire\Auth;
 
-use App\Models\User;
+use App\Models\Team;
+// use App\Models\team;
 use Bpuig\Subby\Models\Plan;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
@@ -58,11 +59,11 @@ class ProRegister extends Component
 
     public function subscribe()
     {
-        $user = User::findOrFail(Auth::user()->id);
+        $team = Team::findOrFail(Auth::user()->team->id);
         $selectedPlan = Plan::findOrFail($this->selectedPlanId);
         $selectedPaymentMethod = $this->selectedPaymentMethod;
 
-        $user->newSubscription(
+        $team->newSubscription(
             'main', // identifier tag of the subscription. If your application offers a single subscription, you might call this 'main' or 'primary'
             $selectedPlan, // Plan or PlanCombination instance your subscriber is subscribing to
             $selectedPlan->name, // Human-readable name for your subscription
@@ -71,7 +72,7 @@ class ProRegister extends Component
             // 'free' // Payment method service defined in config
         );
 
-        // $user->newSubscription('main', $selectedPlan, 'Main subscription', 'Customer main subscription');
+        // $team->newSubscription('main', $selectedPlan, 'Main subscription', 'Customer main subscription');
 
         redirect()->route('dashboard');
     }

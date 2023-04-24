@@ -9,12 +9,13 @@ use Modules\Expense\Entities\ExpenseCategory;
 use Modules\Pos\Entities\Pos;
 use Modules\Purchase\Entities\Purchase;
 use Modules\Sale\Entities\Sale;
+use Modules\Financial\Entities\Accounting\AccountBook;
 
 class Account extends Model
 {
     use HasFactory;
 
-    // protected $table = 'accounts';
+    protected $table = 'accounts';
 
     protected $fillable = ['account_name', 'company_id', 'number', 'type_id', 'balance', 'details', 'note', 'is_active', 'user_id'];
 
@@ -23,6 +24,12 @@ class Account extends Model
     public function company() {
 
         return $this->belongsTo(Company::class, 'company_id', 'id');
+
+    }
+
+    public function books() {
+
+        return $this->hasMany(AccountBook::class, 'account_id', 'id');
 
     }
 
@@ -43,6 +50,7 @@ class Account extends Model
         return $this->hasMany(Purchase::class, 'account_id', 'id');
 
     }
+
     public function expenseCategory() {
 
         return $this->hasMany(ExpenseCategory::class, 'account_id', 'id');

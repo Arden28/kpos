@@ -25,4 +25,10 @@ Route::group(['middleware' => 'auth'], function () {
     //Settings
     Route::resource('settings', 'SettingController')->except('create', 'show');
 
+    // Application
+    // Install
+    Route::post('/module/{module}/install', 'ModuleController@install')->name('module.install');
+    // Uninstall
+    Route::post('/module/{module}/uninstall', 'ModuleController@uninstall')->name('module.uninstall');
+
 });

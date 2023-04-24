@@ -9,6 +9,7 @@ use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Gate;
+use Modules\Financial\Interfaces\Accounting\AccountInterface;
 use Modules\People\Entities\Supplier;
 use Modules\Product\Entities\Product;
 use Modules\PurchasesReturn\Entities\PurchaseReturn;
@@ -20,6 +21,14 @@ use Modules\PurchasesReturn\Http\Requests\UpdatePurchaseReturnRequest;
 class PurchasesReturnController extends Controller
 {
     use CompanySession;
+
+    protected $accountRepository;
+
+    public function __construct(AccountInterface $accountRepository){
+
+        $this->accountRepository = $accountRepository;
+
+    }
 
     public function index(PurchaseReturnsDataTable $dataTable) {
         abort_if(Gate::denies('access_purchase_returns'), 403);
@@ -33,7 +42,9 @@ class PurchasesReturnController extends Controller
 
         Cart::instance('purchase_return')->destroy();
 
-        return view('purchasesreturn::create');
+        $accounts = $this->accountRepository->getCompanyAccounts(Auth::user()->currentCompany->id);
+
+        return view('purchasesreturn::create', compact('accounts'));
     }
 
 
