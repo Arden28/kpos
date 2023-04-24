@@ -24,7 +24,7 @@
               </a>
             </li>
 
-            <li class="nav-item">
+            {{-- <li class="nav-item">
                 <a class="btn {{ request()->routeIs('settings.inventory') ? 'active' : '' }}" style="margin-right: 5px;" href="{{ route('settings.index') }}" >
                   <span class="nav-link-icon d-md-none d-lg-inline-block"><!-- Download SVG icon from http://tabler-icons.io/i/home -->
                       <i class="bi bi-box-seam" style="width: 24px; height:24px;"></i>
@@ -33,7 +33,7 @@
                       {{ __('Inventaire') }}
                   </span>
                 </a>
-              </li>
+            </li>
               @can('access_customers')
               <li class="nav-item">
                 <a class="btn {{ request()->routeIs('crm.*') ? 'active' : '' }}" href="{{ route('customers.index') }}" style="margin-right: 5px;" >
@@ -44,7 +44,7 @@
                     {{ __('CRM') }}
                   </span>
                 </a>
-              </li>
+            </li>
               @endcan
 
               @can('access_pos')
@@ -58,7 +58,7 @@
                   </span>
                 </a>
               </li>
-              @endcan
+              @endcan --}}
 
           </ul>
 

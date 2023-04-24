@@ -1,4 +1,5 @@
 <form wire:submit.prevent="subscribe">
+    @csrf
     <div x-data="{currentStep: 1}" x-init="currentStep = {{ $currentStep }}">
 
         <div x-show="currentStep === 1">

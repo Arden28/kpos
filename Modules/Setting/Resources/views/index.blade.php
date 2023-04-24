@@ -23,6 +23,10 @@
             <div class="row">
 
                 <div class="col-lg-12" style="padding-bottom: 20px;">
+                    <livewire:company.invitation />
+                </div>
+
+                {{-- <div class="col-lg-12" style="padding-bottom: 20px;">
                     @include('utils.alerts')
                     <div class="card">
                         <div class="card-header bg-primary text-white">
@@ -56,10 +60,10 @@
                                         </div>
                                     </div>
                                 </div>
-
+                            </form>
                         </div>
                     </div>
-                </div>
+                </div> --}}
 
 
                 <div class="col-lg-12" style="padding-bottom: 20px;">
@@ -93,6 +97,7 @@
                                         </div>
                                     </div>
                                 </div>
+                            </form>
 
                                 <div class="row">
 
@@ -158,45 +163,6 @@
                     @include('utils.alerts')
                     <div class="card">
                         <div class="card-header bg-primary text-white">
-                            <h3 class="mb-0"><i class="bi bi-clipboard-data" style="font-size: 15px;"></i> {{ __('Statistiques') }}</h3>
-                        </div>
-                        <div class="card-body">
-
-                            <form action="{{ route('settings.update', $settings->id) }}" method="POST">
-                                @csrf
-                                @method('patch')
-                                <div class="row">
-
-                                    <div class="col-lg-6" style="padding-bottom: 10px">
-                                        <label for="company_name">{{ __('Inviter de nouveaux utilisateurs') }}</label>
-                                            <div class="input-group">
-                                                <input type="checkbox" class="form-control" name="company_name" placeholder="Saisir une adresse email" required>
-                                                <div class="input-group-prepend">
-                                                    <button type="submit" class="btn btn-primary">
-                                                        {{ __('Inviter') }}
-                                                    </button>
-                                                </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-lg-6">
-                                        <div class="form-group">
-
-                                            <p><i class="bi bi-people"></i> 2 {{ __('Utilisateur(s) actif(s)') }}</p>
-                                            <p style="padding-left: 15px"><a href=""><i class="bi bi-arrow-right"></i> {{ __('Gérer les utilisateurs') }}</a></p>
-
-                                        </div>
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-lg-12" style="padding-bottom: 20px;">
-                    @include('utils.alerts')
-                    <div class="card">
-                        <div class="card-header bg-primary text-white">
                             <h3 class="mb-0"><i class="bi bi-box" style="font-size: 15px;"></i> {{ __('Applications') }}</h3>
                         </div>
                         <div class="card-body">
@@ -239,10 +205,10 @@
 
                                                   <div class="col-md">
                                                     <div class="mt-3 list-inline list-inline-dots mb-0 text-muted d-sm-block d-none">
-                                                        {{-- <div class="list-inline-item"><!-- Download SVG icon from http://tabler-icons.io/i/building-community -->
+                                                        <div class="list-inline-item"><!-- Download SVG icon from http://tabler-icons.io/i/building-community -->
                                                             <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-inline" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M8 9l5 5v7h-5v-4m0 4h-5v-7l5 -5m1 1v-6a1 1 0 0 1 1 -1h10a1 1 0 0 1 1 1v17h-8" /><line x1="13" y1="7" x2="13" y2="7.01" /><line x1="17" y1="7" x2="17" y2="7.01" /><line x1="17" y1="11" x2="17" y2="11.01" /><line x1="17" y1="15" x2="17" y2="15.01" /></svg>
-                                                            Center Pixel, Inc
-                                                        </div> --}}
+                                                            Par <strong>Koverae SA</strong>
+                                                        </div>
                                                         <div class="list-inline-item"><!-- Download SVG icon from http://tabler-icons.io/i/building-community -->
                                                             {{ $module->description }}
                                                         </div>

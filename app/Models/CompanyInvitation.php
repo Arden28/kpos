@@ -18,7 +18,15 @@ class CompanyInvitation extends Model
         'company_id',
         'email',
         'role',
+        'token'
     ];
+
+    protected $dates = ['expire_at'];
+
+    public function hasExpired()
+    {
+        return $this->expire_at->isPast();
+    }
 
     /**
      * Get the company that the invitation belongs to.

@@ -175,6 +175,7 @@
                                       </div>
                                       <div class="col text-truncate text-muted text-truncate mt-n1">
                                           <a class="text-body d-block">
+                                            <span class="avatar avatar-sm" style="background-image: url({{ Auth::user()->currentCompany->getFirstMediaUrl('avatars') }})"></span>
                                               {{ $company->name }}
                                           </a>
                                       </div>
