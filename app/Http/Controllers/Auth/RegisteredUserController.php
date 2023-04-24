@@ -8,6 +8,8 @@ use App\Mail\NewUser;
 use App\Models\Company;
 use App\Models\User;
 use App\Mail\NewKover;
+use App\Models\InstalledModule;
+use App\Models\Module;
 use App\Models\Team;
 use App\Providers\RouteServiceProvider;
 use Bpuig\Subby\Models\Plan;
@@ -165,9 +167,11 @@ class RegisteredUserController extends Controller
         // $user->notify(new NewKover($request, $user, $company));
     }
 
+
     //
     // public function send($request, $user, $company){
 
     //     $user->notify(new NotificationsNewKover($user));
     // }
+
 }

@@ -69,13 +69,16 @@
       <table class="logo" width="100%">
         <tr>
           <td style="text-align: center">
-            <a href="#"
-              ><img
+            {{-- <a href="#">
+                <img
                 src="{{ asset('assets/images/emails/logo.png')}}"
                 width="130"
                 style="max-width: 100%; padding-top: 10px; padding-bottom: 10px;"
-                alt="Koverae"
-            /></a>
+                alt="Koverae" />
+            </a> --}}
+            <a href="#">
+                <h3><strong>Koverae</strong></h3>
+            </a>
           </td>
         </tr>
       </table>
@@ -85,11 +88,11 @@
             <p style="font-size: 30px">Salut <strong>{{ $user->name }} !</strong></p>
           </td>
         </tr>
-        <tr>
+        {{-- <tr>
           <td style="text-align: center">
             <img src="{{ asset('assets/images/emails/waving-hand.png')}}" alt="Waving Hand" />
           </td>
-        </tr>
+        </tr> --}}
         <tr>
           <td
             style="
@@ -106,7 +109,7 @@
         </tr>
         <tr style="text-align: center">
           <td>
-            <a target="__blank" href="#" class="button">{{ __('Commencer') }}</a>
+            <a target="__blank"  href="#" class="button text-white">{{ __('Commencer') }}</a>
           </td>
         </tr>
       </table>
@@ -128,7 +131,7 @@
             <p>{{__('Fait avec')}} <a href="https://www.dashboard.koverae.com/auth/login" class="link">Koverae</a></p>
           </td>
         </tr>
-        <tr>
+        {{-- <tr>
           <td style="text-align: center">
             <a href="#">
               <img
@@ -166,7 +169,7 @@
                 title="Logo"
             /></a>
           </td>
-        </tr>
+        </tr> --}}
       </table>
     </center>
   </body>

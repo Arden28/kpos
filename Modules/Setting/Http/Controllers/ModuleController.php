@@ -39,9 +39,13 @@ class ModuleController extends Controller
         // Redirect back to the modules page with a success message
         return redirect()->route('dashboard')
             ->with('success', "L'application '{$module->name}' installée avec brio.");
-    
+
     }
-    
+
+    public function start(){
+        return view('modules.install');
+    }
+
     public function uninstall(Module $module){
         $team = Team::find(Auth::user()->team->id)->first();
 
@@ -62,5 +66,5 @@ class ModuleController extends Controller
         return redirect()->route('dashboard')
             ->with('success', "L'application '{$module->name}' a été désinstallée !.");
     }
-    
+
 }

@@ -33,7 +33,7 @@ Route::middleware('web')->group(function () {
 
     Route::post('reset-password', [NewPasswordController::class, 'store'])
                 ->name('password.update');
-                
+
     // Route::get('send-mail',  [RegisteredUserController::class, 'send']);
 });
 
