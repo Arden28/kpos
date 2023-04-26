@@ -85,6 +85,18 @@ class Sale extends Model
     }
 
     /**
+     * Scope a query to only include sales which belong to the current company.
+     *
+     * @param  \Illuminate\Database\Eloquent\Builder  $query
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function scopeisCompany($query, $company): Builder
+    {
+        return $query->where('company_id', $company);
+    }
+
+
+    /**
      * Determine if the sale's payment method is cash.
      *
      * @return bool

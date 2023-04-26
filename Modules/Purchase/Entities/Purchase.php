@@ -42,6 +42,18 @@ class Purchase extends Model
         return $query->where('status', 'Completed');
     }
 
+    /**
+     * Scope a query to only include sales which belong to the current company.
+     *
+     * @param  \Illuminate\Database\Eloquent\Builder  $query
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function scopeisCompany($query, $company)
+    {
+        return $query->where('company_id', $company);
+    }
+
+
     public function getShippingAmountAttribute($value) {
         return $value / 100;
     }

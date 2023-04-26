@@ -76,9 +76,7 @@
                 style="max-width: 100%; padding-top: 10px; padding-bottom: 10px;"
                 alt="Koverae" />
             </a> --}}
-            <a href="#">
-                <h3><strong>Koverae</strong></h3>
-            </a>
+            <h3><strong>Koverae</strong></h3>
           </td>
         </tr>
       </table>
@@ -131,6 +129,7 @@
             <p>{{__('Fait avec')}} <a href="https://www.dashboard.koverae.com/auth/login" class="link">Koverae</a></p>
           </td>
         </tr>
+
         {{-- <tr>
           <td style="text-align: center">
             <a href="#">
@@ -170,6 +169,7 @@
             /></a>
           </td>
         </tr> --}}
+
       </table>
     </center>
   </body>

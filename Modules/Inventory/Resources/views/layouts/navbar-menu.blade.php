@@ -120,7 +120,7 @@
 
 
             <li class="nav-item">
-                <a class="btn {{ request()->routeIs('barcode.print') ? 'active' : '' }}" href="{{ route('barcode.print') }}">
+                <a class="btn {{ request()->routeIs('barcode.print') ? 'active' : '' }}" style="margin-right: 5px;" href="{{ route('barcode.print') }}">
                     <i class="bi bi-upc-scan" style="width: 24px; height: 24px;"></i>
                   </span>
                   <span class="nav-link-title">
@@ -128,6 +128,40 @@
                   </span>
                 </a>
             </li>
+
+            <li class="nav-item dropdown">
+                <a class="btn {{ request()->routeIs('suppliers*') ? 'active' : '' }}" style="margin-right: 5px;" href="#navbar-base" data-bs-toggle="dropdown" data-bs-auto-close="outside" role="button" aria-expanded="false" >
+                  <i class="bi bi-people" style="width: 24px; height:24px"></i>
+                  </span>
+                  <span class="nav-link-title">
+                    {{ __('Fournisseurs') }}
+                  </span>
+                </a>
+                <div class="dropdown-menu">
+                  <div class="dropdown-menu-columns">
+
+                    {{-- Left --}}
+                    <div class="dropdown-menu-column">
+                      <a class="dropdown-item {{ request()->routeIs('*suppliers.index') ? 'active' : '' }}" href="{{ route('suppliers.index') }}">
+
+                        {{ __('Tous les Fournisseurs') }}
+                      </a>
+
+                    </div>
+
+                    {{-- Right --}}
+                    <div class="dropdown-menu-column">
+
+                      <a class="dropdown-item {{ request()->routeIs('suppliers.create') ? 'active' : '' }}" href="{{ route('suppliers.create') }}">
+
+                          {{ __('Ajouter un Fournisseur') }}
+                      </a>
+
+                    </div>
+                  </div>
+                </div>
+            </li>
+
 
           </ul>
           {{-- Search --}}
