@@ -10,6 +10,8 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Gate;
 use Modules\Financial\Interfaces\Accounting\AccountInterface;
+use Modules\Inventory\DataTables\ProductDataTable;
+use Modules\People\DataTables\CustomersDataTable;
 use Modules\People\Entities\Customer;
 use Modules\Product\Entities\Product;
 use Modules\Sale\Entities\Sale;
@@ -125,4 +127,18 @@ class SaleController extends Controller
 
         return redirect()->route('sales.index');
     }
+
+    // Customers
+    public function customer(CustomersDataTable $dataTable) {
+
+        return $dataTable->render('sale::customers.index');
+    }
+
+    // Products
+    public function product(ProductDataTable $dataTable) {
+
+        return $dataTable->render('sale::products.index');
+    }
+
+
 }

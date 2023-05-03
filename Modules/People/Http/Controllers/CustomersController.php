@@ -87,8 +87,9 @@ class CustomersController extends Controller
 
         $customer->delete();
 
-        toast('Customer Deleted!', 'warning');
+        toast('Client Supprimé !', 'warning');
 
-        return redirect()->route('customers.index');
+        // return redirect()->route('customers.index');
+        return redirect()->back();
     }
 }

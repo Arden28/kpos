@@ -54,16 +54,16 @@ class SalesDataTable extends DataTable
                                 'tr' .
                                 <'row'<'col-md-5'i><'col-md-7 mt-2'p>>")
             ->orderBy(8)
-            ->buttons(
-                Button::make('excel')
-                    ->text('<i class="bi bi-file-earmark-excel-fill"></i> Excel'),
-                Button::make('print')
-                    ->text('<i class="bi bi-printer-fill"></i> Print'),
-                Button::make('reset')
-                    ->text('<i class="bi bi-x-circle"></i> Reset'),
-                Button::make('reload')
-                    ->text('<i class="bi bi-arrow-repeat"></i> Reload')
-            );
+                    ->buttons(
+                        Button::make('excel')
+                        ->text('<i class="bi bi-file-earmark-excel-fill"></i> Excel'),
+                        Button::make('print')
+                        ->text('<i class="bi bi-printer-fill"></i> '.__('Print')),
+                        Button::make('reset')
+                        ->text('<i class="bi bi-x-circle"></i> '.__('Reset')),
+                        Button::make('reload')
+                        ->text('<i class="bi bi-arrow-repeat"></i> '.__('Reload'))
+                    );
     }
 
     protected function getColumns() {

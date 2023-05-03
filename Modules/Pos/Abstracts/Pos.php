@@ -37,14 +37,14 @@ class Pos extends Model
         return $this->hasOne(CashPos::class, 'pos_id', 'id');
     }
 
-    public function physical_pos_session()
+    public function physical_pos_sessions()
     {
         return $this->hasMany(PhysicalPosSession::class, 'pos_id', 'id');
     }
 
     public function currentPosSession()
     {
-        return $this->physical_pos_session()
+        return $this->physical_pos_sessions()
                     ->where('is_active', true)
                     ->latest('created_at')
                     ->first();

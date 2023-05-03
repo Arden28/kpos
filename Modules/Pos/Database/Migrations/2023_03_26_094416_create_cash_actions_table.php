@@ -16,13 +16,13 @@ class CreateCashActionsTable extends Migration
         Schema::create('cash_actions', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('cash_id');
-            $table->unsignedBigInteger('pos_session_id');
+            $table->foreignId('pos_session_id');
             $table->string('action')->nullable();
             $table->string('amount')->nullable();
             $table->string('note')->nullable();
 
             $table->foreign('cash_id')->references('id')->on('cash_pos')->onDelete('cascade');
-            $table->foreign('pos_session_id')->references('id')->on('physical_pos_sessions')->onDelete('cascade');
+            // $table->foreign('pos_session_id')->references('id')->on('physical_pos_sessions')->onDelete('cascade');
             $table->timestamps();
         });
     }

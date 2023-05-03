@@ -25,8 +25,8 @@
                     <div class="col-lg-6">
                         <div class="form-group">
 
-                            <p><i class="bi bi-people"></i> 2 {{ __('Utilisateur(s) actif(s)') }}</p>
-                            <p style="padding-left: 15px"><a href=""><i class="bi bi-arrow-right"></i> {{ __('Gérer les utilisateurs') }}</a></p>
+                            <p><i class="bi bi-people"></i> {{ Auth::user()->currentCompany->allUsers()->count() }} {{ __('Utilisateur(s) actif(s)') }}</p>
+                            <p style="padding-left: 15px"><a href="{{ route('settings.users') }}"><i class="bi bi-arrow-right"></i> {{ __('Gérer les utilisateurs') }}</a></p>
 
                         </div>
                     </div>

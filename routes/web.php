@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use Modules\Setting\Http\Controllers\ModuleController;
+use Modules\User\DataTables\UsersDataTable;
 
 /*
 |--------------------------------------------------------------------------
@@ -40,6 +41,9 @@ use Modules\Setting\Http\Controllers\ModuleController;
 
     // Lang Switcher
 
+    Route::get('tests', function(UsersDataTable $dataTable) {
+        return $dataTable->render('test');
+    });
     // Companies
 
 

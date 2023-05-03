@@ -93,7 +93,12 @@ class AccountController extends Controller
         abort_if(Gate::denies('access_account_book'), 403);
 
         // return view('financial::accounts.books.index', compact('account'));
-        return $dataTable->render('financial::accounts.books.index', compact('account'));
+
+        $dataTable = new AccountBooksDataTable($account);
+        return $dataTable->render('financial::accounts.books.index', [
+            'account' => $account,
+        ]);
+        // return $dataTable->render('financial::accounts.books.index', compact('account'));
     }
 
     /**

@@ -39,13 +39,13 @@
 
                     {{-- Left --}}
                     <div class="dropdown-menu-column">
-                      <a class="dropdown-item" href="#">
-
+                      <a class="dropdown-item {{ request()->routeIs('app.pos.order') ? 'active' : '' }}" href="{{ route('app.pos.order') }}">
+                        <i class="bi bi-clipboard-data" style="width: 24px; height:24px"></i>
                         {{ __('Commandes') }}
                       </a>
 
-                      <a class="dropdown-item {{ request()->routeIs('profit-loss-report.index') ? 'active' : '' }}" href="{{ route('profit-loss-report.index') }}">
-
+                      <a class="dropdown-item {{ request()->routeIs('app.pos.session.index') ? 'active' : '' }}" href="{{ route('app.pos.session.index') }}">
+                        <i class="bi bi-clipboard-data" style="width: 24px; height:24px"></i>
                         {{ __('Sessions') }}
                       </a>
                     </div>
@@ -54,12 +54,12 @@
                     <div class="dropdown-menu-column">
 
                       <a class="dropdown-item " href="">
-
+                        <i class="bi bi-cash" style="width: 24px; height:24px"></i>
                           {{ __('Paiements') }}
                       </a>
 
                       <a class="dropdown-item" href="#">
-
+                        <i class="bi bi-people" style="width: 24px; height:24px"></i>
                         {{ __('Clients') }}
                       </a>
 

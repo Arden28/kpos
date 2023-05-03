@@ -23,29 +23,33 @@ class Invitation extends Component
         ]);
 
         // Create a new user with a random password
-        $user = User::create([
-            'team_id' => Auth::user()->team->id,
-            'current_company_id' => Auth::user()->currentCompany->id,
-            'email' => $this->email,
-            'password' => Str::random(8),
-        ]);
+        // $user = User::create([
+        //     'team_id' => Auth::user()->team->id,
+        //     'current_company_id' => Auth::user()->currentCompany->id,
+        //     'email' => $this->email,
+        //     'password' => Str::random(8),
+        //     'is_active' => false,
+        // ]);
 
         // Generate a unique invitation token
         $token = Str::random(32);
 
         // Create a new invitation record
         $invitation = CompanyInvitation::create([
+            'team_id' => Auth::user()->team->id,
             'company_id' => Auth::user()->currentCompany->id,
             'email'     => $this->email,
             'token' => $token,
-            'expires_at' => now()->addDays(7),
+            'role' => 'admin',
+            'expire_at' => now()->addDays(7),
         ]);
 
         // Send the invitation email with a link to the registration page
-        Mail::to($user->email)->send(new MailCompanyInvitation($invitation));
+        Mail::to($this->email)->send(new MailCompanyInvitation($invitation));
 
         // Empty field
         $this->email = '';
+        toast("L'invitation a bien été envoyée.", 'success');
 
         // Return a success response
         session()->flash('message', 'Invitation envoyée !');

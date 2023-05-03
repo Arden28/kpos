@@ -9,14 +9,15 @@
             <div class="col-lg-4">
               <div class="mb-3">
                 <label class="form-label">{{ __('Attendu') }} : </label>
-                <p class="form-control">{{ format_currency(500) }}</p>
+                <span class="form-control" >{{ $expected_amount_formatted }}</span>
+                {{-- <input type="text" class="form-control" wire:model="expected_amount" value="{{ format_currency($expected_amount) }}" disabled> --}}
               </div>
             </div>
 
             <div class="col-lg-4">
               <div class="mb-3">
                 <label class="form-label">{{ __('Compté') }} : </label>
-                <input type="number" placeholder="{{ __("Combien y'a-t-il dans la Caisse ?") }}" class="form-control border-0 rounded-0 border-bottom" wire:model="end_amount">
+                <input type="number" placeholder="{{ __("Combien y'a-t-il dans la Caisse ?") }}" class="form-control border-0 rounded-0 border-bottom" wire:model.debounce.500ms="entered_amount">
                 @error('end_amount')
                     <span class="error">{{ $message }}</span>
                 @enderror
@@ -26,7 +27,7 @@
             <div class="col-lg-4">
               <div class="mb-3">
                 <label class="form-label">{{ __('Ecart') }} : </label>
-                <p class="form-control text-green">{{ format_currency(500) }}</p>
+                <p class="form-control text-green">{{ format_currency($difference) }}</p>
               </div>
             </div>
 

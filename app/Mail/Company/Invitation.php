@@ -32,7 +32,7 @@ class Invitation extends Mailable
      */
     public function build()
     {
-        $url = url('/register?invitation_token=' . $this->invitation->token);
+        $url = url('/auth/guest-register?invitation_token=' . $this->invitation->token);
         $company = Company::find($this->invitation->company_id)->first();
         return $this->markdown('emails.company.invitation')
         ->subject('Invitation à rejoindre '.$company->name)

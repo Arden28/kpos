@@ -20,6 +20,7 @@ class Pos extends PosModel
         'code',
         'address',
         'company_id',
+        'pos_id',
         'account_id'
     ];
     protected $guarded = [];

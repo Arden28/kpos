@@ -29,7 +29,8 @@
         "stripe/stripe-php": "^10.12",
         "vildanbina/livewire-wizard": "^1.2",
         "wireui/wireui": "^1.17",
-        "yajra/laravel-datatables": "^1.5"
+        "yajra/laravel-datatables": "^1.5",
+        "yajra/laravel-datatables-buttons": "*"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.6",

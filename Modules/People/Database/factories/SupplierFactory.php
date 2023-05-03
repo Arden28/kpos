@@ -2,6 +2,7 @@
 namespace Modules\People\Database\factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Illuminate\Support\Facades\Auth;
 
 class SupplierFactory extends Factory
 {
@@ -20,6 +21,7 @@ class SupplierFactory extends Factory
     public function definition()
     {
         return [
+            'company_id'     => Auth::user()->currentCompany->id,
             'supplier_name' => $this->faker->name(),
             'supplier_email' => $this->faker->safeEmail(),
             'supplier_phone' => $this->faker->phoneNumber(),

@@ -36,7 +36,7 @@ class FluxDataTable extends DataTable
     public function query(AccountBook $model) {
         // A modifier
         $current_company_id = Auth::user()->currentCompany->id;
-        return $model->orderBy('id', 'DESC')->where('company_id', $current_company_id)->with('user', 'account')->newQuery();
+        return $model->where('company_id', $current_company_id)->newQuery()->with('user', 'account');
     }
 
     public function html() {
@@ -47,16 +47,16 @@ class FluxDataTable extends DataTable
             ->dom("<'row'<'col-md-3'l><'col-md-5 mb-2'B><'col-md-4'f>> .
                                 'tr' .
                                 <'row'<'col-md-5'i><'col-md-7 mt-2'p>>")
-            ->orderBy(6)
+            ->orderBy(4)
             ->buttons(
                 Button::make('excel')
-                    ->text('<i class="bi bi-file-earmark-excel-fill"></i> Excel'),
+                ->text('<i class="bi bi-file-earmark-excel-fill"></i> Excel'),
                 Button::make('print')
-                    ->text('<i class="bi bi-printer-fill"></i> Print'),
+                ->text('<i class="bi bi-printer-fill"></i> '.__('Print')),
                 Button::make('reset')
-                    ->text('<i class="bi bi-x-circle"></i> Reset'),
+                ->text('<i class="bi bi-x-circle"></i> '.__('Reset')),
                 Button::make('reload')
-                    ->text('<i class="bi bi-arrow-repeat"></i> Reload')
+                ->text('<i class="bi bi-arrow-repeat"></i> '.__('Reload'))
             );
     }
 

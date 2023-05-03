@@ -59,7 +59,7 @@ class CreateSession extends Component
         if(!session()->has('pos_session')){
                 $pos_session = PhysicalPosSession::create([
                     // 'start_date' => $this->start_date,
-                    'start_date' => Carbon::now(),
+                    'start_date' => Carbon::now()->format('d-m-Y H:i:s'),
                     'start_amount' => $this->start_amount,
                     'note' => $this->note,
                     'pos_id' => $this->pos_id,

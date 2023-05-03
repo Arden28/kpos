@@ -43,7 +43,7 @@
                       {{ __('Devis') }}
                     </a>
 
-                    <a class="dropdown-item {{ request()->routeIs('sales.*') ? 'active' : '' }}" href="{{ route('sales.index') }}">
+                    <a class="dropdown-item {{ request()->routeIs('sales.index') ? 'active' : '' }}" href="{{ route('sales.index') }}">
                         <i class="bi bi-bar-chart-line-fill" style="width: 24px; height:24px"></i>
                       {{ __('Ventes') }}
                     </a>
@@ -53,7 +53,7 @@
                       {{ __('Ventes Annulées') }}
                     </a>
 
-                    <a class="dropdown-item {{ request()->routeIs('customers.index') ? 'active' : '' }}" href="{{ route('customers.index') }}">
+                    <a class="dropdown-item {{ request()->routeIs('sales.customers') ? 'active' : '' }}" href="{{ route('sales.customers') }}">
                         <i class="bi bi-people" style="width: 24px; height:24px"></i>
                         {{ __('Clients') }}
                     </a>
@@ -65,7 +65,7 @@
             @endcan
 
             <li class="nav-item">
-              <a class="btn {{ request()->routeIs('finance*') ? 'active' : '' }}" style="margin-right: 5px;">
+              <a href="{{ route('sales.products') }}" class="btn {{ request()->routeIs('sales.products') ? 'active' : '' }}" style="margin-right: 5px;">
                 <span class="nav-link-icon d-md-none d-lg-inline-block"><!-- Download SVG icon from http://tabler-icons.io/i/home -->
                 <i class="bi bi-app" style="width: 24px; height:24px"></i>
                 </span>

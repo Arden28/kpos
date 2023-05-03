@@ -14,6 +14,7 @@ use Modules\Financial\Entities\Accounting\AccountBook;
 use Modules\Pos\Interfaces\PosInterface;
 use Modules\Sale\Http\Requests\StorePosSaleRequest;
 use Modules\People\Entities\Customer;
+use Modules\Pos\Entities\CashAction;
 use Modules\Pos\Entities\CashPos;
 use Modules\Pos\Entities\PhysicalPosSession;
 use Modules\Pos\Entities\Pos;
@@ -153,6 +154,9 @@ class PosRepository implements PosInterface
                 // Register to the book.
                 $physical = Pos::find($pos)->first();
 
+                // Update Cash
+                $this->updateCash($physical, $sale->paid_amount, $sale->note);
+
                 $current_balance = $physical->account->balance;
 
                 $book = AccountBook::create([
@@ -160,6 +164,7 @@ class PosRepository implements PosInterface
                     'account_id' => $physical->account_id,
                     'user_id' => Auth::user()->id,
                     'detail' => 'Vente(Pdv: '.$physical->name.')',
+                    'note' => $sale->note,
                     'balance' => $sale->paid_amount,
                     'debit' => $sale->paid_amount,
                     'date' => now()->format('d-m-Y H:i:s'),
@@ -178,6 +183,28 @@ class PosRepository implements PosInterface
 
             });
 
+    }
+
+    // Cash Update
+    public function updateCash($physical, $amount, $note){
+
+        // Update Cash
+        $cash = CashPos::where('pos_id', $physical->id)->first();
+        $current_cash = $cash->amount;
+        $cash->amount = $current_cash + $amount;
+        $cash->save();
+
+        // Cash Action
+
+        $cashAction = new CashAction();
+
+        $cashAction->pos_session_id = $physical->id;
+        $cashAction->cash_id = $cash->id;
+        $cashAction->action = 'incoming';
+        // $cashAction->amount = $this->action == 'incoming' ? $this->amount : -$this->amount;
+        $cashAction->amount = $amount;
+        $cashAction->note = $note;
+        $cashAction->save();
     }
 
     // Session

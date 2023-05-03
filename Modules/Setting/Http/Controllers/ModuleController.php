@@ -9,9 +9,21 @@ use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Auth;
+use Modules\People\Entities\Supplier;
+use Modules\People\Interfaces\SupplierInterface;
+use Faker\Factory as Faker;
 
 class ModuleController extends Controller
 {
+
+    protected $supplierRepository;
+
+    public function __construct(SupplierInterface $supplierRepository){
+
+        $this->supplierRepository = $supplierRepository;
+    }
+
+
     public function install(Module $module){
         $team = Team::find(Auth::user()->team->id)->first();
 

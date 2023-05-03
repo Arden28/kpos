@@ -20,6 +20,10 @@ class DeleteSession extends Component
 
     public $pos;
 
+    public $pos_session;
+
+    public $account;
+
     public $sales;
 
     public $end_amount;
@@ -30,10 +34,27 @@ class DeleteSession extends Component
 
     public $pos_id;
 
+    public $physical;
+
+    // The amount expected to be in cash
+    public $expected_amount;
+
+    // The real amount in the cash
+    public $entered_amount;
+
+    // the difference between the expected and the actual amount
+    public $difference;
+
+
     public function mount($sales)
     {
-        $this->pos_id = $this->pos->pos_id;
-        $this->pos = $this->pos->id; //A modifier
+        // $this->physical = Pos::find($this->pos->pos_id); //A modifier
+
+        $this->expected_amount = $this->physical->cash_pos->amount; // remove the format_currency() function
+
+        // $this->pos_id = $this->pos->pos_id;
+        $this->pos_id = $this->physical->id;
+        $this->pos_session = $this->pos->id; //A modifier
         $this->sales = $sales; //A modifier
     }
 
@@ -46,12 +67,15 @@ class DeleteSession extends Component
         redirect()->route('app.pos.dashboard');
     }
 
-    public function delete(PhysicalPosSession $pos){
+    public function delete(PhysicalPosSession $pos_session){
 
-        $pos->end_amount = $this->end_amount;
-        $pos->end_date = Carbon::now();
-        $pos->is_active = 0;
-        $pos->save();
+        $pos_session->end_amount = $this->entered_amount;
+        $pos_session->expected_amount = $this->expected_amount;
+        $pos_session->gap = $this->difference;
+        $pos_session->end_date = Carbon::now()->format('d-m-Y H:i:s');
+        $pos_session->end_note = $this->end_note;
+        $pos_session->is_active = 0;
+        $pos_session->save();
 
         // Update Pos
         $physical = Pos::where('id', $this->pos_id)->first();
@@ -72,12 +96,31 @@ class DeleteSession extends Component
         redirect()->route('app.pos.dashboard');
     }
 
+    public function calculateDifference()
+    {
+        $this->difference = floatval($this->expected_amount) - floatval($this->entered_amount);
+    }
+
+    public function updatedEnteredAmount()
+    {
+        $this->calculateDifference();
+    }
+
+    public function debounceEnteredAmount()
+    {
+        $this->debounce('updatedEnteredAmount', function () {
+            $this->calculateDifference();
+        }, 500);
+    }
+
 
     public function render()
     {
-        $pos = PhysicalPosSession::find($this->pos)->first();
+        $pos = PhysicalPosSession::find($this->pos->id)->first();
         return view('pos::livewire.delete-session', [
+
             'pos' => $pos,
-    ]);
+            'expected_amount_formatted' => format_currency($this->expected_amount), // add a formatted version of the $expected_amount property
+        ]);
     }
 }

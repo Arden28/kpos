@@ -24,6 +24,17 @@
               </a>
             </li>
 
+            <li class="nav-item">
+              <a class="btn {{ request()->routeIs('settings.users') ? 'active' : '' }}" style="margin-right: 5px;" href="{{ route('settings.users') }}" >
+                <span class="nav-link-icon d-md-none d-lg-inline-block"><!-- Download SVG icon from http://tabler-icons.io/i/home -->
+                    <i class="bi bi-people" style="width: 24px; height:24px;"></i>
+                </span>
+                <span class="nav-link-title">
+                    {{ __('Utilisateurs') }}
+                </span>
+              </a>
+            </li>
+
             {{-- <li class="nav-item">
                 <a class="btn {{ request()->routeIs('settings.inventory') ? 'active' : '' }}" style="margin-right: 5px;" href="{{ route('settings.index') }}" >
                   <span class="nav-link-icon d-md-none d-lg-inline-block"><!-- Download SVG icon from http://tabler-icons.io/i/home -->

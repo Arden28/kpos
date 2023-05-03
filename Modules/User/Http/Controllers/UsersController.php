@@ -87,6 +87,7 @@ class UsersController extends Controller
 
         toast('L\'employé à été supprimé !', 'warning');
 
-        return redirect()->route('users.index');
+        // return redirect()->route('users.index');
+        return redirect()->back();
     }
 }

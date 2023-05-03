@@ -95,7 +95,7 @@
             </li>
             @endcan
 
-            <li class="nav-item">
+            {{-- <li class="nav-item">
               <a class="btn" style="margin-right: 5px;" href="#navbar-help">
                 <i class="bi bi-life-preserver" style="width: 24px; height: 24px;"></i>
                 </span>
@@ -103,7 +103,7 @@
                   {{ __('Documentation') }}
                 </span>
               </a>
-            </li>
+            </li> --}}
 
           </ul>
 

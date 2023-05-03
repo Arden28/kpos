@@ -16,7 +16,6 @@ use Modules\People\DataTables\CustomersDataTable;
 use Modules\People\Entities\Customer;
 use Modules\People\Interfaces\CustomerInterface;
 use Modules\Pos\DataTables\PosDataTable;
-use Modules\Pos\DataTables\SinglePosSessionDataTable;
 use Modules\Pos\Entities\PhysicalPosSession;
 use Modules\Pos\Entities\Pos;
 use Modules\Pos\Http\Requests\Physical\UpdatePosPhysicalRequest;
@@ -61,16 +60,16 @@ class PosController extends Controller
     }
 
     public function listPos(PosDataTable $dataTable) {
-        abort_if(Gate::denies('access_product_categories'), 403);
+        abort_if(Gate::denies('access_pos'), 403);
 
         return $dataTable->render('pos::pos.list');
     }
 
-    public function singlePosSession(SinglePosSessionDataTable $dataTable) {
-        abort_if(Gate::denies('access_product_categories'), 403);
+    // public function singlePosSession(SinglePosSessionDataTable $dataTable) {
+    //     abort_if(Gate::denies('access_product_categories'), 403);
 
-        return $dataTable->render('pos::pos.list');
-    }
+    //     return $dataTable->render('pos::pos.list');
+    // }
 
     /**
      * Display a listing of the resource.
@@ -208,7 +207,7 @@ class PosController extends Controller
     // Customer
 
     public function customer(CustomersDataTable $dataTable) {
-        abort_if(Gate::denies('access_customers'), 403);
+        // abort_if(Gate::denies('access_customers'), 403);
 
         return $dataTable->render('pos::pos.customers.index');
     }

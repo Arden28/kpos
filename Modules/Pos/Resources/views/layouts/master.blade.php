@@ -41,7 +41,7 @@
             <span class="navbar-toggler-icon"></span>
           </button>
           <h1 class="navbar-brand navbar-brand-autodark d-none-navbar-horizontal pe-0 pe-md-3">
-            <a href=".">
+            <a href="{{ route('app.pos.index') }}">
                 <img src="{{ asset('assets/images/logo/logo-1.png') }}" alt="Koverae" class="navbar-brand-image">
             </a>
           </h1>
@@ -68,7 +68,7 @@
                   </a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="{{ route('app.pos.order') }}" >
+                  <a class="nav-link" href="{{ route('app.pos.order.single', Auth::user()->current_pos_id) }}" >
                     <span class="nav-link-icon d-md-none d-lg-inline-block"><!-- Download SVG icon from http://tabler-icons.io/i/home -->
                         <i class="bi bi-receipt-cutoff" style="width: 24px; height: 24px;"></i>
                     </span>

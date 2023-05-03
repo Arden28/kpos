@@ -16,6 +16,12 @@ Route::middleware('web')->group(function () {
 
     Route::post('register', [RegisteredUserController::class, 'store'])->name('register.store');
 
+    // Guest Register
+    Route::get('guest-register', [RegisteredUserController::class, 'createGuest'])
+                ->name('guest.register');
+
+    Route::post('guest-register', [RegisteredUserController::class, 'storeGuest'])->name('register.guest');
+
     Route::get('login', [AuthenticatedSessionController::class, 'create'])
                 ->name('login');
 

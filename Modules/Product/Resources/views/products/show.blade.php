@@ -57,7 +57,11 @@
                                     </tr>
                                     <tr>
                                         <th>{{ __('Quantité') }}</th>
-                                        <td>{{ $product->product_quantity . ' ' . $product->product_unit }}</td>
+                                        @if($product->quantity <= $product->product_stock_alert)
+                                            <td>{{ $product->product_quantity . ' ' . $product->product_unit }}</td>
+                                        @else
+                                            <td class="text-red">{{ $product->product_quantity . ' ' . $product->product_unit }} ({{ __('Veuillez-vous réapprovisionner !') }})</td>
+                                        @endif
                                     </tr>
                                     <tr>
                                         <th>{{ __('Valeur du stock') }}</th>

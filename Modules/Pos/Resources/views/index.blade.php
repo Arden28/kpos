@@ -40,9 +40,9 @@
             </a>
             @include('pos::includes.modals.delete-session')
 
-          <a href="#" class="btn btn-primary d-sm-none btn-icon" data-bs-toggle="modal" data-bs-target="#modal-report" aria-label="Create new report">
-
+          <a href="#" class="btn btn-primary d-sm-none inline-block" data-bs-toggle="modal" data-bs-target="#modal-session-{{ $physical->id }}">
             <i class="bi bi-box-arrow-right"></i>
+            {{ __('Fermer') }}
           </a>
         </div>
       </div>

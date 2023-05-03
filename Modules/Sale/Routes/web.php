@@ -69,5 +69,9 @@ Route::middleware(['module:sales', 'auth'])->group(function () {
     Route::patch('/sale-payments/update/{salePayment}', 'SalePaymentsController@update')->name('sale-payments.update');
     Route::delete('/sale-payments/destroy/{salePayment}', 'SalePaymentsController@destroy')->name('sale-payments.destroy');
 
+    // Customers
+    Route::get('/customers', 'SaleController@customer')->name('sales.customers');
 
+    // Products
+    Route::get('/products', 'SaleController@product')->name('sales.products');
 });

@@ -22,7 +22,9 @@ class CreatePhysicalPosSessionsTable extends Migration
             $table->string('start_date');
             $table->string('start_amount');
             $table->string('note')->nullable();
-            $table->string('end_amount')->nullable();
+            $table->string('end_amount')->nullable(); //The amount remaining in the cash
+            $table->string('expected_amount')->nullable(); //The amount expected to be
+            $table->string('gap')->nullable(); //Gap between the end_amount and the exepected_amount
             $table->string('end_date')->nullable();
             $table->string('end_note')->nullable();
             $table->boolean('is_active')->default(true);

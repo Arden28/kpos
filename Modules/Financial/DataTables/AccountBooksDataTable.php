@@ -15,6 +15,14 @@ use Yajra\DataTables\Services\DataTable;
 class AccountBooksDataTable extends DataTable
 {
 
+    protected $account;
+
+    public function __construct($account = null)
+    {
+        // dd($account);
+        $this->account = $account;
+    }
+
     public function dataTable($query) {
         return datatables()
             ->eloquent($query)
@@ -35,15 +43,8 @@ class AccountBooksDataTable extends DataTable
     public function query(AccountBook $model) {
         // A modifier
 
-        $current_company_id = Auth::user()->currentCompany->id;
-        // return $model->orderBy('id', 'DESC')->where('company_id', $current_company_id)->with('user', 'account')->newQuery();
-        return $model->orderBy('id', 'DESC')
-        ->join('accounts', 'account_books.account_id', '=', 'accounts.id')
-        ->join('users', 'account_books.company_id', '=', 'users.current_company_id')
-        ->select('account_books.*')
-        ->with('account', 'user')
-
-        ->newQuery()->groupBy('id');
+        // $current_company_id = Auth::user()->currentCompany->id;
+        return $model->where('account_id', $this->account->id)->orderBy('id', 'DESC')->newQuery()->with('user', 'account');// A modifier en fonction de la company en cours d'utilisation
     }
 
     public function html() {
@@ -54,16 +55,16 @@ class AccountBooksDataTable extends DataTable
             ->dom("<'row'<'col-md-3'l><'col-md-5 mb-2'B><'col-md-4'f>> .
                                 'tr' .
                                 <'row'<'col-md-5'i><'col-md-7 mt-2'p>>")
-            ->orderBy(6)
+            ->orderBy(4)
             ->buttons(
                 Button::make('excel')
-                    ->text('<i class="bi bi-file-earmark-excel-fill"></i> Excel'),
+                ->text('<i class="bi bi-file-earmark-excel-fill"></i> Excel'),
                 Button::make('print')
-                    ->text('<i class="bi bi-printer-fill"></i> Print'),
+                ->text('<i class="bi bi-printer-fill"></i> '.__('Print')),
                 Button::make('reset')
-                    ->text('<i class="bi bi-x-circle"></i> Reset'),
+                ->text('<i class="bi bi-x-circle"></i> '.__('Reset')),
                 Button::make('reload')
-                    ->text('<i class="bi bi-arrow-repeat"></i> Reload')
+                ->text('<i class="bi bi-arrow-repeat"></i> '.__('Reload'))
             );
     }
 

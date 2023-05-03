@@ -21,16 +21,16 @@ class PosOrderDataTable extends DataTable
     public function dataTable($query) {
         return datatables()
             ->eloquent($query)->with('seller')
-            ->addColumn('total_amount', function ($data) {
-                return format_currency($data->total_amount);
+            ->addColumn('sale.total_amount', function ($data) {
+                return format_currency($data->sale->total_amount);
             })
-            ->addColumn('paid_amount', function ($data) {
-                return format_currency($data->paid_amount);
+            ->addColumn('sale.paid_amount', function ($data) {
+                return format_currency($data->sale->paid_amount);
             })
-            ->addColumn('due_amount', function ($data) {
-                return format_currency($data->due_amount);
+            ->addColumn('sale.due_amount', function ($data) {
+                return format_currency($data->sale->due_amount);
             })
-            ->addColumn('status', function ($data) {
+            ->addColumn('sale.status', function ($data) {
                 return view('sale::partials.status', compact('data'));
             })
             ->addColumn('payment_status', function ($data) {
@@ -44,15 +44,8 @@ class PosOrderDataTable extends DataTable
     public function query(PosSale $model) {
 
         $current_company_id = Auth::user()->currentCompany->id;
-        // return $model->where('company_id', Auth::user()->currentCompany->id)->newQuery()->with('sale', 'cashier');// A modifier en fonction de la company en cours d'utilisation
+        return $model->where('company_id', Auth::user()->currentCompany->id)->newQuery()->with('pos', 'sale', 'cashier');// A modifier en fonction de la company en cours d'utilisation
 
-        return $model->orderBy('id', 'DESC')
-        ->join('sales', 'pos_sales.sale_id', '=', 'sales.id')
-        ->join('users', 'pos_sales.company_id', '=', 'users.current_company_id')
-        ->select('pos_sales.*')
-        ->with('sale', 'cashier')
-
-        ->newQuery()->groupBy('id');
     }
 
     public function html() {
@@ -66,13 +59,13 @@ class PosOrderDataTable extends DataTable
             ->orderBy(4)
             ->buttons(
                 Button::make('excel')
-                    ->text('<i class="bi bi-file-earmark-excel-fill"></i> Excel'),
+                ->text('<i class="bi bi-file-earmark-excel-fill"></i> Excel'),
                 Button::make('print')
-                    ->text('<i class="bi bi-printer-fill"></i> '.__('Print')),
+                ->text('<i class="bi bi-printer-fill"></i> '.__('Print')),
                 Button::make('reset')
-                    ->text('<i class="bi bi-x-circle"></i> '.__('Reset')),
+                ->text('<i class="bi bi-x-circle"></i> '.__('Reset')),
                 Button::make('reload')
-                    ->text('<i class="bi bi-arrow-repeat"></i> '.__('Reload'))
+                ->text('<i class="bi bi-arrow-repeat"></i> '.__('Reload'))
             );
     }
 
@@ -85,6 +78,10 @@ class PosOrderDataTable extends DataTable
             Column::make('sale.reference')
                 ->addClass('text-center')
                 ->title('Numéro'),
+
+            Column::make('pos.name')
+                ->addClass('text-center')
+                ->title('Point de Vente'),
 
             Column::make('sale.customer_name')
                 ->addClass('text-center')

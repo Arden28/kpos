@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('company_invitations', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('team_id')->constrained()->cascadeOnDelete();
             $table->foreignId('company_id')->constrained()->cascadeOnDelete();
             $table->string('email');
             $table->string('role')->nullable();
@@ -20,7 +21,7 @@ return new class extends Migration
             $table->timestamp('expire_at')->nullable();
             $table->timestamps();
 
-            $table->unique(['company_id', 'email']);
+            $table->unique(['email']);
         });
     }
 

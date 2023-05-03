@@ -16,6 +16,7 @@ use Modules\Currency\Interfaces\CurrencyInterface;
 use Modules\Setting\Entities\Setting;
 use Modules\Setting\Http\Requests\StoreSettingsRequest;
 use Modules\Setting\Http\Requests\StoreSmtpSettingsRequest;
+use Modules\User\DataTables\UsersDataTable;
 
 class SettingController extends Controller
 {
@@ -36,7 +37,7 @@ class SettingController extends Controller
         $settings = Setting::where('company_id', $company)->first();
 
         $team = Team::find(Auth::user()->team->id)->first();
-        
+
         return view('setting::index', compact('settings', 'currencies', 'team'));
     }
 
@@ -104,5 +105,13 @@ class SettingController extends Controller
         }
 
         return redirect()->route('settings.index');
+    }
+
+    // Users
+
+    public function users(UsersDataTable $dataTable) {
+        abort_if(Gate::denies('access_user_management'), 403);
+
+        return $dataTable->render('setting::users.index');
     }
 }

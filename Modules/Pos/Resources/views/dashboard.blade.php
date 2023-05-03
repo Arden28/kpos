@@ -57,6 +57,8 @@
                         </a>
                         <div class="dropdown-menu dropdown-menu-end">
                             <a class="dropdown-item" href="{{ route('app.pos.edit', $p->id) }}">{{ __('Modifier') }}</a>
+                            <a class="dropdown-item" href="{{ route('app.pos.session.single', $p->id) }}">{{ __('Sessions') }}</a>
+                            <a class="dropdown-item" href="{{ route('app.pos.order.single', $p->id) }}">{{ __('Commandes') }}</a>
                         </div>
                         </div>
                     </div>

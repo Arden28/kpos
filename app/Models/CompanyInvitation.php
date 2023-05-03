@@ -15,6 +15,7 @@ class CompanyInvitation extends Model
      * @var array<int, string>
      */
     protected $fillable = [
+        'team_id',
         'company_id',
         'email',
         'role',

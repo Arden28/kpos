@@ -8,6 +8,7 @@ use App\Mail\NewUser;
 use App\Models\Company;
 use App\Models\User;
 use App\Mail\NewKover;
+use App\Models\CompanyInvitation;
 use App\Models\InstalledModule;
 use App\Models\Module;
 use App\Models\Team;
@@ -35,6 +36,69 @@ class RegisteredUserController extends Controller
     {
         return view('auth.register');
     }
+
+    /**
+     * Display the registration view.
+     *
+     * @return \Illuminate\View\View
+     */
+    public function createGuest(Request $request)
+    {
+        $invitation_token = $request->input('invitation_token');
+
+        if (!$invitation_token || !$invitation = CompanyInvitation::where('token', $invitation_token)->first()) {
+            abort(404);
+        }
+
+        return view('auth.company.guest-register', [
+            'email' => $invitation->email,
+            'invitation_token' => $invitation_token
+        ]);
+    }
+
+    /**
+     * Handle an incoming registration request.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\RedirectResponse
+     *
+     * @throws \Illuminate\Validation\ValidationException
+     */
+    public function storeGuest(Request $request): RedirectResponse
+    {
+            $request->validate([
+                'name' => ['required', 'string', 'max:255'],
+                'email' => ['required', 'string', 'email', 'max:255', 'unique:users,email'],
+                'phone' => ['required', 'string', 'max:255', 'unique:users,phone'],
+                'password' => ['required', 'string', 'min:8', 'confirmed'],
+                'invitation_token' => ['required', 'string']
+            ]);
+
+            $invitation = CompanyInvitation::where('token', $request->input('invitation_token'))->first();
+
+            if (!$invitation) {
+                abort(404);
+            }
+
+            $user = User::create([
+                'team_id' => $invitation->team_id,
+                'current_company_id' => $invitation->company_id,
+                'name' => $request->input('name'),
+                'email' => $request->input('email'),
+                'password' => Hash::make($request->input('password')),
+                'is_active' => true,
+            ]);
+
+            $user->assignRole($invitation->role);
+
+            $invitation->delete();
+
+            // Auth::login($user);
+
+            return redirect()->route('login')->with('success', 'Votre compte a bien été créé.');
+    }
+
+
 
     /**
      * Display the registration view.

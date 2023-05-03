@@ -25,8 +25,8 @@ class EmployeeRepository implements EmployeeInterface{
             ->with(['roles' => function ($query) {
                 $query->select('name')->get();
             }])
-            ->where('current_company_id', Auth::user()->currentCompany->id)
-            ->where('id', '!=', Auth::user()->id);
+            ->where('current_company_id', Auth::user()->currentCompany->id);
+            // ->where('id', '!=', Auth::user()->id);
 
         // return $model->company->allUsers();
     }
@@ -40,7 +40,7 @@ class EmployeeRepository implements EmployeeInterface{
             'password' => Hash::make($request['password']),
             'is_active' => $request['is_active'],
             'team_id' => Auth::user()->team->id,
-            
+
         ]);
 
         $user->assignRole($request['role']);

@@ -4,9 +4,11 @@
 
 use App\Http\Livewire\Customer\CreateCustomer;
 use Illuminate\Support\Facades\Route;
+// use Modules\Pos\Entities\PosSession;
 use Modules\Pos\Http\Controllers\DocPosController;
 use Modules\Pos\Http\Controllers\PosController;
 use Modules\Pos\Http\Controllers\PosOrderController;
+use Modules\Pos\Http\Controllers\PosSessionController;
 
 /*
 |--------------------------------------------------------------------------
@@ -28,8 +30,6 @@ Route::middleware(['module:pos', 'auth', 'opened'])->group( function() {
     // Pos Interface
     Route::get('/app/pos/action', [PosController::class, 'index'])->name('app.pos.index');
 
-    // Pos Interface
-    Route::get('/app/pos/orders', [PosOrderController::class, 'index'])->name('app.pos.order');
 
 
     // Create a new customer
@@ -59,8 +59,12 @@ Route::middleware(['module:pos', 'auth'])->group(function() {
 
     Route::delete('/app/pos/physical/delete/{id}', [PosController::class, 'destroyPhysical'])->name('app.pos.delete-physical');
 
-    // Physical Pos Session
-    Route::post('/app/pos/session', [PosController::class, 'startSession'])->name('app.pos.session.store');
+
+    // Get all Pos' Orders
+    Route::get('/app/pos/orders', [PosOrderController::class, 'index'])->name('app.pos.order');
+
+    // Get specific Pos' Orders
+    Route::get('/app/pos/{id}/orders', [PosOrderController::class, 'show'])->name('app.pos.order.single');
 
     // Customers
     Route::get('/app/pos/customer', [PosController::class, 'customer'])->name('app.pos.customer');
@@ -73,3 +77,5 @@ Route::middleware(['module:pos', 'auth'])->group(function() {
 
 
 });
+
+require __DIR__.'/session.php';

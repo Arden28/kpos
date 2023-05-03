@@ -75,7 +75,7 @@
               </div>
               {{-- Notifications --}}
                 @php
-                    $low_quantity_products = \Modules\Product\Entities\Product::select('id', 'product_quantity', 'product_stock_alert', 'product_code')->whereColumn('product_quantity', '<=', 'product_stock_alert')->get();
+                    $low_quantity_products = \Modules\Product\Entities\Product::select('id', 'product_quantity', 'product_stock_alert', 'product_code', 'product_name')->whereColumn('product_quantity', '<=', 'product_stock_alert')->get();
                     $notifications = $low_quantity_products->count();
                 @endphp
               <div class="nav-item dropdown d-none d-md-flex me-3">
@@ -106,7 +106,7 @@
                             <div class="col-auto"><span class="status-dot status-dot-animated bg-red d-block"></span></div>
                             <div class="col text-truncate text-muted text-truncate mt-n1">
                                 <a href="{{ route('products.show', $product->id) }}" class="text-body d-block">
-                                    {{ __('Le Produit') }}: "{{ $product->product_code }}" {{ __("est en stock d'alerte !") }}
+                                    {{ __('Le Produit') }}: "{{ $product->product_name }}" {{ __("est en stock d'alerte !") }}
                                 </a>
                             </div>
                             <div class="col-auto">

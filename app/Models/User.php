@@ -124,6 +124,11 @@ class User extends Authenticatable implements HasMedia, MustVerifyEmail
         return $this->hasMany(PosSale::class, 'cashier_id', 'id');
     }
 
+    public function pos_sessions()
+    {
+        return $this->hasMany(PosSale::class, 'user_id', 'id');
+    }
+
     public function hasMultipleCompanies()
     {
         return $this->companies()->count() > 1;

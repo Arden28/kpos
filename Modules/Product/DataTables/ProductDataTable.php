@@ -50,25 +50,44 @@ class ProductDataTable extends DataTable
         ->newQuery()->with('category', 'supplier'); //A modifier
     }
 
+    /**
+     * Optional method if you want to use html builder.
+     *
+     * @return \Yajra\DataTables\Html\Builder
+     */
+
     public function html()
     {
         return $this->builder()
-                    ->setTableId('product-table')
+                    ->setTableId('products-table')
                     ->columns($this->getColumns())
                     ->minifiedAjax()
                     ->dom("<'row'<'col-md-3'l><'col-md-5 mb-2'B><'col-md-4'f>> .
                                 'tr' .
                                 <'row'<'col-md-5'i><'col-md-7 mt-2'p>>")
-                    ->orderBy(7)
-                    ->buttons([
-                        Button::make('add'),
-                        Button::make('excel'),
-                        Button::make('csv'),
-                        Button::make('pdf'),
-                        Button::make('print'),
-                        Button::make('reset'),
-                        Button::make('reload'),
-                    ]);
+                    ->orderBy(1)
+                    ->buttons(
+                        Button::make('excel')
+                        ->text('<i class="bi bi-file-earmark-excel-fill"></i> Excel'),
+                        Button::make('print')
+                        ->text('<i class="bi bi-printer-fill"></i> '.__('Print')),
+                        Button::make('reset')
+                        ->text('<i class="bi bi-x-circle"></i> '.__('Reset')),
+                        Button::make('reload')
+                        ->text('<i class="bi bi-arrow-repeat"></i> '.__('Reload'))
+                    );
+                    // ->setTableId('product-table')
+                    // ->columns($this->getColumns())
+                    // ->minifiedAjax()
+                    // ->dom("<'row'<'col-md-3'l><'col-md-5 mb-2'B><'col-md-4'f>> .
+                    //             'tr' .
+                    //             <'row'<'col-md-5'i><'col-md-7 mt-2'p>>")
+                    // ->orderBy(7)
+                    // ->buttons([
+                    //     Button::make('add'),
+                    //     Button::make('excel'),
+                    //     Button::make('csv'),
+                    // ]);
     }
 
     protected function getColumns()

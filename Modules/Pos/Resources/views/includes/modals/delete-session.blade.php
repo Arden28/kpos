@@ -20,7 +20,9 @@
         {{-- @foreach ($sales as $sale)
             <p>{{ $sale->paid_amount }}</p>
         @endforeach --}}
-        <livewire:pos::delete-session  :pos="$pos" :sales="$pos_sales"/>
+        @if($pos)
+        <livewire:pos::delete-session :physical="$physical" :pos="$pos" :sales="$pos_sales"/>
+        @endif
 
       </div>
     </div>

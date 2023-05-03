@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Gate;
 use Modules\Pos\DataTables\PosOrderDataTable;
+use Modules\Pos\DataTables\SinglePosOrderDataTable;
 use Modules\Sale\Interfaces\SaleInterface;
 
 class PosOrderController extends Controller
@@ -21,39 +22,25 @@ class PosOrderController extends Controller
         $this->saleRepository = $saleRepository;
     }
 
-    public function index(PosOrderDataTable $dataTable) {
-        abort_if(Gate::denies('access_sales'), 403);
+    public function index(PosOrderDataTable $dataTable){
+        abort_if(Gate::denies('access_pos'), 403);
 
-        return $dataTable->render('pos::pos.orders.index');
+        return $dataTable->render('pos::pos.orders.list');
     }
 
-    /**
-     * Show the form for creating a new resource.
-     * @return Renderable
-     */
-    public function create()
-    {
-        return view('pos::create');
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     * @param Request $request
-     * @return Renderable
-     */
-    public function store(Request $request)
-    {
-        //
-    }
 
     /**
      * Show the specified resource.
      * @param int $id
      * @return Renderable
      */
-    public function show($id)
-    {
-        return view('pos::show');
+    public function show(SinglePosOrderDataTable $dataTable, $pos) {
+        abort_if(Gate::denies('access_pos'), 403);
+
+        $dataTable = new SinglePosOrderDataTable($pos);
+        return $dataTable->render('pos::pos.orders.index', [
+            'pos' => $pos,
+        ]);
     }
 
     /**

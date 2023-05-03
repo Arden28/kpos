@@ -1,5 +1,7 @@
 <?php
 
+use Illuminate\Support\Facades\Route;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -11,7 +13,6 @@
 |
 */
 
-use Illuminate\Support\Facades\Route;
 
 Route::group(['middleware' => 'auth'], function () {
 
@@ -24,6 +25,9 @@ Route::group(['middleware' => 'auth'], function () {
     // Route::patch('/settings/{id}', 'SettingController@update')->name('settings.update');
     //Settings
     Route::resource('settings', 'SettingController')->except('create', 'show');
+
+    // Users
+    Route::get('/settings/users', 'SettingController@users')->name('settings.users');
 
     // Application
     // Install
