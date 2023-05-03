@@ -1,4 +1,6 @@
 @component('mail::message')
+
+
 # Invitation à rejoindre notre compte d'entreprise {{ $company }}
 
 Vous avez été invité à rejoindre notre compte d'entreprise. Veuillez cliquer sur le bouton ci-dessous pour enregistrer votre compte :
