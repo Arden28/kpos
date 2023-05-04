@@ -85,6 +85,7 @@ class RegisteredUserController extends Controller
                 'current_company_id' => $invitation->company_id,
                 'name' => $request->input('name'),
                 'email' => $request->input('email'),
+                'phone' => $request->input('phone'),
                 'password' => Hash::make($request->input('password')),
                 'is_active' => true,
             ]);

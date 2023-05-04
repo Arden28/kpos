@@ -69,7 +69,7 @@
     </div>
   </div>
 
-  <div class="container-xl" style="margin-top: 10px;">
+  {{-- <div class="container-xl" style="margin-top: 10px;">
     <div class="row row-cards">
 
         <div class="col-lg-12 col-xl-12">
@@ -83,7 +83,7 @@
             </div>
         </div>
     </div>
-  </div>
+  </div> --}}
 
 </div>
 

@@ -15,7 +15,7 @@
 
       <x-auth-session-status class="mb-4" :status="session('status')" />
 
-      <form method="POST" action="{{ route('register') }}">
+      <form id="myForm" method="POST" action="{{ route('register') }}">
         @csrf
 
         <div class="hr-text">{{ __('Informations Personnelles') }}</div>
@@ -134,7 +134,7 @@
 
 
         <div class="form-footer">
-          <button type="submit" class="btn btn-primary w-100">{{ __('Commencer') }}</button>
+          <button id="submitButton" type="submit" class="btn btn-primary w-100">{{ __('Commencer') }}</button>
         </div>
       </form>
 
@@ -147,3 +147,14 @@
 </div>
 @endsection
 
+@push('page_sacripts')
+    <script>
+        const form = document.getElementById('myForm');
+        const submitButton = document.getElementById('submitButton');
+
+        form.addEventListener('submit', () => {
+            // Disable the submit button
+            submitButton.disabled = true;
+        });
+    </script>
+@endpush
