@@ -31,7 +31,7 @@ class Benefit extends Component
         }
 
         $revenue = ($sales - $sale_returns) / 100;
-        $profit = ($revenue - $product_costs) / 100;
+        $profit = ($revenue - $product_costs) ;
 
         return $profit;
 

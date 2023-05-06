@@ -34,7 +34,7 @@ class Purchase extends Component
         }
 
         $revenue = ($purchases - $purchase_returns) / 100;
-        $purchase = ($revenue - $product_costs) / 100;
+        $purchase = ($revenue - $product_costs) ;
 
         return $purchase;
     }

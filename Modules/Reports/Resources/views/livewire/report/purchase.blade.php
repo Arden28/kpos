@@ -3,7 +3,7 @@
     <div class="card">
       <div class="card-body">
         <div class="d-flex align-items-center">
-          <div class="subheader">Commandes</div>
+          <div class="subheader">Commandes Fournisseurs</div>
           <div class="ms-auto lh-1">
               <div class="dropdown">
                 <a class="dropdown-toggle text-muted" href="#" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{ _("Aujourd'hui") }}</a>
