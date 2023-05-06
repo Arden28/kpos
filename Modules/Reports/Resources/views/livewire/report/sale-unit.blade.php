@@ -16,8 +16,21 @@
             </div>
           </div>
         </div>
+        @php
+        $html = '<div><ul>';
+        foreach ($sales as $sale) {
+          $html .= '<li> <p style="font-size: 24px;">' . format_currency($sale->paid_amount) . ' -> '.format_currency($sale->total_amount).'';
+        }
+        $html .= '</p> </ul></div>';
+
+        @endphp
         <div class="d-flex align-items-baseline">
-          <div class="h1 mb-3">{{ $units }} Unités</div>
+          <div class="h1 mb-3"> {{ $units }} {{__('Produit(s)')}}
+            <button type="button" class="btn btn-xxl btn-white" data-bs-toggle="popover" data-bs-title="Produit(s) vendus ..."
+                 data-bs-content="{{ $html }}" data-bs-html="true">
+                 <i class="bi bi-eye"></i> Info
+            </button>
+          </div>
           {{-- <div class="ms-auto">
               <span class="text-green d-inline-flex align-items-center lh-1">
               12% <!-- Download SVG icon from http://tabler-icons.io/i/trending-up -->

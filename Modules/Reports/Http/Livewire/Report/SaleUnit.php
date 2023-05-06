@@ -39,10 +39,12 @@ class SaleUnit extends Component
 
     public function render()
     {
+        $sales = Sale::completed()->isCompany(Auth::user()->currentCompany->id)->get();
         return view('reports::livewire.report.sale-unit',[
             'data' => json_encode($this->data),
             'units' => $this->units,
             'date'  => $this->date,
+            'sales' => $sales,
 
         ]);
     }

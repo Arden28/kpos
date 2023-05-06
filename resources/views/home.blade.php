@@ -2,6 +2,21 @@
 
 @section('title', __('Tableau de bord'))
 
+@section('styles')
+    <style>
+        .floating-element {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            width: 100px;
+            height: 40px;
+            background-color: #ccc;
+            border-radius: 5px;
+            text-align: center;
+            line-height: 40px;
+        }
+    </style>
+@endsection
 @section('breadcrumb')
 <div class="page-header d-print-none">
   <div class="container-xl">
@@ -158,4 +173,16 @@
         });
     </script>
 
+    <script>
+        const floatingElement = document.querySelector('.floating-element');
+        const infoBulle = document.querySelector('.info-bulle');
+
+        floatingElement.addEventListener('mouseover', () => {
+            infoBulle.style.display = 'block';
+        });
+
+        floatingElement.addEventListener('mouseout', () => {
+            infoBulle.style.display = 'none';
+        });
+    </script>
 @endpush

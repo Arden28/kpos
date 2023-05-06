@@ -42,8 +42,8 @@
                         <thead>
                         <tr>
                             <th>{{ __('Balance Comptable') }}</th>
-                            <th>{{ __('Crédit') }}</th>
                             <th>{{ __('Débit') }}</th>
+                            <th>{{ __('Crédit') }}</th>
                         </tr>
                         </thead>
 
