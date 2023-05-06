@@ -129,6 +129,7 @@ class ProductDataTable extends DataTable
 
             Column::make('created_at')
                 ->visible(false)
+                ->printable(false)
         ];
     }
 
