@@ -20,12 +20,12 @@ class InstalledModule extends Model
         'team_id',
         'module_slug',
     ];
-    
+
     public function module()
     {
         return $this->belongsTo(Module::class, 'module_slug', 'slug');
     }
-    
+
     // public function team()
     // {
     //     return $this->belongsTo(Team::class, 'team_id', 'id');

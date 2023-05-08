@@ -37,7 +37,7 @@ class ModuleController extends Controller
 
         // Install the module
         $installedModule = new InstalledModule([
-            'team_id' => $team->id,
+            'team_id' => Auth::user()->team->id,
             'module_slug' => $module->slug,
         ]);
         $installedModule->save();

@@ -118,7 +118,7 @@ class ProductDataTable extends DataTable
                 ->title(__('Catégorie'))
                 ->className('text-center align-middle'),
 
-            Column::make('supplier.supplier_name')
+            Column::computed('supplier.supplier_name')
                 ->title(__('Fournisseur'))
                 ->className('text-center align-middle'),
 
