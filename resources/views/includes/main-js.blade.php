@@ -1,4 +1,4 @@
-<script src="{{ mix('js/app.js') }}"></script>
+{{-- <script src="{{ mix('js/app.js') }}"></script> --}}
 <!-- Libs JS -->
 <script src="{{ asset('assets/dist/libs/apexcharts/dist/apexcharts.min.js')}}?1668287865" defer></script>
 
