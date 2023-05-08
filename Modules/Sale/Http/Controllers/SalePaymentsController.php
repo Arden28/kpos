@@ -82,7 +82,7 @@ class SalePaymentsController extends Controller
             $current_balance = $sale->account->balance;
 
             if($due_amount > 0){
-                $detail = 'Vente(Ajout. Reste: '.format_currency($due_amount).')';
+                $detail = 'Vente(Ajout de paiement. Reste: '.format_currency($due_amount).')';
             }else{
                 $detail = 'Vente(Complétée)';
             }

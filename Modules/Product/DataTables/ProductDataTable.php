@@ -26,13 +26,13 @@ class ProductDataTable extends DataTable
                 $url = $data->getFirstMediaUrl('images', 'thumb');
                 return '<img src="'.$url.'" border="0" width="50" class="img-thumbnail" align="center"/>';
             })
-            // ->addColumn('supplier_name', function ($data) {
-            //     if($data->supplier->supplier_name !== null){
-            //         return $data->supplier->supplier_name;
-            //     }else{
-            //         return format_currency($data->product_price);
-            //     }
-            // })
+            ->addColumn('supplier.supplier_name', function ($data) {
+                if($data->supplier->supplier_name){
+                    return $data->supplier->supplier_name;
+                }else{
+                    return format_currency($data->product_price);
+                }
+            })
             ->addColumn('product_price', function ($data) {
                 return format_currency($data->product_price);
             })

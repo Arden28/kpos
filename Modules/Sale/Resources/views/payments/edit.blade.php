@@ -1,6 +1,6 @@
 @extends('layouts.master')
 
-@section('title', __('Edit Payment'))
+@section('title', __('Modifier le paiement de la vente : '.$sale->reference.''))
 
 @section('breadcrumb')
 <div class="page-header d-print-none">
@@ -8,7 +8,7 @@
     <div class="row g-2 align-items-center">
     <div class="col">
         <h2 class="page-title">
-            {{ __('Edit Payment') }}
+            {{ __('Modifier le paiement de la vente : '.$sale->reference.'') }}
         </h2>
     </div>
     </div>
@@ -27,7 +27,7 @@
                     <div class="col-lg-12">
                         @include('utils.alerts')
                         <div class="form-group">
-                            <button class="btn btn-primary">Update Payment <i class="bi bi-check"></i></button>
+                            <button class="btn btn-primary">{{ __('Modifier') }} <i class="bi bi-check"></i></button>
                         </div>
                     </div>
                     <div class="col-lg-12">
@@ -36,7 +36,7 @@
                                 <div class="form-row">
                                     <div class="col-lg-6">
                                         <div class="form-group">
-                                            <label for="reference">Reference <span class="text-danger">*</span></label>
+                                            <label for="reference">Réference <span class="text-danger">*</span></label>
                                             <input type="text" class="form-control" name="reference" required readonly value="{{ $salePayment->reference }}">
                                         </div>
                                     </div>
@@ -51,13 +51,13 @@
                                 <div class="form-row">
                                     <div class="col-lg-4">
                                         <div class="form-group">
-                                            <label for="due_amount">Due Amount <span class="text-danger">*</span></label>
+                                            <label for="due_amount">Montant Dû <span class="text-danger">*</span></label>
                                             <input type="text" class="form-control" name="due_amount" required value="{{ format_currency($sale->due_amount) }}" readonly>
                                         </div>
                                     </div>
                                     <div class="col-lg-4">
                                         <div class="form-group">
-                                            <label for="amount">Amount <span class="text-danger">*</span></label>
+                                            <label for="amount">Montant  <span class="text-danger">*</span></label>
                                             <div class="input-group">
                                                 <input id="amount" type="text" class="form-control" name="amount" required value="{{ old('amount') ?? $salePayment->amount }}">
                                                 <div class="input-group-append">
@@ -71,9 +71,10 @@
                                     <div class="col-lg-4">
                                         <div class="from-group">
                                             <div class="form-group">
-                                                <label for="payment_method">Payment Method <span class="text-danger">*</span></label>
+                                                <label for="payment_method">Moyen de Paiement <span class="text-danger">*</span></label>
                                                 <select class="form-control" name="payment_method" id="payment_method" required>
                                                     <option {{ $salePayment->payment_method == 'Cash' ? 'selected' : '' }} value="Cash">Cash</option>
+                                                    <option {{ $salePayment->payment_method == 'MoMo Pay' ? 'selected' : '' }} value="MoMo Pay">MoMo Pay</option>
                                                     <option {{ $salePayment->payment_method == 'Credit Card' ? 'selected' : '' }} value="Credit Card">Credit Card</option>
                                                     <option {{ $salePayment->payment_method == 'Bank Transfer' ? 'selected' : '' }} value="Bank Transfer">Bank Transfer</option>
                                                     <option {{ $salePayment->payment_method == 'Cheque' ? 'selected' : '' }} value="Cheque">Cheque</option>

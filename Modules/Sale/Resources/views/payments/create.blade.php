@@ -1,6 +1,6 @@
 @extends('layouts.master')
 
-@section('title', __('Add Payment'))
+@section('title', __('Ajouter un Paiement vente - '.$sale->reference.''))
 
 @section('breadcrumb')
 <div class="page-header d-print-none">
@@ -8,7 +8,7 @@
     <div class="row g-2 align-items-center">
     <div class="col">
         <h2 class="page-title">
-            {{ __('Add Payment') }}
+            {{ __('Ajouter un Paiement à la vente '.$sale->reference.'') }}
         </h2>
     </div>
     </div>
@@ -26,7 +26,7 @@
                     <div class="col-lg-12">
                         @include('utils.alerts')
                         <div class="form-group">
-                            <button class="btn btn-primary">{{ __('Add Payment') }} <i class="bi bi-check"></i></button>
+                            <button class="btn btn-primary">{{ __('Ajouter') }} <i class="bi bi-check"></i></button>
                         </div>
                     </div>
                     <div class="col-lg-12">
@@ -35,13 +35,13 @@
                                 <div class="form-row">
                                     <div class="col-lg-6">
                                         <div class="form-group">
-                                            <label for="reference">Reference <span class="text-danger">*</span></label>
+                                            <label for="reference">{{ __('Référence') }} <span class="text-danger">*</span></label>
                                             <input type="text" class="form-control" name="reference" required readonly value="INV/{{ $sale->reference }}">
                                         </div>
                                     </div>
                                     <div class="col-lg-6">
                                         <div class="form-group">
-                                            <label for="date">Date <span class="text-danger">*</span></label>
+                                            <label for="date">{{ __('Date') }} <span class="text-danger">*</span></label>
                                             <input type="date" class="form-control" name="date" required value="{{ now()->format('Y-m-d') }}">
                                         </div>
                                     </div>
@@ -50,13 +50,13 @@
                                 <div class="form-row">
                                     <div class="col-lg-4">
                                         <div class="form-group">
-                                            <label for="due_amount">Due Amount <span class="text-danger">*</span></label>
+                                            <label for="due_amount">{{ __('Montant Dû') }} <span class="text-danger">*</span></label>
                                             <input type="text" class="form-control" name="due_amount" required value="{{ format_currency($sale->due_amount) }}" readonly>
                                         </div>
                                     </div>
                                     <div class="col-lg-4">
                                         <div class="form-group">
-                                            <label for="amount">Amount <span class="text-danger">*</span></label>
+                                            <label for="amount">{{ __('Montant Complété') }} <span class="text-danger">*</span></label>
                                             <div class="input-group">
                                                 <input id="amount" type="text" class="form-control" name="amount" required value="{{ old('amount') }}">
                                                 <div class="input-group-append">
@@ -70,13 +70,14 @@
                                     <div class="col-lg-4">
                                         <div class="from-group">
                                             <div class="form-group">
-                                                <label for="payment_method">Payment Method <span class="text-danger">*</span></label>
+                                                <label for="payment_method">{{ __('Moyen de Paiement') }} <span class="text-danger">*</span></label>
                                                 <select class="form-control" name="payment_method" id="payment_method" required>
-                                                    <option value="Cash">Cash</option>
-                                                    <option value="Credit Card">Credit Card</option>
-                                                    <option value="Bank Transfer">Bank Transfer</option>
-                                                    <option value="Cheque">Cheque</option>
-                                                    <option value="Other">Other</option>
+                                                    <option value="Cash">{{ __('En espèce') }}</option>
+                                                    <option value="MoMo Pay">{{ __('MoMo Pay') }}</option>
+                                                    <option value="Airtel Money">{{ __('Airtel Money') }}</option>
+                                                    <option value="Credit Card">{{ __('Carte bancaire') }}</option>
+                                                    <option value="Bank Transfer">{{ __('Transfère bancaire') }}</option>
+                                                    <option value="Other">{{ __('Autres') }}</option>
                                                 </select>
                                             </div>
                                         </div>
