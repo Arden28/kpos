@@ -146,6 +146,16 @@
                                             </select>
                                         </div>
                                     </div>
+
+                                    <div class="col-lg-4">
+                                        <div class="form-group">
+
+                                            <p><i class="bi bi-currency-exchange"></i> {{ $currencies->count() }} {{ __('Devise(s)') }}</p>
+                                            <p style="padding-left: 15px"><a href="{{ route('currencies.index') }}"><i class="bi bi-arrow-right"></i> {{ __('Gérer les devises') }}</a></p>
+
+                                        </div>
+                                    </div>
+
                                 </div>
 
 

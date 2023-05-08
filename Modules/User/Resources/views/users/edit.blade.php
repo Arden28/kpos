@@ -65,6 +65,7 @@
                                         <div class="form-group">
                                             <label for="role">{{ __('Rôle') }} <span class="text-danger">*</span></label>
                                             <select class="form-control" name="role" id="role" required>
+                                                {{-- @foreach(\Spatie\Permission\Models\Role::where('name', '!=', 'Super Admin')->get() as $role) --}}
                                                 @foreach(\Spatie\Permission\Models\Role::where('name', '!=', 'Super Admin')->get() as $role)
                                                     <option {{ $user->hasRole($role->name) ? 'selected' : '' }} value="{{ $role->name }}">{{ $role->name }}</option>
                                                 @endforeach

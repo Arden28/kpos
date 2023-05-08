@@ -21,16 +21,7 @@ class Invitation extends Component
         $this->validate([
             'email' => 'required|email|unique:users,email',
         ]);
-
-        // Create a new user with a random password
-        // $user = User::create([
-        //     'team_id' => Auth::user()->team->id,
-        //     'current_company_id' => Auth::user()->currentCompany->id,
-        //     'email' => $this->email,
-        //     'password' => Str::random(8),
-        //     'is_active' => false,
-        // ]);
-
+        
         // Generate a unique invitation token
         $token = Str::random(32);
 
@@ -40,7 +31,8 @@ class Invitation extends Component
             'company_id' => Auth::user()->currentCompany->id,
             'email'     => $this->email,
             'token' => $token,
-            'role' => 'admin',
+            'role' => 'Super Admin',
+            // 'role' => 'admin',
             'expire_at' => now()->addDays(7),
         ]);
 

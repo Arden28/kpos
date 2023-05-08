@@ -145,7 +145,7 @@ class RegisteredUserController extends Controller
         ]);
 
 
-        $superAdmin = 'owner';
+        $superAdmin = 'Super Admin';
 
         $user->assignRole($superAdmin);
 

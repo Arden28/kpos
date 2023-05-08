@@ -19,7 +19,7 @@ class UpdateEmployeeRequest extends FormRequest
             'email'    => 'required|email|max:255',
             'phone'    => 'required|min:9|max:255',
             'role'     => 'string',
-            'image'     => 'required',
+            'image'     => 'min:1000',
         ];
     }
 

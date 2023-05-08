@@ -64,7 +64,7 @@
             @include('pos::layouts.navbar-menu')
 
         <!-- Setting -->
-        @elseif(request()->routeIs('settings.*'))
+        @elseif(request()->routeIs('settings.*') || request()->routeIs('currencies.*'))
 
             @include('setting::layouts.navbar-menu')
 

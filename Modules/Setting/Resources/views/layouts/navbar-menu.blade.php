@@ -35,6 +35,17 @@
               </a>
             </li>
 
+            <li class="nav-item">
+              <a class="btn {{ request()->routeIs('currencies.*') ? 'active' : '' }}" style="margin-right: 5px;" href="{{ route('currencies.index') }}" >
+                <span class="nav-link-icon d-md-none d-lg-inline-block"><!-- Download SVG icon from http://tabler-icons.io/i/home -->
+                    <i class="bi bi-currency-exchange" style="width: 24px; height:24px;"></i>
+                </span>
+                <span class="nav-link-title">
+                    {{ __('Devises') }}
+                </span>
+              </a>
+            </li>
+
             {{-- <li class="nav-item">
                 <a class="btn {{ request()->routeIs('settings.inventory') ? 'active' : '' }}" style="margin-right: 5px;" href="{{ route('settings.index') }}" >
                   <span class="nav-link-icon d-md-none d-lg-inline-block"><!-- Download SVG icon from http://tabler-icons.io/i/home -->
