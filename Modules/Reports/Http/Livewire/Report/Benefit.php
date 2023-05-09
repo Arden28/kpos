@@ -36,6 +36,7 @@ class Benefit extends Component
         // Purchase
 
         // $current_company_id = Auth::user()->currentCompany->id;
+
         $purchases = Purchase::completed()->isCompany(Auth::user()->currentCompany->id)->sum('total_amount');
         $purchase_returns = PurchaseReturn::completed()->isCompany(Auth::user()->currentCompany->id)->sum('total_amount');
         $product_costs = 0;
@@ -48,7 +49,7 @@ class Benefit extends Component
         $purchase = ($purchases - $purchase_returns) / 100;
 
         // $profit = ($revenue - $product_costs - $purchase) ;
-        $profit = ($revenue - $purchase);
+        $profit = ($revenue - $purchase - $product_costs);
 
         return $profit;
 
