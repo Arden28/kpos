@@ -42,6 +42,7 @@ class Revenue extends Component
         }
 
         $revenue = ($sales - $sale_returns) / 100;
+        // $revenue = ($revenue - $product_costs);
 
         $this->revenue = $revenue;
 

@@ -48,9 +48,11 @@ class AccountingBalance extends Component
 
         $due_sales = 0;
 
-        $sales = Sale::completed()
-            ->where('company_id', Auth::user()->currentCompany->id)
-            ->sum('due_amount') / 100;
+        // $sales = Sale::completed()
+        //     ->where('company_id', Auth::user()->currentCompany->id)
+        //     ->sum('due_amount') / 100;
+            $sales = Sale::where('company_id', Auth::user()->currentCompany->id)
+                ->sum('due_amount') / 100;
 
 
         $debt = $sales;

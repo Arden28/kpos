@@ -4,6 +4,7 @@ namespace Modules\Reports\Http\Livewire\Report;
 
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
+use Modules\Purchase\Entities\Purchase;
 use Modules\PurchasesReturn\Entities\PurchaseReturn;
 use Modules\Sale\Entities\Sale;
 use Modules\SalesReturn\Entities\SaleReturn;
@@ -31,7 +32,23 @@ class Benefit extends Component
         }
 
         $revenue = ($sales - $sale_returns) / 100;
-        $profit = ($revenue - $product_costs) ;
+
+        // Purchase
+
+        // $current_company_id = Auth::user()->currentCompany->id;
+        $purchases = Purchase::completed()->isCompany(Auth::user()->currentCompany->id)->sum('total_amount');
+        $purchase_returns = PurchaseReturn::completed()->isCompany(Auth::user()->currentCompany->id)->sum('total_amount');
+        $product_costs = 0;
+
+        foreach (Purchase::completed()->where('company_id', Auth::user()->currentCompany->id)->with('purchaseDetails')->get() as $purchase) {
+            foreach ($purchase->purchaseDetails??[] as $purchaseDetail) {
+                $product_costs += $purchaseDetail->product->product_cost;
+            }
+        }
+        $purchase = ($purchases - $purchase_returns) / 100;
+
+        // $profit = ($revenue - $product_costs - $purchase) ;
+        $profit = ($revenue - $purchase);
 
         return $profit;
 
