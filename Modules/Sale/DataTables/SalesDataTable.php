@@ -97,6 +97,10 @@ class SalesDataTable extends DataTable
                 ->title('Reste à Payer')
                 ->className('text-center align-middle'),
 
+            Column::computed('note')
+                ->title('Note')
+                ->className('text-center align-middle'),
+
             Column::computed('payment_status')
                 ->className('text-center align-middle'),
 
