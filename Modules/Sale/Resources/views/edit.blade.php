@@ -84,36 +84,36 @@
                                         <div class="form-group">
                                             <label for="status">Status <span class="text-danger">*</span></label>
                                             <select class="form-control" name="status" id="status" required>
-                                                <option {{ $sale->status == 'Pending' ? 'selected' : '' }} value="Pending">Pending</option>
-                                                <option {{ $sale->status == 'Shipped' ? 'selected' : '' }} value="Shipped">Shipped</option>
-                                                <option {{ $sale->status == 'Completed' ? 'selected' : '' }} value="Completed">Completed</option>
+                                                <option {{ $sale->status == 'Pending' ? 'selected' : '' }} value="Pending">En attente</option>
+                                                <option {{ $sale->status == 'Shipped' ? 'selected' : '' }} value="Shipped">Livré</option>
+                                                <option {{ $sale->status == 'Completed' ? 'selected' : '' }} value="Completed">Completée</option>
                                             </select>
                                         </div>
                                     </div>
                                     <div class="col-lg-4">
                                         <div class="from-group">
                                             <div class="form-group">
-                                                <label for="payment_method">Payment Method <span class="text-danger">*</span></label>
+                                                <label for="payment_method">{{ __('Moyen de Paiement') }} <span class="text-danger">*</span></label>
                                                 <input type="text" class="form-control" name="payment_method" required value="{{ $sale->payment_method }}" readonly>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="col-lg-4">
                                         <div class="form-group">
-                                            <label for="paid_amount">Amount Received <span class="text-danger">*</span></label>
+                                            <label for="paid_amount">{{ __('Montant Reçu') }} <span class="text-danger">*</span></label>
                                             <input id="paid_amount" type="text" class="form-control" name="paid_amount" required value="{{ $sale->paid_amount }}" readonly>
                                         </div>
                                     </div>
                                 </div>
 
                                 <div class="form-group">
-                                    <label for="note">Note (If Needed)</label>
+                                    <label for="note">{{ __('Note(si besoin)') }}</label>
                                     <textarea name="note" id="note" rows="5" class="form-control">{{ $sale->note }}</textarea>
                                 </div>
 
                                 <div class="mt-3">
                                     <button type="submit" class="btn btn-primary">
-                                        Update Sale <i class="bi bi-check"></i>
+                                        {{ __('Sauvegarder') }} <i class="bi bi-check"></i>
                                     </button>
                                 </div>
                             </form>

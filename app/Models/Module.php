@@ -50,9 +50,17 @@ class Module extends Model
 
     public function isInstalledBy(Team $team)
     {
-        return InstalledModule::where('team_id', $team->id)
-            ->where('module_slug', $this->slug)
-            ->exists();
+        return InstalledModule::where('module_slug', $this->slug)
+            ->where('team_id', $team->id)
+            ->first();
+    }
+
+    public function installed_modules(){
+        return $this->hasMany(InstalledModule::class, 'module_slug', 'slug');
+    }
+
+    public function module_users(){
+        return $this->hasMany(ModuleUser::class, 'module_slug', 'slug');
     }
 
     // public function isInstalledBy(Team $team)

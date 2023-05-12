@@ -21,7 +21,7 @@ class Invitation extends Component
         $this->validate([
             'email' => 'required|email|unique:users,email',
         ]);
-        
+
         // Generate a unique invitation token
         $token = Str::random(32);
 
@@ -31,7 +31,7 @@ class Invitation extends Component
             'company_id' => Auth::user()->currentCompany->id,
             'email'     => $this->email,
             'token' => $token,
-            'role' => 'Super Admin',
+            'role' => 'admin',
             // 'role' => 'admin',
             'expire_at' => now()->addDays(7),
         ]);

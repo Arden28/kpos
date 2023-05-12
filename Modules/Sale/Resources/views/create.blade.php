@@ -86,29 +86,29 @@
                                         <div class="form-group">
                                             <label for="status">Status <span class="text-danger">*</span></label>
                                             <select class="form-control" name="status" id="status" required>
-                                                <option value="Pending">Pending</option>
-                                                <option value="Shipped">Shipped</option>
-                                                <option value="Completed">Completed</option>
+                                                <option value="Pending">{{ __('En attente') }}</option>
+                                                <option value="Shipped">{{ __('Livrée') }}</option>
+                                                <option value="Completed">{{ __('Complétée') }}</option>
                                             </select>
                                         </div>
                                     </div>
                                     <div class="col-lg-4">
                                         <div class="from-group">
                                             <div class="form-group">
-                                                <label for="payment_method">Payment Method <span class="text-danger">*</span></label>
+                                                <label for="payment_method">{{ __('Moyen de Paiement') }} <span class="text-danger">*</span></label>
                                                 <select class="form-control" name="payment_method" id="payment_method" required>
-                                                    <option value="Cash">Cash</option>
-                                                    <option value="Credit Card">Credit Card</option>
-                                                    <option value="Bank Transfer">Bank Transfer</option>
-                                                    <option value="Cheque">Cheque</option>
-                                                    <option value="Other">Other</option>
+                                                    <option value="Cash">{{ __('En espèce') }}</option>
+                                                    <option value="Credit Card">{{ __('Carte de Crédit') }}</option>
+                                                    <option value="Bank Transfer">{{ __('Transfer Bancaire') }}</option>
+                                                    <option value="Cheque">{{ __('Chèque') }}</option>
+                                                    <option value="Other">{{ __('Autres') }}</option>
                                                 </select>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="col-lg-4">
                                         <div class="form-group">
-                                            <label for="paid_amount">Amount Received <span class="text-danger">*</span></label>
+                                            <label for="paid_amount">{{ __('Montant Reçu') }} <span class="text-danger">*</span></label>
                                             <div class="input-group">
                                                 <input id="paid_amount" type="text" class="form-control" name="paid_amount" required>
                                                 <div class="input-group-append">

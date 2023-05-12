@@ -13,15 +13,10 @@ class CreateModuleUserTable extends Migration
      */
     public function up()
     {
-        Schema::create('module_user', function (Blueprint $table) {
+        Schema::create('module_users', function (Blueprint $table) {
             $table->id();
             $table->foreignId('team_id')->nullable();
             $table->string('module_slug');
-            
-            // $table->foreign('module_slug')
-            // ->references('slug')
-            // ->on('modules')
-            // ->onDelete('cascade');
 
             $table->timestamps();
         });
@@ -34,6 +29,6 @@ class CreateModuleUserTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('module_user');
+        Schema::dropIfExists('module_users');
     }
 }

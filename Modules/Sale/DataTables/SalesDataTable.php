@@ -102,6 +102,7 @@ class SalesDataTable extends DataTable
                 ->className('text-center align-middle'),
 
             Column::computed('payment_status')
+                ->title('Status du Paiement')
                 ->className('text-center align-middle'),
 
             Column::computed('action')

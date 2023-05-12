@@ -7,7 +7,7 @@
     <div class="form-group">
         <label for="account_id">{{ __('Compte') }} </label>
         <select name="account_id" class="form-control" id="account_id">
-            <option value="">{{ __('Selectionnez le compte à relier') }}</option>
+            {{-- <option value="">{{ __('Selectionnez le compte à relier') }}</option> --}}
             @foreach ($accounts as $account)
                 <option value="{{ $account->id }}">{{ $account->account_name }}</option>
             @endforeach
