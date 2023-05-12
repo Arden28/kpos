@@ -36,7 +36,9 @@ class SettingController extends Controller
         $currencies = $this->currencyRepository->getCurrencies($company);
         $settings = Setting::where('company_id', $company)->first();
 
-        $team = Team::find(Auth::user()->team->id)->first();
+        // $team = Team::find(Auth::user()->team->id)->first();
+        $team = Team::where('id', Auth::user()->team->id)->where('uuid', Auth::user()->team->uuid)->first();
+
 
         return view('setting::index', compact('settings', 'currencies', 'team'));
     }

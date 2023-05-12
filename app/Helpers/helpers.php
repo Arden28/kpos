@@ -17,8 +17,8 @@ if (!function_exists('modules')) {
 
 if (!function_exists('team')) {
     function team($id) {
-        $team = App\Models\Team::find('id', $id)->first();
-
+        // $team = App\Models\Team::find('id', $id)->first();
+        $team = Team::where('id', Auth::user()->team->id)->where('uuid', Auth::user()->team->uuid)->first();
         return $team;
     }
 }

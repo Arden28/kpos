@@ -25,13 +25,26 @@ class ModuleController extends Controller
 
 
     public function install(Module $module){
-        $team = Team::find(Auth::user()->team->id)->first();
+        // $team = Team::find(Auth::user()->team->id)->first();
+        $team = Team::where('id', Auth::user()->team->id)->where('uuid', Auth::user()->team->uuid)->first();
 
         // Check if the module is already installed
         if ($module->isInstalledBy($team)) {
 
             toast("L'application {$module->name} est déjà installée.", 'info');
 
+            return redirect()->back();
+        }
+
+        // Check if a similar InstalledModule exists
+        $existingInstalledModule = InstalledModule::where('team_id', Auth::user()->team->id)
+            ->where('module_slug', $module->slug)
+            ->first();
+
+        if ($existingInstalledModule) {
+            // An existing installed module with similar values already exists
+            // You can handle this situation as needed
+            toast("Cette application est déjà installée pour votre entreprise.", 'info');
             return redirect()->back();
         }
 
