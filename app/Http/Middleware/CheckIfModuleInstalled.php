@@ -19,7 +19,8 @@ class CheckIfModuleInstalled
      */
     public function handle(Request $request, Closure $next, $moduleName)
     {
-        $team = Team::find(Auth::user()->team->id)->first();
+        // $team = Team::find(Auth::user()->team->id)->first();
+        $team = Team::where('id', Auth::user()->team->id)->where('uuid', Auth::user()->team->uuid)->first();
         $module = Module::where('slug', $moduleName)->firstOrFail();
 
         if (!$module->isInstalledBy($team)) {
