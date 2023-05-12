@@ -30,7 +30,7 @@ class ModuleController extends Controller
         // Check if the module is already installed
         if ($module->isInstalledBy($team)) {
 
-            toast("L'application '{$module->name}' est déjà installée.", 'info');
+            toast("L'application {$module->name} est déjà installée.", 'info');
 
             return redirect()->back();
         }
@@ -49,8 +49,9 @@ class ModuleController extends Controller
         // $installedModule->save();
 
         // Redirect back to the modules page with a success message
+            toast("L'application {$module->name} installée avec brio.", 'success');
         return redirect()->route('dashboard')
-            ->with('success', "L'application '{$module->name}' installée avec brio.");
+            ->with('success', "L'application {$module->name} installée avec brio.");
 
     }
 
@@ -67,16 +68,20 @@ class ModuleController extends Controller
             ->first();
 
         if (!$installedModule) {
+            //toast alert
+            toast("L'application {$module->name} n'est pas installée !.", 'warning');
+
             return redirect()->back()
-                ->with('error', "L'application '{$module->name}' n'est pas installée !.");
+                ->with('error', "L'application {$module->name} n'est pas installée !.");
         }
 
         // Uninstall the module
         $installedModule->delete();
 
         // Redirect back to the modules page with a success message
+            toast("L'application {$module->name} a été désinstallée !.", 'error');
         return redirect()->route('dashboard')
-            ->with('success', "L'application '{$module->name}' a été désinstallée !.");
+            ->with('success', "L'application {$module->name} a été désinstallée !.");
     }
 
 }
