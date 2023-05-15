@@ -1,6 +1,8 @@
-<a href="{{ route('users.edit', $data->id) }}" class="btn btn-info btn-sm">
-    <i class="bi bi-pencil"></i>
-</a>
+@can('access_user_management')
+    <a href="{{ route('users.edit', $data->id) }}" class="btn btn-info btn-sm">
+        <i class="bi bi-pencil"></i>
+    </a>
+@endcan
 <button id="delete" class="btn btn-danger btn-sm" onclick="
     event.preventDefault();
     if (confirm('Are you sure? It will delete the data permanently!')) {

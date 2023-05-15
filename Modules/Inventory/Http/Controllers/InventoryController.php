@@ -6,6 +6,7 @@ use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Gate;
 use Modules\Inventory\Interfaces\CategoryInterface;
 use Modules\Inventory\Interfaces\ProductInterface;
 use Modules\People\DataTables\SuppliersDataTable;
@@ -30,6 +31,8 @@ class InventoryController extends Controller
      */
     public function index()
     {
+        abort_if(Gate::denies('access_products'), 403);
+
         $products = $this->productRepository->getProducts(Auth::user()->currentCompany->id);
 
         $categories = $this->categoryRepository->getCategories(Auth::user()->currentCompany->id);

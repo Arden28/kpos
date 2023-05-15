@@ -6,6 +6,7 @@ use Modules\User\DataTables\RolesDataTable;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
 use Spatie\Permission\Models\Role;
 
@@ -34,12 +35,13 @@ class RolesController extends Controller
         ]);
 
         $role = Role::create([
-            'name' => $request->name
+            'name' => $request->name,
+            'company_id'=> Auth::user()->currentCompany->id
         ]);
 
         $role->givePermissionTo($request->permissions);
 
-        toast('Role Created With Selected Permissions!', 'success');
+        toast('Rôle créé avec les autorisations sélectionnées!', 'success');
 
         return redirect()->route('roles.index');
     }
@@ -66,7 +68,7 @@ class RolesController extends Controller
 
         $role->syncPermissions($request->permissions);
 
-        toast('Role Updated With Selected Permissions!', 'success');
+        toast('Rôle mis à jour avec les autorisations sélectionnées !', 'success');
 
         return redirect()->route('roles.index');
     }
@@ -77,7 +79,7 @@ class RolesController extends Controller
 
         $role->delete();
 
-        toast('Role Deleted!', 'success');
+        toast('Rôle supprimé !', 'success');
 
         return redirect()->route('roles.index');
     }

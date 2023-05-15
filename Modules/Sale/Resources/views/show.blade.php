@@ -1,6 +1,6 @@
 @extends('layouts.master')
 
-@section('title', __('Sale Detail'))
+@section('title', __('Détail de la vente'))
 
 @section('breadcrumb')
 <div class="page-header d-print-none">
@@ -8,23 +8,24 @@
     <div class="row g-2 align-items-center">
       <div class="col">
         <h2 class="page-title">
-          {{ __('Sale Detail') }}
+          {{ __('Détail de la vente') }}
         </h2>
       </div>
       <!-- Page title actions -->
       <div class="col-auto ms-auto d-print-none">
         <button type="button" class="btn btn-primary" onclick="javascript:window.print();">
             <i class="bi bi-printer"></i>
-          {{ __('Print Invoice') }}
+          {{ __('Imprimer') }}
         </button>
       </div>
       <!-- Page title actions -->
-      <div class="col-auto ms-auto d-print-none">
+
+      {{-- <div class="col-auto ms-auto d-print-none">
         <button type="button" class="btn btn-primary" onclick="javascript:window.print();">
             <i class="bi bi-save"></i>
           {{ __('Save') }}
         </button>
-      </div>
+      </div> --}}
     </div>
   </div>
 </div>
@@ -39,7 +40,7 @@
                     <div class="card">
                         <div class="card-header d-flex flex-wrap align-items-center">
                             <div>
-                                {{ __('Reference') }}: <strong>{{ $sale->reference }}</strong>
+                                {{ __('Réference') }}: <strong>{{ $sale->reference }}</strong>
                             </div>
                             {{-- Print --}}
                             {{-- <a target="_blank" class="btn btn-sm btn-secondary mfs-auto mfe-1 d-print-none" href="{{ route('sales.pdf', $sale->id) }}">
@@ -75,7 +76,7 @@
                                         {{ __('Status') }}: <strong>{{ $sale->status }}</strong>
                                     </div>
                                     <div>
-                                        {{ __('Payment Status') }}: <strong>{{ $sale->payment_status }}</strong>
+                                        {{ __('Status du paiement') }}: <strong>{{ $sale->payment_status }}</strong>
                                     </div>
                                 </div>
 
@@ -130,15 +131,15 @@
                                     <table class="table">
                                         <tbody>
                                         <tr>
-                                            <td class="left"><strong>{{ __('Discount') }} ({{ $sale->discount_percentage }}%)</strong></td>
+                                            <td class="left"><strong>{{ __('Réduction') }} ({{ $sale->discount_percentage }}%)</strong></td>
                                             <td class="right">{{ format_currency($sale->discount_amount) }}</td>
                                         </tr>
                                         <tr>
-                                            <td class="left"><strong>{{ __('Tax') }} ({{ $sale->tax_percentage }}%)</strong></td>
+                                            <td class="left"><strong>{{ __('Taxe') }} ({{ $sale->tax_percentage }}%)</strong></td>
                                             <td class="right">{{ format_currency($sale->tax_amount) }}</td>
                                         </tr>
                                         <tr>
-                                            <td class="left"><strong>{{ __('Shipping') }}</strong></td>
+                                            <td class="left"><strong>{{ __('Livraison') }}</strong></td>
                                             <td class="right">{{ format_currency($sale->shipping_amount) }}</td>
                                         </tr>
                                         <tr>

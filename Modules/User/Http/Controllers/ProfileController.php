@@ -5,6 +5,7 @@ namespace Modules\User\Http\Controllers;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
 use Modules\Upload\Entities\Upload;
@@ -14,6 +15,7 @@ class ProfileController extends Controller
 {
 
     public function edit() {
+        abort_if(Gate::denies('edit_own_profile'), 403);
         return view('user::profile');
     }
 

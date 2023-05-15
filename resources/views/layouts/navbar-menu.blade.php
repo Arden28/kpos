@@ -45,125 +45,21 @@
                     </li>
                 @endif
 
-                {{-- <li class="nav-item dropdown {{ request()->routeIs('products.*') || request()->routeIs('product-categories.*') ? 'active' : '' }}">
-
-                  <a class="btn" style="margin-right: 5px;" data-turbolinks="false" href="#navbar-base" data-bs-toggle="dropdown" data-bs-auto-close="outside" role="button" aria-expanded="false" >
-                    <span class="nav-link-icon d-md-none d-lg-inline-block"><!-- Download SVG icon from http://tabler-icons.io/i/package -->
-                        <i class="bi bi-app" style="width: 24px; height: 24px;"></i>
-                    </span>
-                    <span class="nav-link-title">
-                      {{ __('Apps') }}
-                    </span>
-                  </a>
-                  <div class="dropdown-menu">
-                    <div class="dropdown-menu-columns">
-
-                      <div class="dropdown-menu-column">
-
-                        @can('access_sales')
-                        <div class="dropend">
-                            <a class="dropdown-item dropdown-toggle {{ request()->routeIs('sales.*')? 'active' : '' }}" href="#sidebar-error" data-bs-toggle="dropdown" data-bs-auto-close="outside" role="button" aria-expanded="false" >
-                            {{ __('Sales') }}
-                            </a>
-                            <div class="dropdown-menu">
-                            @can('create_sales')
-                            <a href="{{ route('sales.create') }}" class="dropdown-item {{ request()->routeIs('sales.create')? 'active' : '' }}">
-                                {{ __('Add Sale') }}
-                            </a>
-                            @endcan
-
-                            <a href="{{ route('sales.index') }}" class="dropdown-item {{ request()->routeIs('sales.index')? 'active' : '' }}">
-                                {{ __('All Sales') }}
-                            </a>
-                            </div>
-                        </div>
-                        @endcan
-
-                        @can('access_expenses')
-                        <div class="dropend">
-                          <a class="dropdown-item dropdown-toggle {{ request()->routeIs('expenses.*')? 'active' : '' }}" href="#sidebar-error" data-bs-toggle="dropdown" data-bs-auto-close="outside" role="button" aria-expanded="false" >
-                            {{ __('Expenses') }}
-                          </a>
-                          <div class="dropdown-menu">
-                            @can('access_expense_categories')
-                            <a href="{{ route('expense-categories.index') }}" class="dropdown-item {{ request()->routeIs('expense-categories.*')? 'active' : '' }}">
-                              {{ __('Catégories') }}
-                            </a>
-                            @endcan
-
-                            @can('create_expenses')
-                            <a href="{{ route('expenses.create') }}" class="dropdown-item {{ request()->routeIs('expenses.create')? 'active' : '' }}">
-                              {{ __('Ajouter une dépense') }}
-                            </a>
-                            @endcan
-
-                            <a href="{{ route('expenses.index') }}" class="dropdown-item {{ request()->routeIs('expenses.index')? 'active' : '' }}">
-                              {{ __('Toutes les dépenses') }}
-                            </a>
-                          </div>
-                        </div>
-                        @endcan
-
-                      </div>
-
-                      <div class="dropdown-menu-column">
-
-                        @can('access_quotations')
-                        <div class="dropend">
-                          <a class="dropdown-item dropdown-toggle {{ request()->routeIs('quotations.*')? 'active' : '' }}" href="#sidebar-error" data-bs-toggle="dropdown" data-bs-auto-close="outside" role="button" aria-expanded="false" >
-                            {{ __('Quotations') }}
-                          </a>
-                          <div class="dropdown-menu">
-                            @can('create_quotations')
-                            <a href="{{ route('quotations.create') }}" class="dropdown-item {{ request()->routeIs('quotations.create')? 'active' : '' }}">
-                              {{ __('Create Quotation') }}
-                            </a>
-                            @endcan
-
-                            <a href="{{ route('quotations.index') }}" class="dropdown-item {{ request()->routeIs('quotations.*')? 'active' : '' }}">
-                              {{ __('All Quotations') }}
-                            </a>
-                          </div>
-                        </div>
-                        @endcan
-
-                        @can('access_sales')
-                        <div class="dropend">
-                          <a class="dropdown-item dropdown-toggle {{ request()->routeIs('sale-returns.*')? 'active' : '' }}" href="#sidebar-error" data-bs-toggle="dropdown" data-bs-auto-close="outside" role="button" aria-expanded="false" >
-                            {{ __('Sales Return') }}
-                          </a>
-                          <div class="dropdown-menu">
-                            <a href="{{ route('sale-returns.create') }}" class="dropdown-item {{ request()->routeIs('sale-returns.create')? 'active' : '' }}">
-                              {{ __('Add Sale Return') }}
-                            </a>
-
-                            <a href="{{ route('sale-returns.index') }}" class="dropdown-item {{ request()->routeIs('sale-returns.index')? 'active' : '' }}">
-                              {{ __('All Sales Return') }}
-                            </a>
-                          </div>
-                        </div>
-                        @endcan
-
-                      </div>
-                    </div>
-                  </div>
-                </li> --}}
-
                 {{-- Customers | Suppliers Management --}}
                 @if(module('crm'))
-                @can('access_customers')
-                <li class="nav-item">
-                  <a class="btn" style="margin-right: 5px;" href="{{ route('customers.index') }}" >
-                    {{-- <a class="nav-link" href="{{ route('customers.index') }}" > --}}
-                    <span class="nav-link-icon d-md-none d-lg-inline-block"><!-- Download SVG icon from http://tabler-icons.io/i/star -->
-                        <i class="bi bi-people-fill" style="width: 24px; height:24px"></i>
-                    </span>
-                    <span class="nav-link-title">
-                      {{ __('CRM') }}
-                    </span>
-                  </a>
-                </li>
-                @endcan
+                    @can('access_customers')
+                    <li class="nav-item">
+                    <a class="btn" style="margin-right: 5px;" href="{{ route('customers.index') }}" >
+                        {{-- <a class="nav-link" href="{{ route('customers.index') }}" > --}}
+                        <span class="nav-link-icon d-md-none d-lg-inline-block"><!-- Download SVG icon from http://tabler-icons.io/i/star -->
+                            <i class="bi bi-people-fill" style="width: 24px; height:24px"></i>
+                        </span>
+                        <span class="nav-link-title">
+                        {{ __('CRM') }}
+                        </span>
+                    </a>
+                    </li>
+                    @endcan
                 @endif
 
 

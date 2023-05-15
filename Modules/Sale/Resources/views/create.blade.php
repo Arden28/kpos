@@ -122,7 +122,7 @@
                                 </div>
 
                                 <div class="form-group">
-                                    <label for="note">Note (If Needed)</label>
+                                    <label for="note">{{__('Note (Si besoin)')}}</label>
                                     <textarea name="note" id="note" rows="5" class="form-control"></textarea>
                                 </div>
 
@@ -130,7 +130,7 @@
 
                                 <div class="mt-3">
                                     <button type="submit" class="btn btn-primary">
-                                        Create Sale <i class="bi bi-check"></i>
+                                        Ajouter <i class="bi bi-check"></i>
                                     </button>
                                 </div>
                             </form>

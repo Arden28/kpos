@@ -55,7 +55,7 @@ class UsersController extends Controller
 
         // Mail::to($request->email)->send(new WelcomeEmail($request->name));
 
-        toast("Nouvel Employé Ajouté ! Au poste de  '$request->role' Role!", 'success');
+        toast("Nouvel Employé Ajouté ! Au poste de  '$request->role' !", 'success');
 
         return redirect()->route('users.index');
     }
@@ -68,13 +68,36 @@ class UsersController extends Controller
     }
 
 
-    public function update(UpdateEmployeeRequest $request, User $employee) {
+    public function update(UpdateEmployeeRequest $request, User $user) {
         abort_if(Gate::denies('access_user_management'), 403);
 
-        //EditEmployee
-        $this->employeeRepository->editEmployee($request->validated(), $employee);
+        $user->update([
+            'name'     => $request->name,
+            'email'    => $request->email,
+            'phone'    => $request->phone,
+        ]);
 
-        toast("Employee Updated & Assigned '$request->role' Role!", 'info');
+        // $user->save();
+
+        $user->syncRoles($request->role);
+
+        if ($request->image) {
+            $tempFile = Upload::where('folder', $request->image)->first();
+
+            if ($user->getFirstMedia('avatars')) {
+                $user->getFirstMedia('avatars')->delete();
+            }
+
+            if ($tempFile) {
+                $user->addMedia(Storage::path('public/temp/' . $request->image . '/' . $tempFile->filename))->toMediaCollection('avatars');
+
+                Storage::deleteDirectory('public/temp/' . $request->image);
+                $tempFile->delete();
+            }
+        }
+
+        // toast("Le compte à bien été modifié '$request->role' Role!", 'info');
+        toast("Le compte à bien été modifié", 'info');
 
         return redirect()->route('users.index');
     }

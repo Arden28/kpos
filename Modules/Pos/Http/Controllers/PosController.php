@@ -26,6 +26,7 @@ use Modules\Pos\Interfaces\PosInterface;
 use Modules\Pos\Traits\HasPos;
 use Modules\Pos\Traits\PosSession;
 use Modules\Product\Entities\Category;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class PosController extends Controller
 {
@@ -168,7 +169,6 @@ class PosController extends Controller
             // $this->accountRepository->addInAccountBook($request->validated(), $pos['account_id'], Auth::user()->currentCompany->id);
 
             toast('Commande encaissée avec succès!', 'success');
-
             return redirect()->route('app.pos.index');
             // return redirect()->route('sales.index');
 

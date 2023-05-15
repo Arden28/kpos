@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\InstalledModule;
 use App\Models\Module;
 use App\Models\Team;
 use Bpuig\Subby\Models\Plan;
@@ -37,6 +38,13 @@ if (!function_exists('module')) {
     }
 }
 
+
+if(!function_exists('installed_apps')){
+    function installed_apps($team){
+        $installed_apps = InstalledModule::where('team_id', $team->id)->get();
+        return $installed_apps;
+    }
+}
 // Cache Pos Session
 
 if (!function_exists('pos')) {
