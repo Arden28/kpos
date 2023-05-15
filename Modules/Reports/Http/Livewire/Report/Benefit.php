@@ -31,7 +31,8 @@ class Benefit extends Component
             }
         }
 
-        $revenue_net = ($sales - $sale_returns);
+        $revenue = ($sales - $sale_returns) / 100;
+        $revenue_net = ($revenue - $product_costs);
 
         // Purchase
         $purchases = Purchase::completed()->isCompany(Auth::user()->currentCompany->id)->sum('total_amount');
@@ -44,13 +45,15 @@ class Benefit extends Component
             }
         }
 
-        $purchase_net = ($purchases - $purchase_returns);
+        $purchase = ($purchases - $purchase_returns) / 100;
+        $purchase_net = ($purchase - $product_costs) ;
+
 
         // Dépense
         $expenses = Expense::where('company_id', Auth::user()->currentCompany->id)->sum('amount');
 
         // Profit
-        $profit = ($revenue_net - $expenses - $purchase_net) / 100;
+        $profit = $revenue_net - $expenses - $purchase_net;
         return $profit;
 
     }
