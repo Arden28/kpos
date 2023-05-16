@@ -30,20 +30,27 @@ class Benefit extends Component
             }
         }
 
-        $revenue = ($sales - $sale_returns);
-        $revenue_net = ($revenue - $product_costs) / 100;
+        $revenue = ($sales - $sale_returns) / 100;
+        $revenue_net = ($revenue - $product_costs);
 
 
 
         // $current_company_id = Auth::user()->currentCompany->id;
         $purchases = Purchase::completed()->isCompany(Auth::user()->currentCompany->id)->sum('total_amount');
         $purchase_returns = PurchaseReturn::completed()->isCompany(Auth::user()->currentCompany->id)->sum('total_amount');
+        $purchase_product_costs = 0;
+
+        foreach (Purchase::completed()->where('company_id', Auth::user()->currentCompany->id)->with('purchaseDetails')->get() as $purchase) {
+            foreach ($purchase->purchaseDetails??[] as $purchaseDetail) {
+                $purchase_product_costs += $purchaseDetail->product->product_cost;
+            }
+        }
 
         $purchase = ($purchases - $purchase_returns) / 100;
-        $purchase_net = ($purchase - $product_costs) ;
+        $purchase_net = ($purchase - $purchase_product_costs) ;
 
-        $profit = $revenue_net - $purchase_net;
-        $profit = $product_costs;
+        $profit = ($revenue_net);
+        // $profit = $product_costs;
 
         return $profit;
 
