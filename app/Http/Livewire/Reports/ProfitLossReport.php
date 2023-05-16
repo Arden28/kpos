@@ -170,10 +170,6 @@ class ProfitLossReport extends Component
 
     public function calculateProfit() {
         $product_costs = 0;
-
-        $purchase_net = ($this->purchases_amount - $this->purchase_returns_amount);
-        $expense_net = ($purchase_net + $this->expenses_amount);
-
         $revenue = $this->sales_amount - $this->sale_returns_amount;
         $sales = Sale::completed()
             ->when($this->start_date, function ($query) {
@@ -188,11 +184,31 @@ class ProfitLossReport extends Component
 
         foreach ($sales as $sale) {
             foreach ($sale->saleDetails as $saleDetail) {
-                $product_costs += $saleDetail->product->product_cost;
+                $product_costs += $saleDetail->product->product_cost * $saleDetail->quantity;
             }
         }
-        $revenue_net = ($revenue - $product_costs);
 
+        $purchase_product_costs = 0;
+        $purchases = Purchase::completed()
+            ->when($this->start_date, function ($query) {
+                return $query->whereDate('date', '>=', $this->start_date);
+            })
+            ->when($this->end_date, function ($query) {
+                return $query->whereDate('date', '<=', $this->end_date);
+            })
+            // company
+            ->where('company_id', Auth::user()->currentCompany->id)
+            ->with('purchaseDetails')->get();
+
+        foreach ($purchases as $purchase) {
+            foreach ($purchase->purchaseDetails as $purchaseDetail) {
+                $purchase_product_costs += $purchaseDetail->product->product_cost * $purchaseDetail->quantity;
+            }
+        }
+        $purchase_net = ($purchase_product_costs);
+        $revenue_net = $revenue - $product_costs;
+
+        $expense_net = ($this->expenses_amount + $purchase_net);
         $profit = ($revenue_net - $expense_net);
 
         return $profit;
