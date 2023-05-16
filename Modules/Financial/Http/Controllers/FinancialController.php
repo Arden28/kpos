@@ -53,8 +53,8 @@ class FinancialController extends Controller
             }
         }
 
-        $purchase = ($purchases - $purchase_returns) / 100;
-        $purchase_net = ($purchase - $purchase_product_costs) ;
+        $purchase_net = ($purchases - $purchase_returns) / 100;
+        // $purchase_net = ($purchase - $purchase_product_costs) ;
 
         // Expenses
         $expenses = Expense::isCompany(Auth::user()->currentCompany->id)->sum('amount') / 100;

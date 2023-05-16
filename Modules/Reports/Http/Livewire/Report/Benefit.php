@@ -27,11 +27,12 @@ class Benefit extends Component
 
         foreach (Sale::completed()->where('company_id', Auth::user()->currentCompany->id)->with('saleDetails')->get() as $sale) {
             foreach ($sale->saleDetails??[] as $saleDetail) {
-                $product_costs += $saleDetail->product->product_cost;
+                $product_costs += $saleDetail->product->product_cost * $saleDetail->quantity;
             }
         }
 
         $revenue = ($sales - $sale_returns) / 100;
+        // $revenue_net = ($revenue);
         $revenue_net = ($revenue - $product_costs);
 
 
@@ -43,18 +44,21 @@ class Benefit extends Component
 
         foreach (Purchase::completed()->where('company_id', Auth::user()->currentCompany->id)->with('purchaseDetails')->get() as $purchase) {
             foreach ($purchase->purchaseDetails??[] as $purchaseDetail) {
-                $purchase_product_costs += $purchaseDetail->product->product_cost;
+                $purchase_product_costs += $purchaseDetail->product->product_cost * $purchaseDetail->quantity;
             }
         }
 
         $purchase = ($purchases - $purchase_returns) / 100;
-        $purchase_net = ($purchase - $purchase_product_costs) ;
+        $purchase_net = ($purchase_product_costs);
+        // $purchase_net = ($purchase - $purchase_product_costs) ;
+
 
         // Expenses
         $expenses = Expense::isCompany(Auth::user()->currentCompany->id)->sum('amount') / 100;
         $expense_net = ($purchase_net + $expenses);
 
         $profit = ($revenue_net - $expense_net);
+        // $profit = $revenue_net;
         // $profit = $product_costs;
 
         return $profit;
