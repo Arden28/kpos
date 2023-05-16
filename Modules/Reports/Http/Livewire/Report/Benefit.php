@@ -42,7 +42,8 @@ class Benefit extends Component
         $purchase = ($purchases - $purchase_returns) / 100;
         $purchase_net = ($purchase - $product_costs) ;
 
-        $profit = $revenue_net - $purchase_net;
+        // $profit = $revenue_net - $purchase_net;
+        $profit = $product_costs;
 
         return $profit;
 

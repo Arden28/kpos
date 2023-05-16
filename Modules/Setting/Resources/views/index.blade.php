@@ -203,24 +203,10 @@
                                                                 </button>
                                                             </form>
                                                         @else
-                                                            @if(subscribed(Auth::user()->team->id))
-
-                                                                {{-- @if (standard() && standard()->isActive() === true) --}}
-                                                                @if (standard())
-
-                                                                    <form method="POST" action="{{ route('module.install', $module) }}">
+                                                            <form method="POST" action="{{ route('module.install', $module) }}">
                                                                         @csrf
-                                                                        <button class="btn btn-primary" type="submit">{{ __('Installer') }}</button>
-                                                                    </form>
-
-                                                                @else
-                                                                    <a  class="btn btn-primary" style="margin-right: 5px;" data-bs-toggle="modal" data-bs-target="#modal-report">
-                                                                        Installer
-                                                                    </a>
-                                                                @endif
-                                                            @elseif (installed_apps(team(Auth::user()->team->id))->count() >= 2)
-                                                                <a  class="btn" style="margin-right: 5px;" data-bs-toggle="modal" data-bs-target="#modal-report">
-                                                            @endif
+                                                                <button class="btn btn-primary" type="submit">{{ __('Installer') }}</button>
+                                                            </form>
                                                         @endif
                                                     </div>
                                                     </div>
