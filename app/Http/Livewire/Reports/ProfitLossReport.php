@@ -170,6 +170,10 @@ class ProfitLossReport extends Component
 
     public function calculateProfit() {
         $product_costs = 0;
+
+        $purchase_net = ($this->purchases_amount - $this->purchase_returns_amount);
+        $expense_net = ($purchase_net + $this->expenses_amount);
+
         $revenue = $this->sales_amount - $this->sale_returns_amount;
         $sales = Sale::completed()
             ->when($this->start_date, function ($query) {
@@ -187,8 +191,9 @@ class ProfitLossReport extends Component
                 $product_costs += $saleDetail->product->product_cost;
             }
         }
+        $revenue_net = ($revenue - $product_costs);
 
-        $profit = $revenue - $product_costs;
+        $profit = ($revenue_net - $expense_net);
 
         return $profit;
     }

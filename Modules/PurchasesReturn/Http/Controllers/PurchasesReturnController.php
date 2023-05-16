@@ -9,6 +9,7 @@ use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Gate;
+use Modules\Financial\Entities\Accounting\AccountBook;
 use Modules\Financial\Interfaces\Accounting\AccountInterface;
 use Modules\People\Entities\Supplier;
 use Modules\Product\Entities\Product;
@@ -63,6 +64,7 @@ class PurchasesReturnController extends Controller
             $purchase_return = PurchaseReturn::create([
 
                 'company_id' => Auth::user()->currentCompany->id,
+                'account_id' => $request['account_id'],
 
                 'date' => $request->date,
                 'supplier_id' => $request->supplier_id,
@@ -116,9 +118,42 @@ class PurchasesReturnController extends Controller
                     'payment_method'     => $request->payment_method
                 ]);
             }
+
+            // Register to the book.
+            if($purchase_return){
+                $current_balance = $purchase_return->account->balance;
+
+                if($due_amount > 0){
+                    $detail = 'Achat(Paiement Avancé. Reste: '.format_currency($due_amount).')';
+                }else{
+                    $detail = 'Achat(Paiement Complété)';
+                }
+
+                $book = AccountBook::create([
+                    'company_id' => Auth::user()->currentCompany->id,
+                    'account_id' => $purchase_return->account_id,
+                    'user_id' => Auth::user()->id,
+                    'detail' => $detail,
+                    'note' => $request->note,
+                    'balance' => $request->paid_amount,
+                    'debit' => $request->paid_amount,
+                    'date' => now()->format('d-m-Y H:i:s'),
+                ]);
+
+                $book->save();
+
+                $new_balance = $current_balance - $book->balance;
+
+                $purchase_return->account->balance = $new_balance;
+                $purchase_return->account->save();
+
+                $book->balance = $new_balance;
+                $book->save();
+            }
+
         });
 
-        toast('Purchase Return Created!', 'success');
+        toast('Commande annulée ajoutée!', 'success');
 
         return redirect()->route('purchase-returns.index');
     }

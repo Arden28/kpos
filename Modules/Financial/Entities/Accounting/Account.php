@@ -10,6 +10,7 @@ use Modules\Pos\Entities\Pos;
 use Modules\Purchase\Entities\Purchase;
 use Modules\Sale\Entities\Sale;
 use Modules\Financial\Entities\Accounting\AccountBook;
+use Modules\PurchasesReturn\Entities\PurchaseReturn;
 
 class Account extends Model
 {
@@ -48,6 +49,12 @@ class Account extends Model
     public function purchases() {
 
         return $this->hasMany(Purchase::class, 'account_id', 'id');
+
+    }
+
+    public function purchase_return() {
+
+        return $this->hasMany(PurchaseReturn::class, 'account_id', 'id');
 
     }
 

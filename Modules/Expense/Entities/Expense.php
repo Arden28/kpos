@@ -21,6 +21,18 @@ class Expense extends Model
         return $this->belongsTo(ExpenseCategory::class, 'category_id', 'id');
     }
 
+    /**
+     * Scope a query to only include sales which belong to the current company.
+     *
+     * @param  \Illuminate\Database\Eloquent\Builder  $query
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function scopeisCompany($query, $company)
+    {
+        return $query->where('company_id', $company);
+    }
+
+
     public static function boot() {
         parent::boot();
 

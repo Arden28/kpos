@@ -8,6 +8,7 @@ use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Gate;
+use Modules\Financial\Entities\Accounting\AccountBook;
 use Modules\Purchase\Entities\Purchase;
 use Modules\Purchase\Entities\PurchasePayment;
 
@@ -73,9 +74,41 @@ class PurchasePaymentsController extends Controller
                 'due_amount' => $due_amount * 100,
                 'payment_status' => $payment_status
             ]);
+
+            // Register to the book.
+            if($purchase){
+                $current_balance = $purchase->account->balance;
+
+                if($due_amount > 0){
+                    $detail = 'Achat(Paiement Avancé. Reste: '.format_currency($due_amount).')';
+                }else{
+                    $detail = 'Achat(Paiement Complété)';
+                }
+
+                $book = AccountBook::create([
+                    'company_id' => Auth::user()->currentCompany->id,
+                    'account_id' => $purchase->account_id,
+                    'user_id' => Auth::user()->id,
+                    'detail' => $detail,
+                    'note' => $request->note,
+                    'balance' => $request->amount,
+                    'credit' => $request->amount,
+                    'date' => now()->format('d-m-Y H:i:s'),
+                ]);
+
+                $book->save();
+
+                $new_balance = $current_balance - $book->balance;
+
+                $purchase->account->balance = $new_balance;
+                $purchase->account->save();
+
+                $book->balance = $new_balance;
+                $book->save();
+            }
         });
 
-        toast('Purchase Payment Created!', 'success');
+        toast('Paiement enregistré!', 'success');
 
         return redirect()->route('purchases.index');
     }
@@ -131,7 +164,7 @@ class PurchasePaymentsController extends Controller
             ]);
         });
 
-        toast('Purchase Payment Updated!', 'info');
+        toast('Paiement mis à jour!', 'info');
 
         return redirect()->route('purchases.index');
     }
@@ -142,7 +175,7 @@ class PurchasePaymentsController extends Controller
 
         $purchasePayment->delete();
 
-        toast('Purchase Payment Deleted!', 'warning');
+        toast('Paiement Supprimé!', 'warning');
 
         return redirect()->route('purchases.index');
     }

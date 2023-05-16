@@ -1,6 +1,6 @@
 @extends('layouts.master')
 
-@section('title', __('Add Purchase Return'))
+@section('title', __('Ajoutez une vente annulée'))
 
 @section('breadcrumb')
 <div class="page-header d-print-none">
@@ -8,7 +8,7 @@
     <div class="row g-2 align-items-center">
     <div class="col">
         <h2 class="page-title">
-            {{ __('Add Purchase Return') }}
+            {{ __('Ajoutez une vente annulée') }}
         </h2>
     </div>
     </div>
@@ -90,7 +90,7 @@
                                     </div>
                                     <div class="col-lg-4">
                                         <div class="form-group">
-                                            <label for="paid_amount">Amount Received <span class="text-danger">*</span></label>
+                                            <label for="paid_amount">Montant Payé <span class="text-danger">*</span></label>
                                             <div class="input-group">
                                                 <input id="paid_amount" type="text" class="form-control" name="paid_amount" required>
                                                 <div class="input-group-append">
@@ -104,13 +104,17 @@
                                 </div>
 
                                 <div class="form-group">
-                                    <label for="note">Note (If Needed)</label>
+                                    <label for="note">Note (Si besoin)</label>
                                     <textarea name="note" id="note" rows="5" class="form-control"></textarea>
+                                </div>
+
+                                <div class="form-group" style="padding-top: 10px;">
+                                    @include('financial::includes.accounts.choice')
                                 </div>
 
                                 <div class="mt-3">
                                     <button type="submit" class="btn btn-primary">
-                                        Create Purchase Return <i class="bi bi-check"></i>
+                                       Ajouter <i class="bi bi-check"></i>
                                     </button>
                                 </div>
                             </form>
@@ -143,4 +147,16 @@
             });
         });
     </script>
+
+    <script>
+        const accountForm = document.getElementById('account-form');
+        const showAccountFormButton = document.getElementById('show-account-form');
+        let isAccountFormVisible = false;
+        showAccountFormButton.addEventListener('click', function() {
+            isAccountFormVisible = !isAccountFormVisible;
+            accountForm.style.display = isAccountFormVisible ? 'block' : 'none';
+            showAccountFormButton.innerHTML = isAccountFormVisible ? 'Cacher' : 'Connecter un Compte';
+        });
+    </script>
+
 @endpush

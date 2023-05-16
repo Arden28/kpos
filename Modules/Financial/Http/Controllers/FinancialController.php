@@ -40,12 +40,32 @@ class FinancialController extends Controller
         }
 
         $revenue = ($sales - $sale_returns) / 100;
-        $profit = ($revenue - $product_costs) / 100;
+        $revenue_net = ($revenue);
+
+        // $current_company_id = Auth::user()->currentCompany->id;
+        $purchases = Purchase::completed()->isCompany(Auth::user()->currentCompany->id)->sum('total_amount');
+        $purchase_returns = PurchaseReturn::completed()->isCompany(Auth::user()->currentCompany->id)->sum('total_amount');
+        $product_costs_2 = 0;
+
+        foreach (Purchase::completed()->where('company_id', Auth::user()->currentCompany->id)->with('purchaseDetails')->get() as $purchase) {
+            foreach ($purchase->purchaseDetails??[] as $purchaseDetail) {
+                $product_costs_2 += $purchaseDetail->product->product_cost;
+            }
+        }
+
+        $purchase = ($purchases - $purchase_returns) / 100;
+        $purchase_net = ($purchase) ;
+
+        // Expenses
+        $expenses = Expense::isCompany(Auth::user()->currentCompany->id)->sum('amount') / 100;
+        $expense_net = ($purchase + $expenses);
+
+        $profit = ($revenue_net - $expense_net);
 
         return view('financial::dashboard', [
-        'revenue'          => $revenue,
-        'sale_returns'     => $sale_returns / 100,
-        'purchase_returns' => $purchase_returns / 100,
+        'revenue_net'          => $revenue_net,
+        'purchase_net'     => $purchase_net,
+        'expenses' => $expenses,
         'profit'           => $profit
     ]);
     }

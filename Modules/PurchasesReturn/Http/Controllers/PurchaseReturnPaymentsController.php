@@ -9,6 +9,7 @@ use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Gate;
+use Modules\Financial\Entities\Accounting\AccountBook;
 use Modules\PurchasesReturn\Entities\PurchaseReturn;
 use Modules\PurchasesReturn\Entities\PurchaseReturnPayment;
 
@@ -76,9 +77,41 @@ class PurchaseReturnPaymentsController extends Controller
                 'due_amount' => $due_amount * 100,
                 'payment_status' => $payment_status
             ]);
+
+            // Register to the book.
+            if($purchase_return){
+                $current_balance = $purchase_return->account->balance;
+
+                if($due_amount > 0){
+                    $detail = 'Achat(Paiement Avancé. Reste: '.format_currency($due_amount).')';
+                }else{
+                    $detail = 'Achat(Paiement Complété)';
+                }
+
+                $book = AccountBook::create([
+                    'company_id' => Auth::user()->currentCompany->id,
+                    'account_id' => $purchase_return->account_id,
+                    'user_id' => Auth::user()->id,
+                    'detail' => $detail,
+                    'note' => $request->note,
+                    'balance' => $request->paid_amount,
+                    'debit' => $request->paid_amount,
+                    'date' => now()->format('d-m-Y H:i:s'),
+                ]);
+
+                $book->save();
+
+                $new_balance = $current_balance - $book->balance;
+
+                $purchase_return->account->balance = $new_balance;
+                $purchase_return->account->save();
+
+                $book->balance = $new_balance;
+                $book->save();
+            }
         });
 
-        toast('Purchase Return Payment Created!', 'success');
+        toast('Paiement ajouté!', 'success');
 
         return redirect()->route('purchase-returns.index');
     }

@@ -6,6 +6,7 @@ use App\Models\Company;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Support\Carbon;
+use Modules\Financial\Entities\Accounting\Account;
 
 class PurchaseReturnPayment extends Model
 {
@@ -15,6 +16,10 @@ class PurchaseReturnPayment extends Model
 
     public function company() {
         return $this->belongsTo(Company::class, 'company_id', 'id');
+    }
+
+    public function account() {
+        return $this->belongsTo(Account::class, 'account_id', 'id');
     }
 
     public function purchaseReturn() {

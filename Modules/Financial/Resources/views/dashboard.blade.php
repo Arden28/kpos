@@ -32,7 +32,7 @@
                 </div>
                 <div class="col">
                   <div class="font-weight-medium">
-                     {{ trans('dashboards.main.revenue') }} : {{ format_currency($revenue) }}
+                     {{ trans('dashboards.main.revenue') }} : {{ format_currency($revenue_net) }}
                   </div>
                 </div>
               </div>
@@ -50,7 +50,7 @@
                 </div>
                 <div class="col">
                   <div class="font-weight-medium">
-                      {{ format_currency($sale_returns) }} {{ trans('dashboards.main.sale_return') }}
+                     {{ __('Commande Fournisseur') }} {{ format_currency($purchase_net) }}
                   </div>
                 </div>
               </div>
@@ -68,7 +68,7 @@
                 </div>
                 <div class="col">
                   <div class="font-weight-medium">
-                      {{ format_currency($purchase_returns) }} {{ trans('dashboards.main.purchase_return') }}
+                      {{ __('Dépenses') }} {{ format_currency($expenses) }}
                   </div>
                 </div>
               </div>
@@ -86,7 +86,7 @@
                 </div>
                 <div class="col">
                   <div class="font-weight-medium">
-                      {{ format_currency($profit) }} {{ trans('dashboards.main.profit') }}
+                      {{ trans('dashboards.main.profit') }} {{ format_currency($profit) }}
                   </div>
                 </div>
               </div>
