@@ -4,6 +4,7 @@ namespace Modules\Reports\Http\Livewire\Report;
 
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
+use Modules\Expense\Entities\Expense;
 use Modules\Purchase\Entities\Purchase;
 use Modules\PurchasesReturn\Entities\PurchaseReturn;
 use Modules\Sale\Entities\Sale;
@@ -49,7 +50,11 @@ class Benefit extends Component
         $purchase = ($purchases - $purchase_returns) / 100;
         $purchase_net = ($purchase - $purchase_product_costs) ;
 
-        $profit = ($revenue_net);
+        // Expenses
+        $expenses = Expense::isCompany(Auth::user()->currentCompany->id)->sum('amount') / 100;
+        $expense_net = ($purchase_net + $expenses);
+
+        $profit = ($revenue_net - $expense_net);
         // $profit = $product_costs;
 
         return $profit;

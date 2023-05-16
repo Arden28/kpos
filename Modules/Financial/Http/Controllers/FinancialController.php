@@ -26,11 +26,9 @@ class FinancialController extends Controller
      */
     public function index()
     {
-
-        // $current_company_id = Auth::user()->currentCompany->id;
+        // Get revenue
         $sales = Sale::completed()->where('company_id', Auth::user()->currentCompany->id)->sum('total_amount');
         $sale_returns = SaleReturn::completed()->where('company_id', Auth::user()->currentCompany->id)->sum('total_amount');
-        $purchase_returns = PurchaseReturn::completed()->where('company_id', Auth::user()->currentCompany->id)->sum('total_amount');
         $product_costs = 0;
 
         foreach (Sale::completed()->where('company_id', Auth::user()->currentCompany->id)->with('saleDetails')->get() as $sale) {
@@ -40,30 +38,32 @@ class FinancialController extends Controller
         }
 
         $revenue = ($sales - $sale_returns) / 100;
-        $revenue_net = ($revenue);
+        $revenue_net = ($revenue - $product_costs);
+
+
 
         // $current_company_id = Auth::user()->currentCompany->id;
         $purchases = Purchase::completed()->isCompany(Auth::user()->currentCompany->id)->sum('total_amount');
         $purchase_returns = PurchaseReturn::completed()->isCompany(Auth::user()->currentCompany->id)->sum('total_amount');
-        $product_costs_2 = 0;
+        $purchase_product_costs = 0;
 
         foreach (Purchase::completed()->where('company_id', Auth::user()->currentCompany->id)->with('purchaseDetails')->get() as $purchase) {
             foreach ($purchase->purchaseDetails??[] as $purchaseDetail) {
-                $product_costs_2 += $purchaseDetail->product->product_cost;
+                $purchase_product_costs += $purchaseDetail->product->product_cost;
             }
         }
 
         $purchase = ($purchases - $purchase_returns) / 100;
-        $purchase_net = ($purchase) ;
+        $purchase_net = ($purchase - $purchase_product_costs) ;
 
         // Expenses
         $expenses = Expense::isCompany(Auth::user()->currentCompany->id)->sum('amount') / 100;
-        $expense_net = ($purchase + $expenses);
+        $expense_net = ($purchase_net + $expenses);
 
         $profit = ($revenue_net - $expense_net);
 
         return view('financial::dashboard', [
-        'revenue_net'          => $revenue_net,
+        'revenue'          => $revenue,
         'purchase_net'     => $purchase_net,
         'expenses' => $expenses,
         'profit'           => $profit

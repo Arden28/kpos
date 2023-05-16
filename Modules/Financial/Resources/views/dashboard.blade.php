@@ -32,7 +32,7 @@
                 </div>
                 <div class="col">
                   <div class="font-weight-medium">
-                     {{ trans('dashboards.main.revenue') }} : {{ format_currency($revenue_net) }}
+                     {{ trans('dashboards.main.revenue') }} : {{ format_currency($revenue) }}
                   </div>
                 </div>
               </div>
