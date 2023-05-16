@@ -30,8 +30,8 @@ class Benefit extends Component
             }
         }
 
-        $revenue = ($sales - $sale_returns) / 100;
-        $revenue_net = ($revenue - $product_costs);
+        $revenue = ($sales - $sale_returns);
+        $revenue_net = ($revenue - $product_costs) / 100;
 
 
 
@@ -42,7 +42,7 @@ class Benefit extends Component
         $purchase = ($purchases - $purchase_returns) / 100;
         $purchase_net = ($purchase - $product_costs) ;
 
-        // $profit = $revenue_net - $purchase_net;
+        $profit = $revenue_net - $purchase_net;
         $profit = $product_costs;
 
         return $profit;
