@@ -57,7 +57,7 @@ class ExpenseController extends Controller
 
         $book = AccountBook::create([
             'company_id' => Auth::user()->currentCompany->id,
-            'account_id' => $category->account_id,
+            'account_id' => $category->account->id,
             'user_id' => Auth::user()->id,
             'detail' => 'Dépense(Pour : '.$category->category_name.')',
             'note' => $request->details,
