@@ -81,7 +81,8 @@ class ExpenseCategoriesController extends Controller
     public function destroy(ExpenseCategory $expenseCategory) {
         abort_if(Gate::denies('access_expense_categories'), 403);
 
-        if ($expenseCategory->expenses()->isNotEmpty()) {
+        // if ($expenseCategory->expenses()->isNotEmpty()) {
+        if ($expenseCategory->expenses()->count() > 0) {
             return back()->withErrors('Can\'t delete beacuse there are expenses associated with this category.');
         }
 
