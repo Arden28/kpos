@@ -42,8 +42,8 @@ class ExpenseController extends Controller
             'details' => 'nullable|string|max:1000'
         ]);
 
-        // $category = ExpenseCategory::find($request->category_id)->first();
-        // $account = Account::find($category->account_id)->first();
+        $category = ExpenseCategory::find($request->category_id)->first();
+        $account = Account::find($category->account_id)->first();
 
         Expense::create([
             'company_id' => Auth::user()->currentCompany->id,
@@ -70,8 +70,8 @@ class ExpenseController extends Controller
         // ]);
 
 
-        $category = ExpenseCategory::find($request->category_id)->first();
-        $account = Account::find($category->account_id)->first();
+        // $category = ExpenseCategory::find($request->category_id)->first();
+        // $account = Account::find($category->account_id)->first();
 
         $user = Auth::user()->id;
         $company = Auth::user()->currentCompany->id;
