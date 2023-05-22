@@ -9,6 +9,7 @@ use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\Facades\Log;
 use Modules\Expense\Entities\Expense;
 use Modules\Expense\Entities\ExpenseCategory;
 use Modules\Financial\Entities\Accounting\AccountBook;
@@ -33,58 +34,65 @@ class ExpenseController extends Controller
 
     public function store(Request $request) {
         abort_if(Gate::denies('create_expenses'), 403);
-
-        $request->validate([
-            'date' => 'required|date',
-            'reference' => 'required|string|max:255',
-            'category_id' => 'required',
-            'amount' => 'required|numeric|max:2147483647',
-            'details' => 'nullable|string|max:1000'
-        ]);
-
-        $category = ExpenseCategory::find($request->category_id)->first();
-
-        DB::transaction(function () use ($request, $category) {
-
-            Expense::create([
-                'company_id' => Auth::user()->currentCompany->id,
-                'account_id' => $category->account_id,
-                'date' => $request->date,
-                'category_id' => $request->category_id,
-                'amount' => $request->amount,
-                'details' => $request->details
+        try {
+            $request->validate([
+                'date' => 'required|date',
+                'reference' => 'required|string|max:255',
+                'category_id' => 'required',
+                'amount' => 'required|numeric|max:2147483647',
+                'details' => 'nullable|string|max:1000'
             ]);
 
-            // Register to the book.
+            $category = ExpenseCategory::find($request->category_id)->first();
 
-            $current_balance = $category->account->balance;
+            DB::transaction(function () use ($request, $category) {
+                Expense::create([
+                    'company_id' => Auth::user()->currentCompany->id,
+                    'account_id' => $category->account_id,
+                    'date' => $request->date,
+                    'category_id' => $request->category_id,
+                    'amount' => $request->amount,
+                    'details' => $request->details
+                ]);
 
-            $book = AccountBook::create([
-                'company_id' => Auth::user()->currentCompany->id,
-                'account_id' => $category->account->id,
-                'user_id' => Auth::user()->id,
-                'detail' => 'Dépense(Pour : '.$category->category_name.')',
-                'note' => $request->details,
-                'balance' => $request->amount,
-                'credit' => $request->amount,
-                'date' => now()->format('d-m-Y H:i:s'),
-            ]);
+                // Register to the book.
 
-            $book->save();
+                $current_balance = $category->account->balance;
 
-            $new_balance = $current_balance - $book->balance;
+                $book = AccountBook::create([
+                    'company_id' => Auth::user()->currentCompany->id,
+                    'account_id' => $category->account->id,
+                    'user_id' => Auth::user()->id,
+                    'detail' => 'Dépense(Pour : '.$category->category_name.')',
+                    'note' => $request->details,
+                    'balance' => $request->amount,
+                    'credit' => $request->amount,
+                    'date' => now()->format('d-m-Y H:i:s'),
+                ]);
 
-            $category->account->balance = $new_balance;
-            $category->account->save();
+                $book->save();
 
-            $book->balance = $new_balance;
-            $book->save();
+                $new_balance = $current_balance - $book->balance;
 
-        });
+                $category->account->balance = $new_balance;
+                $category->account->save();
 
-        toast('Votre Dépense a bien été ajoutée!', 'success');
+                $book->balance = $new_balance;
+                $book->save();
+            });
 
-        return redirect()->route('expenses.index');
+            toast('Votre Dépense a bien été ajoutée!', 'success');
+
+            return redirect()->route('expenses.index');
+        } catch (\Exception $e) {
+            // Handle the exception
+            // Log the error, display an error message, or perform any necessary actions
+            // to handle the exception gracefully.
+            // For example:
+            Log::error('An error occurred while adding the expense: ' . $e->getMessage());
+            toast('Une erreur s\'est produite lors de l\'ajout de la dépense.', 'error');
+            return redirect()->back();
+        }
     }
 
 
