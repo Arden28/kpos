@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
 use Modules\Expense\Entities\Expense;
 use Modules\Expense\Entities\ExpenseCategory;
+use Modules\Financial\Entities\Accounting\Account;
 use Modules\Financial\Entities\Accounting\AccountBook;
 use PhpOffice\PhpSpreadsheet\Calculation\MathTrig\Exp;
 
@@ -42,10 +43,11 @@ class ExpenseController extends Controller
         ]);
 
         $category = ExpenseCategory::find($request->category_id)->first();
+        $account = Account::find($category->account_id)->first();
 
         $expense = Expense::create([
             'company_id' => Auth::user()->currentCompany->id,
-            'account_id' => $category->account->id,
+            'account_id' => $account->id,
             'date' => $request->date,
             'category_id' => $request->category_id,
             'amount' => $request->amount,
@@ -54,7 +56,7 @@ class ExpenseController extends Controller
 
         // Register to the book.
 
-        $current_balance = $expense->account->balance;
+        $current_balance = $account->balance;
 
         $book = AccountBook::create([
             'company_id' => Auth::user()->currentCompany->id,
