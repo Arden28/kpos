@@ -42,7 +42,7 @@ class SalesDataTable extends DataTable
         // A modifier
         // $current_company_id = Auth::user()->currentCompany->id;
         $current_company_id = Auth::user()->currentCompany->id;
-        return $model->where('company_id', $current_company_id)->orderBy('date', 'DESC')->newQuery()->with('seller');
+        return $model->where('company_id', $current_company_id)->orderBy('id', 'DESC')->newQuery()->with('seller');
     }
 
     public function html() {
