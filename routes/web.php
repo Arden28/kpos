@@ -19,9 +19,6 @@ use Modules\User\DataTables\UsersDataTable;
     Route::get('/started', [ModuleController::class, 'start'])
     ->name('start.app');
 
-    // Route::get('/dashboard', 'HomeController@index')
-    //     ->name('dashboard');
-
         Route::get('/home', 'HomeController@index')
             ->name('dashboard');
 

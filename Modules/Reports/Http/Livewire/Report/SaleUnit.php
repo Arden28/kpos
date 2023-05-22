@@ -10,6 +10,10 @@ use Modules\Sale\Entities\Sale;
 
 class SaleUnit extends Component
 {
+    public $start_date;
+
+    public $end_date;
+
     public $data = [];
 
     public $date = [];
@@ -22,17 +26,19 @@ class SaleUnit extends Component
 
     public function mount()
     {
-        // $totalQuantity = DB::table('sales')
-        //            ->join('sale_details', 'sales.id', '=', 'sale_details.sale_id')
-        //            ->where('sales.company_id', Auth::user()->currentCompany->id)
-        //            ->sum('sale_details.quantity');
+        $this->start_date = today()->subDays(1)->format('Y-m-d');
+        $this->end_date = today()->format('Y-m-d');
 
-        $totalQuantity = Sale::completed()->isCompany(Auth::user()->currentCompany->id)->join('sale_details', 'sales.id', '=', 'sale_details.sale_id')->sum('sale_details.quantity');
-
-        $this->data = Sale::completed()->isCompany(Auth::user()->currentCompany->id)->join('sale_details', 'sales.id', '=', 'sale_details.sale_id')->pluck('quantity')->toArray();
+        $totalQuantity = Sale::whereDate('date', '>=', $this->start_date)
+        ->whereDate('date', '<=', $this->end_date)
+        ->completed()->isCompany(Auth::user()->currentCompany->id)->join('sale_details', 'sales.id', '=', 'sale_details.sale_id')->sum('sale_details.quantity');
+        $this->units = $totalQuantity;
+        $this->data = Sale::whereDate('date', '>=', $this->start_date)
+        ->whereDate('date', '<=', $this->end_date)
+        ->completed()->isCompany(Auth::user()->currentCompany->id)->join('sale_details', 'sales.id', '=', 'sale_details.sale_id')->pluck('quantity')->toArray();
         // $this->data = array($totalQuantity);
 
-        $this->units = $totalQuantity;
+        // $this->units = $totalQuantity;
 
         $this->date = Carbon::today()->addDay(6)->toArray();
     }
@@ -40,6 +46,10 @@ class SaleUnit extends Component
     public function render()
     {
         $sales = Sale::completed()->isCompany(Auth::user()->currentCompany->id)->get();
+
+        // $totalQuantity = Sale::completed()->isCompany(Auth::user()->currentCompany->id)->join('sale_details', 'sales.id', '=', 'sale_details.sale_id')->sum('sale_details.quantity');
+        // $units = $totalQuantity;
+
         return view('reports::livewire.report.sale-unit',[
             'data' => json_encode($this->data),
             'units' => $this->units,

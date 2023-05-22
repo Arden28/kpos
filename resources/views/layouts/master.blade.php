@@ -78,9 +78,13 @@
 
             @include('sale::layouts.navbar-menu')
 
+        @elseif(request()->routeIs('elearning.*'))
+
+            @include('elearning::layouts.navbar-menu')
+
         @else
 
-        @include('layouts.navbar-menu')
+            @include('layouts.navbar-menu')
 
         @endif
 

@@ -9,6 +9,7 @@ use App\Models\CompanyUser;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Notifications\Notifiable;
+use Modules\Accounting\Entities\ChartOfAccount;
 use Modules\Pos\Entities\Pos;
 use Modules\Pos\Traits\HasPos;
 
@@ -131,6 +132,11 @@ class Company extends Model
     public function pos()
     {
         return $this->hasMany(Pos::class);
+    }
+
+    // Chart of account
+    public function chart_of_accounts(){
+        return $this->hasMany(ChartOfAccount::class, 'company_id', 'id');
     }
 
 }

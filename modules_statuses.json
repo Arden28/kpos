@@ -20,5 +20,7 @@
     "Subby": true,
     "Inventory": true,
     "Financial": true,
-    "Kmodule": true
+    "Kmodule": true,
+    "Elearning": true,
+    "Accounting": true
 }

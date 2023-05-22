@@ -31,6 +31,17 @@
         </h2>
       </div>
 
+      @if(module('sales'))
+        @can('create_sales')
+            <div class="btn-list">
+                <a href="{{ route('sales.create') }}" class="btn btn-primary  d-sm-inline-block {{ request()->routeIs('app.pos.index') ? 'disabled' : '' }}">
+                    <i class="bi bi-plus"></i>
+                    {{ __('Ajouter une vente') }}
+                </a>
+            </div>
+        @endcan
+      @endif
+
     </div>
   </div>
 </div>

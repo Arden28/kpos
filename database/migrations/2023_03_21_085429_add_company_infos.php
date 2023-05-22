@@ -35,7 +35,7 @@ class AddCompanyInfos extends Migration
     public function down()
     {
         Schema::table('companies', function (Blueprint $table) {
-            //
+            Schema::dropIfExists('companies');
         });
     }
 }

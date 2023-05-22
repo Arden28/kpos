@@ -14,7 +14,7 @@
             </li>
 
             {{-- <li class="nav-item {{ request()->routeIs('users*') ? 'active' : '' }}"> --}}
-            <li class="nav-item">
+            {{-- <li class="nav-item">
               <a class="btn {{ request()->routeIs('finance*') ? 'active' : '' }}" style="margin-right: 5px;">
                 <span class="nav-link-icon d-md-none d-lg-inline-block"><!-- Download SVG icon from http://tabler-icons.io/i/home -->
                 <i class="bi bi-bar-chart-line-fill" style="width: 24px; height:24px"></i>
@@ -23,9 +23,9 @@
                     {{ __('Ventes') }}
                 </span>
               </a>
-            </li>
+            </li> --}}
 
-            @can('access_reports')
+            @can('create_sales')
             <li class="nav-item dropdown"  data-turbolinks="false" >
               <a class="btn {{ request()->routeIs('quotations.*') || request()->routeIs('sales.*') ? 'active' : '' }}" style="margin-right: 5px;" href="#navbar-base" data-bs-toggle="dropdown" data-bs-auto-close="outside" role="button" aria-expanded="false" >
                 <i class="bi bi-clipboard-data" style="width: 24px; height:24px"></i>

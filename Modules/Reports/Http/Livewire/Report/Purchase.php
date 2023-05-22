@@ -12,10 +12,20 @@ class Purchase extends Component
 
     public $data = [];
 
+    public $start_date;
+
+    public $end_date;
+
     public $purchase;
 
     public function mount(){
-        $this->data = EntitiesPurchase::completed()->isCompany(Auth::user()->currentCompany->id)->orderBy('created_at')->pluck('total_amount')->toArray();
+
+        $this->start_date = today()->subDays(1)->format('Y-m-d');
+        $this->end_date = today()->format('Y-m-d');
+
+        $this->data = EntitiesPurchase::whereDate('date', '>=', $this->start_date)
+        ->whereDate('date', '<=', $this->end_date)
+        ->completed()->isCompany(Auth::user()->currentCompany->id)->orderBy('created_at')->pluck('total_amount')->toArray();
 
         $this->purchase = $this->getPurchase();
     }
@@ -23,11 +33,19 @@ class Purchase extends Component
     public function getPurchase(){
 
         // $current_company_id = Auth::user()->currentCompany->id;
-        $purchases = EntitiesPurchase::completed()->isCompany(Auth::user()->currentCompany->id)->sum('total_amount');
-        $purchase_returns = PurchaseReturn::completed()->isCompany(Auth::user()->currentCompany->id)->sum('total_amount');
+        $purchases = EntitiesPurchase::whereDate('date', '>=', $this->start_date)
+        ->whereDate('date', '<=', $this->end_date)
+        ->completed()->isCompany(Auth::user()->currentCompany->id)->sum('total_amount');
+
+        $purchase_returns = PurchaseReturn::whereDate('date', '>=', $this->start_date)
+        ->whereDate('date', '<=', $this->end_date)
+        ->completed()->isCompany(Auth::user()->currentCompany->id)->sum('total_amount');
+
         $product_costs = 0;
 
-        foreach (EntitiesPurchase::completed()->where('company_id', Auth::user()->currentCompany->id)->with('purchaseDetails')->get() as $purchase) {
+        foreach (EntitiesPurchase::whereDate('date', '>=', $this->start_date)
+        ->whereDate('date', '<=', $this->end_date)
+        ->completed()->where('company_id', Auth::user()->currentCompany->id)->with('purchaseDetails')->get() as $purchase) {
             foreach ($purchase->purchaseDetails??[] as $purchaseDetail) {
                 $product_costs += $purchaseDetail->product->product_cost;
             }

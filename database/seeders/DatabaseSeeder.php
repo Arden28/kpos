@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
+use Modules\Accounting\Database\Seeders\AccountingDatabaseSeeder;
 use Modules\Currency\Database\Seeders\CurrencyDatabaseSeeder;
 use Modules\Pos\Database\Seeders\PhysicalPosTableSeeder;
 use Modules\Pos\Database\Seeders\PosDatabaseSeeder;
@@ -22,8 +23,9 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        $this->call(ModuleSeeder::class);    
+        $this->call(ModuleSeeder::class);
         $this->call(PlanTableSeeder::class);
+        $this->call(AccountingDatabaseSeeder::class);
         // $this->call(PlanFeatureTableSeeder::class);
         $this->call(PermissionsTableSeeder::class);
         $this->call(SuperUserSeeder::class);

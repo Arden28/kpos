@@ -15,6 +15,10 @@ class Revenue extends Component
     // public $data = [5, 35, 44, 28, 36, 24, 65, 31, 37, 39, 62, 51, 35, 41, 35, 27, 93, 53, 61, 27, 54, 43, 19, 46, 39, 62, 51, 35, 1, 67];
     public $data = [];
 
+    public $start_date;
+
+    public $end_date;
+
     public $days = [];
 
     public $labels;
@@ -31,11 +35,20 @@ class Revenue extends Component
             '2020-06-20', '2020-06-21', '2020-06-22', '2020-06-23', '2020-06-24', '2020-06-25', '2020-06-26', '2020-06-27', '2020-06-28', '2020-06-29', '2020-06-30', '2020-07-01', '2020-07-02', '2020-07-03', '2020-07-04', '2020-07-05', '2020-07-06', '2020-07-07', '2020-07-08', '2020-07-09', '2020-07-10', '2020-07-11', '2020-07-12', '2020-07-13', '2020-07-14', '2020-07-15', '2020-07-16', '2020-07-17', '2020-07-18', '2020-07-19'
         ];
 
-        $sales = Sale::completed()->where('company_id', Auth::user()->currentCompany->id)->sum('total_amount');
-        $sale_returns = SaleReturn::completed()->where('company_id', Auth::user()->currentCompany->id)->sum('total_amount');
+        $this->start_date = today()->subDays(1)->format('Y-m-d');
+        $this->end_date = today()->format('Y-m-d');
+
+        $sales = Sale::whereDate('date', '>=', $this->start_date)
+        ->whereDate('date', '<=', $this->end_date)
+        ->completed()->where('company_id', Auth::user()->currentCompany->id)->sum('total_amount');
+        $sale_returns = SaleReturn::whereDate('date', '>=', $this->start_date)
+        ->whereDate('date', '<=', $this->end_date)
+        ->completed()->where('company_id', Auth::user()->currentCompany->id)->sum('total_amount');
         $product_costs = 0;
 
-        foreach (Sale::completed()->where('company_id', Auth::user()->currentCompany->id)->with('saleDetails')->get() as $sale) {
+        foreach (Sale::whereDate('date', '>=', $this->start_date)
+        ->whereDate('date', '<=', $this->end_date)
+        ->completed()->where('company_id', Auth::user()->currentCompany->id)->with('saleDetails')->get() as $sale) {
             foreach ($sale->saleDetails??[] as $saleDetail) {
                 $product_costs += $saleDetail->product->product_cost;
             }
