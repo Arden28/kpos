@@ -45,7 +45,7 @@
                                     <label>{{ __('Moyen de paiement') }}</label>
                                     <select wire:model.defer="payment_method" class="form-control" name="payment_method">
                                         <option value="">{{ __('Sélectionnez un moyen de paiement') }}</option>
-                                        <option value="Paiement en espèce">{{ __('Paiement en espèce') }}</option>
+                                        <option value="Cash">{{ __('Paiement en espèce') }}</option>
                                         <option value="Carte Bancaire">{{ __('Carte Bancaire') }}</option>
                                         <option value="Momo Pay">{{ __('Momo Pay') }}</option>
                                         <option value="Chèque">{{ __('Chèque') }}</option>

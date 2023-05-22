@@ -79,7 +79,7 @@
                     <table class="table table-bordered table-striped text-center mb-0">
                         <div wire:loading.flex class="col-12 position-absolute justify-content-center align-items-center" style="top:0;right:0;left:0;bottom:0;background-color: rgba(255,255,255,0.5);z-index: 99;">
                             <div class="spinner-border text-primary" role="status">
-                                <span class="sr-only">Loading...</span>
+                                <span class="sr-only"></span>
                             </div>
                         </div>
                         <thead>
@@ -131,6 +131,23 @@
                                         <span class="badge badge-danger">
                                     {{ $sale->payment_status }}
                                 </span>
+                                    @endif
+
+                                </td>
+                                <td>
+                                    @if ($sale->payment_status == 'Partial')
+                                        <a class="badge badge-warning">
+                                            <i class="bi bi-add"></i>
+                                            {{ __('Ajouter un paiement') }}
+                                        </a>
+                                    @elseif ($sale->payment_status == 'Paid')
+                                        <span class="badge badge-success">
+                                            {{ $sale->payment_status }}
+                                        </span>
+                                    @else
+                                        <span class="badge badge-danger">
+                                            {{ $sale->payment_status }}
+                                        </span>
                                     @endif
 
                                 </td>
