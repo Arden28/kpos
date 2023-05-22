@@ -6,6 +6,7 @@ use App\Models\Company;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Support\Carbon;
+use Modules\Financial\Entities\Accounting\Account;
 
 class Expense extends Model
 {
@@ -19,6 +20,11 @@ class Expense extends Model
 
     public function category() {
         return $this->belongsTo(ExpenseCategory::class, 'category_id', 'id');
+    }
+
+
+    public function account() {
+        return $this->belongsTo(Account::class, 'account_id', 'id');
     }
 
     /**

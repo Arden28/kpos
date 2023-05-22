@@ -5,6 +5,7 @@ namespace Modules\Financial\Entities\Accounting;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Modules\Expense\Entities\Expense;
 use Modules\Expense\Entities\ExpenseCategory;
 use Modules\Pos\Entities\Pos;
 use Modules\Purchase\Entities\Purchase;
@@ -61,6 +62,12 @@ class Account extends Model
     public function expenseCategory() {
 
         return $this->hasMany(ExpenseCategory::class, 'account_id', 'id');
+
+    }
+
+    public function expenses() {
+
+        return $this->hasMany(Expense::class, 'account_id', 'id');
 
     }
 

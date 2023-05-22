@@ -41,9 +41,11 @@ class ExpenseController extends Controller
             'details' => 'nullable|string|max:1000'
         ]);
 
+        $category = ExpenseCategory::find($request->category_id)->first();
+
         Expense::create([
             'company_id' => Auth::user()->currentCompany->id,
-
+            'account_id' => $category->id,
             'date' => $request->date,
             'category_id' => $request->category_id,
             'amount' => $request->amount,
@@ -51,7 +53,6 @@ class ExpenseController extends Controller
         ]);
 
         // Register to the book.
-        $category = ExpenseCategory::find($request->category_id)->first();
 
         $current_balance = $category->account->balance;
 
