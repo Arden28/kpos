@@ -10,7 +10,6 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
 use Modules\Expense\Entities\Expense;
 use Modules\Expense\Entities\ExpenseCategory;
-use Modules\Financial\Entities\Accounting\Account;
 use Modules\Financial\Entities\Accounting\AccountBook;
 use PhpOffice\PhpSpreadsheet\Calculation\MathTrig\Exp;
 
@@ -43,11 +42,9 @@ class ExpenseController extends Controller
         ]);
 
         $category = ExpenseCategory::find($request->category_id)->first();
-        $account = Account::find($category->account_id)->first();
-
         Expense::create([
             'company_id' => Auth::user()->currentCompany->id,
-            'account_id' => $account->id,
+            'account_id' => $category->account_id,
             'date' => $request->date,
             'category_id' => $request->category_id,
             'amount' => $request->amount,
@@ -56,47 +53,25 @@ class ExpenseController extends Controller
 
         // Register to the book.
 
-        // $current_balance = $account->balance;
-
-        // $book = AccountBook::create([
-        //     'company_id' => Auth::user()->currentCompany->id,
-        //     'account_id' => $category->account->id,
-        //     'user_id' => Auth::user()->id,
-        //     'detail' => 'Dépense(Pour : '.$category->category_name.')',
-        //     'note' => $request->details,
-        //     'balance' => $request->amount,
-        //     'credit' => $request->amount,
-        //     'date' => now()->format('d-m-Y H:i:s'),
-        // ]);
-
-
-        // $category = ExpenseCategory::find($request->category_id)->first();
-        // $account = Account::find($category->account_id)->first();
-
-        $user = Auth::user()->id;
-        $company = Auth::user()->currentCompany->id;
-
-        $current_balance = $account->balance;
+        $current_balance = $category->account->balance;
 
         $book = AccountBook::create([
-            'company_id' => $company,
-            'account_id' => $account->id,
-            'user_id' => $user,
-            'detail' => 'Retrait.',
-            'balance' => $account->balance,
+            'company_id' => Auth::user()->currentCompany->id,
+            'account_id' => $category->account->id,
+            'user_id' => Auth::user()->id,
+            'detail' => 'Dépense(Pour : '.$category->category_name.')',
+            'note' => $request->details,
+            'balance' => $request->amount,
             'credit' => $request->amount,
-            // 'date' => $request->date,
             'date' => now()->format('d-m-Y H:i:s'),
-            'note' => $request->note,
-
         ]);
 
         $book->save();
 
-        $new_balance = $current_balance - $request->amount;
+        $new_balance = $current_balance - $book->balance;
 
-        $account->balance = $new_balance;
-        $account->save();
+        $category->account->balance = $new_balance;
+        $category->account->save();
 
         $book->balance = $new_balance;
         $book->save();
