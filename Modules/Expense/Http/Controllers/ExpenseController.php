@@ -25,8 +25,8 @@ class ExpenseController extends Controller
 
     public function create() {
         abort_if(Gate::denies('create_expenses'), 403);
-
-        return view('expense::expenses.create');
+        $categories = ExpenseCategory::where('company_id', Auth::user()->currentCompany->id)->get();
+        return view('expense::expenses.create', compact('categories'));
     }
 
 

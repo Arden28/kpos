@@ -54,7 +54,7 @@
                                             <label for="category_id">{{ __('Catégorie') }} <span class="text-danger">*</span></label>
                                             <select name="category_id" id="category_id" class="form-control" required>
                                                 <option value="" selected>Select Category</option>
-                                                @foreach(\Modules\Expense\Entities\ExpenseCategory::where('company_id', Auth::user()->currentCompany->id) as $category)
+                                                @foreach($categories as $category)
                                                     <option value="{{ $category->id }}">{{ $category->category_name }}</option>
                                                 @endforeach
                                             </select>
