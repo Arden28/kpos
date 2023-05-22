@@ -43,9 +43,9 @@ class ExpenseController extends Controller
 
         $category = ExpenseCategory::find($request->category_id)->first();
 
-        Expense::create([
+        $expense = Expense::create([
             'company_id' => Auth::user()->currentCompany->id,
-            'account_id' => $category->id,
+            'account_id' => $category->account->id,
             'date' => $request->date,
             'category_id' => $request->category_id,
             'amount' => $request->amount,
@@ -54,7 +54,7 @@ class ExpenseController extends Controller
 
         // Register to the book.
 
-        $current_balance = $category->account->balance;
+        $current_balance = $expense->account->balance;
 
         $book = AccountBook::create([
             'company_id' => Auth::user()->currentCompany->id,
@@ -71,8 +71,8 @@ class ExpenseController extends Controller
 
         $new_balance = $current_balance - $book->balance;
 
-        $category->account->balance = $new_balance;
-        $category->account->save();
+        $expense->account->balance = $new_balance;
+        $expense->account->save();
 
         $book->balance = $new_balance;
         $book->save();
