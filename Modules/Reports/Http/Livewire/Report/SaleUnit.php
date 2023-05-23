@@ -26,7 +26,8 @@ class SaleUnit extends Component
 
     public function mount()
     {
-        $this->start_date = today()->subDays(1)->format('Y-m-d');
+        // $this->start_date = today()->subDays(1)->format('Y-m-d');
+        $this->start_date = today()->format('Y-m-d');
         $this->end_date = today()->format('Y-m-d');
 
         $totalQuantity = Sale::whereDate('date', '>=', $this->start_date)
