@@ -57,9 +57,7 @@ class ExpenseController extends Controller
                 'account_id' => 'numeric'
             ]);
 
-            $category = ExpenseCategory::find($request->category_id)->first();
-
-            DB::transaction(function () use ($request, $category) {
+            DB::transaction(function () use ($request) {
                 $expense = Expense::create([
                     'company_id' => Auth::user()->currentCompany->id,
                     'account_id' => $request->account_id,
@@ -70,6 +68,8 @@ class ExpenseController extends Controller
                 ]);
 
                 // Register to the book.
+
+                $category = ExpenseCategory::where('id', $request->category_id)->first();
 
                 $current_balance = $expense->account->balance;
 
