@@ -9,7 +9,8 @@
                 <a class="dropdown-toggle text-muted" href="#" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{ _("Aujourd'hui") }}</a>
                 <div class="dropdown-menu dropdown-menu-end">
                   <a class="dropdown-item active" href="#">{{ __('Aujourd\'hui') }}</a>
-                  <a class="dropdown-item" href="#">{{ __('Dernier 7 jours') }}</a>
+                  <a class="dropdown-item" wire.click="yesterday()" >{{ __('Hier') }}</a>
+                  <a class="dropdown-item" wire.click="" href="#">{{ __('Dernier 7 jours') }}</a>
                   <a class="dropdown-item" href="#">{{ __('Dernier 30 jours') }}</a>
                   <a class="dropdown-item" href="#">{{ __('Dernier 90 jours') }}</a>
                 </div>

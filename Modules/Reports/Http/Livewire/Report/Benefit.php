@@ -28,6 +28,9 @@ class Benefit extends Component
         $this->benefit = $this->getProfit();
     }
 
+    public function yesterday(){
+        $this->start_date = today()->subDays(1)->format('Y-m-d');
+    }
     public function getProfit(){
         // Get revenue
         $sales = Sale::whereDate('date', '>=', $this->start_date)
