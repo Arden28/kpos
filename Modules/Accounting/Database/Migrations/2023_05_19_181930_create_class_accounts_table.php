@@ -28,7 +28,7 @@ class CreateClassAccountsTable extends Migration
             $table->decimal('planned_budget', 10, 2)->nullable();
             $table->decimal('budget_real', 10, 2)->nullable();
             $table->decimal('remaining_budget', 10, 2)->nullable();
-            $table->string('status')->nullable();
+            $table->boolean('status')->default(true);
             $table->text('notes')->nullable();
             $table->text('description')->nullable();
             $table->timestamps();

@@ -88,8 +88,8 @@ class ExpenseController extends Controller
 
                 $new_balance = $current_balance - $book->balance;
 
-                $category->account->balance = $new_balance;
-                $category->account->save();
+                $expense->account->balance = $new_balance;
+                $expense->account->save();
 
                 $book->balance = $new_balance;
                 $book->save();
