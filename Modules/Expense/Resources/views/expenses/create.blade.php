@@ -101,5 +101,18 @@
             });
         });
     </script>
+
+
+    <script>
+        const accountForm = document.getElementById('account-form');
+        const showAccountFormButton = document.getElementById('show-account-form');
+        let isAccountFormVisible = false;
+        showAccountFormButton.addEventListener('click', function() {
+            isAccountFormVisible = !isAccountFormVisible;
+            accountForm.style.display = isAccountFormVisible ? 'block' : 'none';
+            showAccountFormButton.innerHTML = isAccountFormVisible ? 'Cacher' : 'Connecter un Compte';
+        });
+    </script>
+
 @endpush
 

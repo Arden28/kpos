@@ -13,10 +13,19 @@ use Illuminate\Support\Facades\Log;
 use Modules\Expense\Entities\Expense;
 use Modules\Expense\Entities\ExpenseCategory;
 use Modules\Financial\Entities\Accounting\AccountBook;
+use Modules\Financial\Interfaces\Accounting\AccountInterface;
 use PhpOffice\PhpSpreadsheet\Calculation\MathTrig\Exp;
 
 class ExpenseController extends Controller
 {
+
+    protected $accountRepository;
+
+    public function __construct(AccountInterface $accountRepository){
+
+        $this->accountRepository = $accountRepository;
+
+    }
 
     public function index(ExpensesDataTable $dataTable) {
         abort_if(Gate::denies('access_expenses'), 403);
@@ -27,8 +36,12 @@ class ExpenseController extends Controller
 
     public function create() {
         abort_if(Gate::denies('create_expenses'), 403);
+
+        $accounts = $this->accountRepository->getCompanyAccounts(Auth::user()->currentCompany->id);
+
         $categories = ExpenseCategory::where('company_id', Auth::user()->currentCompany->id)->get();
-        return view('expense::expenses.create', compact('categories'));
+
+        return view('expense::expenses.create', compact('accounts','categories'));
     }
 
 
