@@ -40,15 +40,16 @@ class ExpenseController extends Controller
                 'reference' => 'required|string|max:255',
                 'category_id' => 'required',
                 'amount' => 'required|numeric|max:2147483647',
-                'details' => 'nullable|string|max:1000'
+                'details' => 'nullable|string|max:1000',
+                'account_id' => 'numeric'
             ]);
 
             $category = ExpenseCategory::find($request->category_id)->first();
 
             DB::transaction(function () use ($request, $category) {
-                Expense::create([
+                $expense = Expense::create([
                     'company_id' => Auth::user()->currentCompany->id,
-                    'account_id' => $category->account_id,
+                    'account_id' => $request->account_id,
                     'date' => $request->date,
                     'category_id' => $request->category_id,
                     'amount' => $request->amount,
@@ -57,11 +58,11 @@ class ExpenseController extends Controller
 
                 // Register to the book.
 
-                $current_balance = $category->account->balance;
+                $current_balance = $expense->account->balance;
 
                 $book = AccountBook::create([
                     'company_id' => Auth::user()->currentCompany->id,
-                    'account_id' => $category->account->id,
+                    'account_id' => $expense->account->id,
                     'user_id' => Auth::user()->id,
                     'detail' => 'Dépense(Pour : '.$category->category_name.')',
                     'note' => $request->details,

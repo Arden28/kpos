@@ -53,7 +53,7 @@
                                         <div class="form-group">
                                             <label for="category_id">{{ __('Catégorie') }} <span class="text-danger">*</span></label>
                                             <select name="category_id" id="category_id" class="form-control" required>
-                                                <option value="" selected>Select Category</option>
+                                                <option value="" selected>{{ __('Choisissez une Catégorie') }}</option>
                                                 @foreach($categories as $category)
                                                     <option value="{{ $category->id }}">{{ $category->category_name }}</option>
                                                 @endforeach
@@ -72,6 +72,9 @@
                                     <label for="details">{{ __('Détails') }}</label>
                                     <textarea class="form-control" rows="6" name="details"></textarea>
                                 </div>
+
+                                @include('financial::includes.accounts.choice')
+
                             </div>
                         </div>
                     </div>
