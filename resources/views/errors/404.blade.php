@@ -2,10 +2,10 @@
 
 @section('code', '404 😵')
 
-@section('title', __('Page Not Found'))
+@section('title', __('Page Introuvable'))
 
 @section('image')
     <img src="{{ asset('images/illustrations/errors/undraw_sign_in_e6hj.svg') }}" height="128" alt="">
 @endsection
 
-@section('message', __('Sorry, the page you are looking for could not be found.'))
+@section('message', __('Désolé, mais la page que vous cherchez est introuvable.'))

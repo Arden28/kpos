@@ -42,7 +42,7 @@
 
             <div class="mb-3">
                 <label class="form-label">{{ __('Confirmer mot de passe') }}</label>
-                <input  type="password_confirmation" name="password_confirmation" value="{{ old('password_confirmation') }}" required autofocus class="form-control" placeholder="{{ __('Confirmer mot de passe') }}">
+                <input  type="password" name="password_confirmation" value="{{ old('password_confirmation') }}" required autofocus class="form-control" placeholder="{{ __('Confirmer mot de passe') }}">
             </div>
 
             <div class="form-footer">

@@ -77,7 +77,8 @@
               </div>
               {{-- Notifications --}}
                 @php
-                    $low_quantity_products = \Modules\Product\Entities\Product::select('id', 'product_quantity', 'product_stock_alert', 'product_code', 'product_name')->whereColumn('product_quantity', '<=', 'product_stock_alert')->get();
+                    $low_quantity_products = \Modules\Product\Entities\Product::select('id', 'product_quantity', 'product_stock_alert', 'product_code', 'product_name')->whereColumn('product_quantity', '<=', 'product_stock_alert')
+                    ->where('company_id', Auth::user()->currentCompany->id)->get();
                     $notifications = $low_quantity_products->count();
                 @endphp
               <div class="nav-item dropdown d-none d-md-flex me-3">

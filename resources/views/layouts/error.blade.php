@@ -44,14 +44,13 @@
                 @yield('message')
               </p>
               <div class="empty-action">
-                @auth
+                {{-- @auth --}}
                 <a href="{{ app('router')->has('home') ? route('home', Auth::user()->id) : url('/') }}" class="btn btn-primary">
                   <!-- Download SVG icon from http://tabler-icons.io/i/plus -->
                   <i class="bi bi-house"></i>
-                  {{ __('Go Home') }}
+                  {{ __("Retouner à l'acceuil") }}
                 </a>
-
-                @endauth
+                {{-- @endauth --}}
               </div>
             </div>
           </div>
