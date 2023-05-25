@@ -31,7 +31,7 @@ class AccountBookController extends Controller
 
         $request->validated();
 
-        $account = Account::find($id)->first();
+        $account = Account::find($id);
 
         $user = Auth::user()->id;
         $company = Auth::user()->currentCompany->id;
@@ -45,7 +45,8 @@ class AccountBookController extends Controller
             'detail' => 'Dépôt.',
             'balance' => $account->balance,
             'debit' => $request->amount,
-            'date' => now()->format('d-m-Y H:i:s'),
+            // 'date' => now()->format('d-m-Y H:i:s'),
+            'date' => $request->date,
             'note' => $request->note,
 
         ]);

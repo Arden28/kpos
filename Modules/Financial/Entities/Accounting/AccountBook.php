@@ -14,6 +14,12 @@ class AccountBook extends Model
 
     protected $fillable = ['company_id', 'account_id', 'detail', 'note', 'user_id', 'credit', 'debit', 'balance', 'date'];
 
+    /**
+     * The attributes that should be mutated to dates.
+     *
+     * @var array
+     */
+    // protected $dates = ['date'];
 
     public function company() {
         return $this->belongsTo(company::class, 'company_id', 'id');

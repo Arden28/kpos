@@ -30,7 +30,7 @@
                 <div class="col-lg-12">
                 <div class="mb-3">
                     <label class="form-label">{{ __('Date') }} : </label>
-                    <input type="date" id="date" class="form-control" name="date" >
+                    <input type="date" id="date" class="form-control" name="date" required value="{{ \Carbon\Carbon::now()->format('Y-m-d') }}" >
                     @error('date') <span class="error">{{ $message }}</span> @enderror
                 </div>
                 </div>
