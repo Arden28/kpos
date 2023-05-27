@@ -229,7 +229,7 @@ class RegisteredUserController extends Controller
 
     public function install($team){
 
-        $module = Module::findBySlug('finance')->first();
+        $module = Module::where('slug', 'finance')->first();
 
         // Check if the module is already installed
         if ($module->isInstalledBy($team)) {
