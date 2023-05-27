@@ -12,7 +12,7 @@
           </h1>
           <div class="navbar-nav flex-row order-md-last">
 
-            {{-- <div class="nav-item d-none d-md-flex me-3">
+            <div class="nav-item d-none d-md-flex me-3">
                 <div class="btn-list">
 
                     @if(!subscribed(Auth::user()->team->id))
@@ -26,7 +26,7 @@
                     @endif
 
                 </div>
-            </div> --}}
+            </div>
               <livewire:subby::plan />
             <div class="d-none d-md-flex">
               <a href="?theme=dark" class="nav-link px-0 hide-theme-dark" title="{{ __('Mode Sombre') }}" data-bs-toggle="tooltip"
