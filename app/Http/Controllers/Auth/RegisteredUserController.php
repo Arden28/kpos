@@ -153,7 +153,13 @@ class RegisteredUserController extends Controller
         $this->createTeam($user);
 
         // Excecute this function
-        $this->addCompany($request, $user);
+
+        $company = Company::create([
+            'name' => $request->company_name,
+        ]);
+        $company->save();
+
+        $this->addCompany($request, $company, $user);
 
         // $this->install($user);
 
@@ -167,17 +173,8 @@ class RegisteredUserController extends Controller
     }
 
     // Create a new company after user's registration
-    public function addCompany(Request $request, User $user){
+    public function addCompany($request, $company, User $user){
 
-        $company = Company::create([
-            'name' => $request->company_name,
-            'user_id' => $user->id,
-            'personal_company' => true,
-            'reference' => $request->company_reference,
-            'domain' => $request->type,
-            'size' => $request->company_size,
-            'primary_interest' => $request->primary_interest,
-        ]);
 
         // Setup settings
         $this->settingSetup($company);
