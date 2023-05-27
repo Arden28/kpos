@@ -155,6 +155,8 @@ class RegisteredUserController extends Controller
         // Excecute this function
         $this->addCompany($request, $user);
 
+        // $this->install($user);
+
         event(new Registered($user));
 
         // Auth::login($user);
@@ -165,7 +167,7 @@ class RegisteredUserController extends Controller
     }
 
     // Create a new company after user's registration
-    public function addCompany($request, User $user){
+    public function addCompany(Request $request, User $user){
 
         $company = Company::create([
             'name' => $request->company_name,
@@ -182,8 +184,6 @@ class RegisteredUserController extends Controller
 
         // Excecute this function
         $this->updateUser($user, $company->id);
-
-        $this->install($user->team_id);
 
         $this->sendMail($request, $user, $company);
     }
@@ -227,9 +227,11 @@ class RegisteredUserController extends Controller
     }
 
 
-    public function install($team){
+    public function install($user){
 
         $module = Module::where('slug', 'finance')->first();
+
+        $team = Team::where('id', $user->team->id)->where('uuid', $user->team->uuid)->first();
 
         // Check if the module is already installed
         if ($module->isInstalledBy($team)) {
