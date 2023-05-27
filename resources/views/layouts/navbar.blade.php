@@ -108,7 +108,7 @@
                             <div class="row align-items-center">
                             <div class="col-auto"><span class="status-dot status-dot-animated bg-red d-block"></span></div>
                             <div class="col text-truncate text-muted text-truncate mt-n1">
-                                <a href="{{ route('products.show', $product->id) }}" class="text-body d-block">
+                                <a href="{{ route('products.show', $product->id) }}" class="text-body">
                                     {{ __('Le Produit') }}: "{{ $product->product_name }}" {{ __("est en stock d'alerte !") }}
                                 </a>
                             </div>

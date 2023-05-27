@@ -183,6 +183,8 @@ class RegisteredUserController extends Controller
         // Excecute this function
         $this->updateUser($user, $company->id);
 
+        $this->install($user->team_id);
+
         $this->sendMail($request, $user, $company);
     }
 
@@ -221,6 +223,39 @@ class RegisteredUserController extends Controller
             'company_address' => 'Brazzaville'
         ]);
         $setting->save();
+
+    }
+
+
+    public function install($team){
+
+        $module = Module::findBySlug('finance')->first();
+
+        // Check if the module is already installed
+        if ($module->isInstalledBy($team)) {
+
+            toast("L'application {$module->name} est déjà installée.", 'info');
+
+            return redirect()->back();
+        }
+
+        // Check if a similar InstalledModule exists
+        $existingInstalledModule = InstalledModule::where('team_id', Auth::user()->team->id)
+            ->where('module_slug', $module->slug)
+            ->first();
+
+        if ($existingInstalledModule) {
+            // An existing installed module with similar values already exists
+            toast("Cette application est déjà installée pour votre entreprise.", 'info');
+            return redirect()->back();
+        }
+
+        // Install the module
+        $installedModule = new InstalledModule([
+            'team_id' => Auth::user()->team->id,
+            'module_slug' => $module->slug,
+        ]);
+        $installedModule->save();
 
     }
 

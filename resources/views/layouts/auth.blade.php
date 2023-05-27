@@ -11,11 +11,11 @@
     <link rel="icon" type="image/x-icon" href="{{asset('assets/images/logo/favicon.ico')}}" />
 
     <!-- CSS files -->
-    <link href="{{ asset('dist/css/tabler.min.css')}}?1668287865" rel="stylesheet"/>
-    <link href="{{ asset('dist/css/tabler-flags.min.css')}}?1668287865" rel="stylesheet"/>
-    <link href="{{ asset('dist/css/tabler-payments.min.css')}}?1668287865" rel="stylesheet"/>
-    <link href="{{ asset('dist/css/tabler-vendors.min.css')}}?1668287865" rel="stylesheet"/>
-    <link href="{{ asset('dist/css/demo.min.css')}}?1668287865" rel="stylesheet"/>
+    <link href="{{ asset('assets/dist/css/tabler.min.css')}}?1668287865" rel="stylesheet"/>
+    <link href="{{ asset('assets/dist/css/tabler-flags.min.css')}}?1668287865" rel="stylesheet"/>
+    <link href="{{ asset('assets/dist/css/tabler-payments.min.css')}}?1668287865" rel="stylesheet"/>
+    <link href="{{ asset('assets/dist/css/tabler-vendors.min.css')}}?1668287865" rel="stylesheet"/>
+    <link href="{{ asset('assets/dist/css/demo.min.css')}}?1668287865" rel="stylesheet"/>
     @livewireStyles
     <wireui:scripts />
     <script src="https://unpkg.com/alpinejs" defer></script>
@@ -30,14 +30,17 @@
     </style>
   </head>
   <body  class=" d-flex flex-column bg-white">
-    <script src="{{ asset('dist/js/demo-theme.min.js')}}?1668287865"></script>
+    <script src="{{ asset('assets/dist/js/demo-theme.min.js')}}?1668287865"></script>
 
     @yield('content')
 
     <!-- Libs JS -->
     <!-- Tabler Core -->
-    <script src="{{ asset('dist/js/tabler.min.js')}}?1668287865" defer></script>
-    <script src="{{ asset('dist/js/demo.min.js')}}?1668287865" defer></script>
+    <script src="{{ asset('assets/dist/js/tabler.min.js')}}?1668287865" defer></script>
+    <script src="{{ asset('assets/dist/js/demo.min.js')}}?1668287865" defer></script>
+
+    @include('sweetalert::alert')
+
     @yield('scripts')
     @livewireScripts
   </body>

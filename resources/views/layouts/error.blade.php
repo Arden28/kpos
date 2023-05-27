@@ -18,7 +18,7 @@
     <link rel="icon" type="image/x-icon" href="{{asset('assets/images/logo/favicon.ico')}}" />
 
     <!-- CSS files -->
-    <link href="{{ asset('dist/css/tabler.min.css')}}?1668287865" rel="stylesheet"/>
+    <link href="{{ asset('assets/dist/css/tabler.min.css')}}?1668287865" rel="stylesheet"/>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
     <style>
       @import url('https://rsms.me/inter/inter.css');

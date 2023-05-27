@@ -12,7 +12,6 @@
     <div class="row g-2 align-items-center">
     <div class="col">
         <h2 class="page-title">
-            {{-- {{ trans('modules.pos.products.title') }} --}}
             Tous les produits
         </h2>
     </div>
