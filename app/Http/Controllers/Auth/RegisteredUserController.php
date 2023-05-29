@@ -156,6 +156,8 @@ class RegisteredUserController extends Controller
 
         $company = Company::create([
             'name' => $request->company_name,
+            'user_id' => $user->id,
+            'personal_company' => true
         ]);
         $company->save();
 
@@ -175,6 +177,12 @@ class RegisteredUserController extends Controller
     // Create a new company after user's registration
     public function addCompany($request, $company, User $user){
 
+
+        $company->reference = $request->company_reference;
+        $company->domain = $request->type;
+        $company->size = $request->company_size;
+        $company->primary_interest = $request->primary_interest;
+        $company->save();
 
         // Setup settings
         $this->settingSetup($company);
