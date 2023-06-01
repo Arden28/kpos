@@ -33,6 +33,24 @@ class HomeController extends Controller
         // $this->middleware(['subscribed']);
     }
 
+    public function sendSms(){
+        $basic  = new \Nexmo\Client\Credentials\Basic('97a80ea4', 'NGTSTI4BuTci65He');
+        $client = new \Nexmo\Client($basic);
+
+        $message = $client->message()->send([
+            'to' => '242064074926',
+            'from' => 'Koverae',
+            'text' => 'Un simple message de test envoyé par Koverae'
+        ]);
+
+        $message = $response->current();
+
+        if ($message->getStatus() == 0) {
+            dd("The message was sent successfully\n");
+        } else {
+            dd("The message failed with status: " . $message->getStatus() . "\n");
+        }
+    }
 /**
  *
  * DASHBOARD

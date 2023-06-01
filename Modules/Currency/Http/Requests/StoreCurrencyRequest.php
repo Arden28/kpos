@@ -17,6 +17,8 @@ class StoreCurrencyRequest extends FormRequest
         return [
 
             'currency_name' => 'required|string|max:255',
+            // Rule::unique('currency_name')
+            //       ->where('company_id', $this->company_id),
             'code' => 'required|string|max:255',
             'symbol' => 'required|string|max:255',
             'thousand_separator' => 'required|string|max:255',
