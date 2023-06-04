@@ -1,4 +1,4 @@
-@if($data->quantity <= $data->product_stock_alert)
+@if($data->product_stock_alert >= $data->quantity)
     @can('edit_products')
     <a href="#" class="btn btn-info btn-sm" title="Ce produit est en stock d'alerte. Veuillez en commander auprès de votre fournisseur.">
         <i class="bi bi-arrow-repeat"></i>

@@ -57,8 +57,8 @@
                                     </tr>
                                     <tr>
                                         <th>{{ __('Quantité') }}</th>
-                                        @if($product->product_stock_alert <= $product->quantity)
-                                            <td>{{ $product->product_quantity . ' ' . $product->product_unit }}</td>
+                                        @if($product->product_stock_alert >= $product->quantity)
+                                            <td class="text-green">{{ $product->product_quantity . ' ' . $product->product_unit }}</td>
                                         @else
                                             <td class="text-red">{{ $product->product_quantity . ' ' . $product->product_unit }} <a href="#" class="btn btn-primary btn-sm" title="Ce produit est en stock d'alerte. Veuillez en commander auprès de votre fournisseur."><i class="bi bi-arrow-repeat"></i></a></td>
                                         @endif

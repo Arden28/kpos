@@ -40,4 +40,7 @@ Route::middleware(['module:inventory', 'auth'])->group(function () {
     Route::patch('/purchase-payments/update/{purchasePayment}', 'PurchasePaymentsController@update')->name('purchase-payments.update');
     Route::delete('/purchase-payments/destroy/{purchasePayment}', 'PurchasePaymentsController@destroy')->name('purchase-payments.destroy');
 
+    // Purchase Status
+    Route::get('/purchases/{purchase_id}/completed', 'PurchaseController@completed')->name('purchase.completed');
+
 });

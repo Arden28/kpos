@@ -3,26 +3,30 @@
         <i class="bi bi-three-dots-vertical"></i>
     </button>
     <div class="dropdown-menu">
+        {{-- @can('edit_purchases')
+            <livewire:purchase::status.completed :data="$data" />
+        @endcan --}}
+
         @can('access_purchase_payments')
             <a href="{{ route('purchase-payments.index', $data->id) }}" class="dropdown-item">
-                <i class="bi bi-cash-coin mr-2 text-warning" style="line-height: 1;"></i> Show Payments
+                <i class="bi bi-cash-coin mr-2 text-warning" style="line-height: 1;"></i> {{ __('Tous les Paiements') }}
             </a>
         @endcan
         @can('access_purchase_payments')
             @if($data->due_amount > 0)
                 <a href="{{ route('purchase-payments.create', $data->id) }}" class="dropdown-item">
-                    <i class="bi bi-plus-circle-dotted mr-2 text-success" style="line-height: 1;"></i> Add Payment
+                    <i class="bi bi-plus-circle-dotted mr-2 text-success" style="line-height: 1;"></i> Ajouter un Paiement
                 </a>
             @endif
         @endcan
         @can('edit_purchases')
             <a href="{{ route('purchases.edit', $data->id) }}" class="dropdown-item">
-                <i class="bi bi-pencil mr-2 text-primary" style="line-height: 1;"></i> Edit
+                <i class="bi bi-pencil mr-2 text-primary" style="line-height: 1;"></i> {{ __('Modifier') }}
             </a>
         @endcan
         @can('show_purchases')
             <a href="{{ route('purchases.show', $data->id) }}" class="dropdown-item">
-                <i class="bi bi-eye mr-2 text-info" style="line-height: 1;"></i> Details
+                <i class="bi bi-eye mr-2 text-info" style="line-height: 1;"></i> {{ __('Détail') }}
             </a>
         @endcan
         @can('delete_purchases')
@@ -31,7 +35,7 @@
                 if (confirm('Are you sure? It will delete the data permanently!')) {
                 document.getElementById('destroy{{ $data->id }}').submit()
                 }">
-                <i class="bi bi-trash mr-2 text-danger" style="line-height: 1;"></i> Delete
+                <i class="bi bi-trash mr-2 text-danger" style="line-height: 1;"></i> Supprimer
                 <form id="destroy{{ $data->id }}" class="d-none" action="{{ route('purchases.destroy', $data->id) }}" method="POST">
                     @csrf
                     @method('delete')

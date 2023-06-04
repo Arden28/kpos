@@ -1,15 +1,16 @@
 @if ($data->payment_status == 'Partial')
-    <span class="badge badge-warning">
+    <span class="badge bg-warning">
         {{-- {{ $data->payment_status }} --}}
-        {{ __('Partiel') }}
+        {{ __('Partielle') }}
     </span>
 @elseif ($data->payment_status == 'Paid')
-    <span class="badge badge-success">
+    <span class="badge bg-success">
         {{-- {{ $data->payment_status }} --}}
-        {{ __('Payé') }}
+        {{ __('Payée') }}
     </span>
 @else
-    <span class="badge badge-danger">
-        {{ $data->payment_status }}
+    <span class="badge bg-danger">
+        {{-- {{ $data->payment_status }} --}}
+        {{ __('Non Payée') }}
     </span>
 @endif

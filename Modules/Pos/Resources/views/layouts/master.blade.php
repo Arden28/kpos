@@ -25,7 +25,7 @@
       	--tblr-font-sans-serif: Inter, -apple-system, BlinkMacSystemFont, San Francisco, Segoe UI, Roboto, Helvetica Neue, sans-serif;
       }
     </style>
-    @include('includes.main-css1')
+    @include('includes.main-css')
 
     <!-- Bootstrap Icons -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
@@ -42,7 +42,7 @@
           </button>
           <h1 class="navbar-brand navbar-brand-autodark d-none-navbar-horizontal pe-0 pe-md-3">
             <a href="{{ route('app.pos.index') }}">
-                <img src="{{ asset('assets/images/logo/logo-1.png') }}" alt="Koverae" class="navbar-brand-image">
+                <img src="{{ asset('assets/images/logo/logo-black-gd.png') }}" alt="Koverae" class="navbar-brand-image">
             </a>
           </h1>
 

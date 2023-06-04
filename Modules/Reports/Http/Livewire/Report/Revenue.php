@@ -29,7 +29,6 @@ class Revenue extends Component
 
     public function mount()
     {
-        $this->data = Sale::completed()->isCompany(Auth::user()->currentCompany->id)->orderBy('created_at', 'DESC')->pluck('total_amount')->toArray();
 
         $this->labels = [
             '2020-06-20', '2020-06-21', '2020-06-22', '2020-06-23', '2020-06-24', '2020-06-25', '2020-06-26', '2020-06-27', '2020-06-28', '2020-06-29', '2020-06-30', '2020-07-01', '2020-07-02', '2020-07-03', '2020-07-04', '2020-07-05', '2020-07-06', '2020-07-07', '2020-07-08', '2020-07-09', '2020-07-10', '2020-07-11', '2020-07-12', '2020-07-13', '2020-07-14', '2020-07-15', '2020-07-16', '2020-07-17', '2020-07-18', '2020-07-19'
@@ -38,27 +37,6 @@ class Revenue extends Component
         // $this->start_date = today()->subDays(1)->format('Y-m-d');
         $this->start_date = today()->format('Y-m-d');
         $this->end_date = today()->format('Y-m-d');
-
-        $sales = Sale::whereDate('date', '>=', $this->start_date)
-        ->whereDate('date', '<=', $this->end_date)
-        ->completed()->where('company_id', Auth::user()->currentCompany->id)->sum('total_amount');
-        $sale_returns = SaleReturn::whereDate('date', '>=', $this->start_date)
-        ->whereDate('date', '<=', $this->end_date)
-        ->completed()->where('company_id', Auth::user()->currentCompany->id)->sum('total_amount');
-        $product_costs = 0;
-
-        foreach (Sale::whereDate('date', '>=', $this->start_date)
-        ->whereDate('date', '<=', $this->end_date)
-        ->completed()->where('company_id', Auth::user()->currentCompany->id)->with('saleDetails')->get() as $sale) {
-            foreach ($sale->saleDetails??[] as $saleDetail) {
-                $product_costs += $saleDetail->product->product_cost;
-            }
-        }
-
-        $revenue = ($sales - $sale_returns) / 100;
-        // $revenue = ($revenue - $product_costs);
-
-        $this->revenue = $revenue;
 
     }
 
@@ -83,37 +61,51 @@ class Revenue extends Component
         $this->data = Sale::completed()->isCompany(Auth::user()->currentCompany->id)->pluck('total_amount')->toArray();
     }
 
-    // public function salesChart(){
-    //     $dates = collect();
-    //     foreach (range(-6, 0) as $i) {
-    //         $date = Carbon::now()->addDays($i)->format('d-m-y');
-    //         $dates->put($date, 0);
-    //     }
+    public function today(){
+        $this->start_date = today()->format('Y-m-d');
+        $this->end_date = today()->format('Y-m-d');
+    }
+    public function getYesterday(){
+        $this->start_date = today()->subDays(1)->format('Y-m-d');
+        $this->end_date = today()->subDays(1)->format('Y-m-d');
+    }
 
-    //     $date_range = Carbon::today()->subDays(6);
+    public function getDays($days){
+        $this->start_date = today()->subDays($days)->format('Y-m-d');
+        $this->end_date = today()->format('Y-m-d');
+    }
 
-    //     $sales = Sale::completed()->isCompany(Auth::user()->currentCompany->id)
-    //         ->where('date', '>=', $date_range)
-    //         ->groupBy(DB::raw("DATE_FORMAT(date,'%d-%m-%y')"))
-    //         ->orderBy('date')
-    //         ->get([
-    //             DB::raw(DB::raw("DATE_FORMAT(date,'%d-%m-%y') as date")),
-    //             DB::raw('SUM(total_amount) AS count'),
-    //         ])
-    //         ->pluck('count', 'date');
-
-    //     $dates = $dates->merge($sales);
-
-    //     $data = [];
-    //     // $days = [];
-    //     foreach ($dates as $key => $value) {
-    //         $data[] = $value / 100;
-    //         $this->days = $key;
-    //     }
-    // }
+    public function pastWeek(){
+        $this->start_date = today()->subDays(7)->format('Y-m-d');
+        $this->end_date = today()->format('Y-m-d');
+    }
 
     public function render()
     {
+
+
+        $sales = Sale::whereDate('date', '>=', $this->start_date)
+        ->whereDate('date', '<=', $this->end_date)
+        ->completed()->where('company_id', Auth::user()->currentCompany->id)->sum('total_amount');
+        $sale_returns = SaleReturn::whereDate('date', '>=', $this->start_date)
+        ->whereDate('date', '<=', $this->end_date)
+        ->completed()->where('company_id', Auth::user()->currentCompany->id)->sum('total_amount');
+        $product_costs = 0;
+
+        foreach (Sale::whereDate('date', '>=', $this->start_date)
+        ->whereDate('date', '<=', $this->end_date)
+        ->completed()->where('company_id', Auth::user()->currentCompany->id)->with('saleDetails')->get() as $sale) {
+            foreach ($sale->saleDetails??[] as $saleDetail) {
+                $product_costs += $saleDetail->product->product_cost;
+            }
+        }
+
+        $revenue = ($sales - $sale_returns) / 100;
+        // $revenue = ($revenue - $product_costs);
+
+        $this->revenue = $revenue;
+        $this->data = Sale::completed()->isCompany(Auth::user()->currentCompany->id)->orderBy('created_at', 'DESC')->pluck('total_amount')->toArray();
+
         return view('reports::livewire.report.revenue', [
             'data' => json_encode($this->data),
             'revenue' => $this->revenue,

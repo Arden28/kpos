@@ -28,7 +28,6 @@ class Purchase extends Component
         ->whereDate('date', '<=', $this->end_date)
         ->completed()->isCompany(Auth::user()->currentCompany->id)->orderBy('created_at')->pluck('total_amount')->toArray();
 
-        $this->purchase = $this->getPurchase();
     }
 
     public function getPurchase(){
@@ -58,8 +57,31 @@ class Purchase extends Component
 
         return $purchase;
     }
+
+
+    public function today(){
+        $this->start_date = today()->format('Y-m-d');
+        $this->end_date = today()->format('Y-m-d');
+    }
+    public function getYesterday(){
+        $this->start_date = today()->subDays(1)->format('Y-m-d');
+        $this->end_date = today()->subDays(1)->format('Y-m-d');
+    }
+
+    public function getDays($days){
+        $this->start_date = today()->subDays($days)->format('Y-m-d');
+        $this->end_date = today()->format('Y-m-d');
+    }
+
+    public function pastWeek(){
+        $this->start_date = today()->subDays(7)->format('Y-m-d');
+        $this->end_date = today()->format('Y-m-d');
+    }
+
     public function render()
     {
+        $this->purchase = $this->getPurchase();
+
         return view('reports::livewire.report.purchase',
             [
                 'data' => json_encode($this->data),

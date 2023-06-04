@@ -93,7 +93,8 @@ class PosRepository implements PosInterface
                 $sale = Sale::create([
                     'company_id'=> Auth::user()->currentCompany->id,
                     // 'pos_id' => $pos,
-                    'date' => now()->format('d-m-Y H:i:s'),
+                    // 'date' => now()->format('d-m-Y H:i:s'),
+                    'date' => now(),
                     'reference' => 'PSL',
                     'customer_id' => $request['customer_id'],
                     'customer_name' => Customer::findOrFail($request['customer_id'])['customer_name'],

@@ -5,16 +5,19 @@
         <div class="d-flex align-items-center">
           <div class="subheader">{{ __('Bénéfice') }}</div>
           <div class="ms-auto lh-1">
-              <div class="dropdown">
-                <a class="dropdown-toggle text-muted" href="#" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{ _("Aujourd'hui") }}</a>
-                <div class="dropdown-menu dropdown-menu-end">
-                  <a class="dropdown-item active" href="#">{{ __('Aujourd\'hui') }}</a>
-                  <a class="dropdown-item" wire.click="yesterday()" >{{ __('Hier') }}</a>
-                  <a class="dropdown-item" wire.click="" href="#">{{ __('Dernier 7 jours') }}</a>
-                  <a class="dropdown-item" href="#">{{ __('Dernier 30 jours') }}</a>
-                  <a class="dropdown-item" href="#">{{ __('Dernier 90 jours') }}</a>
-                </div>
+
+            <span wire:target="getYesterday, getDays, today" wire:loading class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+            <div class="dropdown">
+              <a class="dropdown-toggle text-muted" href="#" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{ _("Aujourd'hui") }}</a>
+              <div class="dropdown-menu dropdown-menu-end">
+                <button class="dropdown-item active" wire:click.defer="today">{{ __('Aujourd\'hui') }}</button>
+                <button class="dropdown-item" wire:target="getYesterday" wire:click.defer="getYesterday">{{ __('Hier') }}</button>
+                <a class="dropdown-item" wire:click.defer="getDays({{ 7 }})">{{ __('Dernier 7 jours') }}</a>
+                <a class="dropdown-item" wire:click.defer="getDays({{ 30 }})">{{ __('Dernier 30 jours') }}</a>
+                <a class="dropdown-item" wire:click.defer="getDays({{ 90 }})">{{ __('Dernier 90 jours') }}</a>
               </div>
+            </div>
+
           </div>
         </div>
         <div class="d-flex align-items-baseline">

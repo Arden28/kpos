@@ -24,13 +24,28 @@ class Benefit extends Component
         // $this->start_date = today()->subDays(1)->format('Y-m-d');
         $this->start_date = today()->format('Y-m-d');
         $this->end_date = today()->format('Y-m-d');
-
-        $this->benefit = $this->getProfit();
     }
 
-    public function yesterday(){
+
+    public function today(){
+        $this->start_date = today()->format('Y-m-d');
+        $this->end_date = today()->format('Y-m-d');
+    }
+    public function getYesterday(){
         $this->start_date = today()->subDays(1)->format('Y-m-d');
+        $this->end_date = today()->subDays(1)->format('Y-m-d');
     }
+
+    public function getDays($days){
+        $this->start_date = today()->subDays($days)->format('Y-m-d');
+        $this->end_date = today()->format('Y-m-d');
+    }
+
+    public function pastWeek(){
+        $this->start_date = today()->subDays(7)->format('Y-m-d');
+        $this->end_date = today()->format('Y-m-d');
+    }
+
     public function getProfit(){
         // Get revenue
         $sales = Sale::whereDate('date', '>=', $this->start_date)
@@ -97,6 +112,8 @@ class Benefit extends Component
 
     public function render()
     {
+        $this->benefit = $this->getProfit();
+
         return view('reports::livewire.report.benefit', [
             'benefit' => $this->benefit,
         ]);

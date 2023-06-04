@@ -266,6 +266,9 @@ class PurchaseController extends Controller
         return redirect()->route('purchases.index');
     }
 
+    // public function completed(Purchase $purchase){
+    //     $purchase->status = 'Completed';
+    // }
 
     public function destroy(Purchase $purchase) {
         abort_if(Gate::denies('delete_purchases'), 403);
