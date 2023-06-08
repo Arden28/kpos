@@ -183,7 +183,7 @@
                                             <div class="row g-0">
                                                 <div class="col-3">
                                                     <div class="card-body">
-                                                        <div class="avatar avatar-md" style="background-image: url(./static/jobs/job-7.png)"></div>
+                                                        <div class="avatar avatar-md" style="background-image: url(./assets/images/apps/{{ $module->slug }}.png)"></div>
                                                     </div>
                                                 </div>
                                                 <div class="col-9">

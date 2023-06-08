@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 use App\Abstracts\Membership;
 use App\Models\CompanyInvitation;
 use App\Models\CompanyUser;
+use App\Models\School;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Notifications\Notifiable;
@@ -138,5 +139,12 @@ class Company extends Model
     public function chart_of_accounts(){
         return $this->hasMany(ChartOfAccount::class, 'company_id', 'id');
     }
+
+    // Schools
+    public function schools()
+    {
+        return $this->hasMany(School::class, 'company_id', 'id');
+    }
+
 
 }
