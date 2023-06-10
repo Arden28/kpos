@@ -17,8 +17,29 @@
 
 @section('content')
 <div class="container-xl">
+
   <div class="row row-deck row-cards">
     @can('show_total_stats')
+    <div class="col-12">
+        <div class="row row-cards">
+
+            <!-- Sale Units -->
+            <livewire:reports::report.sale-unit />
+
+            <!-- Purchases -->
+            <livewire:reports::report.purchase />
+
+            <!-- Revenue -->
+            <livewire:reports::report.revenue />
+
+
+
+            <!-- Benefit -->
+            <livewire:reports::report.benefit />
+        </div>
+    </div>
+
+
     <div class="col-12">
       <div class="row row-cards">
         <div class="col-sm-6 col-lg-3">
