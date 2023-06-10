@@ -179,7 +179,7 @@
 
                                         @foreach(modules() as $module)
                                         <div class="col-lg-6" style="padding-bottom: 10px">
-                                            <div class="card">
+                                        <div class="card">
                                             <div class="row g-0">
                                                 <div class="col-3">
                                                     <div class="card-body">

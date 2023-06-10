@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Interfaces\CompanyInterface;
+use App\Models\Team;
 use App\Traits\CompanySession;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
@@ -56,6 +57,13 @@ class HomeController extends Controller
  * DASHBOARD
  *
  */
+
+public function mainPage(){
+
+    $team = Team::where('id', Auth::user()->team->id)->where('uuid', Auth::user()->team->uuid)->first();
+    return view('main-page', compact('team'));
+}
+
 public function index()
 {
 

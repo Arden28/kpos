@@ -47,6 +47,7 @@ use Modules\User\DataTables\UsersDataTable;
     Route::get('/sms', 'HomeController@sendSms')
     ->name('sms');
 
+    Route::get('main', 'HomeController@mainPage')->name('main');
     // Route::get('/pay', 'HomeController@pay');
 });
 

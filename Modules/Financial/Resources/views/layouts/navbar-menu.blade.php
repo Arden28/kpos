@@ -6,9 +6,9 @@
           <ul class="navbar-nav">
 
             <li class="nav-item {{ request()->routeIs('dashboard') ? 'active' : '' }}">
-              <a class="nav-link" href="{{ route('dashboard') }}" >
+              <a class="nav-link" href="{{ route('main') }}" >
                 <span class="nav-link-icon d-md-none d-lg-inline-block"><!-- Download SVG icon from http://tabler-icons.io/i/home -->
-                    <i class="bi bi-arrow-left" style="width: 28px; height:28px; "></i>
+                    <i class="bi bi-arrow-left bold" style="width: 32px; height:32px; "></i>
                 </span>
               </a>
             </li>

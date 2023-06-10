@@ -1,33 +1,44 @@
+<!Doctype html>
+<html lang="{{ config('app.locale') }}" dir="ltr">
+  <head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"/>
+    <meta http-equiv="X-UA-Compatible" content="ie=edge"/>
+    <title>Acceuil | Koverae </title>
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="{{asset('assets/images/logo/favicon.ico')}}" />
 
-      <header class="navbar navbar-expand-md navbar-light d-print-none">
+    <!-- CSS files -->
+    <link href="{{ asset('assets/dist/css/tabler.min.css')}}?1668287865" rel="stylesheet"/>
+    <link href="{{ asset('assets/dist/css/tabler-flags.min.css')}}?1668287865" rel="stylesheet"/>
+    <link href="{{ asset('assets/dist/css/tabler-payments.min.css')}}?1668287865" rel="stylesheet"/>
+    <link href="{{ asset('assets/dist/css/tabler-vendors.min.css')}}?1668287865" rel="stylesheet"/>
+    <link href="{{ asset('assets/dist/css/demo.min.css')}}?1668287865" rel="stylesheet"/>
+    <!-- CoreUI CSS -->
+    <link rel="stylesheet" href="{{ mix('css/app.css') }}" crossorigin="anonymous">
+    <style>
+      @import url('https://rsms.me/inter/inter.css');
+      :root {
+      	--tblr-font-sans-serif: Inter, -apple-system, BlinkMacSystemFont, San Francisco, Segoe UI, Roboto, Helvetica Neue, sans-serif;
+      }
+    </style>
+  </head>
+  <body >
+    <script src="./dist/js/demo-theme.min.js?1668287865"></script>
+    <div class="page">
+      <!-- Navbar -->
+      <header class="navbar navbar-expand-md navbar-dark navbar-overlap d-print-none">
         <div class="container-xl">
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar-menu" aria-controls="navbar-menu" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
           <h1 class="navbar-brand navbar-brand-autodark d-none-navbar-horizontal pe-0 pe-md-3">
-            <a href="{{ route('dashboard') }}">
+            <a href="{{ route('main') }}">
                 <img src="{{ asset('assets/images/logo/logo-black-gd.png') }}" alt="Koverae POS" class="navbar-brand-image">
               {{-- <img src="./dist/img/logo/logo.svg" width="320" height="120"  alt="POS" class="navbar-brand-image"> --}}
             </a>
           </h1>
           <div class="navbar-nav flex-row order-md-last">
-
-            <div class="nav-item d-none d-md-flex me-3">
-                <div class="btn-list">
-
-                    @if(!subscribed(Auth::user()->team->id))
-                            <a type="button" href="{{ route('register.pro') }}" class="btn" >
-                                <!-- Download SVG icon from http://tabler-icons.io/i/brand-github -->
-                                <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" /></svg>
-                                {{ __('Passer à la version pro') }}
-                            </a>
-                    @elseif(subscribed(Auth::user()->team->id)->isOnTrial())
-                        <livewire:subby.remain-date />
-                    @endif
-
-                </div>
-            </div>
-              <livewire:subby::plan />
             <div class="d-none d-md-flex">
               <a href="?theme=dark" class="nav-link px-0 hide-theme-dark" title="{{ __('Mode Sombre') }}" data-bs-toggle="tooltip"
 		        data-bs-placement="bottom">
@@ -248,16 +259,115 @@
               </div>
             </div>
           </div>
+          {{-- <div class="collapse navbar-collapse" id="navbar-menu">
+            <div class="d-flex flex-column flex-md-row flex-fill align-items-stretch align-items-md-center">
+              <ul class="navbar-nav">
+
+
+              </ul>
+            </div>
+          </div> --}}
         </div>
       </header>
-
-      {{-- Modal --}}
-
-    {{-- <div class="modal modal-blur fade" id="modal-success-{{ $company->company_id }}" tabindex="-1" role="dialog" aria-hidden="true">
-        <div class="modal-dialog modal-sm modal-dialog-centered" role="document">
-          <div class="modal-content">
-
-                <livewire:company.switch-company :user="auth()->user()->id" :company="$company->company_id" />
+      <div class="page-wrapper">
+        <!-- Page header -->
+        <div class="page-header d-print-none text-white">
+          <div class="container-xl">
+            {{-- <div class="row g-2 align-items-center">
+              <div class="col">
+                <!-- Page pre-title -->
+                <div class="page-pretitle">
+                  Overview
+                </div>
+                <h2 class="page-title">
+                  Navbar overlap layout
+                </h2>
+              </div>
+            </div> --}}
           </div>
         </div>
-      </div> --}}
+
+        <!-- Page body -->
+        <div class="page-body">
+          <div class="container-xl ">
+            <div class="row row-deck row-cards">
+                @foreach (modules() as $module)
+                    <div class="col-sm-4 col-lg-4">
+                        <div class="card-body" style="cursor: pointer;">
+                            <div class="container">
+                                @if($module->slug == 'finance')
+                                    <a href="{{ route('finance.index') }}">
+                                        <img width="100px" height="100px" src="{{ asset('assets/images/apps/'.$module->slug.'.png') }}" alt="">
+                                    </a>
+                                @elseif($module->slug == 'inventory')
+                                    <a href="{{ route('inventory.index') }}">
+                                        <img width="100px" height="100px" src="{{ asset('assets/images/apps/'.$module->slug.'.png') }}" alt="">
+                                    </a>
+                                @elseif($module->slug == 'pos')
+                                    <a href="{{ route('app.pos.dashboard') }}">
+                                        <img width="100px" height="100px" src="{{ asset('assets/images/apps/'.$module->slug.'.png') }}" alt="">
+                                    </a>
+                                @elseif($module->slug == 'hr')
+                                    <a href="{{ route('users.index') }}">
+                                        <img width="100px" height="100px" src="{{ asset('assets/images/apps/'.$module->slug.'.png') }}" alt="">
+                                    </a>
+                                @elseif($module->slug == 'crm')
+                                    <a href="{{ route('customers.index') }}">
+                                        <img width="100px" height="100px" src="{{ asset('assets/images/apps/'.$module->slug.'.png') }}" alt="">
+                                    </a>
+                                @elseif($module->slug == 'e-learning')
+                                    <a href="{{ route('elearning.index') }}">
+                                        <img width="100px" height="100px" src="{{ asset('assets/images/apps/'.$module->slug.'.png') }}" alt="">
+                                    </a>
+                                @elseif($module->slug == 'sales')
+                                    <a href="{{ route('quotations.index') }}">
+                                        <img width="100px" height="100px" src="{{ asset('assets/images/apps/'.$module->slug.'.png') }}" alt="">
+                                    </a>
+                                @endif
+
+                            </div>
+                            <legend class="pointer" style="font-weight: bold; font-size: 16px; color: #808080">
+                                {{ $module->name }}
+                            </legend>
+                        </div>
+                    </div>
+                @endforeach
+
+                <div class="col-sm-4 col-lg-4">
+                    <div class="card-body" style="cursor: pointer;">
+                        <div class="container">
+                            <a href="{{ route('settings.index') }}">
+                                <img width="100px" height="100px" src="{{ asset('assets/images/apps/settings.jpeg') }}" alt="">
+                            </a>
+                        </div>
+                        <legend class="pointer" style="font-weight: bold; font-size: 14px; color: #808080">
+                            {{ __('Paramètres') }}
+                        </legend>
+                    </div>
+                </div>
+
+                <div class="col-sm-4 col-lg-4">
+                    <div class="card-body" style="cursor: pointer;">
+                        <div class="container">
+                            <a href="#">
+                                <img width="100px" height="100px" src="{{ asset('assets/images/apps/helpdesk.png') }}" alt="">
+                            </a>
+                        </div>
+                        <legend class="pointer" style="font-weight: bold; font-size: 14px; color: #808080">
+                            {{ __('Centre d\'aide') }}
+                        </legend>
+                    </div>
+                </div>
+
+
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+    <!-- Libs JS -->
+
+    @include('includes.main-js')
+  </body>
+</html>
