@@ -320,7 +320,7 @@
                                         <img width="100px" height="100px" src="{{ asset('assets/images/apps/'.$module->slug.'.png') }}" alt="">
                                     </a>
                                 @elseif($module->slug == 'sales')
-                                    <a href="{{ route('quotations.index') }}">
+                                    <a href="{{ route('sales.index') }}">
                                         <img width="100px" height="100px" src="{{ asset('assets/images/apps/'.$module->slug.'.png') }}" alt="">
                                     </a>
                                 @endif
