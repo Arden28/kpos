@@ -19,10 +19,10 @@ use Modules\User\DataTables\UsersDataTable;
     Route::get('/started', [ModuleController::class, 'start'])
     ->name('start.app');
 
-        Route::get('/home', 'HomeController@index')
-            ->name('dashboard');
+        // Route::get('/home', 'HomeController@index')
+        //     ->name('dashboard');
 
-    Route::get('/', 'HomeController@index');
+    // Route::get('/', 'HomeController@index');
 
         Route::get('/analytics', 'HomeController@indexAnalytics')
         ->name('analytics');
@@ -48,6 +48,12 @@ use Modules\User\DataTables\UsersDataTable;
     ->name('sms');
 
     Route::get('main', 'HomeController@mainPage')->name('main');
+
+    Route::get('/home', 'HomeController@mainPage')
+        ->name('dashboard');
+
+    Route::get('/', 'HomeController@mainPage');
+
     // Route::get('/pay', 'HomeController@pay');
 });
 

@@ -34,7 +34,7 @@
           </button>
           <h1 class="navbar-brand navbar-brand-autodark d-none-navbar-horizontal pe-0 pe-md-3">
             <a href="{{ route('main') }}">
-                <img src="{{ asset('assets/images/logo/logo-black-gd.png') }}" alt="Koverae POS" class="navbar-brand-image">
+                <img src="{{ asset('assets/images/logo/logo-white-gd.png') }}" alt="Koverae POS" class="navbar-brand-image">
               {{-- <img src="./dist/img/logo/logo.svg" width="320" height="120"  alt="POS" class="navbar-brand-image"> --}}
             </a>
           </h1>
@@ -109,7 +109,7 @@
                   <div class="card">
                     <div class="card-header">
                       <h3 class="card-title">
-                        {{ $low_quantity_products->count() }} {{ __(' Notifications') }}
+                        {{ $low_quantity_products->count() }} {{ __('Notifications') }}
                       </h3>
                     </div>
                     <div class="list-group list-group-flush list-group-hoverable">
