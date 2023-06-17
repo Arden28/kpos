@@ -17,8 +17,9 @@ class StoreProductRequest extends FormRequest
     public function rules()
     {
 
-        $productIdRule = Rule::unique('products')->where(function ($query) {
-            return $query->where('company_id', Auth::user()->currentCompany->id);
+        $productIdRule =   Rule::unique('products')->where(function ($query) {
+            $companyId = Auth::user()->currentCompany->id;
+            $query->where('company_id', $companyId);
         });
 
         return [
