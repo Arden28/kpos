@@ -106,7 +106,7 @@
                                     <div class="col-lg-6">
                                       <div class="mb-3">
                                         <label for="product_cost">{{ __('Prix d\'achat / Production') }} <span class="text-danger">*</span></label>
-                                        <input id="product_cost" type="text" class="form-control" name="product_cost" required value="{{ old('product_cost') }}">
+                                        <input id="product_cost" type="text" class="form-control" name="product_cost" value="{{ old('product_cost') }}">
                                       </div>
                                     </div>
                                     <div class="col-lg-6">

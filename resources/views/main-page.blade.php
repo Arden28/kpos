@@ -39,6 +39,22 @@
             </a>
           </h1>
           <div class="navbar-nav flex-row order-md-last">
+
+            <div class="nav-item d-none d-md-flex me-3">
+                <div class="btn-list">
+
+                    @if(!subscribed(Auth::user()->team->id))
+                            <a type="button" href="{{ route('register.pro') }}" class="btn" >
+                                <!-- Download SVG icon from http://tabler-icons.io/i/brand-github -->
+                                <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" /></svg>
+                                {{ __('Passer à la version pro') }}
+                            </a>
+                    @elseif(subscribed(Auth::user()->team->id)->isOnTrial())
+                        <livewire:subby.remain-date />
+                    @endif
+
+                </div>
+            </div>
             <div class="d-none d-md-flex">
               <a href="?theme=dark" class="nav-link px-0 hide-theme-dark" title="{{ __('Mode Sombre') }}" data-bs-toggle="tooltip"
 		        data-bs-placement="bottom">
@@ -290,46 +306,113 @@
         <!-- Page body -->
         <div class="page-body">
           <div class="container-xl ">
-            <div class="row row-deck row-cards">
-                @foreach (modules() as $module)
-                    <div class="col-sm-4 col-lg-4">
-                        <div class="card-body" style="cursor: pointer;">
-                            <div class="container">
-                                @if($module->slug == 'finance')
+            <div class="row  ">
+                @foreach ($modules as $module)
+                    <div class="col-md-4 col-xs-4 col-lg-4">
+                        <div class="card-body">
+                            @if(module($module->slug))
+                                <div class="container">
+                                    @if($module->slug == 'finance')
+                                        <a href="{{ route('finance.index') }}">
+                                    @elseif ($module->slug == 'inventory')
+                                        <a href="{{ route('inventory.index') }}">
+
+                                    @elseif ($module->slug == 'hr')
+                                        <a href="{{ route('users.index') }}">
+
+                                    @elseif ($module->slug == 'sales')
+                                        <a href="{{ route('sales.index') }}">
+
+                                    @elseif ($module->slug == 'crm')
+                                        <a href="{{ route('crm.index') }}">
+
+                                    @elseif ($module->slug == 'pos')
+                                        <a href="{{ route('app.pos.dashboard') }}">
+
+                                    @endif
+                                    {{-- <a href="{{ route('finance.index') }}"> --}}
+                                        <img width="100px" height="100px" src="{{ asset('assets/images/apps/'.$module->slug.'.png') }}" alt="">
+                                    </a>
+                                    <legend style="font-weight: bold; font-size: 16px; color: #808080; cursor: pointer;">
+                                        {{ $module->name }}
+                                    </legend>
+
+                                </div>
+                            @endif
+                        </div>
+                        {{-- <div class="card-body">
+                                @if(module($module->slug) && $module->slug == 'finance')
+                                <div class="container">
                                     <a href="{{ route('finance.index') }}">
                                         <img width="100px" height="100px" src="{{ asset('assets/images/apps/'.$module->slug.'.png') }}" alt="">
                                     </a>
-                                @elseif($module->slug == 'inventory')
+                                    <legend style="font-weight: bold; font-size: 16px; color: #808080; cursor: pointer;">
+                                        {{ $module->name }}
+                                    </legend>
+
+                                </div>
+                                @elseif(module($module->slug) && $module->slug == 'inventory')
+                                <div class="container">
                                     <a href="{{ route('inventory.index') }}">
                                         <img width="100px" height="100px" src="{{ asset('assets/images/apps/'.$module->slug.'.png') }}" alt="">
                                     </a>
-                                @elseif($module->slug == 'pos')
+                                    <legend class="pointer" style="font-weight: bold; font-size: 16px; color: #808080">
+                                        {{ $module->name }}
+                                    </legend>
+
+                                </div>
+                                @elseif(module($module->slug) && $module->slug == 'pos')
+                                <div class="container">
                                     <a href="{{ route('app.pos.dashboard') }}">
                                         <img width="100px" height="100px" src="{{ asset('assets/images/apps/'.$module->slug.'.png') }}" alt="">
                                     </a>
-                                @elseif($module->slug == 'hr')
+                                    <legend class="pointer" style="font-weight: bold; font-size: 16px; color: #808080">
+                                        {{ $module->name }}
+                                    </legend>
+
+                                </div>
+                                @elseif(module($module->slug) && $module->slug == 'hr')
+                                <div class="container">
                                     <a href="{{ route('users.index') }}">
                                         <img width="100px" height="100px" src="{{ asset('assets/images/apps/'.$module->slug.'.png') }}" alt="">
                                     </a>
-                                @elseif($module->slug == 'crm')
+                                    <legend class="pointer" style="font-weight: bold; font-size: 16px; color: #808080">
+                                        {{ $module->name }}
+                                    </legend>
+
+                                </div>
+                                @elseif(module($module->slug))
+                                <div class="container">
                                     <a href="{{ route('customers.index') }}">
                                         <img width="100px" height="100px" src="{{ asset('assets/images/apps/'.$module->slug.'.png') }}" alt="">
                                     </a>
-                                @elseif($module->slug == 'e-learning')
+                                    <legend class="pointer" style="font-weight: bold; font-size: 16px; color: #808080">
+                                        {{ $module->name }}
+                                    </legend>
+
+                                </div>
+                                @elseif(module($module->slug) && $module->slug == 'e-learning')
+                                <div class="container none">
                                     <a href="{{ route('elearning.index') }}">
                                         <img width="100px" height="100px" src="{{ asset('assets/images/apps/'.$module->slug.'.png') }}" alt="">
                                     </a>
-                                @elseif($module->slug == 'sales')
+                                    <legend class="pointer" style="font-weight: bold; font-size: 16px; color: #808080">
+                                        {{ $module->name }}
+                                    </legend>
+
+                                </div>
+                                @elseif(module($module->slug) && $module->slug == 'sales')
+                                <div class="container">
                                     <a href="{{ route('sales.index') }}">
                                         <img width="100px" height="100px" src="{{ asset('assets/images/apps/'.$module->slug.'.png') }}" alt="">
                                     </a>
-                                @endif
+                                    <legend class="pointer" style="font-weight: bold; font-size: 16px; color: #808080">
+                                        {{ $module->name }}
+                                    </legend>
 
-                            </div>
-                            <legend class="pointer" style="font-weight: bold; font-size: 16px; color: #808080">
-                                {{ $module->name }}
-                            </legend>
-                        </div>
+                                </div>
+                                @endif
+                        </div> --}}
                     </div>
                 @endforeach
 

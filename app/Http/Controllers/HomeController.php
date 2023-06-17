@@ -61,7 +61,8 @@ class HomeController extends Controller
 public function mainPage(){
 
     $team = Team::where('id', Auth::user()->team->id)->where('uuid', Auth::user()->team->uuid)->first();
-    return view('main-page', compact('team'));
+    $modules = modules();
+    return view('main-page', compact('team', 'modules'));
 }
 
 public function index()
