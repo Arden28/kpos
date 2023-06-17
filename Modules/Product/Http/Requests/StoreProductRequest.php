@@ -3,7 +3,9 @@
 namespace Modules\Product\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
+use Illuminate\Validation\Rule;
 
 class StoreProductRequest extends FormRequest
 {
@@ -14,10 +16,15 @@ class StoreProductRequest extends FormRequest
      */
     public function rules()
     {
+
+        $productIdRule = Rule::unique('products')->where(function ($query) {
+            return $query->where('company_id', Auth::user()->currentCompany->id);
+        });
+
         return [
             'company_id' => ['required', 'integer'],
             'product_name' => ['required', 'string', 'max:255'],
-            'product_code' => ['required', 'string', 'max:255', 'unique:products,product_code'],
+            'product_code' => ['required', 'string', 'max:255', $productIdRule],
             'product_barcode_symbology' => ['required', 'string', 'max:255'],
 
             'supplier_id' => ['integer'],
