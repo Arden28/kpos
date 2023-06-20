@@ -30,10 +30,10 @@ return [
         'region' => env('AWS_DEFAULT_REGION', 'us-east-1'),
     ],
 
-    // 'google' => [
-    //     'client_id' => '126592333626-qnfcqsqan74b9kad8hst3skqkf02g7im.apps.googleusercontent.com',
-    //     'client_secret' => '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',
-    //     'redirect' => 'http://app.koverae.test/callback/google',
-    //   ],
+    'google' => [
+        'client_id' => env('GOOGLE_CLIENT_ID'),
+        'client_secret' => env('GOOGLE_CLIENT_SECRET'),
+        'redirect' => env('GOOGLE_DIRECTORY'),
+      ],
 
 ];
