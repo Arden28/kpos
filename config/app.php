@@ -171,7 +171,7 @@ return [
         Spatie\Permission\PermissionServiceProvider::class,
         Milon\Barcode\BarcodeServiceProvider::class,
         Barryvdh\Snappy\ServiceProvider::class,
-        Laravel\Socialite\SocialiteServiceProvider::class,
+        // Laravel\Socialite\SocialiteServiceProvider::class,
         /*
          * Application Service Providers...
          */
@@ -251,7 +251,7 @@ return [
         'PDF' => Barryvdh\Snappy\Facades\SnappyPdf::class,
         'SnappyImage' => Barryvdh\Snappy\Facades\SnappyImage::class,
         'Debugbar' => Barryvdh\Debugbar\Facades\Debugbar::class,
-        'Socialite' => Laravel\Socialite\Facades\Socialite::class,
+        // 'Socialite' => Laravel\Socialite\Facades\Socialite::class,
 
 
     ],
