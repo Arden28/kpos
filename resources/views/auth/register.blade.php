@@ -13,7 +13,28 @@
         {{ __('Commençons maintenant à développer votre entreprise') }}
       </h2>
 
-      <x-auth-session-status class="mb-4" :status="session('status')" />
+      <div class="card-body">
+        <div class="row">
+            <div class="col-12">
+                <a href="#" class="btn w-100">
+                    <!-- Download SVG icon from https://icons8.com/icon/set/google/color -->
+                    <img src="{{ asset('assets/images/icons/google.svg') }}" width="24px" height="24px" alt="">
+                    {{ __('S\'inscrire avec Google') }}
+                </a>
+            </div>
+            <div class="col-12" style="margin-top: 10px">
+                <a href="#" class="btn w-100">
+                    <!-- Download SVG icon from http://https://icons8.com/icon/set/facebook/color -->
+                    <img src="{{ asset('assets/images/icons/facebook.svg') }}" width="24px" height="24px" alt="">
+                    S'inscrire avec Facebook
+                </a>
+            </div>
+        </div>
+      </div>
+
+      <div class="hr-text">{{__('ou')}}</div>
+
+      {{-- <x-auth-session-status class="mb-4" :status="session('status')" />
 
       <form id="myForm" method="POST" action="{{ route('register') }}">
         @csrf
@@ -108,7 +129,7 @@
             <div class="input-group input-group-flat">
               <input type="password" class="form-control" name="password" placeholder="{{ __('********') }}">
               <span class="input-group-text">
-                <a href="#" class="link-secondary" title="Show password" data-bs-toggle="tooltip"><!-- Download SVG icon from http://tabler-icons.io/i/eye -->
+                <a href="#" class="link-secondary" title="Show password" data-bs-toggle="tooltip"><!-- Download SVG icon from http://https://icons8.com/icon/eye -->
                   <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><circle cx="12" cy="12" r="2" /><path d="M22 12c-2.667 4.667 -6 7 -10 7s-7.333 -2.333 -10 -7c2.667 -4.667 6 -7 10 -7s7.333 2.333 10 7" /></svg>
                 </a>
               </span>
@@ -124,7 +145,7 @@
             <input type="password"  class="form-control"
                 name="password_confirmation" placeholder="{{ __('********') }}">
             <span class="input-group-text">
-              <a href="#" class="link-secondary" title="Show password" data-bs-toggle="tooltip"><!-- Download SVG icon from http://tabler-icons.io/i/eye -->
+              <a href="#" class="link-secondary" title="Show password" data-bs-toggle="tooltip"><!-- Download SVG icon from http://https://icons8.com/icon/eye -->
                 <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><circle cx="12" cy="12" r="2" /><path d="M22 12c-2.667 4.667 -6 7 -10 7s-7.333 -2.333 -10 -7c2.667 -4.667 6 -7 10 -7s7.333 2.333 10 7" /></svg>
               </a>
             </span>
@@ -136,13 +157,18 @@
         <div class="form-footer">
           <button id="submitButton" type="submit" class="btn btn-primary w-100">{{ __('Commencer') }}</button>
         </div>
-      </form>
+      </form> --}}
 
+      <livewire:auth.register />
+
+      <div class="text-center text-muted mt-3">
+        {{ __('Vous êtes déjà un Kover ? ') }} <a href="{{ route('login') }}" tabindex="-1">{{ __('Retourner à la page de connexion') }}</a>
+      </div>
     </div>
   </div>
   <div class="col-12 col-lg-6 col-xl-6 d-none d-lg-block">
     <!-- Photo -->
-    <div class="bg-cover h-100 min-vh-100" style="background-image: url({{ asset('assets/static/photos/finances-us-dollars-and-bitcoins-currency-money-2.jpg')}})"></div>
+    <div class="bg-cover h-100 min-vh-100" style="background-image: url({{ asset('assets/static/photos/auth-register-3.png')}})"></div>
   </div>
 </div>
 @endsection

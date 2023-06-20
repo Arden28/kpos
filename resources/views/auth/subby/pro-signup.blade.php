@@ -7,7 +7,7 @@
 
   <div class="col-12 col-lg-6 col-xl-6 d-none d-lg-block">
     <!-- Photo -->
-    <div class="bg-cover h-100 min-vh-100" style="background-image: url({{ asset('static/photos/finances-us-dollars-and-bitcoins-currency-money-2.jpg')}})"></div>
+    <div class="bg-cover h-100 min-vh-100" style="background-image: url({{ asset('assets/static/photos/auth-register-3.png')}})"></div>
   </div>
 
   <div class="col-12 col-lg-6 col-xl-6 border-top-wide border-primary d-flex flex-column justify-content-center">
