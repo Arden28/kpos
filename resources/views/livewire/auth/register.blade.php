@@ -155,7 +155,9 @@
 
             {{-- <div class="hr-text">{{ __('Informations de sécurité') }}</div> --}}
 
-
+            <p class="text">
+                {{ __('Votre compte a bien été créé avec succès ! 🚀👍') }}
+            </p>
             <div class="form-footer">
               <button type="submit" wire:click="submitForm" wire:loading.attr="disabled" class="btn btn-primary w-100">{{ __('Commencer maintenant') }}</button>
             </div>

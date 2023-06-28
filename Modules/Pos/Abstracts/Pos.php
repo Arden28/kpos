@@ -42,12 +42,12 @@ class Pos extends Model
         return $this->hasMany(PhysicalPosSession::class, 'pos_id', 'id');
     }
 
-    public function currentPosSession()
+    public function currentPosSession($pos)
     {
         return $this->physical_pos_sessions()
+                    ->where('id', $pos)
                     ->where('is_active', true)
-                    ->latest('created_at')
-                    ->first();
+                    ->latest('created_at');
     }
 
     // public function sales()
