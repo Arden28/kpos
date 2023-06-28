@@ -15,5 +15,10 @@ Route::middleware(['module:inventory', 'auth'])->group(function () {
 
     Route::get('suppliers', 'InventoryController@supplier')->name('inventory.suppliers');
 
+    // Statistics Inventory
+
+    Route::get('/order-tracking/chart-data', 'InventoryController@orderTrackingChartData')
+        ->name('order-tracking.chart');
+
 });
 

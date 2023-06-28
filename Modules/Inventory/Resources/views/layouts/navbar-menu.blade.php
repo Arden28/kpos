@@ -17,10 +17,10 @@
                 {{-- <li class="nav-item"> --}}
               <a class="btn {{ request()->routeIs('inventory*') ? 'active' : '' }}" style="margin-right: 5px;" href="{{ route('inventory.index') }}" >
                 <span class="nav-link-icon d-md-none d-lg-inline-block"><!-- Download SVG icon from http://tabler-icons.io/i/home -->
-                  <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><polyline points="5 12 3 12 12 3 21 12 19 12" /><path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" /><path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" /></svg>
+                    <i class="bi bi-speedometer" style="width: 24px; height: 24px;"></i>
                 </span>
                 <span class="nav-link-title">
-                    {{ __('Tableau de bord') }}
+                    {{ __('Aperçu') }}
                 </span>
               </a>
             </li>
@@ -112,6 +112,16 @@
                             {{ __("Ajustements de stock") }}
                         </a>
                     @endcan
+
+                    @can('access_adjustments')
+                        <a class="dropdown-item  {{ request()->routeIs('barcode.print') ? 'active' : '' }}" href="{{ route('barcode.print') }}">
+                            <i class="bi bi-upc-scan" style="width: 24px; height: 24px;"></i>
+                          </span>
+                          <span class="nav-link-title">
+                            {{ __('Code Barre') }}
+                          </span>
+                        </a>
+                    @endcan
                   </div>
                 </div>
               </div>
@@ -119,7 +129,7 @@
             @endcan
 
 
-            <li class="nav-item">
+            {{-- <li class="nav-item">
                 <a class="btn {{ request()->routeIs('barcode.print') ? 'active' : '' }}" style="margin-right: 5px;" href="{{ route('barcode.print') }}">
                     <i class="bi bi-upc-scan" style="width: 24px; height: 24px;"></i>
                   </span>
@@ -127,7 +137,7 @@
                     {{ __('Code Barre') }}
                   </span>
                 </a>
-            </li>
+            </li> --}}
 
 
             <li class="nav-item">

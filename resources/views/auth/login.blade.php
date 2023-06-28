@@ -4,7 +4,7 @@
 
 
 @section('content')
-    <div class="page page-center">
+    <div class="page">
       <div class="container container-tight py-4">
         <div class="text-center mb-4">
           <a href="." class="navbar-brand navbar-brand-autodark"><img src="{{ asset('assets/images/logo/koverae-1.png') }}" height="170" alt="Koverae Logo"></a>
@@ -13,17 +13,46 @@
           <div class="card-body">
             <h2 class="h2 text-center mb-4">{{ __('Konnectez-vous à votre Kompte') }}</h2>
 
+            <div class="card-body">
+              <div class="row">
+                  <div class="col-12">
+                      <a href="#" class="btn w-100">
+                          <!-- Download SVG icon from https://icons8.com/icon/set/google/color -->
+                          <img src="{{ asset('assets/images/icons/google.svg') }}" width="24px" height="24px" alt="">
+                          {{ __('Se konnecter avec Google') }}
+                      </a>
+                  </div>
+                  <div class="col-12" style="margin-top: 10px">
+                      <a href="#" class="btn w-100">
+                          <!-- Download SVG icon from http://https://icons8.com/icon/set/facebook/color -->
+                          <img src="{{ asset('assets/images/icons/facebook.svg') }}" width="24px" height="24px" alt="">
+                          {{ __('Se konnecter avec Facebook') }}
+                      </a>
+                  </div>
+              </div>
+            </div>
+
+            <div class="hr-text">{{__('ou')}}</div>
+
             <x-auth-session-status class="mb-4" :status="session('status')" />
 
             <form method="POST" action="{{ route('login') }}">
                 @csrf
 
               <div class="mb-3">
-                <label class="form-label">{{ __('Adresse Email') }}</label>
-                <input  type="email" name="email" value="{{ old('email') }}" required autofocus autocomplete="username" class="form-control" placeholder="vous@koverae.com">
+                <label class="form-label">{{ __('Adresse E-mail') }}</label>
+                <input  type="email" name="email" value="{{ old('email') }}" required autofocus autocomplete="email" class="form-control" placeholder="vous@koverae.com">
                 <x-input-error :messages="$errors->get('email')" class="mt-2" />
 
               </div>
+
+              {{-- <div class="mb-3">
+                <label class="form-label">{{ __('Numéro de téléphone') }}</label>
+                <input  type="tel" name="phone" value="{{ old('phone') }}" required autofocus autocomplete="phone" class="form-control" placeholder="vous@koverae.com">
+                <x-input-error :messages="$errors->get('phone')" class="mt-2" />
+
+              </div> --}}
+
               <div class="mb-2">
                 <label class="form-label">
                   {{ __('Mot de passe') }}
@@ -38,9 +67,17 @@
                   type="password"
                   name="password"
                   required autocomplete="current-password"
-                   class="form-control"  placeholder="{{ __('Votre mot de passe') }}">
+                  class="form-control"
+                  placeholder="{{ __('Votre mot de passe') }}"
+                  id="password-input"
+                   />
                   <span class="input-group-text">
-                    <a href="#" class="link-secondary" title="Show password" data-bs-toggle="tooltip"><!-- Download SVG icon from http://tabler-icons.io/i/eye -->
+                    <a
+                    class="link-secondary"
+                    title="Show password"
+                    data-bs-toggle="tooltip"
+                    onclick="togglePasswordVisibility()"
+                    ><!-- Download SVG icon from http://tabler-icons.io/i/eye -->
                       <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><circle cx="12" cy="12" r="2" /><path d="M22 12c-2.667 4.667 -6 7 -10 7s-7.333 -2.333 -10 -7c2.667 -4.667 6 -7 10 -7s7.333 2.333 10 7" /></svg>
                     </a>
                   </span>
@@ -79,6 +116,34 @@
         </div>
       </div>
     </div>
+@endsection
+
+@section('scripts')
+
+<script>
+function togglePasswordVisibility() {
+  var passwordInput = document.getElementById("password-input");
+  var eyeIcon = document.querySelector(".link-secondary");
+
+  if (passwordInput.type === "password") {
+    passwordInput.type = "text";
+    eyeIcon.innerHTML = '<!-- Download SVG icon from http://tabler-icons.io/i/eye-off -->\n' +
+                        '<svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">\n' +
+                        '  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>\n' +
+                        '  <path d="M3 3l18 18m-2.582 -3.418c-.38 .34 -.88 .542 -1.418 .542h-12c-1.104 0 -2 -.896 -2 -2v-12c0 -.538 .202 -1.038 .542 -1.418" />\n' +
+                        '  <path d="M14.828 9.172c.683 .683 1.683 .926 2.828 .662l1.35 -1.35c.45 -.45 .737 -1.067 .82 -1.735c.044 -.282 -.028 -.568 -.182 -.822c-.342 -.512 -.99 -.804 -1.666 -.804c-.89 0 -1.668 .53 -2.026 1.35c-.168 .312 -.287 .646 -.344 .992c-.008 .054 -.008 .108 0 .162c.157 1.065 .906 1.914 1.97 2.072zm-6.656 6.656c-.683 -.683 -1.683 -.926 -2.828 -.662l-1.35 1.35c-.45 .45 -.737 1.067 -.82 1.735c-.044 .282 .028 .568 .182 .822c.342 .512 .99 .804 1.666 .804c.89 0 1.668 -.53 2.026 -1.35c.168 -.312 .287 -.646 .344 -.992c.008 -.054 .008 -.108 0 -.162c-.157 -1.065 -.906 -1.914 -1.97 -2.072z" />\n' +
+                        '</svg>';
+  } else {
+    passwordInput.type = "password";
+    eyeIcon.innerHTML = '<!-- Download SVG icon from http://tabler-icons.io/i/eye -->\n' +
+                        '<svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">\n' +
+                        '  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>\n' +
+                        '  <circle cx="12" cy="12" r="2" />\n' +
+                        '  <path d="M22 12c-2.667 4.667 -6 7 -10 7s-7.333 -2.333 -10 -7c2.667 -4.667 6 -7 10 -7s7.333 2.333 10 7" />\n' +
+                        '</svg>';
+  }
+}
+</script>
 @endsection
 
 {{-- <x-guest-layout>

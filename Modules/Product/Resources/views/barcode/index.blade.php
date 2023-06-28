@@ -1,6 +1,6 @@
 @extends('layouts.master')
 
-@section('title', __('Imrimez des Codes Barres'))
+@section('title', __('Imprimez des Codes Barres'))
 
 @push('page_css')
     @livewireStyles

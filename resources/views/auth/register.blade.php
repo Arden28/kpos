@@ -26,7 +26,7 @@
                 <a href="#" class="btn w-100">
                     <!-- Download SVG icon from http://https://icons8.com/icon/set/facebook/color -->
                     <img src="{{ asset('assets/images/icons/facebook.svg') }}" width="24px" height="24px" alt="">
-                    S'inscrire avec Facebook
+                    {{ __("S'inscrire avec Facebook") }}
                 </a>
             </div>
         </div>
@@ -173,7 +173,7 @@
 </div>
 @endsection
 
-@push('page_sacripts')
+@push('page_scripts')
     <script>
         const form = document.getElementById('myForm');
         const submitButton = document.getElementById('submitButton');
