@@ -27,7 +27,7 @@ class Join extends Component
         if(!session()->has('pos_session')){
 
             // Update user current pos id
-            $user = User::find(Auth::user()->id)->first();
+            $user = User::find(Auth::user()->id)->find();
             $user->current_pos_id = $this->session->pos_id;
             $user->save();
 
