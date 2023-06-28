@@ -16,7 +16,7 @@
           {{ __('Magasin') }}
         </div>
         <h2 class="page-title" style="color: white">
-          {{ $pos->name }}
+          {{ $physical->name }}
         </h2>
 
       </div>
