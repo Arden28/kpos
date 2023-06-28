@@ -308,7 +308,7 @@
           <div class="container-xl ">
             <div class="row  ">
                 @foreach ($modules as $module)
-                    <div class="col-md-4 col-xs-4 col-lg-4">
+                    <div class="col-sm-4 col-lg-4">
                         <div class="card-body">
                             @if(module($module->slug))
                                 <div class="container">
