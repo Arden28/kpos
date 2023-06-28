@@ -67,7 +67,7 @@
                             <div class="container col-md-12 text-center" style="margin-top: 12px">
 
                                 {{-- @if(session()->has('pos_session') && session('pos_id') == $p->id) --}}
-                                @if($p->isActive() && $p->currentPosSession(Auth::user()->current_pos_id))
+                                @if($p->isActive() && $p->currentPosSession())
 
                                     @if($p->id == Auth::user()->current_pos_id)
                                         <livewire:pos::session.keep-on :session="$p->currentPosSession()" />
