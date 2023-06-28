@@ -83,7 +83,7 @@ class CreateSession extends Component
                         $physical->save();
 
                         // Update user current pos id
-                        $user = User::find(Auth::user()->id)->find();
+                        $user = User::find(Auth::user()->id)->first();
                         $user->current_pos_id = $physical->id;
                         $user->save();
 
