@@ -21,20 +21,74 @@
       :root {
       	--tblr-font-sans-serif: Inter, -apple-system, BlinkMacSystemFont, San Francisco, Segoe UI, Roboto, Helvetica Neue, sans-serif;
       }
+      @media (max-width: 500px) {
+            .custom-col {
+                flex: 0 0 50%; /* Afficher deux colonnes par ligne */
+                max-width: 50%;
+            }
+        }
+        .inspiring-div {
+            position: relative;
+            background-color: #f5f5f5; /*Couleur de fond */
+            padding: 20px;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('assets/images/background/background-5.jpg');
+            background-repeat: repeat-x; /* Répéter l'image horizontalement */
+            background-position: bottom; /*Positionner l'image en bas*/
+            background-size: auto; /*Ajuster la taille de l'image à 100% de la hauteur  */
+        }
+
+        .wave-shape {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('assets/images/background/backgroung.jpg');
+            background-repeat: repeat-x; /* Répéter l'image horizontalement */
+            background-position: bottom; /* Positionner l'image en bas */
+            background-size: auto 100%; /* Ajuster la taille de l'image à 100% de la hauteur */
+        }
+
+        .custom-image {
+            width: 80px;
+            height: 80px;
+            transition: transform 0.3s ease;
+        }
+
+        .custom-image:hover {
+            transform: translateY(-5px) perspective(100px) rotateX(5deg);
+        }
+
+        .installed {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        /* .row-app{
+            padding-left: 150px;
+            padding-right: 150px;
+        } */
     </style>
   </head>
   <body >
     <script src="./dist/js/demo-theme.min.js?1668287865"></script>
-    <div class="page">
+    <div class="page inspiring-div ">
+        {{-- <svg class="wave-shape" xmlns="http://www.w3.org/2000/svg" viewBox="10 0 1440 320">
+          <path fill="#ffffff" fill-opacity="1" d="M0,256L120,229.3C240,203,480,149,720,138.7C960,128,1200,160,1320,176L1440,192L1440,0L1320,0C1200,0,960,0,720,0C480,0,240,0,120,0L0,0Z"></path>
+        </svg> --}}
       <!-- Navbar -->
-      <header class="navbar navbar-expand-md navbar-dark navbar-overlap d-print-none">
+      <header class="navbar navbar-expand-md navbar navbar-overlap d-print-none">
         <div class="container-xl">
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar-menu" aria-controls="navbar-menu" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
           <h1 class="navbar-brand navbar-brand-autodark d-none-navbar-horizontal pe-0 pe-md-3">
             <a href="{{ route('main') }}">
-                <img src="{{ asset('assets/images/logo/logo-white-gd.png') }}" alt="Koverae POS" class="navbar-brand-image">
+                <img src="{{ asset('assets/images/logo/logo-black-gd.png') }}" alt="Koverae POS" class="navbar-brand-image">
               {{-- <img src="./dist/img/logo/logo.svg" width="320" height="120"  alt="POS" class="navbar-brand-image"> --}}
             </a>
           </h1>
@@ -304,148 +358,67 @@
         </div>
 
         <!-- Page body -->
+
         <div class="page-body">
-          <div class="container-xl ">
-            <div class="row  ">
+            <div class="container-xl">
+              <div class="row row-app justify-content-center d-flex"> <!-- Ajout de la classe "d-flex justify-content-center" -->
                 @foreach ($modules as $module)
-                    <div class="col-sm-4 col-lg-4">
-                        <div class="card-body">
-                            @if(module($module->slug))
-                                <div class="container">
-                                    @if($module->slug == 'finance')
-                                        <a href="{{ route('finance.index') }}">
-                                    @elseif ($module->slug == 'inventory')
-                                        <a href="{{ route('inventory.index') }}">
-
-                                    @elseif ($module->slug == 'hr')
-                                        <a href="{{ route('users.index') }}">
-
-                                    @elseif ($module->slug == 'sales')
-                                        <a href="{{ route('sales.index') }}">
-
-                                    @elseif ($module->slug == 'crm')
-                                        <a href="{{ route('crm.index') }}">
-
-                                    @elseif ($module->slug == 'pos')
-                                        <a href="{{ route('app.pos.dashboard') }}">
-
-                                    @endif
-                                    {{-- <a href="{{ route('finance.index') }}"> --}}
-                                        <img width="100px" height="100px" src="{{ asset('assets/images/apps/'.$module->slug.'.png') }}" alt="">
-                                    </a>
-                                    <legend style="font-weight: bold; font-size: 16px; color: #808080; cursor: pointer;">
-                                        {{ $module->name }}
-                                    </legend>
-
-                                </div>
-                            @endif
+                  @if (module($module->slug))
+                    <div class="col-xs-6 col-sm-6 col-md-4 col-lg-3 custom-col installed">
+                      <div class="card-body text-center">
+                        <div class="container">
+                          @if ($module->slug == 'finance')
+                            <a href="{{ route('finance.index') }}">
+                          @elseif ($module->slug == 'inventory')
+                            <a href="{{ route('inventory.index') }}">
+                          @elseif ($module->slug == 'hr')
+                            <a href="{{ route('users.index') }}">
+                          @elseif ($module->slug == 'sales')
+                            <a href="{{ route('sales.index') }}">
+                          @elseif ($module->slug == 'crm')
+                            <a href="{{ route('crm.index') }}">
+                          @elseif ($module->slug == 'pos')
+                            <a href="{{ route('app.pos.dashboard') }}">
+                          @endif
+                          <img class="custom-image" src="{{ asset('assets/images/apps/'.$module->slug.'.png') }}" alt="">
+                          </a>
+                          <legend style="font-weight: bold; font-size: 16px; color: #808080; cursor: pointer;">
+                            {{ $module->name }}
+                          </legend>
                         </div>
-                        {{-- <div class="card-body">
-                                @if(module($module->slug) && $module->slug == 'finance')
-                                <div class="container">
-                                    <a href="{{ route('finance.index') }}">
-                                        <img width="100px" height="100px" src="{{ asset('assets/images/apps/'.$module->slug.'.png') }}" alt="">
-                                    </a>
-                                    <legend style="font-weight: bold; font-size: 16px; color: #808080; cursor: pointer;">
-                                        {{ $module->name }}
-                                    </legend>
-
-                                </div>
-                                @elseif(module($module->slug) && $module->slug == 'inventory')
-                                <div class="container">
-                                    <a href="{{ route('inventory.index') }}">
-                                        <img width="100px" height="100px" src="{{ asset('assets/images/apps/'.$module->slug.'.png') }}" alt="">
-                                    </a>
-                                    <legend class="pointer" style="font-weight: bold; font-size: 16px; color: #808080">
-                                        {{ $module->name }}
-                                    </legend>
-
-                                </div>
-                                @elseif(module($module->slug) && $module->slug == 'pos')
-                                <div class="container">
-                                    <a href="{{ route('app.pos.dashboard') }}">
-                                        <img width="100px" height="100px" src="{{ asset('assets/images/apps/'.$module->slug.'.png') }}" alt="">
-                                    </a>
-                                    <legend class="pointer" style="font-weight: bold; font-size: 16px; color: #808080">
-                                        {{ $module->name }}
-                                    </legend>
-
-                                </div>
-                                @elseif(module($module->slug) && $module->slug == 'hr')
-                                <div class="container">
-                                    <a href="{{ route('users.index') }}">
-                                        <img width="100px" height="100px" src="{{ asset('assets/images/apps/'.$module->slug.'.png') }}" alt="">
-                                    </a>
-                                    <legend class="pointer" style="font-weight: bold; font-size: 16px; color: #808080">
-                                        {{ $module->name }}
-                                    </legend>
-
-                                </div>
-                                @elseif(module($module->slug))
-                                <div class="container">
-                                    <a href="{{ route('customers.index') }}">
-                                        <img width="100px" height="100px" src="{{ asset('assets/images/apps/'.$module->slug.'.png') }}" alt="">
-                                    </a>
-                                    <legend class="pointer" style="font-weight: bold; font-size: 16px; color: #808080">
-                                        {{ $module->name }}
-                                    </legend>
-
-                                </div>
-                                @elseif(module($module->slug) && $module->slug == 'e-learning')
-                                <div class="container none">
-                                    <a href="{{ route('elearning.index') }}">
-                                        <img width="100px" height="100px" src="{{ asset('assets/images/apps/'.$module->slug.'.png') }}" alt="">
-                                    </a>
-                                    <legend class="pointer" style="font-weight: bold; font-size: 16px; color: #808080">
-                                        {{ $module->name }}
-                                    </legend>
-
-                                </div>
-                                @elseif(module($module->slug) && $module->slug == 'sales')
-                                <div class="container">
-                                    <a href="{{ route('sales.index') }}">
-                                        <img width="100px" height="100px" src="{{ asset('assets/images/apps/'.$module->slug.'.png') }}" alt="">
-                                    </a>
-                                    <legend class="pointer" style="font-weight: bold; font-size: 16px; color: #808080">
-                                        {{ $module->name }}
-                                    </legend>
-
-                                </div>
-                                @endif
-                        </div> --}}
+                      </div>
                     </div>
+                  @endif
                 @endforeach
 
-                <div class="col-sm-4 col-lg-4">
-                    <div class="card-body" style="cursor: pointer;">
-                        <div class="container">
-                            <a href="{{ route('settings.index') }}">
-                                <img width="100px" height="100px" src="{{ asset('assets/images/apps/settings.jpeg') }}" alt="">
-                            </a>
-                        </div>
-                        <legend class="pointer" style="font-weight: bold; font-size: 14px; color: #808080">
-                            {{ __('Paramètres') }}
-                        </legend>
+                <div class="col-xs-6 col-sm-6 col-md-4 col-lg-3 custom-col">
+                  <div class="card-body text-center">
+                    <div class="container d-flex justify-content-center">
+                      <a href="{{ route('settings.index') }}">
+                        <img class="custom-image" src="{{ asset('assets/images/apps/settings.jpeg') }}" alt="">
+                      </a>
                     </div>
+                    <legend class="pointer" style="font-weight: bold; font-size: 14px; color: #808080">
+                      {{ __('Paramètres') }}
+                    </legend>
+                  </div>
                 </div>
 
-                <div class="col-sm-4 col-lg-4">
-                    <div class="card-body" style="cursor: pointer;">
-                        <div class="container">
-                            <a href="#">
-                                <img width="100px" height="100px" src="{{ asset('assets/images/apps/helpdesk.png') }}" alt="">
-                            </a>
-                        </div>
-                        <legend class="pointer" style="font-weight: bold; font-size: 14px; color: #808080">
-                            {{ __('Centre d\'aide') }}
-                        </legend>
+                <div class="col-xs-6 col-sm-6 col-md-4 col-lg-3 custom-col">
+                  <div class="card-body text-center">
+                    <div class="container d-flex justify-content-center">
+                      <a href="#">
+                        <img class="custom-image" src="{{ asset('assets/images/apps/helpdesk.png') }}" alt="">
+                      </a>
                     </div>
+                    <legend class="pointer" style="font-weight: bold; font-size: 14px; color: #808080">
+                      {{ __('Centre d\'aide') }}
+                    </legend>
+                  </div>
                 </div>
-
-
+              </div>
             </div>
           </div>
-        </div>
 
       </div>
     </div>

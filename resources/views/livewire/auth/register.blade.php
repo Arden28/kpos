@@ -33,7 +33,14 @@
             </div>
 
             <div class="form-footer">
-              <button type="button" wire:click="firstStepSubmit" class="btn btn-primary w-100">{{ __('Suivant') }}</button>
+                <button type="button" wire:click="firstStepSubmit" class="btn btn-primary w-100" wire:loading.attr="disabled">
+                    <span wire:loading.remove wire:target="firstStepSubmit">{{ __('Suivant') }}</span>
+                    <span wire:loading wire:target="firstStepSubmit">
+                        <div class="spinner-border spinner-border-sm" role="status">
+                            <span class="sr-only"></span>
+                        </div>
+                    </span>
+                </button>
             </div>
 
         </div>
@@ -102,7 +109,14 @@
             <div class="form-footer">
                 <button type="button" wire:click="back(1)" class="btn btn-warning w-100">{{ __('Retour') }}</button>
                 <br />
-              <button type="button" wire:click="secondStepSubmit" class="btn btn-primary w-100">{{ __('Suivant') }}</button>
+                <button style="margin-top: 7px" type="button" wire:click="secondStepSubmit" class="btn btn-primary w-100" wire:loading.attr="disabled">
+                    <span wire:loading.remove wire:target="secondStepSubmit">{{ __('Suivant') }}</span>
+                    <span wire:loading wire:target="secondStepSubmit">
+                        <div class="spinner-border spinner-border-sm" role="status">
+                            <span class="sr-only"></span>
+                        </div>
+                    </span>
+                </button>
             </div>
 
         </div>
@@ -145,8 +159,15 @@
 
             <div class="form-footer">
                 <button type="button" wire:click="back(2)" class="btn btn-warning w-100">{{ __('Retour') }}</button>
-                <br>
-              <button type="type" wire:click="thirdStepSubmit" class="btn btn-primary w-100">{{ __('Confirmer') }}</button>
+                <br >
+                <button style="margin-top: 7px" type="button" wire:click="thirdStepSubmit" class="btn btn-primary w-100" wire:loading.attr="disabled">
+                    <span wire:loading.remove wire:target="thirdStepSubmit">{{ __('Confirmer') }}</span>
+                    <span wire:loading wire:target="thirdStepSubmit">
+                        <div class="spinner-border spinner-border-sm" role="status">
+                            <span class="sr-only"></span>
+                        </div>
+                    </span>
+                </button>
             </div>
 
         </div>
@@ -159,7 +180,11 @@
                 {{ __('Votre compte a bien été créé avec succès ! 🚀👍') }}
             </p>
             <div class="form-footer">
-              <button type="submit" wire:click="submitForm" wire:loading.attr="disabled" class="btn btn-primary w-100">{{ __('Commencer maintenant') }}</button>
+              <button type="submit" wire:click="submitForm({{ 1 }})" wire:loading.attr="disabled" class="btn btn-primary w-100">{{ __('Commencer votre période d\'essaie de 30j') }}</button>
+                <br>
+                <div class="hr-text">{{ __('ou') }}</div>
+
+              <button type="submit" wire:click="submitForm({{ 0 }})" wire:loading.attr="disabled" class="btn btn-dark w-100">{{ __('Commencer avec la version gratuite') }}</button>
             </div>
 
         </div>

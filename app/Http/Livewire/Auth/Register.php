@@ -71,7 +71,7 @@ class Register extends Component
     /**
      * Then we will submit the form
      */
-    public function submitForm()
+    public function submitForm($decision)
     {
 
         $user = User::create([
@@ -110,8 +110,16 @@ class Register extends Component
         $this->clearForm();
 
         $this->currentStep = 1;
+        if($decision == 1){
 
-        redirect()->route('login')->with('success', 'Votre compte a été créé avec succès');
+            Auth::login($user);
+            redirect()->route('register.pro')->with('success', 'Choisissez le forfait qui vous convient');
+
+        }elseif($decision == 0){
+
+            redirect()->route('login')->with('success', 'Votre compte a été créé avec succès');
+
+        }
     }
 
     /**
