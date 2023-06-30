@@ -46,11 +46,6 @@ class PosOrderController extends Controller
         ]);
     }
 
-    public function printPos($id){
-        $sale = Sale::findOrFail($id);
-        $seller = User::findOrFail($sale->seller_id);
-
-    }
 
     /**
      * Show the form for editing the specified resource.
