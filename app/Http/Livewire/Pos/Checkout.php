@@ -52,6 +52,11 @@ class Checkout extends Component
     public function proceed() {
         if ($this->customer_id != null) {
             $this->dispatchBrowserEvent('showCheckoutModal');
+
+            // Émettre l'événement Livewire pour imprimer le PDF
+            $id = $this->customer_id; // Remplacez "ID_DE_VENTE" par l'ID de vente réel
+            $url = route('sales.pos.pdf', ['id' => $id]);
+            $this->emit('printPDF', $url);
         } else {
             session()->flash('message', 'Veuillez sélectionner un client !');
         }

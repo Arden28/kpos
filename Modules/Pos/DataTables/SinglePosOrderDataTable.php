@@ -53,7 +53,7 @@ class SinglePosOrderDataTable extends DataTable
     public function query(PosSale $model) {
 
         $current_company_id = Auth::user()->currentCompany->id;
-        return $model->where('pos_id', $this->pos)->where('company_id', Auth::user()->currentCompany->id)->newQuery()->with('sale', 'cashier');// A modifier en fonction de la company en cours d'utilisation
+        return $model->where('pos_id', $this->pos)->where('company_id', Auth::user()->currentCompany->id)->orderBy('id', 'DESC')->newQuery()->with('sale', 'cashier');// A modifier en fonction de la company en cours d'utilisation
 
     }
 

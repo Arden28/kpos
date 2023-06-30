@@ -150,3 +150,21 @@
 
 </div>
 
+<script>
+    document.addEventListener('livewire:load', function () {
+        Livewire.on('printPDF', function (url) {
+            let iframe = document.createElement('iframe');
+            iframe.style.display = 'none';
+            iframe.src = url;
+            document.body.appendChild(iframe);
+
+            iframe.onload = function () {
+                iframe.contentWindow.print();
+                setTimeout(function () {
+                    document.body.removeChild(iframe);
+                }, 100);
+            };
+        });
+    });
+</script>
+

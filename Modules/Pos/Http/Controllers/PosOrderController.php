@@ -2,6 +2,7 @@
 
 namespace Modules\Pos\Http\Controllers;
 
+use App\Models\User;
 use App\Traits\CompanySession;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
@@ -9,6 +10,8 @@ use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Gate;
 use Modules\Pos\DataTables\PosOrderDataTable;
 use Modules\Pos\DataTables\SinglePosOrderDataTable;
+use Modules\Pos\Entities\Pos;
+use Modules\Sale\Entities\Sale;
 use Modules\Sale\Interfaces\SaleInterface;
 
 class PosOrderController extends Controller
@@ -41,6 +44,12 @@ class PosOrderController extends Controller
         return $dataTable->render('pos::pos.orders.index', [
             'pos' => $pos,
         ]);
+    }
+
+    public function printPos($id){
+        $sale = Sale::findOrFail($id);
+        $seller = User::findOrFail($sale->seller_id);
+
     }
 
     /**

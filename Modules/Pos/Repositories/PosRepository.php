@@ -2,11 +2,13 @@
 
 namespace Modules\Pos\Repositories;
 
+use App\Events\Pos\PrintPdfEvent;
 use App\Models\Company;
 use App\Traits\CompanySession;
 use Gloudemans\Shoppingcart\Facades\Cart;
 use App\Models\User;
 use Exception;
+use Illuminate\Contracts\Routing\UrlGenerator;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
@@ -29,6 +31,14 @@ use Ramsey\Uuid\Uuid;
 class PosRepository implements PosInterface
 {
     use CompanySession, PosSession;
+
+    protected $urlGenerator;
+
+    public function __construct(UrlGenerator $urlGenerator)
+    {
+        $this->urlGenerator = $urlGenerator;
+    }
+
 
     public function getAllPos($company){
 
@@ -182,6 +192,11 @@ class PosRepository implements PosInterface
                 $book->save();
 
 
+                // Générer l'URL du PDF
+                $pdfUrl = $this->urlGenerator->route('sales.pos.pdf', ['id' => $sale->id]);
+
+                // Émettre l'événement pour imprimer le PDF
+                // event(new PrintPdfEvent($pdfUrl));
             });
 
     }
