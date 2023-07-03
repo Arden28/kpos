@@ -44,7 +44,7 @@
                 <input type="checkbox" id="is_multiple_true" wire:model="is_multiple" value="1" {{ old('is_multiple') ? 'checked' : '' }}>
                 <input type="checkbox" id="is_multiple_false" wire:model="is_multiple" value="0" {{ old('is_multiple') ? 'checked' : '' }}>
             </div> --}}
-            <button wire:click="$set('is_multiple', true)">{{ __("Ajouter comme multiple d'autre unité") }}</button>
+            <button wire:target="isMultiple" wire:click="$set('is_multiple', true)">{{ __("Ajouter comme multiple d'autre unité") }}</button>
             <button wire:click="$set('is_multiple', false)">Cacher</button>
                 @if($is_multiple)
                 <div class="form-group">

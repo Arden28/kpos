@@ -17,6 +17,13 @@ class UnitsDataTable extends DataTable
     public function dataTable($query) {
         return datatables()
             ->eloquent($query)
+            ->addColumn('is_decimal', function ($data) {
+                if($data->product_price == 0) {
+                    return __('Non');
+                }else{
+                    return __('Oui');
+                }
+            })
             ->addColumn('action', function ($data) {
                 return view('product::units.partials.actions', compact('data'));
             });
