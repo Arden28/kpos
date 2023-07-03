@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Storage;
 use Modules\People\Interfaces\SupplierInterface;
 use Modules\Product\Interfaces\CategoryInterface;
 use Modules\Product\Entities\Product;
+use Modules\Product\Entities\Unit;
 use Modules\Product\Http\Requests\StoreProductRequest;
 use Modules\Product\Http\Requests\UpdateProductRequest;
 use Modules\Upload\Entities\Upload;
@@ -44,7 +45,9 @@ class ProductController extends Controller
         $company = Auth::user()->currentCompany->id;
         $categories = $this->categoryRepository->getCategories($company);
         $suppliers = $this->supplierRepository->getSuppliers($company);
-        return view('product::products.create', compact('categories', 'suppliers'));
+        $units = Unit::Company($company)->get();
+
+        return view('product::products.create', compact('categories', 'suppliers', 'units'));
     }
 
 
@@ -75,7 +78,8 @@ class ProductController extends Controller
 
         $company = Auth::user()->currentCompany->id;
         $categories = $this->categoryRepository->getCategories($company);
-        return view('product::products.edit', compact('product', 'categories'));
+        $units = Unit::Company($company)->get();
+        return view('product::products.edit', compact('product', 'categories', 'units'));
     }
 
 

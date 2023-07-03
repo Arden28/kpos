@@ -157,7 +157,13 @@
                                                  data-bs-content="<p>{{ __('Ce texte sera placé après la quantité de produit. Ex : 20 bouteilles') }}</p>
                                                 ">?</span>
                                                 <span class="text-danger">*</span></label>
-                                            <input type="text" class="form-control" name="product_unit" value="{{ old('product_unit') }}" required>
+                                                <select name="unit_id" id="" class="form-control">
+                                                    <option value="">{{__('Sélectionnez une unité')}}</option>
+                                                    @foreach($units as $unit)
+                                                        <option value="{{ $unit->id }}">{{ $unit->unit_name }} ( {{ $unit->unit_short_name }} )</option>
+                                                    @endforeach
+                                                </select>
+                                            {{-- <input type="text" class="form-control" name="product_unit" value="{{ old('product_unit') }}" required> --}}
                                         </div>
                                     </div>
                                 </div>

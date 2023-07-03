@@ -16,13 +16,15 @@ class CreateUnitsTable extends Migration
         Schema::create('units', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('company_id');
-            $table->string('unit_code');
             $table->string('unit_name');
-            $table->boolean('is_group')->default(0);
-            $table->string('grouped_unit_id')->nullable();
+            $table->string('unit_short_name');
+            $table->boolean('is_decimal')->default(0); //Allow the product been store and sale by decimal
+            $table->boolean('is_multiple')->default(0); //Define this as the multiple of other units. Ex: 1 dozen = 12 units
+            $table->unsignedBigInteger('parent_unit_id')->nullable();
             $table->string('value')->nullable();
 
             $table->foreign('company_id')->references('id')->on('companies')->cascadeOnDelete();
+            $table->foreign('parent_unit_id')->references('id')->on('units')->nullOnDelete();
             $table->timestamps();
         });
     }

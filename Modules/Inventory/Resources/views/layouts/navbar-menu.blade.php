@@ -46,10 +46,10 @@
                       {{ __('Catégories de Produits') }}
                     </a>
 
-                    {{-- <a class="dropdown-item {{ request()->routeIs('*products.create') ? 'active' : '' }}" href="{{ route('products.create') }}">
+                    <a class="dropdown-item {{ request()->routeIs('product-units.*') ? 'active' : '' }}" href="{{ route('product-units.index') }}">
 
                         {{ __('Unités') }}
-                    </a> --}}
+                    </a>
 
                   </div>
 

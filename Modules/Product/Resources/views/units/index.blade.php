@@ -1,6 +1,6 @@
 @extends('layouts.master')
 
-@section('title', 'Catégories de Produits')
+@section('title', 'Unités de Produits')
 
 @section('third_party_stylesheets')
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.25/css/dataTables.bootstrap4.min.css">
@@ -12,7 +12,7 @@
     <div class="row g-2 align-items-center">
     <div class="col">
         <h2 class="page-title">
-            {{ __('Catégories de Produits') }}
+            {{ __('Unités de Produits') }}
         </h2>
     </div>
     </div>
@@ -31,7 +31,7 @@
                         <div class="card-body">
                             <!-- Button trigger modal -->
                             <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#categoryCreateModal">
-                                {{ __('Ajouter une Catégorie') }} <i class="bi bi-plus"></i>
+                                {{ __('Ajouter une Unité') }} <i class="bi bi-plus"></i>
                             </button>
 
                             <hr>
@@ -51,27 +51,12 @@
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="categoryCreateModalLabel">{{ __('Add Category') }}</h5>
+                        <h5 class="modal-title" id="categoryCreateModalLabel">{{ __('Ajouter une Unité') }}</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
-                    <form action="{{ route('product-categories.store') }}" method="POST">
-                        @csrf
-                        <div class="modal-body">
-                            <div class="form-group">
-                                <label for="category_code">{{ __('Code de la Catégorie') }} <span class="text-danger">*</span></label>
-                                <input class="form-control" type="text" name="category_code" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="category_name">{{ __('Nom de la Catégorie') }} <span class="text-danger">*</span></label>
-                                <input class="form-control" type="text" name="category_name" required>
-                            </div>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="submit" class="btn btn-primary">{{ __('Ajouter') }} <i class="bi bi-check"></i></button>
-                        </div>
-                    </form>
+                    <livewire:product::unit.create-unit />
                 </div>
             </div>
         </div>

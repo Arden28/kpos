@@ -32,7 +32,8 @@ class StoreProductRequest extends FormRequest
             'is_wholesale' => ['boolean'],
             'wholesale_multiplier' => ['integer', 'gt:0'],
 
-            'product_unit' => ['required', 'string', 'max:255'],
+            // 'product_unit' => ['required', 'string', 'max:255'],
+            'unit_id' => ['required', 'integer'],
             'product_quantity' => ['required', 'integer', 'min:1'],
             'product_cost' => ['required', 'numeric', 'max:2147483647'],
             'product_price' => ['required', 'numeric', 'max:2147483647'],

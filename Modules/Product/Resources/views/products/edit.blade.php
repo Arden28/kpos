@@ -133,7 +133,17 @@
                                                  data-bs-content="<p>{{ __('This text will be placed after the product quantity. Ex: 20 bottles') }}</p>
                                                 ">?</span>
                                                  <span class="text-danger">*</span></label>
-                                            <input type="text" class="form-control" name="product_unit" value="{{ old('product_unit') ?? $product->product_unit }}" required>
+                                                 <select name="unit_id" id="" class="form-control">
+                                                     <option value="">{{__('Sélectionnez une unité')}}</option>
+                                                     @foreach($units as $unit)
+                                                        @if($product->unit){
+                                                            <option {{ $unit->id == $product->unit->id ? 'selected' : '' }} value="{{ $unit->id }}">{{ $unit->unit_name }} ( {{ $unit->unit_short_name }} )</option>
+                                                        @else
+                                                            <option  value="{{ $unit->id }}">{{ $unit->unit_name }} ( {{ $unit->unit_short_name }} )</option>
+                                                        @endif
+                                                     @endforeach
+                                                 </select>
+                                            {{-- <input type="text" class="form-control" name="product_unit" value="{{ old('product_unit') ?? $product->product_unit }}" required> --}}
                                         </div>
                                     </div>
                                 </div>

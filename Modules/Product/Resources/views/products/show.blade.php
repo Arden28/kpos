@@ -28,6 +28,9 @@
             <div class="row">
                 <div class="col-lg-9">
                     <div class="card h-100">
+                        <div class="card-header">
+                            <h1 class="card-title"> <b>{{ __('Fiche Produit') }}</b></h1>
+                        </div>
                         <div class="card-body">
                             <div class="table-responsive">
                                 <table class="table table-bordered table-striped mb-0">
@@ -58,9 +61,9 @@
                                     <tr>
                                         <th>{{ __('Quantité') }}</th>
                                         @if($product->product_stock_alert >= $product->quantity)
-                                            <td class="text-green">{{ $product->product_quantity . ' ' . $product->product_unit }}</td>
+                                            <td class="text-green">{{ $product->product_quantity . ' ' . $product->unit->unit_short_name }}</td>
                                         @else
-                                            <td class="text-red">{{ $product->product_quantity . ' ' . $product->product_unit }} <a href="#" class="btn btn-primary btn-sm" title="Ce produit est en stock d'alerte. Veuillez en commander auprès de votre fournisseur."><i class="bi bi-arrow-repeat"></i></a></td>
+                                            <td class="text-red">{{ $product->product_quantity . ' ' . $product->unit->unit_short_name }} <a href="#" class="btn btn-primary btn-sm" title="Ce produit est en stock d'alerte. Veuillez en commander auprès de votre fournisseur."><i class="bi bi-arrow-repeat"></i></a></td>
                                         @endif
                                     </tr>
                                     <tr>
@@ -72,7 +75,7 @@
                                     </tr>
                                     <tr>
                                         <th>{{ __('Alert Quantity') }}</th>
-                                        <td>{{ $product->product_stock_alert . ' ' . $product->product_unit }}</td>
+                                        <td>{{ $product->product_stock_alert . ' ' . $product->unit->unit_short_name }}</td>
                                     </tr>
                                     <tr>
                                         <th>{{ __('Taxe') }} (%)</th>
@@ -108,6 +111,19 @@
                             @empty
                                 <img src="{{ $product->getFirstMediaUrl('images') }}" alt="Product Image" class="img-fluid img-thumbnail mb-2">
                             @endforelse
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-lg-9" style="padding-top: 10px">
+                    <div class="card h-100">
+                        <div class="card-header">
+                            <h3 class="card-title">{{ __('Fiche de Stock') }}</h3>
+                        </div>
+                        <div class="card-body">
+
                         </div>
                     </div>
                 </div>

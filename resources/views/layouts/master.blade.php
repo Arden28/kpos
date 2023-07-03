@@ -49,7 +49,7 @@
             @include('user::layouts.navbar-menu')
 
         <!-- Inventory -->
-        @elseif(request()->routeIs('inventory.*') || request()->routeIs('products.*') || request()->routeIs('product-categories.*') || request()->routeIs('barcode.print') || request()->routeIs('adjustments.*') || request()->routeIs('purchases.*') || request()->routeIs('purchase-payments.*') || request()->routeIs('purchase-returns*') || request()->routeIs('purchase-return-payments*') )
+        @elseif(request()->routeIs('inventory.*') || request()->routeIs('products.*') || request()->routeIs('product-units.*') || request()->routeIs('product-categories.*') || request()->routeIs('barcode.print') || request()->routeIs('adjustments.*') || request()->routeIs('purchases.*') || request()->routeIs('purchase-payments.*') || request()->routeIs('purchase-returns*') || request()->routeIs('purchase-return-payments*') )
 
             @include('inventory::layouts.navbar-menu')
 

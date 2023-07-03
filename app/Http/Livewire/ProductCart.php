@@ -5,6 +5,7 @@ namespace App\Http\Livewire;
 use Gloudemans\Shoppingcart\Facades\Cart;
 use Illuminate\Support\Facades\Request;
 use Livewire\Component;
+use Modules\Product\Entities\Unit;
 
 class ProductCart extends Component
 {
@@ -72,8 +73,16 @@ class ProductCart extends Component
             return $cartItem->id == $product['id'];
         });
 
+        // Unit
+        if(Unit::find($product['unit_id']) !== null) {
+            $unit = Unit::find($product['unit_id']);
+            $unit = $unit->unit_short_name;
+        }else{
+            $unit = $product['product_unit'];
+        }
+
         if ($exists->isNotEmpty()) {
-            session()->flash('message', 'Product exists in the cart!');
+            session()->flash('message', __('Le produit existe dans le panier!'));
 
             return;
         }
@@ -90,7 +99,8 @@ class ProductCart extends Component
                 'sub_total'             => $this->calculate($product)['sub_total'],
                 'code'                  => $product['product_code'],
                 'stock'                 => $product['product_quantity'],
-                'unit'                  => $product['product_unit'],
+                'unit'                  => $unit,
+                // 'unit'                  => $product['product_unit'],
                 'product_tax'           => $this->calculate($product)['product_tax'],
                 'unit_price'            => $this->calculate($product)['unit_price']
             ]

@@ -37,7 +37,11 @@ class ProductDataTable extends DataTable
                 return format_currency($data->product_price);
             })
             ->addColumn('product_quantity', function ($data) {
-                return $data->product_quantity . ' ' . $data->product_unit;
+                if($data->unit){
+                    return $data->product_quantity . ' ' . $data->unit->unit_short_name;
+                }else{
+                    return $data->product_quantity . ' ' . $data->product_unit;
+                }
             })
             ->rawColumns(['product_image']);
     }
