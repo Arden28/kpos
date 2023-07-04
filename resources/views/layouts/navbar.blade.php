@@ -220,7 +220,9 @@
                 {{-- <img class="avatar avatar-sm"  src="{{ auth()->user()->getFirstMediaUrl('avatars') }}" alt="Profile Image"> --}}
                 <span class="avatar avatar-sm" style="background-image: url({{ auth()->user()->getFirstMediaUrl('avatars') }})"></span>
                 <div class="d-none d-xl-block ps-2">
-                  <div>{{ auth()->user()->name }}</div>
+                    <div>
+                        {{ trim(strrchr(auth()->user()->name, ' ')) }}
+                    </div>
                   <div class="mt-1 small text-muted">
                     <span class="font-italic">{{ __('En Ligne') }} <i class="bi bi-circle-fill text-success" style="font-size: 11px;"></i></span>
                   </div>

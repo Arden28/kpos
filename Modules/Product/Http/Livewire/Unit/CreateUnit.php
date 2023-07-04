@@ -19,9 +19,9 @@ class CreateUnit extends Component
         $this->unit = $this->unit_name;
     }
 
-    public function isMultiple($status){
-        $this->is_multiple = $status;
-    }
+    // public function isMultiple($status){
+    //     $this->is_multiple = $status;
+    // }
 
     protected $rules = [
         'unit_name' => 'required',
