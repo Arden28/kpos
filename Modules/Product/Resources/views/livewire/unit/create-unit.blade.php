@@ -49,7 +49,7 @@
                 @if($is_multiple)
                 <div class="form-group">
                     <p>
-                        <b style="font-size: 16px;">1 {{ $unit }} =</b> <input type="number" wire:model="value" placeholder="fois l'unité de base">
+                        <b style="font-size: 16px;">1 {{ $unit }} =</b> <input type="text" wire:model="value" placeholder="fois l'unité de base">
                         <select class="form-control" wire:model="parent_unit_id" id="">
                             <option value="">{{ __('Sélectionnez une unité de base') }}</option>
                             @foreach ($units as $unit)

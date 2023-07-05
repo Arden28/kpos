@@ -53,6 +53,9 @@
                 page-break-after: always;
                 page-break-inside: auto;
                 page-break-before: avoid;
+                orphans: 1;
+                margin-top: 0;
+                margin-bottom: 0;
             }
         }
     </style>
