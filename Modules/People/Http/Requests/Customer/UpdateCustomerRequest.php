@@ -17,11 +17,11 @@ class UpdateCustomerRequest extends FormRequest
         return [
 
             'customer_name'  => 'required|string|max:255',
-            'customer_phone' => 'required|max:255',
-            'customer_email' => 'required|email|max:255',
-            'city'           => 'required|string|max:255',
-            'country'        => 'required|string|max:255',
-            'address'        => 'required|string|max:500',
+            'customer_phone' => 'nullable|max:255',
+            'customer_email' => 'nullable|email|max:255',
+            'city'           => 'nullable|string|max:255',
+            'country'        => 'nullable|string|max:255',
+            'address'        => 'nullable|string|max:500',
         ];
     }
 

@@ -43,7 +43,7 @@
                                     <div class="col-lg-6">
                                         <div class="form-group">
                                             <label for="supplier_email">{{ __('Email') }} <span class="text-danger">*</span></label>
-                                            <input type="email" class="form-control" name="supplier_email" required>
+                                            <input type="email" class="form-control" name="supplier_email" >
                                         </div>
                                     </div>
                                 </div>
@@ -52,19 +52,19 @@
                                     <div class="col-lg-4">
                                         <div class="form-group">
                                             <label for="supplier_phone">{{ __('Téléphone') }} <span class="text-danger">*</span></label>
-                                            <input type="text" class="form-control" name="supplier_phone" required>
+                                            <input type="text" class="form-control" name="supplier_phone" >
                                         </div>
                                     </div>
                                     <div class="col-lg-4">
                                         <div class="form-group">
                                             <label for="city">{{ __('Ville') }} <span class="text-danger">*</span></label>
-                                            <input type="text" class="form-control" name="city" required>
+                                            <input type="text" class="form-control" name="city" >
                                         </div>
                                     </div>
                                     <div class="col-lg-4">
                                         <div class="form-group">
                                             <label for="country">{{ __('Pays') }} <span class="text-danger">*</span></label>
-                                            <input type="text" class="form-control" name="country" required>
+                                            <input type="text" class="form-control" name="country" >
                                         </div>
                                     </div>
                                 </div>
@@ -73,7 +73,8 @@
                                     <div class="col-lg-12">
                                         <div class="form-group">
                                             <label for="address">{{ __('Adresse') }} <span class="text-danger">*</span></label>
-                                            <input type="text" class="form-control" name="address" required>
+                                            <textarea class="form-control" name="address" placeholder="{{ __('Adresse') }}" rows="3"></textarea>
+                                            @error('address') <span class="error">{{ $message }}</span> @enderror
                                         </div>
                                     </div>
                                 </div>

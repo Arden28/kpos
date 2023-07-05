@@ -25,14 +25,14 @@
                     <div class="col-lg-6">
                         <div class="mb-3">
                             <label class="form-label">{{ __('Email') }}</label>
-                            <input type="email" class="form-control" wire:model="customer_email" required placeholder="Email">
+                            <input type="email" class="form-control" wire:model="customer_email" placeholder="Email">
                             @error('customer_email') <span class="error">{{ $message }}</span> @enderror
                         </div>
                     </div>
                     <div class="col-lg-6">
                         <div class="mb-3">
                             <label class="form-label">{{ __('Téléphone') }}</label>
-                            <input type="tel" class="form-control" wire:model="customer_phone" required placeholder="Téléphone">
+                            <input type="tel" class="form-control" wire:model="customer_phone" placeholder="Téléphone">
                             @error('customer_phone') <span class="error">{{ $message }}</span> @enderror
                         </div>
                     </div>
@@ -44,14 +44,14 @@
                     <div class="col-lg-6">
                     <div class="mb-3">
                         <label class="form-label">{{ __('Ville') }}</label>
-                        <input type="text" class="form-control" wire:model="city" required placeholder="{{ __('Ville') }}">
+                        <input type="text" class="form-control" wire:model="city" placeholder="{{ __('Ville') }}">
                         @error('city') <span class="error">{{ $message }}</span> @enderror
                     </div>
                     </div>
                     <div class="col-lg-6">
                     <div class="mb-3">
                         <label class="form-label">{{ __('Pays') }}</label>
-                        <input type="text" class="form-control" wire:model="country" required placeholder="{{ __('Pays') }}" >
+                        <input type="text" class="form-control" wire:model="country" placeholder="{{ __('Pays') }}" >
                         @error('country') <span class="error">{{ $message }}</span> @enderror
                     </div>
                     </div>

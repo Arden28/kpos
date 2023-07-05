@@ -17,7 +17,7 @@ class CreateSalePaymentsTable extends Migration
             $table->id();
             $table->unsignedBigInteger('company_id');
             $table->unsignedBigInteger('sale_id');
-            $table->integer('amount');
+            $table->string('amount');
             $table->date('date');
             $table->string('reference');
             $table->string('payment_method');

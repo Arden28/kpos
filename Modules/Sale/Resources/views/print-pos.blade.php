@@ -30,6 +30,7 @@
         table {width: 100%;}
         tfoot tr th:first-child {text-align: left;}
 
+
         .centered {
             text-align: center;
             align-content: center;
@@ -45,6 +46,7 @@
             .hidden-print {
                 display: none !important;
             }
+
             tbody::after {
                 content: '';
                 display: block;
@@ -57,7 +59,7 @@
 </head>
 <body>
 
-<div style="max-width:400px;margin:0 auto">
+<div style="max-width:400px;margin:-40px auto">
     <div id="receipt-data">
         <div class="centered">
             <h2 style="margin-bottom: 5px">
@@ -66,12 +68,13 @@
             </h2>
 
             <p style="font-size: 11px;line-height: 15px;margin-top: 0">
+                {{ Auth::user()->currentCompany->address }}
+                <br>
                 {{ Auth::user()->currentCompany->email }}, {{ Auth::user()->currentCompany->phone }}
-                <br>{{ Auth::user()->currentCompany->address }}
             </p>
         </div>
         <p>
-            {{ __('Date') }}: {{ \Carbon\Carbon::parse($sale->date)->format('d F, Y') }}<br>
+            {{ __('Date') }}: {{ \Carbon\Carbon::parse($sale->date)->locale('fr')->isoFormat('LL') }}<br>
             {{ __('Référence') }}: {{ $sale->reference }}<br>
             {{ __('Client') }}: {{ $sale->customer_name }} <br>
             @if($seller)
@@ -124,18 +127,18 @@
                         {{ __('Montant') }}: {{ format_currency($sale->paid_amount) }}
                     </td>
                 </tr>
-                <tr style="border-bottom: 0;">
+                {{-- <tr style="border-bottom: 0;">
                     <td class="centered" colspan="3">
                         <div style="margin-top: 10px;">
                             {!! \Milon\Barcode\Facades\DNS1DFacade::getBarcodeSVG($sale->reference, 'C128', 1, 25, 'black', true) !!}
                         </div>
                     </td>
-                </tr>
+                </tr> --}}
                 <tr style="border-bottom: 0;">
-                    <td class="centered" colspan="3">
+                    <td class="centered" colspan="2">
                         <div style="margin-top: 10px;">
                             {{-- <img src="{{ asset('assets/images/logo/koverae-1.png') }}" width="75px" height="75px" alt="Koverae.com"> --}}
-                            <p style="color: gray"><i>{{ __('Fait avec Koverae') }}</i> </p>
+                            <p style="color: rgb(14, 12, 12)"><i>{{ __('Fait avec') }}  <b>Koverae</b></i> </p>
                         </div>
                     </td>
                 </tr>

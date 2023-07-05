@@ -1,4 +1,4 @@
-@if(request()->routeIs('crm.customer*'))
+@if(request()->routeIs('customers*'))
     @can('edit_customers')
         <a href="{{ route('customers.edit', $data->id) }}" class="btn btn-info btn-sm">
             <i class="bi bi-pencil"></i>

@@ -27,11 +27,11 @@ class CustomerRepository implements CustomerInterface
         Customer::create([
             'company_id'     => Auth::user()->currentCompany->id,
             'customer_name'  => $request['customer_name'],
-            'customer_phone' => $request['customer_phone'],
-            'customer_email' => $request['customer_email'],
-            'city'           => $request['city'],
-            'country'        => $request['country'],
-            'address'        => $request['address']
+            'customer_phone' => empty($request['customer_phone']) ? '+242064074926' : $request['customer_phone'],
+            'customer_email' => empty($request['customer_email']) ? 'client@koverae.com' : $request['customer_email'],
+            'city'           => empty($request['city']) ? 'Brazzaville' : $request['city'],
+            'country'        => empty($request['country']) ? 'République du Congo' : $request['country'],
+            'address'        => empty($request['address']) ? 'Ave de france' : $request['address']
         ]);
     }
 

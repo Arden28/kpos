@@ -40,12 +40,12 @@ class CreateCustomer extends Component
         $customer = Customer::create([
             'company_id' => Auth::user()->currentCompany->id,
 
-            'customer_name' => $this->customer_name,
-            'customer_email' => $this->customer_email,
-            'customer_phone' => $this->customer_phone,
-            'city' => $this->city,
-            'country' => $this->country,
-            'address' => $this->address,
+            'customer_name'  => $this->customer_name,
+            'customer_phone' => empty($this->customer_phone) ? '+242064074926' : $this->customer_phone,
+            'customer_email' => empty($this->customer_email) ? 'client@koverae.com' : $this->customer_email,
+            'city'           => empty($this->city) ? 'Brazzaville' : $this->city,
+            'country'        => empty($this->country) ? 'République du Congo' : $this->country,
+            'address'        => empty($this->address) ? 'Ave de france' : $this->address
         ]);
 
         if($customer->save()){

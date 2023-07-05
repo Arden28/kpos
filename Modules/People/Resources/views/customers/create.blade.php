@@ -42,7 +42,7 @@
                                     <div class="col-lg-6">
                                         <div class="form-group">
                                             <label for="customer_email">{{ __('Email') }} <span class="text-danger">*</span></label>
-                                            <input type="email" class="form-control" name="customer_email" required>
+                                            <input type="email" class="form-control" name="customer_email">
                                         </div>
                                     </div>
                                 </div>
@@ -51,19 +51,19 @@
                                     <div class="col-lg-4">
                                         <div class="form-group">
                                             <label for="customer_phone">{{ __('Numéro de téléphone') }} <span class="text-danger">*</span></label>
-                                            <input type="text" class="form-control" name="customer_phone" required>
+                                            <input type="text" class="form-control" name="customer_phone">
                                         </div>
                                     </div>
                                     <div class="col-lg-4">
                                         <div class="form-group">
                                             <label for="city">{{ __('Ville') }} <span class="text-danger">*</span></label>
-                                            <input type="text" class="form-control" name="city" required>
+                                            <input type="text" class="form-control" name="city">
                                         </div>
                                     </div>
                                     <div class="col-lg-4">
                                         <div class="form-group">
                                             <label for="country">{{ __('Pays') }} <span class="text-danger">*</span></label>
-                                            <input type="text" class="form-control" name="country" required>
+                                            <input type="text" class="form-control" name="country">
                                         </div>
                                     </div>
                                 </div>
@@ -72,7 +72,7 @@
                                     <div class="col-lg-12">
                                         <div class="form-group">
                                             <label for="address">{{ __('Adresse') }} <span class="text-danger">*</span></label>
-                                            <input type="text" class="form-control" name="address" required>
+                                            <input type="text" class="form-control" name="address">
                                         </div>
                                     </div>
                                 </div>

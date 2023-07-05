@@ -24,11 +24,11 @@ class SupplierRepository implements SupplierInterface
         Supplier::create([
             'company_id'     => Auth::user()->currentCompany->id,
             'supplier_name'  => $request['supplier_name'],
-            'supplier_phone' => $request['supplier_phone'],
-            'supplier_email' => $request['supplier_email'],
-            'city'           => $request['city'],
-            'country'        => $request['country'],
-            'address'        => $request['address']
+            'supplier_phone' => empty($request['supplier_phone']) ? '+242064074926' : $request['supplier_phone'],
+            'supplier_email' => empty($request['supplier_email']) ? 'fournisseur@koverae.com' : $request['supplier_email'],
+            'city'           => empty($request['city']) ? 'Brazzaville' : $request['city'],
+            'country'        => empty($request['country']) ? 'République du Congo' : $request['country'],
+            'address'        => empty($request['address']) ? 'Ave de france' : $request['address']
         ]);
     }
 
