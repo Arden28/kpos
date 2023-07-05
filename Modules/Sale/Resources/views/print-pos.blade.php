@@ -74,7 +74,8 @@
             </p>
         </div>
         <p>
-            {{ __('Date') }}:  {{ \Carbon\Carbon::parse($sale->date)->locale('fr')->isoFormat('LL') }} {{ \Carbon\Carbon::parse($sale->date)->format('H:i:s') }}<br>
+            {{-- {{ __('Date') }}: {{ \Carbon\Carbon::parse($sale->date)->locale('fr')->isoFormat('LL') }} {{ \Carbon\Carbon::parse($sale->date)->format('H:i:s') }}<br> --}}
+            {{ __('Date') }}: {{ \Carbon\Carbon::parse($sale->date)->locale('fr')->isoFormat('LL LTS') }}<br>
             {{ __('Référence') }}: {{ $sale->reference }}<br>
             {{ __('Client') }}: {{ $sale->customer_name }} <br>
             @if($seller)
