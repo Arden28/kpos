@@ -120,7 +120,7 @@ class PosRepository implements PosInterface
                     'note' => $request['note'],
                     'tax_amount' => Cart::instance('sale')->tax() * 100,
                     'discount_amount' => Cart::instance('sale')->discount() * 100,
-                    'seller_id' => Auth::user()->currentCompany->id, //Rendre dynamique
+                    'seller_id' => Auth::user()->id, //Rendre dynamique
                 ]);
 
 
