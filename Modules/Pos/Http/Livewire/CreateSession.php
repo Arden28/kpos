@@ -90,7 +90,7 @@ class CreateSession extends Component
                         // Update user current pos id
                         $user = User::find(Auth::user()->id);
                         // $user->current_pos_id = $physical->id;
-                        $user->current_pos_id = 3;
+                        $user->current_pos_id = $pos_session->pos_id;
                         $user->save();
 
                         return redirect()->route('app.pos.index');
