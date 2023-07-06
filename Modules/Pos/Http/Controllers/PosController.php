@@ -84,7 +84,8 @@ class PosController extends Controller
 
         // Le Point de vente auquel appartient la session | The POS in which belongs pos_session
         // $physical = Pos::find(Auth::user()->current_pos_id);
-        $physical = Pos::where('id', Auth::user()->current_pos_id)->where('company_id', $company_id)->first();
+        // $physical = Pos::where('id', Auth::user()->current_pos_id)->where('company_id', $company_id)->first();
+        $physical = Pos::where('id', session('pos_id'))->where('company_id', $company_id)->first();
         // $physical = $this->getCurrentPos();
 
         // La session en cours | The current session
