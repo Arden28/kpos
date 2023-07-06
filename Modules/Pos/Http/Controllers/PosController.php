@@ -78,6 +78,7 @@ class PosController extends Controller
      */
 
     public function index() {
+
         Cart::instance('sale')->destroy();
 
         $company_id = Auth::user()->currentCompany->id;

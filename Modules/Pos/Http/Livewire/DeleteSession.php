@@ -89,6 +89,7 @@ class DeleteSession extends Component
         $user->save();
 
         session()->forget('pos_session');
+        session()->forget('pos_session_id');
         session()->forget('pos_id');
         cache()->forget('pos');
 
