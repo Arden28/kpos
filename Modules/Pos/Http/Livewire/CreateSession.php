@@ -82,16 +82,16 @@ class CreateSession extends Component
                         $physical->is_active = 1;
                         $physical->save();
 
-
-                        session(['pos_session' => true]);
-                        session(['pos_session_id' => $pos_session->id]);
-                        session(['pos_id' => $this->pos_id]);
-
                         // Update user current pos id
                         $user = User::find(Auth::user()->id);
                         // $user->current_pos_id = $physical->id;
                         $user->current_pos_id = $pos_session->pos_id;
                         $user->save();
+
+                        session(['pos_session' => true]);
+                        session(['pos_session_id' => $pos_session->id]);
+                        session(['pos_id' => $this->pos_id]);
+
 
                         return redirect()->route('app.pos.index');
 
