@@ -1,6 +1,6 @@
 <div>
 
-    <form id="session-form"  wire:submit.prevent="submit({{  }})">
+    <form id="session-form"  wire:submit.prevent="submit">
         {{-- @csrf --}}
         <input type="hidden" wire:model="user_id">
         <input type="hidden" wire:model="pos_id">
