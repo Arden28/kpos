@@ -26,11 +26,11 @@ class CreateCustomer extends Component
 
     protected $rules = [
         'customer_name' => 'required|max:100',
-        'customer_email' => 'required|email|unique:customers',
-        'customer_phone' => 'required|numeric|unique:customers',
-        'city' => 'required',
-        'country' => 'required',
-        'address' => 'required|max:200',
+        // 'customer_email' => 'required|email|unique:customers',
+        // 'customer_phone' => 'required|numeric|unique:customers',
+        // 'city' => 'required',
+        // 'country' => 'required',
+        // 'address' => 'required|max:200',
     ];
 
     public function submit(){

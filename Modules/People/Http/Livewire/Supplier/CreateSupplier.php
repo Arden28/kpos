@@ -26,11 +26,11 @@ class CreateSupplier extends Component
 
     protected $rules = [
         'supplier_name' => 'required|max:100',
-        'supplier_email' => 'required|email|unique:suppliers',
-        'supplier_phone' => 'required|numeric|unique:suppliers',
-        'city' => 'required',
-        'country' => 'required',
-        'address' => 'required|max:200',
+        // 'supplier_email' => 'required|email|unique:suppliers',
+        // 'supplier_phone' => 'required|numeric|unique:suppliers',
+        // 'city' => 'required',
+        // 'country' => 'required',
+        // 'address' => 'required|max:200',
     ];
 
     public function submitSupplier(){
