@@ -79,7 +79,7 @@ class CreateSession extends Component
                         $physical = Pos::where('id', $this->pos_id)->first();
                         // $physical = Pos::with('account')->where('id', $this->pos_id)->first();
                         $physical->current_pos_session_id = $pos_session->id;
-                        $physical->is_active = 0;
+                        $physical->is_active = 1;
                         $physical->save();
 
                         // Update user current pos id

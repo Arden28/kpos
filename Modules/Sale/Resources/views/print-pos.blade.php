@@ -50,7 +50,7 @@
             tbody::after {
                 content: '';
                 display: block;
-                page-break-after: always;
+                /* page-break-after: always; */
                 page-break-inside: auto;
                 page-break-before: avoid;
                 orphans: 1;
@@ -62,7 +62,7 @@
 </head>
 <body>
 
-<div style="max-width:400px;margin:-40px auto">
+<div style="max-width:400px;margin:-45px auto">
     <div id="receipt-data">
         <div class="centered">
             <h2 style="margin-bottom: 5px">
