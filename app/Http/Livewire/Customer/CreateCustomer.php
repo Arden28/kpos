@@ -41,7 +41,7 @@ class CreateCustomer extends Component
         // Show a success message
         // session()->flash('message', 'Customer created successfully.');
 
-        // toast('Customer Created!', 'success');
+        toast('Customer Created!', 'success');
 
         // Clear the form fields
         $this->customer_name = '';
@@ -50,6 +50,7 @@ class CreateCustomer extends Component
         $this->city = '';
         $this->country = '';
         $this->address = '';
+
     }
     public function render()
     {

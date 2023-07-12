@@ -3,12 +3,14 @@
 namespace App\Http\Livewire\Pos;
 
 use Gloudemans\Shoppingcart\Facades\Cart;
+use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
+use Modules\People\Entities\Customer;
 
 class Checkout extends Component
 {
 
-    public $listeners = ['productSelected', 'discountModalRefresh'];
+    public $listeners = ['productSelected', 'discountModalRefresh', 'customerCreated'];
 
     public $cart_instance;
     public $customers;
@@ -23,9 +25,9 @@ class Checkout extends Component
     public $customer_id;
     public $total_amount;
 
-    public function mount($cartInstance, $customers) {
+    public function mount($cartInstance) {
         $this->cart_instance = $cartInstance;
-        $this->customers = $customers;
+        $this->customers = Customer::isCompany(Auth::user()->currentCompany->id)->orderBy('id', 'DESC')->get();
         $this->global_discount = 0;
         $this->global_tax = 0;
         $this->shipping = 0.00;
@@ -51,12 +53,13 @@ class Checkout extends Component
 
     public function proceed() {
         if ($this->customer_id != null) {
-            $this->dispatchBrowserEvent('showCheckoutModal');
+            $this->dispatchBrowserEvent('showCheckoutModal', $this->total_amount);
+            $this->emit('OrderProceed', $this->total_amount);
 
             // Émettre l'événement Livewire pour imprimer le PDF
-            $id = $this->customer_id; // Remplacez "ID_DE_VENTE" par l'ID de vente réel
-            $url = route('sales.pos.pdf', ['id' => $id]);
-            $this->emit('printPDF', $url);
+            // $id = $this->customer_id; // Remplacez "ID_DE_VENTE" par l'ID de vente réel
+            // $url = route('sales.pos.pdf', ['id' => $id]);
+            // $this->emit('printPDF', $url);
         } else {
             session()->flash('message', 'Veuillez sélectionner un client !');
         }
@@ -219,4 +222,13 @@ class Checkout extends Component
             'product_discount_type' => $this->discount_type[$product_id],
         ]]);
     }
+
+    //Customers
+    public function customerCreated()
+    {
+        // return $this->customers;
+        session()->flash('message', 'Le client a été ajouté !');
+        $this->customers = Customer::isCompany(Auth::user()->currentCompany->id)->orderBy('id', 'DESC')->get();
+    }
+
 }

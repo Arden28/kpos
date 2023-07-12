@@ -17,10 +17,7 @@
                     <label for="customer_id">{{ __('Client') }} <span class="text-danger">*</span></label>
                     <div class="input-group">
                         <div class="input-group-prepend">
-                            {{-- <a href="{{ route('customers.create') }}" class="btn btn-primary">
-                                <i class="bi bi-person-plus"></i>
-                            </a> --}}
-                            <a href="#" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal-customer">
+                            <a href="#" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#customerModal">
                                 <i class="bi bi-person-plus"></i>
                             </a>
                         </div>
@@ -150,21 +147,4 @@
 
 </div>
 
-<script>
-    document.addEventListener('livewire:load', function () {
-        Livewire.on('printPDF', function (url) {
-            let iframe = document.createElement('iframe');
-            iframe.style.display = 'none';
-            iframe.src = url;
-            document.body.appendChild(iframe);
-
-            iframe.onload = function () {
-                iframe.contentWindow.print();
-                setTimeout(function () {
-                    document.body.removeChild(iframe);
-                }, 100);
-            };
-        });
-    });
-</script>
 

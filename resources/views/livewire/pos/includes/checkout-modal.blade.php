@@ -9,6 +9,7 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
+
             <form id="checkout-form" action="{{ route('app.pos.store') }}" method="POST">
                 @csrf
                 <div class="modal-body">
@@ -24,8 +25,6 @@
                     @endif
                     <div class="row">
                         <div class="col-lg-7">
-                            {{-- A modifier --}}
-                            {{-- <input type="hidden" value="{{ session('browse_company_id') }}" name="company_id"> --}}
                             <input type="hidden" value="{{ $customer_id }}" name="customer_id">
                             <input type="hidden" value="{{ $global_tax }}" name="tax_percentage">
                             <input type="hidden" value="{{ $global_discount }}" name="discount_percentage">
@@ -48,7 +47,7 @@
                                 <label for="payment_method">{{ __('Moyen de paiement') }} <span class="text-danger">*</span></label>
                                 <select class="form-control" name="payment_method" id="payment_method" required>
                                     <option value="">{{ __('Sélectionnez un moyen de paiement') }}</option>
-                                    <option value="Paiement en espèce">{{ __('Paiement en espèce') }}</option>
+                                    <option value="Cash">{{ __('Paiement en espèce') }}</option>
                                     <option value="Carte Bancaire">{{ __('Carte Bancaire') }}</option>
                                     <option value="Momo Pay">{{ __('Momo Pay') }}</option>
                                     <option value="Chèque">{{ __('Chèque') }}</option>
@@ -99,11 +98,13 @@
                     </div>
 
                 </div>
+
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">{{ __('Annuler') }}</button>
                     <button type="submit" class="btn btn-primary">{{ __('Confirmer') }}</button>
                 </div>
             </form>
+
         </div>
     </div>
 </div>

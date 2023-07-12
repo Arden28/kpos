@@ -2,6 +2,12 @@
 
 @section('title', __('Paramètes'))
 
+@section('third_party_stylesheets')
+    <link href="https://unpkg.com/filepond/dist/filepond.css" rel="stylesheet"/>
+    <link href="https://unpkg.com/filepond-plugin-image-preview/dist/filepond-plugin-image-preview.css"
+          rel="stylesheet">
+@endsection
+
 @section('breadcrumb')
 <div class="page-header d-print-none">
 <div class="container-xl">
@@ -78,6 +84,13 @@
                                 @csrf
                                 @method('patch')
                                 <div class="row">
+
+                                    <div class="form-group">
+                                        <label for="image">{{ __('Logo') }} <span class="text-danger">*</span></label>
+                                        <img style="width: 100px;height: 100px;" class="d-block mx-auto img-thumbnail img-fluid rounded-circle mb-2" src="{{ auth()->user()->getFirstMediaUrl('avatars') }}" alt="Profile Image">
+                                        <input id="image" type="file" name="image" data-max-file-size="500KB">
+                                    </div>
+                                    <hr>
                                     <div class="col-lg-4">
                                         <div class="form-group">
                                             <label for="company_name">{{ __('Nom de la société') }} <span class="text-danger">*</span></label>
@@ -247,4 +260,8 @@
     @include('currency::livewire.includes.create-currency-modal')
 
 @endsection
+
+@push('page_scripts')
+    @include('includes.filepond-js')
+@endpush
 

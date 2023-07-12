@@ -49,8 +49,23 @@ class CreateCustomer extends Component
         ]);
 
         if($customer->save()){
-            // $this->emit('refreshComponent');
-            session()->flash('message', 'Client ajouté !');
+
+            // Emit the 'customerCreated' event to update the customer list
+            $this->emit('customerCreated');
+
+            // Clear the form fields
+            $this->customer_name = '';
+            $this->customer_email = '';
+            $this->customer_phone = '';
+            $this->city = '';
+            $this->country = '';
+            $this->address = '';
+
+            // Close the modal by triggering a Livewire action
+            $this->dispatchBrowserEvent('closeCustomerModal');
+
+            // session()->flash('message', 'Client ajouté !');
+            // toast('Client ajouté !', 'success');
         }
 
 

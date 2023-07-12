@@ -73,3 +73,16 @@
         </div>
     </form>
 </div>
+
+        @livewireScripts
+        <script>
+            // Listen for the 'customerCreated' event and close the modal
+            Livewire.on('customerCreated', () => {
+                $('#customerModal').modal('hide');
+            });
+
+            // Listen for the 'closeModal' event to close the modal from Livewire
+            Livewire.on('closeModal', () => {
+                $('#customerModal').modal('hide');
+            });
+        </script>

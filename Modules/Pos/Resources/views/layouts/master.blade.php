@@ -126,12 +126,12 @@
       </div>
     </div>
 
-	{{-- <script>
+	<script>
 		function toggleFullscreen() {
 			var element = document.getElementById("fullscreen-section");
 			element.classList.toggle("active");
 		}
-	</script> --}}
+	</script>
 
     @include('includes.main-js')
 

@@ -27,11 +27,7 @@
             {{-- close session --}}
             {{-- <livewire:pos::delete-session  :pos="$pos" /> --}}
 
-            <a class="btn btn-primary d-none d-sm-inline-block" wire:click="refresh">
-
-                <i class="bi bi-refresh"></i>
-                {{ __('Actualiser') }}
-            </a>
+            <livewire:pos::widget.top-widget />
 
             <a class="btn btn-primary d-none d-sm-inline-block" data-bs-toggle="modal" data-bs-target="#modal-session-{{ $physical->id }}">
 
@@ -62,7 +58,8 @@
                 <livewire:pos.product-list :categories="$product_categories"/>
             </div>
             <div class="col-lg-5">
-                <livewire:pos.checkout :cart-instance="'sale'" :customers="$customers"/>
+                {{-- <livewire:pos.checkout :cart-instance="'sale'" :customers="$customers"/> --}}
+                <livewire:pos.checkout :cart-instance="'sale'"/>
             </div>
         </div>
     </div>
@@ -102,6 +99,7 @@
             });
         });
     </script>
+
 
 
     {{-- Disallow page refreshing --}}

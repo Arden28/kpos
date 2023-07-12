@@ -93,6 +93,7 @@ class PosRepository implements PosInterface
                     // Set a default value for payment_method
                     $paymentMethod = 'Cash';
                 }
+
                 if ($due_amount == $request['total_amount']) {
                     $payment_status = 'Unpaid';
                 } elseif ($due_amount > 0) {
@@ -223,22 +224,6 @@ class PosRepository implements PosInterface
         $cashAction->save();
     }
 
-    // Session
-
-    // public function getLatestPos() {
-    //     $pos_id = session('pos_id');
-    //     $pos_session = PhysicalPosSession::where('pos_id', $pos_id)
-    //                 ->where('company_id', Auth::user()->currentCompany->id)
-    //                     ->latest()->first();
-    //     $pos = Pos::where('id', $pos_session->pos_id)
-    //                 ->where('company_id', $pos_session->company_id)
-    //                     ->latest()->first();
-    //     if($pos){
-    //         return $pos;
-    //     } else {
-    //         return (object) ['id' => 0];
-    //     }
-    // }
 
     public function editPos($request, $pos){
 

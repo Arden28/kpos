@@ -10,13 +10,17 @@
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <style>
+        @font-face {
+            font-family: 'Arista';
+            src: url('/assets/fonts/arista_pro/Arista-Pro-Fat-trial.ttf');
+        }
         * {
-            font-size: 12px;
-            line-height: 18px;
-            font-family: 'Ubuntu', sans-serif;
+            font-size: 13px;
+            line-height: 17px;
+            font-family: 'Arista', sans-serif;
         }
         h2 {
-            font-size: 16px;
+            font-size: 17px;
         }
         td,
         th,
@@ -30,17 +34,34 @@
         table {width: 100%;}
         tfoot tr th:first-child {text-align: left;}
 
-
         .centered {
             text-align: center;
             align-content: center;
         }
         small{font-size:11px;}
 
+
+        /* New style for the logo */
+        .logo {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .logo img {
+            /* border-radius: 50%; */
+        }
+
+        p.by{
+                font-size: 10px;
+                font-family: 'sans-serif';
+        }
+
         @media print {
             * {
                 font-size:12px;
-                line-height: 20px;
+                line-height: 18px;
             }
             td,th {padding: 5px 0;}
             .hidden-print {
@@ -56,6 +77,7 @@
                 orphans: 1;
                 margin-top: 0;
                 margin-bottom: 0;
+
             }
         }
     </style>
@@ -65,8 +87,11 @@
 <div style="max-width:400px;margin:-45px auto">
     <div id="receipt-data">
         <div class="centered">
+            <!-- Add logo section -->
+            {{-- <div class="logo">
+                <img src="{{ asset('assets/images/logo/logo-black-gd.png') }}" alt="Logo" width="85" height="auto">
+            </div> --}}
             <h2 style="margin-bottom: 5px">
-                {{-- {{ Auth::user()->currentCompany->name }} --}}
                 {{ Auth::user()->currentCompany->name}}
             </h2>
 
@@ -128,7 +153,7 @@
                         {{ __('Paiement') }}: {{ $sale->payment_method }}
                     </td>
                     <td class="centered" style="padding: 5px;">
-                        {{ __('Montant') }}: {{ format_currency($sale->paid_amount) }}
+                        {{ __('Montant Payé') }}: {{ format_currency($sale->paid_amount) }}
                     </td>
                 </tr>
                 {{-- <tr style="border-bottom: 0;">
@@ -143,7 +168,7 @@
                         <div style="margin-top: -10px;">
                             {{-- <img src="{{ asset('assets/images/logo/koverae-1.png') }}" width="75px" height="75px" alt="Koverae.com"> --}}
                             <p>Merci et au revoir !</p>
-                            <p style="color: rgb(14, 12, 12)"><i>{{ __('Fait avec') }}  <b>Koverae</b></i> </p>
+                            <p class="by">{{ __('Fait avec') }}  Koverae </p>
                         </div>
                     </td>
                 </tr>

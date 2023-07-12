@@ -24,7 +24,35 @@
               </a>
             </li>
 
-            <li class="nav-item">
+
+            @foreach (modules() as $module)
+                @if (module($module->slug))
+                    <li class="nav-item">
+                        @if ($module->slug == 'finance')
+                        <a class="btn {{ request()->routeIs('settings.users') ? 'active' : '' }}" style="margin-right: 5px;" href="{{ route('finance.index') }}">
+                        @elseif ($module->slug == 'inventory')
+                            <a class="btn {{ request()->routeIs('settings.users') ? 'active' : '' }}" style="margin-right: 5px;" href="{{ route('inventory.index') }}">
+                        @elseif ($module->slug == 'hr')
+                            <a class="btn {{ request()->routeIs('settings.users') ? 'active' : '' }}" style="margin-right: 5px;" href="{{ route('users.index') }}">
+                        @elseif ($module->slug == 'sales')
+                            <a class="btn {{ request()->routeIs('settings.users') ? 'active' : '' }}" style="margin-right: 5px;" href="{{ route('sales.index') }}">
+                        @elseif ($module->slug == 'crm')
+                            <a class="btn {{ request()->routeIs('settings.users') ? 'active' : '' }}" style="margin-right: 5px;" href="{{ route('crm.index') }}">
+                        @elseif ($module->slug == 'pos')
+                            <a class="btn {{ request()->routeIs('settings.users') ? 'active' : '' }}" style="margin-right: 5px;" href="{{ route('app.pos.dashboard') }}">
+                        @endif
+                            <span class="nav-link-icon d-md-none d-lg-inline-block">
+                                <img class="custom-image" src="{{ asset('assets/images/apps/'.$module->slug.'.png') }}" alt="">
+                            </span>
+                            <span class="nav-link-title">
+                                {{ $module->name }}
+                            </span>
+                        </a>
+                    </li>
+                @endif
+            @endforeach
+
+            {{-- <li class="nav-item">
               <a class="btn {{ request()->routeIs('settings.users') ? 'active' : '' }}" style="margin-right: 5px;" href="{{ route('settings.users') }}" >
                 <span class="nav-link-icon d-md-none d-lg-inline-block"><!-- Download SVG icon from http://tabler-icons.io/i/home -->
                     <i class="bi bi-people" style="width: 24px; height:24px;"></i>
@@ -44,7 +72,7 @@
                     {{ __('Devises') }}
                 </span>
               </a>
-            </li>
+            </li> --}}
 
             {{-- <li class="nav-item">
                 <a class="btn {{ request()->routeIs('settings.inventory') ? 'active' : '' }}" style="margin-right: 5px;" href="{{ route('settings.index') }}" >
