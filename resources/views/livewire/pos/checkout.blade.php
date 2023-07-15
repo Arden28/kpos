@@ -47,9 +47,11 @@
                                     <td class="align-middle">
                                         {{ $cart_item->name }} <br>
                                         <span class="badge badge-success">
-                                        {{ $cart_item->options->code }}
-                                    </span>
+                                            {{ $cart_item->options->code }}
+                                        </span>
+
                                         @include('livewire.includes.product-cart-modal')
+                                        @include('livewire.includes.product-cart-pricing-modal')
                                     </td>
 
                                     <td class="align-middle">

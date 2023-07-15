@@ -15,28 +15,13 @@
 
       <div class="card-body">
         <div class="row">
-            <div class="col-12">
-                <a href="#" class="btn w-100">
-                    <!-- Download SVG icon from https://icons8.com/icon/set/google/color -->
-                    <img src="{{ asset('assets/images/icons/google.svg') }}" width="24px" height="24px" alt="">
-                    {{ __('S\'inscrire avec Google') }}
-                </a>
-            </div>
-            <div class="col-12" style="margin-top: 10px">
-                <a href="#" class="btn w-100">
-                    <!-- Download SVG icon from http://https://icons8.com/icon/set/facebook/color -->
-                    <img src="{{ asset('assets/images/icons/facebook.svg') }}" width="24px" height="24px" alt="">
-                    {{ __("S'inscrire avec Facebook") }}
-                </a>
-            </div>
         </div>
       </div>
 
-      <div class="hr-text">{{__('ou')}}</div>
 
-      {{-- <x-auth-session-status class="mb-4" :status="session('status')" />
+      <x-auth-session-status class="mb-4" :status="session('status')" />
 
-      <form id="myForm" method="POST" action="{{ route('register') }}">
+      {{-- <form id="myForm" method="POST" action="{{ route('register') }}">
         @csrf
 
         <div class="hr-text">{{ __('Informations Personnelles') }}</div>

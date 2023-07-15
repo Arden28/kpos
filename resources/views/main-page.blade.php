@@ -27,6 +27,18 @@
                 max-width: 50%;
             }
         }
+        .row-app{
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          width: 800px;
+          height: 300px;
+        }
+
+        .custom-col {
+            margin-top: 15px;
+        }
+
         .inspiring-div {
             position: relative;
             background-color: #f5f5f5; /*Couleur de fond */
@@ -54,8 +66,8 @@
         }
 
         .custom-image {
-            width: 80px;
-            height: 80px;
+            width: 75px;
+            height: 75px;
             transition: transform 0.3s ease;
         }
 
@@ -68,10 +80,6 @@
             align-items: center;
             justify-content: center;
         }
-        /* .row-app{
-            padding-left: 150px;
-            padding-right: 150px;
-        } */
     </style>
   </head>
   <body >
@@ -312,11 +320,6 @@
                     {{ __('Mon Profile') }}
                 </a>
                 <div class="dropdown-divider"></div>
-                {{--
-                <a href="{{ route('subby.index') }}" class="dropdown-item">
-                    {{ __('Mes abonnements') }}
-                </a>
-                <div class="dropdown-divider"></div> --}}
 
                 <a href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();" class="dropdown-item">
                     {{ __('Me déconnecter') }}
@@ -328,39 +331,16 @@
               </div>
             </div>
           </div>
-          {{-- <div class="collapse navbar-collapse" id="navbar-menu">
-            <div class="d-flex flex-column flex-md-row flex-fill align-items-stretch align-items-md-center">
-              <ul class="navbar-nav">
-
-
-              </ul>
-            </div>
-          </div> --}}
         </div>
       </header>
       <div class="page-wrapper">
-        <!-- Page header -->
-        <div class="page-header d-print-none text-white">
-          <div class="container-xl">
-            {{-- <div class="row g-2 align-items-center">
-              <div class="col">
-                <!-- Page pre-title -->
-                <div class="page-pretitle">
-                  Overview
-                </div>
-                <h2 class="page-title">
-                  Navbar overlap layout
-                </h2>
-              </div>
-            </div> --}}
-          </div>
-        </div>
 
         <!-- Page body -->
 
         <div class="page-body">
-            <div class="container-xl">
-              <div class="row row-app justify-content-center d-flex"> <!-- Ajout de la classe "d-flex justify-content-center" -->
+            <div class="container-xl row-app">
+              <div class="row">
+                <!--<div class="row row-app justify-content-center d-flex">--> <!-- Ajout de la classe "d-flex justify-content-center" -->
                 @foreach ($modules as $module)
                   @if (module($module->slug))
                     <div class="col-xs-6 col-sm-6 col-md-4 col-lg-3 custom-col installed">
@@ -381,7 +361,7 @@
                           @endif
                           <img class="custom-image" src="{{ asset('assets/images/apps/'.$module->slug.'.png') }}" alt="">
                           </a>
-                          <legend style="font-weight: bold; font-size: 16px; color: #808080; cursor: pointer;">
+                          <legend style="font-weight: bold; font-size: 14px; color: #808080; cursor: pointer;">
                             {{ $module->name }}
                           </legend>
                         </div>

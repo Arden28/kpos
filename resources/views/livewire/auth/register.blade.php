@@ -7,6 +7,24 @@
     <div x-data="{currentStep: 1}" x-init="currentStep = {{ $currentStep }}">
 
         <div x-show="currentStep === 1">
+            <div class="row">
+                <div class="col-12">
+                    <a href="#" class="btn w-100">
+                        <!-- Download SVG icon from https://icons8.com/icon/set/google/color -->
+                        <img src="{{ asset('assets/images/icons/google.svg') }}" width="24px" height="24px" alt="">
+                        {{ __('S\'inscrire avec Google') }}
+                    </a>
+                </div>
+                <div class="col-12" style="margin-top: 10px">
+                    <a href="#" class="btn w-100">
+                        <!-- Download SVG icon from http://https://icons8.com/icon/set/facebook/color -->
+                        <img src="{{ asset('assets/images/icons/facebook.svg') }}" width="24px" height="24px" alt="">
+                        {{ __("S'inscrire avec Facebook") }}
+                    </a>
+                </div>
+            </div>
+
+            <div class="hr-text">{{__('ou')}}</div>
 
             <div class="hr-text">{{ __('Informations Personnelles') }}</div>
 
