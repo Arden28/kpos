@@ -24,7 +24,7 @@ class PosOpened
             return $next($request);
 
         }else{
-            session()->flash('message', __('Veuillez démarer une session'));
+            session()->flash('message', __("Veuillez d'abord démarer une session !"));
             return redirect()->route('app.pos.dashboard');
         }
     }

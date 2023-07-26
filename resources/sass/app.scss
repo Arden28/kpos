@@ -5,6 +5,8 @@
 // Datatables BS4
 @import "~datatables.net-bs4/css/dataTables.bootstrap4.css";
 
+@import '~intl-tel-input/build/css/intlTelInput.css';
+
 //Extra Overrides
 .btn:not([class*=ghost]):not([class*=link]):not([class*=outline]):not([class*=transparent]) {
     border: 0;

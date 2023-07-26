@@ -29,9 +29,32 @@ class LoginRequest extends FormRequest
     public function rules()
     {
         return [
-            'email' => ['required', 'string', 'email', 'exists:users,email'],
+            // 'email' => ['required', 'string', 'email', 'exists:users,email'],
+            'phone' => ['required', 'string', 'min:9', 'exists:users,phone'],
             'password' => ['required', 'string'],
         ];
+    }
+
+    /**
+     * Attempt to authenticate the request's credentials.
+     *
+     * @return void
+     *
+     * @throws \Illuminate\Validation\ValidationException
+     */
+    public function authenticateWithPhone()
+    {
+        $this->ensureIsNotRateLimitedPhone();
+
+        if (! Auth::attempt($this->only('phone', 'password'), $this->boolean('remember'))) {
+            RateLimiter::hit($this->throttleKeyPhone());
+
+            throw ValidationException::withMessages([
+                'phone' => trans('auth.failed'),
+            ]);
+        }
+
+        RateLimiter::clear($this->throttleKey());
     }
 
     /**
@@ -82,6 +105,31 @@ class LoginRequest extends FormRequest
     }
 
     /**
+     * Ensure the login request is not rate limited.
+     *
+     * @return void
+     *
+     * @throws \Illuminate\Validation\ValidationException
+     */
+    public function ensureIsNotRateLimitedPhone()
+    {
+        if (! RateLimiter::tooManyAttempts($this->throttleKey(), 5)) {
+            return;
+        }
+
+        event(new Lockout($this));
+
+        $seconds = RateLimiter::availableIn($this->throttleKey());
+
+        throw ValidationException::withMessages([
+            'phone' => trans('auth.throttle', [
+                'seconds' => $seconds,
+                'minutes' => ceil($seconds / 60),
+            ]),
+        ]);
+    }
+
+    /**
      * Get the rate limiting throttle key for the request.
      *
      * @return string
@@ -89,5 +137,16 @@ class LoginRequest extends FormRequest
     public function throttleKey()
     {
         return Str::lower($this->input('email')).'|'.$this->ip();
+    }
+
+
+    /**
+     * Get the rate limiting throttle key for the request.
+     *
+     * @return string
+     */
+    public function throttleKeyPhone()
+    {
+        return Str::lower($this->input('phone')).'|'.$this->ip();
     }
 }

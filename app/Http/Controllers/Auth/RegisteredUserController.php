@@ -69,7 +69,7 @@ class RegisteredUserController extends Controller
             $request->validate([
                 'name' => ['required', 'string', 'max:255'],
                 'email' => ['required', 'string', 'email', 'max:255', 'unique:users,email'],
-                'phone' => ['required', 'string', 'max:255', 'unique:users,phone'],
+                'phone' => ['required', 'string', 'max:20', 'unique:users,phone'],
                 'password' => ['required', 'string', 'min:8', 'confirmed'],
                 'invitation_token' => ['required', 'string']
             ]);

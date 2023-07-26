@@ -29,6 +29,13 @@
 
             <livewire:pos::widget.top-widget />
 
+            <a class="btn btn-primary d-none d-sm-inline-block"  data-bs-toggle="modal" data-bs-target="#profit-{{ $physical->id }}">
+
+                <i class="bi bi-clipboard-data"></i>
+                Profit
+            </a>
+            @include('pos::includes.modals.profit')
+
             <a class="btn btn-primary d-none d-sm-inline-block" data-bs-toggle="modal" data-bs-target="#modal-session-{{ $physical->id }}">
 
                 <i class="bi bi-box-arrow-right"></i>

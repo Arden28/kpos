@@ -57,7 +57,12 @@
                                     <div class="col-lg-6">
                                         <div class="form-group">
                                             <label for="tel">{{ __('Téléphone') }} <span class="text-danger">*</span></label>
-                                            <input class="form-control" type="phone" name="phone" required>
+                                            <x-tel-input
+                                                id="phone"
+                                                name="phone"
+                                                class="form-control"
+                                            />
+                                            <x-input-error :messages="$errors->get('phone')" class="mt-2" />
                                         </div>
                                     </div>
                                 </div>

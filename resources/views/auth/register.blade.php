@@ -150,7 +150,8 @@
         {{ __('Vous êtes déjà un Kover ? ') }} <a href="{{ route('login') }}" tabindex="-1">{{ __('Retourner à la page de connexion') }}</a>
       </div>
     </div>
-  </div><div class="col-12 col-lg-6 col-xl-6 d-none d-lg-block">
+  </div>
+  <div class="col-12 col-lg-6 col-xl-6 d-none d-lg-block">
     <!-- Photo -->
     <div class="bg-cover h-100 min-vh-100" style="background-image: url({{ asset('assets/static/photos/auth-register-3.png')}})">
       <div class="d-flex justify-content-center align-items-center h-100">
@@ -183,6 +184,7 @@
         </div>
       </div>
     </div>
+
   </div>
 </div>
 @endsection

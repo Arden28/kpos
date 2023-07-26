@@ -16,7 +16,9 @@
     <link href="{{ asset('assets/dist/css/tabler-payments.min.css')}}?1668287865" rel="stylesheet"/>
     <link href="{{ asset('assets/dist/css/tabler-vendors.min.css')}}?1668287865" rel="stylesheet"/>
     <link href="{{ asset('assets/dist/css/demo.min.css')}}?1668287865" rel="stylesheet"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/intl-tel-input@18.1.1/build/css/intlTelInput.css">
     @livewireStyles
+    @laravelTelInputStyles
     <wireui:scripts />
     <script src="https://unpkg.com/alpinejs" defer></script>
     {{-- <link rel="stylesheet" href="{{ mix('css/app.css') }}" crossorigin="anonymous"> --}}
@@ -38,10 +40,28 @@
     <!-- Tabler Core -->
     <script src="{{ asset('assets/dist/js/tabler.min.js')}}?1668287865" defer></script>
     <script src="{{ asset('assets/dist/js/demo.min.js')}}?1668287865" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/intl-tel-input@18.1.1/build/js/intlTelInput.min.js"></script>
+    {{-- <script>
+        var input = document.querySelector("#phone");
+        window.intlTelInput(input, {
+            utilsScript: "https://cdn.jsdelivr.net/npm/intl-tel-input@18.1.1/build/js/utils.js",
+        });
+    </script> --}}
+    <script>
+    // Wrap the script in a DOMContentLoaded event listener to ensure the input field is available
+    document.addEventListener('DOMContentLoaded', function () {
+        var input = document.querySelector("#phone");
+        var iti = window.intlTelInput(input, {
+            utilsScript: "https://cdn.jsdelivr.net/npm/intl-tel-input@17.0.12/build/js/utils.js",
+        });
+    });
+</script>
+
 
     @include('sweetalert::alert')
 
     @yield('scripts')
     @livewireScripts
+    @laravelTelInputScripts
   </body>
 </html>

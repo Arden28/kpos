@@ -31,6 +31,9 @@ Route::middleware(['module:pos', 'auth', 'opened'])->group( function() {
     Route::get('/app/pos/action', [PosController::class, 'index'])->name('app.pos.index');
 
 
+    // Get specific Pos' Orders
+    Route::get('/app/pos/{id}/orders', [PosOrderController::class, 'show'])->name('app.pos.order.single');
+
 
     // Create a new customer
     // Route::post('/create-customer', CreateCustomer::class)->name('create-customer');
@@ -62,9 +65,6 @@ Route::middleware(['module:pos', 'auth'])->group(function() {
 
     // Get all Pos' Orders
     Route::get('/app/pos/orders', [PosOrderController::class, 'index'])->name('app.pos.order');
-
-    // Get specific Pos' Orders
-    Route::get('/app/pos/{id}/orders', [PosOrderController::class, 'show'])->name('app.pos.order.single');
 
     // Customers
     Route::get('/app/pos/customer', [PosController::class, 'customer'])->name('app.pos.customer');

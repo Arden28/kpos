@@ -15,10 +15,9 @@
     <link href="{{ asset('assets/dist/css/tabler-vendors.min.css')}}?1668287865" rel="stylesheet"/>
     <link href="{{ asset('assets/dist/css/demo.min.css')}}?1668287865" rel="stylesheet"/>
     <!-- CoreUI CSS -->
-    <link rel="stylesheet" href="{{ mix('css/app.css') }}" crossorigin="anonymous">
+    {{-- <link rel="stylesheet" href="{{ mix('css/app.css') }}" crossorigin="anonymous"> --}}
 
 
-    @livewireStyles
     <wireui:scripts />
     <script src="https://unpkg.com/alpinejs" defer></script>
 
@@ -207,7 +206,6 @@
     </div> --}}
 
     @include('includes.main-js')
-    @livewireScripts
 
   </body>
 </html>

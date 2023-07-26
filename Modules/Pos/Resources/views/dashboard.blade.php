@@ -94,16 +94,12 @@
                                                 $date = \Carbon\Carbon::parse($latest_session->start_date);
 
                                                 if($latest_session->end_date){
-                                                    $end_date = \Carbon\Carbon::parse($latest_session->end_date)->format('d F Y H:i:s');
+
+                                                    $end_date = \Carbon\Carbon::parse($latest_session->start_date)->locale('fr')->isoFormat('LL LTS');
                                                 }else{
                                                     $end_date ="";
                                                 }
 
-                                                if ($date) {
-                                                    $formattedDate = $date->format('d F Y H:i:s');
-                                                } else {
-                                                    $formattedDate = ''; // or handle the case where the value is not valid
-                                                }
                                             @endphp
                                             <li>
                                                 Dernière date de fermeture : {{ $end_date }}
