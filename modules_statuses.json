@@ -22,5 +22,6 @@
     "Financial": true,
     "Kmodule": true,
     "Elearning": true,
-    "Accounting": true
+    "Accounting": true,
+    "FieldOfService": true
 }

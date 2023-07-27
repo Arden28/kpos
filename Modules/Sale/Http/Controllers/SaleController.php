@@ -9,6 +9,7 @@ use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Gate;
+use Modules\FieldOfService\DataTables\ServiceDataTable;
 use Modules\Financial\Interfaces\Accounting\AccountInterface;
 use Modules\Inventory\DataTables\ProductDataTable;
 use Modules\People\DataTables\CustomersDataTable;
@@ -49,9 +50,10 @@ class SaleController extends Controller
 
         Cart::instance('sale')->destroy();
 
+        $customers = Customer::isCompany(Auth::user()->currentCompany->id)->orderBy('id', 'DESC')->get();
         $accounts = $this->accountRepository->getCompanyAccounts(Auth::user()->currentCompany->id);
 
-        return view('sale::create', compact('accounts'));
+        return view('sale::create', compact('accounts', 'customers'));
     }
 
 
@@ -140,5 +142,11 @@ class SaleController extends Controller
         return $dataTable->render('sale::products.index');
     }
 
+
+    // Products
+    public function service(ServiceDataTable $dataTable) {
+
+        return $dataTable->render('sale::products.service');
+    }
 
 }

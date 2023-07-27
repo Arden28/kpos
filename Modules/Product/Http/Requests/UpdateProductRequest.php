@@ -23,9 +23,15 @@ class UpdateProductRequest extends FormRequest
 
         return [
             'product_name' => ['required', 'string', 'max:255'],
+            'product_type' => ['required', 'string'],
             'product_code' => ['required', 'string', 'max:255'],
             'product_barcode_symbology' => ['required', 'string', 'max:255'],
             'category_id' => ['required', 'integer'],
+
+            'can_be_sold' => ['nullable', 'boolean'],
+            'can_be_purchased' => ['nullable', 'boolean'],
+            'can_be_rented' => ['nullable', 'boolean'],
+
             // 'product_unit' => ['required', 'string', 'max:255'],
             'product_quantity' => ['required', 'integer', 'min:1'],
             'product_cost' => ['required', 'numeric', 'max:2147483647'],
@@ -34,7 +40,6 @@ class UpdateProductRequest extends FormRequest
             'product_order_tax' => ['nullable', 'integer', 'min:0', 'max:100'],
             'product_tax_type' => ['nullable', 'integer'],
             'product_note' => ['nullable', 'string', 'max:1000'],
-            'category_id' => ['required', 'integer']
         ];
     }
 

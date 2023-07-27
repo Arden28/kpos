@@ -21,26 +21,41 @@
       :root {
       	--tblr-font-sans-serif: Inter, -apple-system, BlinkMacSystemFont, San Francisco, Segoe UI, Roboto, Helvetica Neue, sans-serif;
       }
-      @media (max-width: 500px) {
-            .custom-col {
-                flex: 0 0 50%; /* Afficher deux colonnes par ligne */
-                max-width: 50%;
-            }
-        }
-        .row-app{
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          width: 800px;
-          height: 300px;
+        .row-app {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            max-width: 800px;
+            padding: 15px;
         }
 
-        .custom-col {
-            margin-top: 15px;
-        }
+    .custom-col {
+    margin-top: 15px;
+    flex: 0 0 100%; /* By default, the items will be displayed in a single column */
+    }
+
+    /* Adjust the number of columns for different screen sizes */
+    @media (min-width: 576px) {
+    .custom-col {
+        flex: 0 0 50%; /* On screens >= 576px wide, display in 2 columns */
+    }
+    }
+
+    @media (min-width: 768px) {
+    .custom-col {
+        flex: 0 0 33.33%; /* On screens >= 768px wide, display in 3 columns */
+    }
+    }
+
+    @media (min-width: 992px) {
+    .custom-col {
+        flex: 0 0 25%; /* On screens >= 992px wide, display in 4 columns */
+    }
+    }
 
         .inspiring-div {
-            position: relative;
+            position: relative; /*relative*/
             background-color: #f5f5f5; /*Couleur de fond */
             padding: 20px;
             top: 0;
@@ -164,7 +179,7 @@
               {{-- Notifications --}}
                 @php
                     $low_quantity_products = \Modules\Product\Entities\Product::select('id', 'product_quantity', 'product_stock_alert', 'product_code', 'product_name')->whereColumn('product_quantity', '<=', 'product_stock_alert')
-                    ->company(Auth::user()->currentCompany->id)->get();
+                    ->isCompany(Auth::user()->currentCompany->id)->isStorable()->get();
                     $notifications = $low_quantity_products->count();
                 @endphp
               <div class="nav-item dropdown d-none d-md-flex me-3">

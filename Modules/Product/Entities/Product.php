@@ -21,7 +21,7 @@ class Product extends Model implements HasMedia
 
     protected $with = ['media'];
 
-    public function scopeCompany(Builder $query, $company_id)
+    public function scopeIsCompany(Builder $query, $company_id)
     {
         return $query->where('company_id', $company_id);
     }
@@ -68,6 +68,59 @@ class Product extends Model implements HasMedia
     public function company()
     {
         return $this->belongsTo(Company::class, 'company_id', 'id');
+    }
+
+
+
+    /**
+     * Determine if the product is stockable
+     *
+     */
+    public function scopeIsStorable(Builder $builder) {
+        return $builder->where('product_type', 'storable');
+    }
+
+    /**
+     * Determine if the product is consumable
+     *
+     */
+    public function scopeIsConsumable(Builder $builder) {
+        return $builder->where('product_type', 'consumable');
+    }
+
+    /**
+     * Determine if the product is stockable
+     *
+     */
+    public function scopeIsService(Builder $builder) {
+        return $builder->where('product_type', 'service');
+    }
+
+
+    /**
+     * Determine if the product can be sold
+     *
+     */
+    public function scopeCanBeSold(Builder $builder) {
+        return $builder->where('can_be_sold', 1);
+    }
+
+
+    /**
+     * Determine if the product can be sold
+     *
+     */
+    public function scopeCanBePurchased(Builder $builder) {
+        return $builder->where('can_be_purchased', 1);
+    }
+
+
+    /**
+     * Determine if the product can be sold
+     *
+     */
+    public function scopeCanBeRented(Builder $builder) {
+        return $builder->where('can_be_rented', 1);
     }
 
     protected static function newFactory()

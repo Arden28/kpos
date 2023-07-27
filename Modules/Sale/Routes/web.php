@@ -74,4 +74,7 @@ Route::middleware(['module:sales', 'auth'])->group(function () {
 
     // Products
     Route::get('/products', 'SaleController@product')->name('sales.products');
+
+    // Services
+    Route::get('/services', 'SaleController@service')->name('sales.services');
 });

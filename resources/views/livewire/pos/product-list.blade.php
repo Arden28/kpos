@@ -9,11 +9,19 @@
                     </div>
                 </div>
                 @forelse($products as $product)
-                    <div wire:click.prevent="selectProduct({{ $product }})" class="col-lg-4 col-md-6" style="cursor: pointer;">
+                    <div wire:click.prevent="selectProduct({{ $product }})" class="col-lg-4 col-md-6" style="cursor: pointer;margin-bottom: 17px;">
                         <div class="card border-0 shadow h-100">
                             <div class="position-relative">
                                 <img height="200" src="{{ $product->getFirstMediaUrl('images') }}" class="card-img-top" alt="Product Image">
-                                <div class="badge badge-info mb-3 position-absolute" style="left:10px;top: 10px;">Stock: {{ $product->product_quantity }}</div>
+                                    @if($product->product_type == 'storable')
+                                    <div class="badge badge-info mb-3 position-absolute" style="left:10px;top: 10px;">
+                                        {{ __('Stock') }}: {{ $product->product_quantity }}
+                                    </div>
+                                    @elseif($product->product_type == 'consumable' || 'service')
+                                    <div class="badge badge-success mb-3 position-absolute" style="left:10px;top: 10px;">
+                                        {{ $product->product_status == 1 ? 'Disponible' : 'Indisponible' }}
+                                    </div>
+                                    @endif
                             </div>
                             <div class="card-body">
                                 <div class="mb-2">

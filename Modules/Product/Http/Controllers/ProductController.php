@@ -52,7 +52,32 @@ class ProductController extends Controller
 
 
     public function store(StoreProductRequest $request) {
-        $product = Product::create($request->except('document'));
+        // dd($request->all())
+        // Can be sold or not
+        if($request->has('can_be_sold')){
+            $canBeSold = 1;
+        }else{
+            $canBeSold = 0;
+        }
+        // Can be purchased or not
+        if($request->has('can_be_purchased')){
+            $canBePurchased = 1;
+        }else{
+            $canBePurchased = 0;
+        }
+        // Can be rented or not
+        if($request->has('can_be_rented')){
+            $canBeRented = 1;
+        }else{
+            $canBeRented = 0;
+        }
+
+        // $product = Product::create($request->except('document'), );
+        $product = Product::create(array_merge($request->except(['document', 'can_be_sold', 'can_be_purchased', 'can_be_rented']), [
+            'can_be_sold' => $canBeSold,
+            'can_be_purchased' => $canBePurchased,
+            'can_be_rented' => $canBeRented,
+        ]));
 
         if ($request->has('document')) {
             foreach ($request->input('document', []) as $file) {
@@ -79,12 +104,36 @@ class ProductController extends Controller
         $company = Auth::user()->currentCompany->id;
         $categories = $this->categoryRepository->getCategories($company);
         $units = Unit::Company($company)->get();
-        return view('product::products.edit', compact('product', 'categories', 'units'));
+        $suppliers = $this->supplierRepository->getSuppliers($company);
+        return view('product::products.edit', compact('product', 'categories', 'units', 'suppliers'));
     }
 
 
     public function update(UpdateProductRequest $request, Product $product) {
-        $product->update($request->except('document'));
+
+        // Can be sold or not
+        if($request->has('can_be_sold')){
+            $canBeSold = 1;
+        }else{
+            $canBeSold = 0;
+        }
+        // Can be purchased or not
+        if($request->has('can_be_purchased')){
+            $canBePurchased = 1;
+        }else{
+            $canBePurchased = 0;
+        }
+        // Can be rented or not
+        if($request->has('can_be_rented')){
+            $canBeRented = 1;
+        }else{
+            $canBeRented = 0;
+        }
+        $product->update(array_merge($request->except(['document', 'can_be_sold', 'can_be_purchased', 'can_be_rented']), [
+            'can_be_sold' => $canBeSold,
+            'can_be_purchased' => $canBePurchased,
+            'can_be_rented' => $canBeRented,
+        ]));
 
         if ($request->has('document')) {
             if (count($product->getMedia('images')) > 0) {

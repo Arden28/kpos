@@ -25,7 +25,7 @@ class SearchProduct extends Component
     }
 
     public function updatedQuery() {
-        $this->search_results = Product::where('company_id', Auth::user()->currentCompany->id)->where('product_name', 'like', '%' . $this->query . '%')
+        $this->search_results = Product::isCompany(Auth::user()->currentCompany->id)->canBeSold()->where('product_name', 'like', '%' . $this->query . '%')
             ->orWhere('product_code', 'like', '%' . $this->query . '%')->where('company_id', Auth::user()->currentCompany->id)
             ->take($this->how_many)->get();
     }

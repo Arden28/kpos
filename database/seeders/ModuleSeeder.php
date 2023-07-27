@@ -53,11 +53,25 @@ class ModuleSeeder extends Seeder
                 'short_name'    =>  'PDV',
                 'description'  =>  'Gérez votre magasin plus efficacement votre magasin.'
             ],
+
+            [
+                'name' => 'E-Learning',
+                'slug' => 'e-learning',
+                'short_name'    =>  'E-Learning',
+                'description'  =>  'Gérez plus efficacement vos formations.'
+            ],
+
+            [
+                'name' => 'Service',
+                'slug' => 'field_of_service',
+                'short_name'    =>  'Service',
+                'description'  =>  'Gérez et planifier vos services.'
+            ],
         ];
 
         foreach ($modules as $module) {
             Module::create($module);
-            
+
         }
 
     }

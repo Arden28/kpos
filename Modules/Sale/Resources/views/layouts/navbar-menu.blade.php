@@ -64,7 +64,7 @@
             </li>
             @endcan
 
-            <li class="nav-item">
+            {{-- <li class="nav-item">
               <a href="{{ route('sales.products') }}" class="btn {{ request()->routeIs('sales.products') ? 'active' : '' }}" style="margin-right: 5px;">
                 <span class="nav-link-icon d-md-none d-lg-inline-block"><!-- Download SVG icon from http://tabler-icons.io/i/home -->
                 <i class="bi bi-app" style="width: 24px; height:24px"></i>
@@ -73,6 +73,34 @@
                     {{ __('Produits') }}
                 </span>
               </a>
+            </li> --}}
+
+            <li class="nav-item dropdown"  data-turbolinks="false" >
+              <a class="btn " style="margin-right: 5px;" href="#navbar-base" data-bs-toggle="dropdown" data-bs-auto-close="outside" role="button" aria-expanded="false" >
+                <i class="bi bi-app" style="width: 24px; height:24px"></i>
+                </span>
+                <span class="nav-link-title">
+                  {{ __('Produits') }}
+                </span>
+              </a>
+              <div class="dropdown-menu">
+                <div class="dropdown-menu-columns">
+
+                  <div class="dropdown-menu-column">
+                    <a class="dropdown-item {{ request()->routeIs('sales.products') ? 'active' : '' }}" href="{{ route('sales.products') }}">
+                        <i class="bi bi-app" style="width: 24px; height:24px"></i>
+                      {{ __('Produits') }}
+                    </a>
+
+                    <a class="dropdown-item {{ request()->routeIs('sales.services') ? 'active' : '' }}" href="{{ route('sales.services') }}">
+                        <i class="bi bi-clipboard-data" style="width: 24px; height:24px"></i>
+                      {{ __('Services') }}
+                    </a>
+
+                  </div>
+
+                </div>
+              </div>
             </li>
 
           </ul>

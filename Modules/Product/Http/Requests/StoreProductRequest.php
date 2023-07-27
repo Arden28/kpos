@@ -25,8 +25,13 @@ class StoreProductRequest extends FormRequest
         return [
             'company_id' => ['required', 'integer'],
             'product_name' => ['required', 'string', 'max:255'],
+            'product_type' => ['required', 'string'],
             'product_code' => ['required', 'string', 'max:255', $productIdRule],
             'product_barcode_symbology' => ['required', 'string', 'max:255'],
+
+            'can_be_sold' => ['nullable', 'boolean'],
+            'can_be_purchased' => ['nullable', 'boolean'],
+            'can_be_rented' => ['nullable', 'boolean'],
 
             'supplier_id' => ['integer'],
             'is_wholesale' => ['boolean'],
@@ -42,6 +47,7 @@ class StoreProductRequest extends FormRequest
             'product_tax_type' => ['nullable', 'integer'],
             'product_note' => ['nullable', 'string', 'max:1000'],
             'category_id' => ['required', 'integer']
+
         ];
     }
 

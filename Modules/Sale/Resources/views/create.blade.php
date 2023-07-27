@@ -42,11 +42,27 @@
                                         </div>
                                     </div>
                                     <div class="col-lg-4">
-                                        <div class="from-group">
+                                        {{-- <div class="from-group">
                                             <div class="form-group">
                                                 <label for="customer_id">{{ __('Client') }} <span class="text-danger">*</span></label>
                                                 <select class="form-control" name="customer_id" id="customer_id" required>
                                                     @foreach(\Modules\People\Entities\Customer::where('company_id', Auth::user()->currentCompany->id)->get() as $customer)
+                                                        <option value="{{ $customer->id }}">{{ $customer->customer_name }}</option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+                                        </div> --}}
+                                        <div class="form-group" style="padding-bottom: 12px;">
+                                            <label for="customer_id">{{ __('Client') }} <span class="text-danger">*</span></label>
+                                            <div class="input-group">
+                                                <div class="input-group-prepend">
+                                                    <a href="#" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#customerModal">
+                                                        <i class="bi bi-person-plus"></i>
+                                                    </a>
+                                                </div>
+                                                <select name="customer_id" id="customer_id" class="form-control">
+                                                    <option value="" selected>{{ __('Sélectionnez un Client') }}</option>
+                                                    @foreach($customers as $customer)
                                                         <option value="{{ $customer->id }}">{{ $customer->customer_name }}</option>
                                                     @endforeach
                                                 </select>
@@ -140,6 +156,9 @@
             </div>
         </div>
     </div>
+
+    @include('people::livewire.includes.customer-modal')
+
 @endsection
 
 @push('page_scripts')

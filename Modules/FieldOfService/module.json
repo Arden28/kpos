@@ -1,0 +1,13 @@
+{
+    "name": "FieldOfService",
+    "alias": "fieldofservice",
+    "description": "",
+    "keywords": [],
+    "priority": 0,
+    "providers": [
+        "Modules\\FieldOfService\\Providers\\FieldOfServiceServiceProvider"
+    ],
+    "aliases": {},
+    "files": [],
+    "requires": []
+}
