@@ -29,11 +29,11 @@
 
         @endphp
         <div class="d-flex align-items-baseline">
-          <div class="h1 mb-3"> {{ $units }} {{__('Produit(s)')}}
-            <button type="button" class="btn btn-xxl btn-white" data-bs-toggle="popover" data-bs-title="Produit(s) vendus ..."
+          <div class="h1 mb-3"> {{ $units }} {{ module('field_of_service') == true ? 'Services' : 'Produits' }}</div>
+            {{-- <button type="button" class="btn btn-xxl btn-white" data-bs-toggle="popover" data-bs-title="Produit(s) vendus ..."
                  data-bs-content="{{ $html }}" data-bs-html="true">
                  <i class="bi bi-eye"></i> Info
-            </button>
+            </button> --}}
           </div>
           {{-- <div class="ms-auto">
               <span class="text-green d-inline-flex align-items-center lh-1">
