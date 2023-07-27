@@ -106,25 +106,6 @@ class Checkout extends Component
                     'unit_price'            => $this->calculate($product)['unit_price']
                 ]
             ]);
-        }elseif($product['product_type'] == 'service'){
-            $cart->add([
-                'id'      => $product['id'],
-                'name'    => $product['product_name'],
-                'qty'     => 1,
-                'price'   => $this->calculate($product)['price'],
-                'weight'  => 1,
-                'options' => [
-                    'product_discount'      => 0.00,
-                    'product_discount_type' => 'fixed',
-                    'sub_total'             => $this->calculate($product)['sub_total'],
-                    'code'                  => $product['product_code'],
-                    'stock'                 => 100,
-                    // 'stock'                 => $product['product_quantity'],
-                    'unit'                  => $product['product_unit'],
-                    'product_tax'           => $this->calculate($product)['product_tax'],
-                    'unit_price'            => $this->calculate($product)['unit_price']
-                ]
-            ]);
         }else{
             $cart->add([
                 'id'      => $product['id'],

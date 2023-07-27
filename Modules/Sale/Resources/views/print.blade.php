@@ -84,7 +84,9 @@
                                     <td class="align-middle">{{ format_currency($item->unit_price) }}</td>
 
                                     <td class="align-middle">
-                                        {{ $item->quantity }}
+                                        @if($item->product_type == 'storable')
+                                            {{ $item->quantity }}
+                                        @endif
                                     </td>
 
                                     <td class="align-middle">
