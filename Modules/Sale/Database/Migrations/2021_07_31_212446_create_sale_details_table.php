@@ -19,7 +19,7 @@ class CreateSaleDetailsTable extends Migration
             $table->foreignId('product_id')->nullable();
             $table->string('product_name');
             $table->string('product_code');
-            $table->integer('quantity');
+            $table->decimal('quantity', $precision = 10, $scale = 2);
             $table->integer('price');
             $table->integer('unit_price');
             $table->integer('sub_total');
@@ -29,7 +29,7 @@ class CreateSaleDetailsTable extends Migration
 
             $table->foreign('sale_id')->references('id')
                 ->on('sales')->cascadeOnDelete();
-                
+
             $table->timestamps();
         });
     }
