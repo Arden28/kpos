@@ -368,7 +368,45 @@
                             </p>
                         @endforeach --}}
                     </td>
+                    <td class="border-0"></td>
+                    <td class="px-0">
+                        @if($customer->customer_name)
+                            <p class="buyer-name">
+                                <strong>{{ $customer->customer_name }}</strong>
+                            </p>
+                        @endif
 
+                        @if($customer->customer_address)
+                            <p class="buyer-address">
+                                {{ __('Adresse') }}: {{ $customer->customer_address }}
+                            </p>
+                        @endif
+
+                        @if($customer->customer_code)
+                            <p class="buyer-code">
+                                {{ __('Code') }}: {{ $customer->customer_code }}
+                            </p>
+                        @endif
+
+                        @if($customer->customer_vat)
+                            <p class="buyer-vat">
+                                {{ __('TVA') }}: {{ $customer->customer_vat }}
+                            </p>
+                        @endif
+
+                        @if($customer->customer_phone)
+                            <p class="buyer-phone">
+                                {{ __('Téléphone') }}: {{ $customer->customer_phone }}
+                            </p>
+                        @endif
+
+                        {{-- @foreach(Auth::user()->currentCompany->custom_fields as $key => $value)
+                            <p class="buyer-custom-field">
+                                {{ ucfirst($key) }}: {{ $value }}
+                            </p>
+                        @endforeach --}}
+                    </td>
+                </tr>
                     </tbody>
                 </table>
 
