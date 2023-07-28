@@ -43,12 +43,12 @@
                                 {{ __('Réference') }}: <strong>{{ $sale->reference }}</strong>
                             </div>
                             {{-- Print --}}
-                            {{-- <a target="_blank" class="btn btn-sm btn-secondary mfs-auto mfe-1 d-print-none" href="{{ route('sales.pdf', $sale->id) }}">
+                            <a target="_blank" class="btn btn-sm btn-secondary mfs-auto mfe-1 d-print-none" href="{{ route('sales.pdf', $sale->id) }}">
                                 <i class="bi bi-printer"></i> Print
                             </a>
                             <a target="_blank" class="btn btn-sm btn-info mfe-1 d-print-none" href="{{ route('sales.pdf', $sale->id) }}">
                                 <i class="bi bi-save"></i> Save
-                            </a> --}}
+                            </a>
                         </div>
                         <div class="card-body">
                             <div class="row mb-4">

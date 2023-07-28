@@ -30,11 +30,13 @@ Route::middleware(['module:sales', 'auth'])->group(function () {
         $sale = \Modules\Sale\Entities\Sale::findOrFail($id);
         $customer = \Modules\People\Entities\Customer::findOrFail($sale->customer_id);
         $seller = \App\Models\User::findOrFail($sale->seller_id);
+        $company = \App\Models\Company::findOrFail($sale->company_id);
 
         $pdf = Pdf::loadView('sale::print', [
             'sale' => $sale,
             'customer' => $customer,
             'seller' => $seller,
+            'company' => $company
         ])->setPaper('a4');
 
         return $pdf->stream('sale-'. $sale->reference .'.pdf');
