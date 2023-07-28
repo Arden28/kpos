@@ -182,60 +182,62 @@
                     ->isCompany(Auth::user()->currentCompany->id)->isStorable()->get();
                     $notifications = $low_quantity_products->count();
                 @endphp
-              <div class="nav-item dropdown d-none d-md-flex me-3">
-                @can('show_notifications')
-                <a href="#" class="nav-link px-0" data-bs-toggle="dropdown" tabindex="-1" aria-label="Show notifications">
+                @if(module('inventory'))
+                <div class="nav-item dropdown d-none d-md-flex me-3">
+                  @can('show_notifications')
+                  <a href="#" class="nav-link px-0" data-bs-toggle="dropdown" tabindex="-1" aria-label="Show notifications">
 
-                  <i class="bi bi-bell" style="font-size: 15px;"></i>
+                    <i class="bi bi-bell" style="font-size: 15px;"></i>
 
-                  @if($notifications > 0)
-                    <span class="badge bg-red">
-                        {{ $notifications }}
-                    </span>
-                  @endif
-                </a>
-                @endcan
-                <div class="dropdown-menu dropdown-menu-arrow dropdown-menu-end dropdown-menu-card">
-                  <div class="card">
-                    <div class="card-header">
-                      <h3 class="card-title">
-                        {{ $low_quantity_products->count() }} {{ __('Notifications') }}
-                      </h3>
-                    </div>
-                    <div class="list-group list-group-flush list-group-hoverable">
+                    @if($notifications > 0)
+                      <span class="badge bg-red">
+                          {{ $notifications }}
+                      </span>
+                    @endif
+                  </a>
+                  @endcan
+                  <div class="dropdown-menu dropdown-menu-arrow dropdown-menu-end dropdown-menu-card">
+                    <div class="card">
+                      <div class="card-header">
+                        <h3 class="card-title">
+                          {{ $low_quantity_products->count() }} {{ __('Notifications') }}
+                        </h3>
+                      </div>
+                      <div class="list-group list-group-flush list-group-hoverable">
 
-                        @forelse($low_quantity_products as $product)
-                        <div class="list-group-item">
-                            <div class="row align-items-center">
-                            <div class="col-auto"><span class="status-dot status-dot-animated bg-red d-block"></span></div>
-                            <div class="col text-truncate text-muted text-truncate mt-n1">
-                                <a href="{{ route('products.show', $product->id) }}" class="text-body">
-                                    {{ __('Le Produit') }}: "{{ $product->product_name }}" {{ __("est en stock d'alerte !") }}
-                                </a>
-                            </div>
-                            <div class="col-auto">
-                                <a href="#" class="list-group-item-actions">
-                                <!-- Download SVG icon from http://tabler-icons.io/i/star -->
-                                <i class="bi bi-hash mr-1 text-primary"></i>
-                                </a>
-                            </div>
-                            </div>
-                        </div>
-                        @empty
-                            <div class="list-group-item">
-                            <div class="row align-items-center">
-                                <div class="col-auto">
-                                    <p class="col text-truncate">
-                                        {{ __('Aucune Notification disponible') }}
-                                    </p>
-                                </div>
-                            </div>
-                            </div>
-                        @endforelse
+                          @forelse($low_quantity_products as $product)
+                          <div class="list-group-item">
+                              <div class="row align-items-center">
+                              <div class="col-auto"><span class="status-dot status-dot-animated bg-red d-block"></span></div>
+                              <div class="col text-truncate text-muted text-truncate mt-n1">
+                                  <a href="{{ route('products.show', $product->id) }}" class="text-body">
+                                      {{ __('Le Produit') }}: "{{ $product->product_name }}" {{ __("est en stock d'alerte !") }}
+                                  </a>
+                              </div>
+                              <div class="col-auto">
+                                  <a href="#" class="list-group-item-actions">
+                                  <!-- Download SVG icon from http://tabler-icons.io/i/star -->
+                                  <i class="bi bi-hash mr-1 text-primary"></i>
+                                  </a>
+                              </div>
+                              </div>
+                          </div>
+                          @empty
+                              <div class="list-group-item">
+                              <div class="row align-items-center">
+                                  <div class="col-auto">
+                                      <p class="col text-truncate">
+                                          {{ __('Aucune Notification disponible') }}
+                                      </p>
+                                  </div>
+                              </div>
+                              </div>
+                          @endforelse
+                      </div>
                     </div>
                   </div>
                 </div>
-              </div>
+                @endif
 
             </div>
             {{-- Companies --}}

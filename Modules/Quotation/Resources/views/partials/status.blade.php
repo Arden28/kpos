@@ -1,6 +1,6 @@
 @if ($data->status == 'Pending')
     <span class="badge badge-info">
-        {{ $data->status }}
+        {{ __('En attente') }}
     </span>
 @else
     <span class="badge badge-success">

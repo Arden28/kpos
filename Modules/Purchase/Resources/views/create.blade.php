@@ -63,8 +63,10 @@
                                         </div>
                                     </div>
                                 </div>
-
-                                <livewire:product-cart :cartInstance="'purchase'"/>
+                                @php
+                                    $utility = 'purchase';
+                                @endphp
+                                <livewire:product-cart :cartInstance="'purchase'" :utility="$utility"/>
 
                                 <div class="row" style="padding-top: 10px;">
                                     <div class="col-lg-4">

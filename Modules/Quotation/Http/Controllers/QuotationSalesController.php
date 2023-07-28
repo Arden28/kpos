@@ -4,13 +4,21 @@ namespace Modules\Quotation\Http\Controllers;
 
 use Gloudemans\Shoppingcart\Facades\Cart;
 use Illuminate\Routing\Controller;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
+use Modules\Financial\Interfaces\Accounting\AccountInterface;
 use Modules\Product\Entities\Product;
 use Modules\Quotation\Entities\Quotation;
 use Modules\Quotation\Http\Requests\StoreQuotationSaleRequest;
 
 class QuotationSalesController extends Controller
 {
+
+    protected $accountRepository;
+
+    public function __construct(AccountInterface $accountRepository){
+        $this->accountRepository = $accountRepository;
+    }
 
     public function __invoke(Quotation $quotation) {
         abort_if(Gate::denies('create_quotation_sales'), 403);
@@ -40,9 +48,12 @@ class QuotationSalesController extends Controller
             ]);
         }
 
+        $accounts = $this->accountRepository->getCompanyAccounts(Auth::user()->currentCompany->id);
+
         return view('quotation::quotation-sales.create', [
             'quotation_id' => $quotation->id,
-            'sale' => $quotation
+            'sale' => $quotation,
+            'accounts' => $accounts
         ]);
     }
 }
