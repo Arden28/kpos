@@ -36,7 +36,7 @@
                                 <div class="row" style="padding-bottom: 12px;">
                                     <div class="col-lg-6">
                                         <div class="form-group">
-                                            <label for="reference">{{ __('Reference') }} <span class="text-danger">*</span></label>
+                                            <label for="reference">{{ __('Réference') }} <span class="text-danger">*</span></label>
                                             <input type="text" class="form-control" name="reference" required readonly value="ADJ">
                                         </div>
                                     </div>
@@ -51,12 +51,12 @@
                                 </div>
                                 <livewire:adjustment.product-table/>
                                 <div class="form-group">
-                                    <label for="note">Note (If Needed)</label>
+                                    <label for="note">Note (Si besoin)</label>
                                     <textarea name="note" id="note" rows="5" class="form-control"></textarea>
                                 </div>
                                 <div class="mt-3">
                                     <button type="submit" class="btn btn-primary">
-                                        Create Adjustment <i class="bi bi-check"></i>
+                                        Ajuster <i class="bi bi-check"></i>
                                     </button>
                                 </div>
                             </form>
