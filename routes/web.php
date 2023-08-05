@@ -44,8 +44,8 @@ use Modules\User\DataTables\UsersDataTable;
     // Companies
 
 
-    Route::get('/sms', 'HomeController@sendSms')
-    ->name('sms');
+    // Route::get('/sms', 'HomeController@sendSms')
+    // ->name('sms');
 
     Route::get('main', 'HomeController@mainPage')->name('main');
 

@@ -31,16 +31,16 @@ class PrintPdfListener
 
     public function handle(PrintPdfEvent $event)
     {
-        $pdfUrl = $event->pdfUrl;
+        // $pdfUrl = $event->pdfUrl;
 
-        // Ouvrir une nouvelle fenêtre avec le PDF
-        $win = window.open($pdfUrl, '_blank');
-        $win.focus();
+        // // Ouvrir une nouvelle fenêtre avec le PDF
+        // $win = window.open($pdfUrl, '_blank');
+        // $win.focus();
 
-        // Attendre un court instant pour que le PDF soit chargé
-        setTimeout(function () {
-            // Lancer l'impression du PDF
-            $win.print();
-        }, 1000);
+        // // Attendre un court instant pour que le PDF soit chargé
+        // setTimeout(function () {
+        //     // Lancer l'impression du PDF
+        //     $win.print();
+        // }, 1000);
     }
 }

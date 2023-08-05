@@ -43,7 +43,8 @@ class User extends Authenticatable implements HasMedia, MustVerifyEmail
         'current_company_id',
         'team_id',
         'gauth_id',
-        'gauth_type'
+        'gauth_type',
+
     ];
 
     /**

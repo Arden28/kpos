@@ -23,7 +23,7 @@ class CompanyUser extends Model
 
 
     /**
-     * Get the company that the invitation belongs to.
+     * Get the company that the users belongs to.
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
@@ -33,7 +33,7 @@ class CompanyUser extends Model
     }
 
     /**
-     * Get the company that the invitation belongs to.
+     * Get the user that the invitation belongs to.
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */

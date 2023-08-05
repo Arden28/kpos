@@ -47,7 +47,7 @@
                                 <label for="payment_method">{{ __('Moyen de paiement') }} <span class="text-danger">*</span></label>
                                 <select class="form-control" name="payment_method" id="payment_method" required>
                                     <option value="">{{ __('Sélectionnez un moyen de paiement') }}</option>
-                                    <option value="Cash">{{ __('Paiement en espèce') }}</option>
+                                    <option selected value="Cash">{{ __('Paiement en espèce') }}</option>
                                     <option value="Carte Bancaire">{{ __('Carte Bancaire') }}</option>
                                     <option value="Momo Pay">{{ __('Momo Pay') }}</option>
                                     <option value="Chèque">{{ __('Chèque') }}</option>
