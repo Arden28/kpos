@@ -13,7 +13,7 @@
 
 use Illuminate\Support\Facades\Route;
 
-Route::group(['middleware' => 'auth'], function () {
+Route::group(['middleware' => 'auth', 'subscribed'], function () {
 
     //Dropzone
     Route::post('/dropzone/upload', 'UploadController@dropzoneUpload')->name('dropzone.upload');

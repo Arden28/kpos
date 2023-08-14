@@ -46,3 +46,9 @@ table {
     }
 }
 
+.no-outline:focus {
+    outline: none;
+  }
+  .form-control:focus {
+    outline: none;
+  }

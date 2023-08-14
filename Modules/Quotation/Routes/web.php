@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 
-Route::middleware(['module:sales', 'auth'])->group(function () {
+Route::middleware(['module:sales', 'auth', 'subscribed'])->group(function () {
     //Generate PDF
     Route::get('/quotations/pdf/{id}', function ($id) {
         $quotation = \Modules\Quotation\Entities\Quotation::findOrFail($id);

@@ -13,7 +13,7 @@ use Modules\User\Http\Controllers\UsersController;
 */
 
 
-Route::group(['middleware' => 'auth'], function () {
+Route::group(['middleware' => 'auth', 'subscribed'], function () {
 
     //User Profile
     Route::get('/user/profile', [ProfileController::class, 'edit'])->name('profile.edit');

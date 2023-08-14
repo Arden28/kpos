@@ -103,6 +103,7 @@ class PosRepository implements PosInterface
                 }
                 $sale = Sale::create([
                     'company_id'=> Auth::user()->currentCompany->id,
+                    'account_id' => $request['account_id'],
                     // 'pos_id' => $pos,
                     // 'date' => now()->format('d-m-Y H:i:s'),
                     'date' => now(),
@@ -171,11 +172,17 @@ class PosRepository implements PosInterface
 
                 $current_balance = $physical->account->balance;
 
+                if($due_amount > 0){
+                    $detail = 'Partielle. Reste à payer: '.format_currency($due_amount);
+                }else{
+                    $detail = 'Vente';
+                }
+
                 $book = AccountBook::create([
                     'company_id' => Auth::user()->currentCompany->id,
                     'account_id' => $physical->account_id,
                     'user_id' => Auth::user()->id,
-                    'detail' => 'Vente(Pdv: '.$physical->name.')',
+                    'detail' => 'Vente(Pdv: '.$physical->name.'. '. $detail.')',
                     'note' => $sale->note,
                     'balance' => $sale->paid_amount,
                     'debit' => $sale->paid_amount,

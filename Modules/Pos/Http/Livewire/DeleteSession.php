@@ -12,6 +12,7 @@ use Livewire\Component;
 use Modules\Pos\Entities\PhysicalPos;
 use Modules\Pos\Entities\PhysicalPosSession;
 use Modules\Pos\Entities\Pos;
+use Modules\Product\Entities\Product;
 
 class DeleteSession extends Component
 {
@@ -45,6 +46,10 @@ class DeleteSession extends Component
     // the difference between the expected and the actual amount
     public $difference;
 
+    public $products = [];
+
+    public $totalStockValue = 0;
+
 
     public function mount($sales)
     {
@@ -69,11 +74,18 @@ class DeleteSession extends Component
 
     public function delete(PhysicalPosSession $pos_session){
 
+        // Got stock value
+        $saleValue = $this->calculateTotal('price');
+        $purchaseValue = $this->calculateTotal('cost');
+        // dd($saleValue, $purchaseValue);
+
         $pos_session->end_amount = $this->entered_amount;
         $pos_session->expected_amount = $this->expected_amount;
         $pos_session->gap = $this->difference;
         $pos_session->end_date = Carbon::now()->format('d-m-Y H:i:s');
         $pos_session->end_note = $this->end_note;
+        $pos_session->end_stock_price_value = $saleValue;
+        $pos_session->end_stock_cost_value = $purchaseValue;
         $pos_session->is_active = 0;
         $pos_session->save();
 
@@ -113,6 +125,33 @@ class DeleteSession extends Component
             $this->calculateDifference();
         }, 500);
     }
+
+
+    public function calculateTotal($value)
+    {
+        $this->products = Product::isCompany(Auth::user()->currentCompany->id)->IsStorable()->get();
+        if($value == 'price'){
+            return $this->totalStockValue = $this->calculateSaleStockValue($this->products);
+        }elseif($value == 'cost'){
+            return $this->totalStockValue = $this->calculatePurchaseStockValue($this->products);
+        }
+    }
+
+
+    public function calculateSaleStockValue($products)
+    {
+        return $products->sum(function ($product) {
+            return $product->product_price * $product->product_quantity;
+        });
+    }
+
+    public function calculatePurchaseStockValue($products)
+    {
+        return $products->sum(function ($product) {
+            return $product->product_cost * $product->product_quantity;
+        });
+    }
+
 
 
     public function render()

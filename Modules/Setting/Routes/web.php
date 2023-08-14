@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 
-Route::group(['middleware' => 'auth'], function () {
+Route::group(['middleware' => 'auth', 'subscribed'], function () {
 
     //Mail Settings
     Route::patch('/settings/smtp', 'SettingController@updateSmtp')->name('settings.smtp.update');

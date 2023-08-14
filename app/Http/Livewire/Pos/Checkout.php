@@ -25,6 +25,8 @@ class Checkout extends Component
     public $customer_id;
     public $total_amount;
 
+    public $pos;
+
     public function mount($cartInstance) {
         $this->cart_instance = $cartInstance;
         $this->customers = Customer::isCompany(Auth::user()->currentCompany->id)->orderBy('id', 'DESC')->get();

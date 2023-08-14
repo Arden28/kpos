@@ -13,6 +13,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::prefix('elearning')->group(function() {
+Route::middleware(['auth', 'subscribed'])->prefix('elearning')->group(function() {
     Route::get('/', 'ElearningController@index')->name('elearning.index');
 });

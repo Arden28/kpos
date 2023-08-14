@@ -15,7 +15,7 @@ use Barryvdh\DomPDF\Facade\Pdf;
 */
 
 
-Route::middleware(['module:sales', 'auth'])->group(function () {
+Route::middleware(['module:sales', 'auth', 'subscribed'])->group(function () {
 
     //POS
     // Route::get('/app/pos', 'PosController@index')->name('app.pos.index');

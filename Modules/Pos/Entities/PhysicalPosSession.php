@@ -14,7 +14,12 @@ class PhysicalPosSession extends Model
 {
     use HasFactory, HasPos;
 
-    protected $fillable = ['pos_id', 'user_id', 'company_id', 'start_date', 'start_amount', 'note', 'is_active'];
+    protected $fillable = ['pos_id', 'user_id', 'company_id', 'start_date', 'start_amount', 'note', 'is_active', 'start_stock_price_value', 'start_stock_cost_value', 'end_stock_price_value', 'start_stock_cost_value'];
+
+    protected $casts = [
+        'start_date' => 'datetime',
+        'end_date' => 'datetime',
+    ];
 
     public function scopeIsActive($query)
     {

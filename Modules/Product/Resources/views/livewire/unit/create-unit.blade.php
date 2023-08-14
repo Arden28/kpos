@@ -23,17 +23,17 @@
     <form wire:submit.prevent="submit">
         @csrf
         <div class="modal-body">
-            <div class="form-group">
+            <div class="custom-group">
                 <label for="unit_name">{{ __('Nom') }} <span class="text-danger">*</span></label>
-                <input class="form-control" type="text" wire:model="unit_name" required>
+                <input class="custom-form" type="text" wire:model="unit_name" required>
             </div>
-            <div class="form-group">
+            <div class="custom-group">
                 <label for="unit_short_name">{{ __('Nom court') }} <span class="text-danger">*</span></label>
-                <input class="form-control" type="text" wire:model="unit_short_name" required>
+                <input class="custom-form" type="text" wire:model="unit_short_name" required>
             </div>
-            <div class="form-group">
+            <div class="custom-group">
                 <label for="is_decimal">{{ __('Autoriser la décimale') }} <span class="text-danger">*</span></label>
-                <select wire:model="is_decimal" id="" class="form-control" required>
+                <select wire:model="is_decimal" id="" class="custom-form" required>
                     <option>{{ __('Veuillez sélectionner') }}</option>
                     <option value="1">{{ __('Oui') }}</option>
                     <option value="0">{{ __('Non') }}</option>
@@ -44,13 +44,13 @@
                 <input type="checkbox" id="is_multiple_true" wire:model="is_multiple" value="1" {{ old('is_multiple') ? 'checked' : '' }}>
                 <input type="checkbox" id="is_multiple_false" wire:model="is_multiple" value="0" {{ old('is_multiple') ? 'checked' : '' }}>
             </div> --}}
-            <a wire:click="$set('is_multiple', true)">{{ __("Ajouter comme multiple d'autre unité") }}</a>
+            <a href="#" wire:click="$set('is_multiple', true)">{{ __("Ajouter comme multiple d'autre unité") }}</a>
             <a wire:click="$set('is_multiple', false)">Cacher</a>
                 @if($is_multiple)
-                <div class="form-group">
+                <div class="custom-group">
                     <p>
                         <b style="font-size: 16px;">1 {{ $unit }} =</b> <input type="text" wire:model="value" placeholder="fois l'unité de base">
-                        <select class="form-control" wire:model="parent_unit_id" id="">
+                        <select class="custom-form" wire:model="parent_unit_id" id="">
                             <option value="">{{ __('Sélectionnez une unité de base') }}</option>
                             @foreach ($units as $unit)
                                 <option value="{{ $unit->id }}">{{ $unit->unit_name }} ({{ $unit->unit_short_name }})</option>

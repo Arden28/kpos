@@ -12,6 +12,7 @@
 
 @livewireStyles
 @laravelTelInputStyles
+@fcStyles
 
 @stack('page_css')
 

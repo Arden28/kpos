@@ -17,7 +17,7 @@ use Modules\Financial\Http\Controllers\Accounting\AccountController;
 */
 
 
-Route::middleware(['module:finance', 'auth'])->group(function () {
+Route::middleware(['module:finance', 'auth', 'subscribed'])->group(function () {
     // Overview
     Route::get('/dashboard', [FinancialController::class, 'index'])->name('finance.index');
 

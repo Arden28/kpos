@@ -50,6 +50,11 @@ class Pos extends Model
                     ->first();
     }
 
+    // public function activePosSession()
+    // {
+    //     return $this->hasOne(PhysicalPosSession::class)->isActive();
+    // }
+
     // public function sales()
     // {
     //     return $this->hasMany(Sale::class, 'pos_id', 'id');

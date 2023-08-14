@@ -20,17 +20,16 @@ class Subscribed
      */
     public function handle(Request $request, Closure $next)
     {
-        $user = User::find(auth()->user()->id);
 
-        // $planId = PlanSubscription::where('tag', 'main')
-        //     ->where('subscriber_id', $user->id)->first();
+        if (Auth::check()) {
+            $user = User::find(Auth::user()->id);
 
-        // isSubscribedTo($planId->id)
-        if (! Auth::user()->team->subscription()) {
-            return redirect()->route('register.pro');
+            if (! subscribed($user->team->id)) {
+                return redirect()->route('register.pro');
+            }
         }
-        
-        return $next($request);
 
+        // dd('Middleware executed'); // Add this line
+        return $next($request);
     }
 }

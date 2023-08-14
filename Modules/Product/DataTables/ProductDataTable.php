@@ -27,7 +27,7 @@ class ProductDataTable extends DataTable
                 return '<img src="'.$url.'" border="0" width="50" class="img-thumbnail" align="center"/>';
             })
             ->addColumn('supplier.supplier_name', function ($data) {
-                if($data->supplier->supplier_name){
+                if($data->supplier){
                     return $data->supplier->supplier_name;
                 }else{
                     return format_currency($data->product_price);

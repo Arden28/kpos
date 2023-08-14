@@ -21,5 +21,6 @@
 
 @livewireScripts
 @laravelTelInputScripts
+@fcScripts
 
 @stack('page_scripts')

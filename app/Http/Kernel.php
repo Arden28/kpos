@@ -21,6 +21,7 @@ class Kernel extends HttpKernel
         \Illuminate\Foundation\Http\Middleware\ValidatePostSize::class,
         \App\Http\Middleware\TrimStrings::class,
         \Illuminate\Foundation\Http\Middleware\ConvertEmptyStringsToNull::class,
+        // \Modules\Subby\Http\Middleware\Subscribed::class,
     ];
 
     /**
@@ -38,6 +39,7 @@ class Kernel extends HttpKernel
             \App\Http\Middleware\VerifyCsrfToken::class,
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
             \Modules\Lang\Http\Middleware\Language::class,
+            // \Modules\Subby\Http\Middleware\Subscribed::class,
             // \App\Http\Middleware\CheckCompanyConnected::class,
             // \Modules\Pos\Http\Middleware\PosOpened::class,
         ],

@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware(['module:finance', 'auth'])->group(function () {
+Route::middleware(['module:finance', 'auth', 'subscribed'])->group(function () {
 
     //Expense Category
     Route::resource('expense-categories', 'ExpenseCategoriesController')->except('show', 'create');

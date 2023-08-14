@@ -12,7 +12,8 @@ use Modules\User\DataTables\UsersDataTable;
 
 
 // Route::group(['middleware' => 'auth', 'connected', 'verified'], function () {
-    Route::group(['middleware' => 'auth', 'verified'], function () {
+    // Route::middleware(['auth', 'verified', 'subscribed'])->group(function () {
+    Route::middleware(['auth', 'subscribed'])->group(function () {
 
 
     // Install Module

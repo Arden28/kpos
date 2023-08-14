@@ -198,14 +198,15 @@
                 {{ __('Votre compte a bien été créé avec succès ! 🚀👍') }}
             </p>
             <div class="form-footer">
-              <button type="submit" wire:click="submitForm({{ 1 }})" wire:loading.attr="disabled" class="btn btn-primary w-100">{{ __('Commencer votre période d\'essaie de 30j') }}</button>
+              <button type="submit" wire:click="submitForm({{ 1 }})" wire:loading.attr="disabled" class="btn btn-primary w-100">{{ __('Commencer votre période d\'essaie de 15j') }}</button>
                 <br>
                 <div class="hr-text">{{ __('ou') }}</div>
 
-              <button type="submit" wire:click="submitForm({{ 0 }})" wire:loading.attr="disabled" class="btn btn-dark w-100">{{ __('Commencer avec la version gratuite') }}</button>
+              <button type="submit" wire:click="submitForm({{ 0 }})" wire:loading.attr="disabled" class="btn btn-outline-info w-100">{{ __('Plutard') }}</button>
             </div>
 
         </div>
-
+        <!-- Ajouter une section pour le choix des apps, ainsi proposer ou indiquer la meilleure formule
+            adapté à la boîte. Se servir du type de l'entreprise afin de proposer les apps les plus complémentaires et adaptées. --->
     </div>
 </div>

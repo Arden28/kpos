@@ -66,7 +66,7 @@
             </div>
             <div class="col-lg-5">
                 {{-- <livewire:pos.checkout :cart-instance="'sale'" :customers="$customers"/> --}}
-                <livewire:pos.checkout :cart-instance="'sale'"/>
+                <livewire:pos.checkout :cart-instance="'sale'" :pos="$physical"/>
             </div>
         </div>
     </div>

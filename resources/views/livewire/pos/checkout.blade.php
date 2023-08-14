@@ -37,6 +37,7 @@
                             <th class="align-middle">{{ __('Produit') }}</th>
                             <th class="align-middle">{{ __('Prix') }}</th>
                             <th class="align-middle">{{ __('Quantité') }}</th>
+                            <th class="align-middle">{{ __('Sous-total') }}</th>
                             <th class="align-middle">{{ __('Action') }}</th>
                         </tr>
                         </thead>
@@ -60,6 +61,10 @@
 
                                     <td class="align-middle">
                                         @include('livewire.includes.product-cart-quantity')
+                                    </td>
+
+                                    <td class="align-middle">
+                                        {{ format_currency($cart_item->qty * $cart_item->price) }}
                                     </td>
 
                                     <td class="align-middle text-center">

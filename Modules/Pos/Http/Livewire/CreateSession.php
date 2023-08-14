@@ -13,6 +13,7 @@ use Modules\Financial\Entities\Accounting\Account;
 use Modules\Pos\Entities\CashPos;
 use Modules\Pos\Entities\PhysicalPosSession;
 use Modules\Pos\Entities\Pos;
+use Modules\Product\Entities\Product;
 
 class CreateSession extends Component
 {
@@ -31,6 +32,10 @@ class CreateSession extends Component
 
     protected $stop_id;
 
+    public $products = [];
+
+    public $totalStockValue = 0;
+
     public function mount()
     {
         // $this->account_id = Account::find($this->account)->first();
@@ -38,6 +43,7 @@ class CreateSession extends Component
         $this->start_amount = $this->account->balance;
         $this->pos_id = $this->p->id; //A modifier
         $this->user_id = auth()->user()->id;
+
     }
 
 
@@ -52,11 +58,16 @@ class CreateSession extends Component
     public function submit()
     {
         $this->validate();
-
         // Execution doesn't reach here if validation fails.
 
         // Si il y'a déjà une session en cours, vous êtes redirigé et une erreur est envoyée
         if(!session()->has('pos_session')){
+
+                // Got stock value
+                $saleValue = $this->calculateTotal('price');
+                $purchaseValue = $this->calculateTotal('cost');
+                // dd($saleValue, $purchaseValue);
+
                 $pos_session = PhysicalPosSession::create([
                     // 'start_date' => $this->start_date,
                     'start_date' => Carbon::now()->format('d-m-Y H:i:s'),
@@ -65,6 +76,8 @@ class CreateSession extends Component
                     'pos_id' => $this->pos_id,
                     'user_id' => $this->user_id,
                     'company_id' => Auth::user()->currentCompany->id,
+                    'start_stock_price_value' => $saleValue,
+                    'start_stock_cost_value' => $purchaseValue,
                     'is_active' => 1,
                 ]);
 
@@ -108,6 +121,32 @@ class CreateSession extends Component
 
         }
     }
+
+    public function calculateTotal($value)
+    {
+        $this->products = Product::isCompany(Auth::user()->currentCompany->id)->IsStorable()->get();
+        if($value == 'price'){
+            return $this->totalStockValue = $this->calculateSaleStockValue($this->products);
+        }elseif($value == 'cost'){
+            return $this->totalStockValue = $this->calculatePurchaseStockValue($this->products);
+        }
+    }
+
+
+    public function calculateSaleStockValue($products)
+    {
+        return $products->sum(function ($product) {
+            return $product->product_price * $product->product_quantity;
+        });
+    }
+
+    public function calculatePurchaseStockValue($products)
+    {
+        return $products->sum(function ($product) {
+            return $product->product_cost * $product->product_quantity;
+        });
+    }
+
 
     public function stopSession($stop_id){
 

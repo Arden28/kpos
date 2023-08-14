@@ -393,6 +393,21 @@ textarea {
   line-height: inherit;
 }
 
+/* custom form */
+.custom-group{
+    margin-bottom: 20px;
+}
+.custom-form{
+    display: inline-flex;
+    padding: 0;
+    border: none;
+    border-bottom: 1px solid #ccc;
+    border-radius: 0;
+    outline: none;
+    background-color: transparent;
+}
+/* Custom form */
+
 button,
 select {
   text-transform: none;

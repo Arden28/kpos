@@ -15,7 +15,7 @@ use Modules\Pos\Http\Controllers\PosSessionController;
 |
 */
 
-    Route::middleware(['module:pos', 'auth'])->group(function() {
+    Route::middleware(['module:pos', 'auth', 'subscribed'])->group(function() {
 
         // Start a session
         Route::post('/app/pos/session', [PosController::class, 'startSession'])->name('app.pos.session.store');

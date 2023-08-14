@@ -21,7 +21,7 @@ use Modules\Pos\Http\Controllers\PosSessionController;
 |
 */
 
-Route::middleware(['module:pos', 'auth', 'opened'])->group( function() {
+Route::middleware(['module:pos', 'auth', 'opened', 'subscribed'])->group( function() {
 
     Route::post('/app/pos', [PosController::class, 'store'])->name('app.pos.store');
 
@@ -40,7 +40,7 @@ Route::middleware(['module:pos', 'auth', 'opened'])->group( function() {
 });
 
 
-Route::middleware(['module:pos', 'auth'])->group(function() {
+Route::middleware(['module:pos', 'auth', 'subscribed'])->group(function() {
 
     Route::get('/app/pos/dashboard', [PosController::class, 'dashboard'])->name('app.pos.dashboard');
 

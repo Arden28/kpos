@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Facades\Route;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -11,6 +12,7 @@
 |
 */
 
-Route::prefix('accounting')->group(function() {
+
+Route::middleware(['auth', 'subscribed'])->prefix('accounting')->group(function() {
     Route::get('/', 'AccountingController@index');
 });

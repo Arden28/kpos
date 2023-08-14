@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware(['module:inventory', 'auth'])->group(function () {
+Route::middleware(['module:inventory', 'auth', 'subscribed'])->group(function () {
     //Product Adjustment
     Route::resource('adjustments', 'AdjustmentController');
 });

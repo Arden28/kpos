@@ -25,6 +25,7 @@
                     @endif
                     <div class="row">
                         <div class="col-lg-7">
+                            <input type="hidden" value="{{ $pos->account_id }}" name="account_id">
                             <input type="hidden" value="{{ $customer_id }}" name="customer_id">
                             <input type="hidden" value="{{ $global_tax }}" name="tax_percentage">
                             <input type="hidden" value="{{ $global_discount }}" name="discount_percentage">
@@ -33,13 +34,16 @@
                                 <div class="col-lg-6">
                                     <div class="form-group">
                                         <label for="total_amount">{{ __('Montant total') }} <span class="text-danger">*</span></label>
-                                        <input id="total_amount" type="text" class="form-control" name="total_amount" value="{{ $total_amount }}" readonly required>
+                                        <input type="text" class="form-control" name="total_amount" value="{{ $total_amount }}" readonly required>
+                                        {{-- <input id="total_amount" type="text" class="form-control" name="total_amount" value="{{ $total_amount }}" readonly required> --}}
                                     </div>
                                 </div>
                                 <div class="col-lg-6">
                                     <div class="form-group">
                                         <label for="paid_amount">{{ __('Montant reçu') }} <span class="text-danger">*</span></label>
-                                        <input id="paid_amount" type="text" class="form-control" name="paid_amount" value="{{ $total_amount }}" required>
+                                        <input type="number" class="form-control" name="paid_amount" value="{{ $total_amount }}" min="0" step="0.25">
+                                        {{-- <input id="paid_amount" type="text" class="form-control" name="paid_amount" value="{{ $total_amount }}"> --}}
+
                                     </div>
                                 </div>
                             </div>
