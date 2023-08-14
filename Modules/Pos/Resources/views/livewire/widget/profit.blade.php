@@ -57,14 +57,10 @@
                                             return $pos_sales->sale->paid_amount;
                                         })) }}</td>
                                     </tr>
-                                    <tr>
+                                    {{-- <tr>
                                         <th>{{ __("Total des achats") }}</th>
                                         <td>500</td>
-                                    </tr>
-                                    <tr>
-                                        <th>{{ __("Total des dépenses") }}</th>
-                                        <td>500</td>
-                                    </tr>
+                                    </tr> --}}
                                 </table>
                             </div>
                         </div>
